@@ -1,31 +1,47 @@
-import {prisma} from "@/lib/prisma"
-import {CreateSalaData, UpdateSalaData} from "@/lib/Validation/Sala"
+import { prisma } from "@/lib/prisma"
+import { CreateSalaData, UpdateSalaData } from "@/lib/Validation/Sala"
 
-export class SalaCRUD{
-    async criarSala(data: CreateSalaData){
-        return await prisma.sala.create({data})
+export class SalaCRUD {
+
+    async criarSala(data: CreateSalaData) {
+        return await prisma.sala.create({
+            data: {
+                nome_sala:  data.nome_sala,
+                capacidade: data.capacidade  // ← estava em falta
+            }
+        })
     }
-    async atualizarSala(id: number, data: UpdateSalaData){
+
+    async atualizarSala(nomeSala: string, data: UpdateSalaData) {
         return await prisma.sala.update({
-            where: {idSala: id},
-            data,
+            where: { nome_sala: nomeSala },
+            data: {
+                // só actualiza os campos que vieram preenchidos
+                ...(data.nome_sala  && { nome_sala:  data.nome_sala }),
+                ...(data.capacidade && { capacidade: data.capacidade }),
+            }
         })
     }
-    async showSala(id: number){
+
+    async showSala(nomeSala: string) {
         return await prisma.sala.findUnique({
-            where: {idSala: id},
+            where: { nome_sala: nomeSala },
+            include: { tempo_lectivo: true }
         })
     }
-    async listarTodasSalas(){
+
+    async listarTodasSalas() {
         return await prisma.sala.findMany({
-            orderBy: {nome: "asc"}
+            orderBy: { nome_sala: "asc" }
         })
     }
-    async apagarSala(id: number){
+
+    async apagarSala(nomeSala: string) {
         await prisma.sala.delete({
-            where: {idSala: id},
+            where: { nome_sala: nomeSala }
         })
-        return {message: "Sala eliminada com sucesso"}
+        return { message: "Sala eliminada com sucesso" }
     }
 }
+
 export const salaService = new SalaCRUD()

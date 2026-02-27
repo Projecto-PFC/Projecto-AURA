@@ -2,32 +2,34 @@ import {prisma} from "@/lib/prisma";
 import{CreateClasseData, UpdateClasseData} from "@/lib/Validation/Classe"
 
 export class ClasseCRUD {
-    async criarTurma(data: CreateClasseData){
-        return await prisma.classe.create({data})
+    async criarClasse(data: CreateClasseData){
+        return await prisma.classe.create({
+            data: { nome_classe: data.nome_classe }
+        })
     }
 
-    async atualizarTurma(nomeClasse: string, data: UpdateClasseData){
+    async atualizarClasse(nomeClasse: string, data: UpdateClasseData){
         return await prisma.classe.update({
-            where: {nome: nomeClasse},
-            data,
+            where: {nome_classe: nomeClasse},
+            data:  { nome_classe: data.nome_classe }
         })
     }
-    async showTurma(nomeClasse: string){
+    async showClasse(nomeClasse: string){
         return await prisma.classe.findUnique({
-            where: {nome: nomeClasse},
+            where: {nome_classe: nomeClasse},
         })
     }
-    async listarTodasTurmas(){
+    async listarTodasClasses(){
         return await prisma.classe.findMany({
-            orderBy: {nome: "asc"}
+            orderBy: {nome_classe: "asc"}
         })
     }
-    async apagarTurma(nomeClasse: string){
+    async apagarClasse(nomeClasse: string){
         await prisma.classe.delete({
-            where: {nome: nomeClasse},
+            where: {nome_classe: nomeClasse},
         
         })
-        return {message: "Turma eliminada com sucesso"}
+        return {message: "Classe eliminada com sucesso"}
     }
     
 }

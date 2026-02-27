@@ -3,31 +3,33 @@ import { CreateDisciplinaData, UpdateDisciplinaData } from '@/lib/Validation/Dis
 
 export class DisciplinaCRUD {
     async criar(data: CreateDisciplinaData) {
-        return await prisma.disciplina.create({ data });
-    }
-
-    async atualizar(id: number, data: UpdateDisciplinaData) {
-        return await prisma.disciplina.update({
-            where: { idDisciplina: id },
-            data,
+        return await prisma.disciplina.create({ 
+            data: { nome_disciplina: data.nome_disciplina } 
         });
     }
 
-    async mostrar(id: number) {
+    async atualizar(nomeDisciplina: string, data: UpdateDisciplinaData) {
+        return await prisma.disciplina.update({
+            where: { nome_disciplina: nomeDisciplina },
+            data: { nome_disciplina: data.nome_disciplina }
+        });
+    }
+
+    async mostrar(nomeDisciplina: string) {
         return await prisma.disciplina.findUnique({
-            where: { idDisciplina: id },
+            where: { nome_disciplina: nomeDisciplina },
         });
     }
 
     async listarTodas() {
         return await prisma.disciplina.findMany({
-            orderBy: { nome: 'asc' },
+            orderBy: { nome_disciplina: 'asc' },
         });
     }
 
-    async apagar(id: number) {
+    async apagar(nomeDisciplina: string) {
         await prisma.disciplina.delete({
-            where: { idDisciplina: id },
+            where: { nome_disciplina: nomeDisciplina },
         });
         return { message: "Disciplina eliminada com sucesso" };
     }
