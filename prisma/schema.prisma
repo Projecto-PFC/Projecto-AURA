@@ -1,80 +1,141 @@
-'use server'
+// ════════════════════════════════════════════════════════════
+//  PRISMA SCHEMA — Portal de Horários Académicos
+// ════════════════════════════════════════════════════════════
+//
+//  REGRA DE OURO DO PRISMA:
+//  O nome do campo no schema determina o nome no cliente TypeScript.
+//  Exemplo: se o campo de relação se chama `professor` (minúsculo),
+//  o include será { professor: { ... } } — não { Professor: { ... } }.
+//  O nome do MODEL (ex: Professor) não afecta o nome do campo de relação.
 
-import { prisma } from '@/lib/prisma'
-import { listarTodos } from './professores/professores-action'
-import { listarTodasTurmas } from './turmas/turma-action'
-import { listarTodas } from './disciplinas/disciplinas-action'
-import { salaService } from '@/lib/Service/Sala'
-
-
-// * Obtém estatísticas do dashboard
-
-export async function getDashboardStats() {
-  const [professores, turmas, disciplinas, salas] = await Promise.all([
-    listarTodos(),
-    listarTodasTurmas(),
-    listarTodas(),
-    salaService.listarTodasSalas(),
-  ])
-
-  return {
-    professores: professores.length,
-    turmas: turmas.length,
-    disciplinas: disciplinas.length,
-    salas: salas.length,
-  }
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
 }
 
-
- //* Obtém o nome do dia da semana em português
- 
-function getDiaSemanaHoje(): string {
-  const dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
-  const hoje = new Date().getDay()
-  return dias[hoje]
+datasource db {
+  provider = "postgresql"
 }
 
+model Classe {
+  nome_classe String @db.VarChar(20) @id
 
-// * Obtém as aulas de hoje (TempoLectivo do dia atual)
- 
-export async function getAulasHoje() {
-  const diaHoje = getDiaSemanaHoje()
+  turmas Turma[]
 
-  // Buscar o dia da semana no banco
-  const diaSemana = await prisma.diaSemana.findUnique({
-    where: { nome_dia: diaHoje },
-  })
+  @@map("classes")
+}
 
-  if (!diaSemana) {
-    return []
-  }
+model Curso {
+  nome_curso String @db.VarChar(100) @id
 
-  // Buscar TempoLectivo do dia de hoje com todas as relações
-  const aulas = await prisma.tempoLectivo.findMany({
-    where: {
-      diaSemana: diaSemana.nome_dia,
-    },
-    include: {
-      Disciplina: true,
-      Turma: true,
-      Sala: true,
-      Professor: true,
-      Periodo: true,
-      DiaSemana: true,
-    },
-    orderBy: [
-      { ordem: 'asc' },
-      { periodoId: 'asc' },
-    ],
-  })
+  turmas Turma[]
 
-  return aulas.map((aula) => ({
-    id: aula.idTempoLectivo,
-    time: aula.Periodo.periodo,
-    subject: aula.Disciplina.nome,
-    turma: aula.Turma.nome,
-    room: aula.Sala.nome,
-    professor: aula.Professor.nome,
-    ordem: aula.ordem,
-  }))
+  @@map("cursos")
+}
+
+model DiaSemana {
+  nome_dia String @db.VarChar(20) @id
+
+  disponibilidades      Disponibilidade[]
+  tempo_lectivo         Tempo_Lectivo[]
+
+  @@map("dias_semana")
+}
+
+model Disciplina {
+  nome_disciplina String @db.VarChar(100) @id
+
+  profDisciplinas     ProfDisciplinas[]
+  tempo_lectivo       Tempo_Lectivo[]
+
+  @@map("disciplinas")
+}
+
+model Disponibilidade {
+  id_disponibilidade          Int @id @default(autoincrement())
+  professorId                 Int
+  nome_dia                    String @db.VarChar(20)
+  nome_periodo                String @db.VarChar(20)
+  ordem                       Int
+
+  professor Professor @relation(fields: [professorId], references: [id_professor])
+  dia       DiaSemana @relation(fields: [nome_dia], references: [nome_dia])
+  periodo   Periodo   @relation(fields: [nome_periodo], references: [nome_periodo])
+
+  @@map("disponibilidades")
+}
+
+model Periodo {
+  nome_periodo String @db.VarChar(20) @id
+
+  disponibilidades      Disponibilidade[]
+  tempo_lectivo         Tempo_Lectivo[]
+
+  @@map("periodos")   
+}
+
+model Professor {
+  id_professor Int      @id @default(autoincrement())
+  nome         String   @db.VarChar(100)
+  email        String   @db.VarChar(20) 
+  telefone     String   @db.VarChar(15)
+  updated_at   DateTime @updatedAt
+
+  profDisciplinas       ProfDisciplinas[]
+  disponibilidades      Disponibilidade[]
+  tempo_lectivo         Tempo_Lectivo[]
+
+  @@map("professores")
+}
+
+model ProfDisciplinas {
+  professorId     Int
+  nome_disciplina String @db.VarChar(100)
+
+  professor  Professor  @relation(fields: [professorId], references: [id_professor])
+  disciplina Disciplina @relation(fields: [nome_disciplina], references: [nome_disciplina])
+
+  @@id([professorId, nome_disciplina])
+  @@map("prof_disciplinas")
+}
+
+model Sala {
+  nome_sala       String @db.VarChar(20) @id
+  capacidade      Int
+
+  tempo_lectivo Tempo_Lectivo[]
+
+  @@map("salas")
+}
+
+model Tempo_Lectivo {
+  id                Int    @id @default(autoincrement())
+  professorId       Int
+  nome_turma        String @db.VarChar(100)
+  nome_disciplina   String @db.VarChar(100)
+  nome_sala         String @db.VarChar(100)
+  nome_dia          String @db.VarChar(100)
+  nome_periodo      String @db.VarChar(100)
+  ordem             Int    @default(1)
+
+  professor  Professor  @relation(fields: [professorId], references: [id_professor])
+  turma      Turma      @relation(fields: [nome_turma], references: [nome_turma])
+  disciplina Disciplina @relation(fields: [nome_disciplina], references: [nome_disciplina])
+  sala       Sala       @relation(fields: [nome_sala], references: [nome_sala])
+  dia        DiaSemana  @relation(fields: [nome_dia], references: [nome_dia])
+  periodo    Periodo    @relation(fields: [nome_periodo], references: [nome_periodo])
+
+  @@map("tempo_lectivo")
+} 
+
+model Turma {
+  nome_turma     String @db.VarChar(20) @id
+  nome_curso     String @db.VarChar(20)
+  nome_classe    String @db.VarChar(20)
+
+  curso    Curso     @relation(fields: [nome_curso], references: [nome_curso])
+  classe   Classe    @relation(fields: [nome_classe], references: [nome_classe])
+  tempo_lectivo Tempo_Lectivo[]
+
+  @@map("turmas")
 }
