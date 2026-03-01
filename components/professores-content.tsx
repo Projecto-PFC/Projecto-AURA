@@ -21,15 +21,14 @@ import { criarProfessor, atualizarProfessor, apagarProfessor } from "@/app/profe
 import { useRouter } from "next/navigation"
 
 interface Disciplina {
-  idDisciplina: number
-  nome: string
+  nome_disciplina: string
 }
 
 interface ProfessorData {
   id_professor: number
-    nome: string
-    email: string | null
-    telefone: string | null
+  nome: string
+  email: string | null
+  telefone: string | null
   ProfDisciplinas: {
     Disciplina: Disciplina
   }[]
@@ -40,9 +39,9 @@ interface ProfessorRow {
   id_professor: number
   nome: string
   email: string
-  telefone: string 
+  telefone: string
   disciplinas: string[]
-  disciplinaIds: number[]
+  disciplinaNomes: string[]
 }
 
 function mapProfessores(professores: ProfessorData[]): ProfessorRow[] {
@@ -52,8 +51,12 @@ function mapProfessores(professores: ProfessorData[]): ProfessorRow[] {
     nome: p.nome,
     email: p.email || "",
     telefone: p.telefone || "",
-    disciplinas: p.ProfDisciplinas.map((pd) => pd.Disciplina.nome),
-    disciplinaIds: p.ProfDisciplinas.map((pd) => pd.Disciplina.idDisciplina),
+    disciplinas: p.ProfDisciplinas.map(
+      (pd) => pd.Disciplina.nome_disciplina
+    ),
+    disciplinaNomes: p.ProfDisciplinas.map(
+      (pd) => pd.Disciplina.nome_disciplina
+    ),
   }))
 }
 
@@ -71,7 +74,7 @@ export function ProfessoresContent({ professores, disciplinas }: ProfessoresCont
     nome: "",
     email: "",
     telefone: "",
-    disciplinaIds: [] as number[],
+    disciplinaNomes: [] as string[],
   })
   const [error, setError] = useState<string | null>(null)
 
@@ -80,7 +83,7 @@ export function ProfessoresContent({ professores, disciplinas }: ProfessoresCont
   const columns = [
     { key: "nome" as const, header: "Nome" },
     { key: "email" as const, header: "Email" },
-    {key: "telefone" as const,  header: "Telefone"},
+    { key: "telefone" as const, header: "Telefone" },
     {
       key: "disciplinas",
       header: "Disciplinas",
@@ -96,12 +99,12 @@ export function ProfessoresContent({ professores, disciplinas }: ProfessoresCont
     },
   ]
 
-  const toggleDisciplina = (id: number) => {
+  const toggleDisciplina = (nome: string) => {
     setFormData((prev) => ({
       ...prev,
-      disciplinaIds: prev.disciplinaIds.includes(id)
-        ? prev.disciplinaIds.filter((d) => d !== id)
-        : [...prev.disciplinaIds, id],
+      disciplinaNomes: prev.disciplinaNomes.includes(nome)
+        ? prev.disciplinaNomes.filter((d) => d !== nome)
+        : [...prev.disciplinaNomes, nome],
     }))
   }
 
@@ -112,16 +115,15 @@ export function ProfessoresContent({ professores, disciplinas }: ProfessoresCont
     const fd = new FormData()
     fd.append("nome", formData.nome)
     fd.append("email", formData.email)
-    fd.append("telefone",formData.telefone)
-    formData.disciplinaIds.forEach((id) => fd.append("disciplinaIds", String(id)))
+    fd.append("telefone", formData.telefone)
+    formData.disciplinaNomes.forEach((nome) =>
+      fd.append("disciplinaNomes", nome)
+    )
 
     startTransition(async () => {
-      let result
-      if (editingProfessor) {
-        result = await atualizarProfessor(editingProfessor.id_professor, fd)
-      } else {
-        result = await criarProfessor(fd)
-      }
+      const result = editingProfessor
+        ? await atualizarProfessor(editingProfessor.id_professor, fd)
+        : await criarProfessor(fd)
 
       if (result.success) {
         resetForm()
@@ -133,7 +135,7 @@ export function ProfessoresContent({ professores, disciplinas }: ProfessoresCont
   }
 
   const resetForm = () => {
-    setFormData({ nome: "", email: "", disciplinaIds: [], telefone: "" })
+    setFormData({ nome: "", email: "", telefone: "", disciplinaNomes: [] })
     setEditingProfessor(null)
     setError(null)
     setIsOpen(false)
@@ -145,145 +147,90 @@ export function ProfessoresContent({ professores, disciplinas }: ProfessoresCont
       nome: professor.nome,
       telefone: professor.telefone,
       email: professor.email,
-      disciplinaIds: professor.disciplinaIds,
+      disciplinaNomes: professor.disciplinaNomes,
     })
-    setError(null)
     setIsOpen(true)
   }
 
   const handleDelete = (professor: ProfessorRow) => {
     startTransition(async () => {
       const result = await apagarProfessor(professor.id_professor)
-      if (result.success) {
-        router.refresh()
-      } else {
-        setError(result.message || "Erro ao apagar professor")
-      }
+      if (result.success) router.refresh()
+      else setError(result.message || "Erro ao apagar professor")
     })
   }
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Professores</h1>
-          <p className="text-muted-foreground">
-            Gerir professores e suas atribuicoes
-          </p>
-        </div>
-        <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogTrigger asChild>
-            <Button className="gap-2" onClick={() => resetForm()}>
-              <Plus className="h-4 w-4" />
-              Adicionar Professor
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>
-                {editingProfessor ? "Editar Professor" : "Novo Professor"}
-              </DialogTitle>
-              <DialogDescription>
-                {editingProfessor
-                  ? "Atualize os dados do professor"
-                  : "Preencha os dados para adicionar um novo professor"}
-              </DialogDescription>
-            </DialogHeader>
-            <form onSubmit={handleSubmit}>
-              <div className="grid gap-4 py-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="nome">Nome</Label>
-                  <Input
-                    id="nome"
-                    value={formData.nome}
-                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="telefone">Telefone</Label>
-                  <Input
-                    id="telefone"
-                    type="telefone"
-                    value={formData.telefone}
-                    onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-                    required
-                  />
-                </div>
-                
-                <div className="grid gap-2">
-                  <Label>Disciplinas</Label>
-                  <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto rounded-md border p-3">
-                    {disciplinas.map((d) => (
-                      <div key={d.idDisciplina} className="flex items-center gap-2">
-                        <Checkbox
-                          id={`disc-${d.idDisciplina}`}
-                          checked={formData.disciplinaIds.includes(d.idDisciplina)}
-                          onCheckedChange={() => toggleDisciplina(d.idDisciplina)}
-                        />
-                        <Label
-                          htmlFor={`disc-${d.idDisciplina}`}
-                          className="text-sm font-normal cursor-pointer"
-                        >
-                          {d.nome}
-                        </Label>
-                      </div>
-                    ))}
-                    {disciplinas.length === 0 && (
-                      <p className="text-sm text-muted-foreground col-span-2">
-                        Nenhuma disciplina registada.
-                      </p>
-                    )}
-                  </div>
-                </div>
-                {error && (
-                  <p className="text-sm text-destructive">{error}</p>
-                )}
-              </div>
-              <DialogFooter>
-                <Button type="button" variant="outline" onClick={resetForm}>
-                  Cancelar
-                </Button>
-                <Button type="submit" disabled={isPending}>
-                  {isPending
-                    ? "A guardar..."
-                    : editingProfessor
-                    ? "Guardar"
-                    : "Adicionar"}
-                </Button>
-              </DialogFooter>
-            </form>
-          </DialogContent>
-        </Dialog>
-      </div>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogTrigger asChild>
+          <Button onClick={resetForm}>
+            <Plus className="h-4 w-4" />
+            Adicionar Professor
+          </Button>
+        </DialogTrigger>
 
-      <div className="flex items-center gap-4 rounded-lg border border-border bg-card p-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-          <Users className="h-6 w-6 text-primary" />
-        </div>
-        <div>
-          <p className="text-2xl font-bold">{rows.length}</p>
-          <p className="text-sm text-muted-foreground">
-            Professores registados
-          </p>
-        </div>
-      </div>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              {editingProfessor ? "Editar Professor" : "Novo Professor"}
+            </DialogTitle>
+            <DialogDescription>
+              Preencha os dados do professor
+            </DialogDescription>
+          </DialogHeader>
+
+          <form onSubmit={handleSubmit}>
+            <div className="grid gap-4 py-4">
+              <Input
+                placeholder="Nome"
+                value={formData.nome}
+                onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                required
+              />
+
+              <Input
+                placeholder="Email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
+              />
+
+              <Input
+                placeholder="Telefone"
+                value={formData.telefone}
+                onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                required
+              />
+
+              <div className="grid gap-2">
+                {disciplinas.map((d) => (
+                  <div key={d.nome_disciplina} className="flex items-center gap-2">
+                    <Checkbox
+                      checked={formData.disciplinaNomes.includes(d.nome_disciplina)}
+                      onCheckedChange={() => toggleDisciplina(d.nome_disciplina)}
+                    />
+                    <Label>{d.nome_disciplina}</Label>
+                  </div>
+                ))}
+              </div>
+
+              {error && <p className="text-sm text-destructive">{error}</p>}
+            </div>
+
+            <DialogFooter>
+              <Button type="submit" disabled={isPending}>
+                Guardar
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
 
       <DataTable
         data={rows}
         columns={columns}
         searchKey="nome"
-        searchPlaceholder="Pesquisar professores..."
         onEdit={handleEdit}
         onDelete={handleDelete}
       />

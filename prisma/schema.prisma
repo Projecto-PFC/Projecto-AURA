@@ -1,157 +1,80 @@
-generator client {
-  provider = "prisma-client-js"
-  output   = "../lib/generated/prisma"
+'use server'
+
+import { prisma } from '@/lib/prisma'
+import { listarTodos } from './professores/professores-action'
+import { listarTodasTurmas } from './turmas/turma-action'
+import { listarTodas } from './disciplinas/disciplinas-action'
+import { salaService } from '@/lib/Service/Sala'
+
+
+// * Obtém estatísticas do dashboard
+
+export async function getDashboardStats() {
+  const [professores, turmas, disciplinas, salas] = await Promise.all([
+    listarTodos(),
+    listarTodasTurmas(),
+    listarTodas(),
+    salaService.listarTodasSalas(),
+  ])
+
+  return {
+    professores: professores.length,
+    turmas: turmas.length,
+    disciplinas: disciplinas.length,
+    salas: salas.length,
+  }
 }
 
-datasource db {
-  provider = "postgresql"
+
+ //* Obtém o nome do dia da semana em português
+ 
+function getDiaSemanaHoje(): string {
+  const dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
+  const hoje = new Date().getDay()
+  return dias[hoje]
 }
 
-model Classe {
-  //idClasse Int     @id @default(autoincrement())
-  nome     String @id
-  Turma    Turma[]
+
+// * Obtém as aulas de hoje (TempoLectivo do dia atual)
+ 
+export async function getAulasHoje() {
+  const diaHoje = getDiaSemanaHoje()
+
+  // Buscar o dia da semana no banco
+  const diaSemana = await prisma.diaSemana.findUnique({
+    where: { nome_dia: diaHoje },
+  })
+
+  if (!diaSemana) {
+    return []
+  }
+
+  // Buscar TempoLectivo do dia de hoje com todas as relações
+  const aulas = await prisma.tempoLectivo.findMany({
+    where: {
+      diaSemana: diaSemana.nome_dia,
+    },
+    include: {
+      Disciplina: true,
+      Turma: true,
+      Sala: true,
+      Professor: true,
+      Periodo: true,
+      DiaSemana: true,
+    },
+    orderBy: [
+      { ordem: 'asc' },
+      { periodoId: 'asc' },
+    ],
+  })
+
+  return aulas.map((aula) => ({
+    id: aula.idTempoLectivo,
+    time: aula.Periodo.periodo,
+    subject: aula.Disciplina.nome,
+    turma: aula.Turma.nome,
+    room: aula.Sala.nome,
+    professor: aula.Professor.nome,
+    ordem: aula.ordem,
+  }))
 }
-
-model Curso {
-  
-  nome    String @id
-  Turma   Turma[]
-}
-
-model DiaSemana {
-  nome            String            @unique @id
-  Disponibilidade Disponibilidade[]
-  TempoLectivo    TempoLectivo[]
-}
-
-model Disciplina {
-  idDisciplina    Int               @id @default(autoincrement())
-  nome            String
-  ProfDisciplinas ProfDisciplinas[]
-  TempoLectivo    TempoLectivo[]
-}
-
-model Disponibilidade {
-  idDisponibilidade Int       @id @default(autoincrement())
-  diaSemana      String
-  periodoId         String
-  ordem             Int
-  professorId       Int
-  DiaSemana         DiaSemana @relation(fields: [diaSemana], references: [nome])
-  Periodo           Periodo   @relation(fields: [periodoId], references: [periodo])
-  Professor         Professor @relation(fields: [professorId], references: [id_professor])
-}
-
-/*model Admin {
-  id_admin   Int        @id @default(autoincrement())
-  id_Usuario Int        @unique
-  created_at DateTime   @default(now())
-  updated_at DateTime
-  Utilizador Utilizador @relation(fields: [id_Usuario], references: [id], onDelete: Cascade)
-}
-
-model Aluno {
-  id_aluno      Int        @id @default(autoincrement())
-  id_Usuario    Int        @unique
-  num_matricula String
-  created_at    DateTime   @default(now())
-  updated_at    DateTime
-  Utilizador    Utilizador @relation(fields: [id_Usuario], references: [id])
-}*/
-
-model Professor {
-  id_professor    Int               @id @default(autoincrement())
-  nome String
-  email String ?
-  telefone String?
-  //id_Usuario      Int               @unique
-  //disciplina_principal String
-  created_at      DateTime          @default(now())
-  updated_at      DateTime
-  Disponibilidade Disponibilidade[]
-  //Utilizador      Utilizador        @relation(fields: [id_Usuario], references: [id])
-  ProfDisciplinas ProfDisciplinas[]
-  ProfTurma       ProfTurma[]
-  TempoLectivo    TempoLectivo[]
-
-}
-
-/*model Utilizador {
-  id         Int        @id @default(autoincrement())
-  workos_id  String?    @unique
-  nome       String
-  email      String?    @unique
-  tipo       UserType
-  created_at DateTime   @default(now())
-  updated_at DateTime
-  Admin      Admin?
-  Aluno      Aluno?
-  Professor  Professor?
-}*/
-
-model Periodo {
-  periodo         String            @id
-  Disponibilidade Disponibilidade[]
-  TempoLectivo    TempoLectivo[]
-}
-
-model ProfDisciplinas {
-  idProfDisciplina Int        @id @default(autoincrement())
-  professorId      Int
-  disciplinaId     Int
-  Disciplina       Disciplina @relation(fields: [disciplinaId], references: [idDisciplina])
-  Professor        Professor  @relation(fields: [professorId], references: [id_professor])
-
-  @@unique([professorId, disciplinaId])
-}
-
-model ProfTurma {
-  idProfTurma Int       @id @default(autoincrement())
-  professorId Int
-  turmaId     Int
-  Professor   Professor @relation(fields: [professorId], references: [id_professor])
-  Turma       Turma     @relation(fields: [turmaId], references: [idTurma])
-
-  @@unique([professorId, turmaId])
-}
-
-model Sala {
-  idSala       Int            @id @default(autoincrement())
-  nome         String
-  TempoLectivo TempoLectivo[]
-}
-
-model TempoLectivo {
-  idTempoLectivo Int        @id @default(autoincrement())
-  diaSemana      String
-  periodoId      String
-  ordem          Int
-  professorId    Int
-  disciplinaId   Int
-  salaId         Int
-  turmaId        Int
-  DiaSemana      DiaSemana  @relation(fields: [diaSemana], references: [nome])
-  Disciplina     Disciplina @relation(fields: [disciplinaId], references: [idDisciplina])
-  Periodo        Periodo    @relation(fields: [periodoId], references: [periodo])
-  Professor      Professor  @relation(fields: [professorId], references: [id_professor])
-  Sala           Sala       @relation(fields: [salaId], references: [idSala])
-  Turma          Turma      @relation(fields: [turmaId], references: [idTurma])
-}
-
-model Turma {
-  idTurma      Int            @id @default(autoincrement())
-  nome         String
-  classe    String
-  curso      String
-  ProfTurma    ProfTurma[]
-  TempoLectivo TempoLectivo[]
-  Classe       Classe         @relation(fields: [classe], references: [nome])
-  Curso        Curso          @relation(fields: [curso], references: [nome])
-}
-
-/*enum UserType {
-  Admin
-  Professor
-  Aluno
-}*/

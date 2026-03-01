@@ -3,13 +3,8 @@
 import React, { useState, useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  Dialog, DialogContent, DialogDescription, DialogFooter,
+  DialogHeader, DialogTitle, DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -19,12 +14,11 @@ import { criarDisciplina, atualizarDisciplina, apagarDisciplina } from "@/app/di
 import { useRouter } from "next/navigation"
 
 interface DisciplinaData {
-  idDisciplina: number
-  nome: string
+  nome_disciplina: string  // ← era idDisciplina: number + nome: string
 }
 
 interface DisciplinaRow extends DisciplinaData {
-  id: number
+  id: string  // ← o id agora é o nome_disciplina
 }
 
 interface DisciplinasContentProps {
@@ -36,17 +30,16 @@ export function DisciplinasContent({ disciplinas }: DisciplinasContentProps) {
   const [isPending, startTransition] = useTransition()
   const [isOpen, setIsOpen] = useState(false)
   const [editingDisciplina, setEditingDisciplina] = useState<DisciplinaData | null>(null)
-  const [formData, setFormData] = useState({ nome: "" })
+  const [formData, setFormData] = useState({ nome_disciplina: "" })
   const [error, setError] = useState<string | null>(null)
 
   const rows: DisciplinaRow[] = disciplinas.map((d) => ({
     ...d,
-    id: d.idDisciplina,
+    id: d.nome_disciplina,  // id é o nome — é a PK no teu schema
   }))
 
   const columns = [
-    { key: "idDisciplina" as const, header: "ID" },
-    { key: "nome" as const, header: "Nome" },
+    { key: "nome_disciplina" as const, header: "Nome" },
   ]
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -54,12 +47,13 @@ export function DisciplinasContent({ disciplinas }: DisciplinasContentProps) {
     setError(null)
 
     const fd = new FormData()
-    fd.append("nome", formData.nome)
+    fd.append("nome_disciplina", formData.nome_disciplina)
 
     startTransition(async () => {
       let result
       if (editingDisciplina) {
-        result = await atualizarDisciplina(editingDisciplina.idDisciplina, fd)
+        // passa o nome como identificador — é a PK
+        result = await atualizarDisciplina(editingDisciplina.nome_disciplina, fd)
       } else {
         result = await criarDisciplina(fd)
       }
@@ -74,7 +68,7 @@ export function DisciplinasContent({ disciplinas }: DisciplinasContentProps) {
   }
 
   const resetForm = () => {
-    setFormData({ nome: "" })
+    setFormData({ nome_disciplina: "" })
     setEditingDisciplina(null)
     setError(null)
     setIsOpen(false)
@@ -82,14 +76,15 @@ export function DisciplinasContent({ disciplinas }: DisciplinasContentProps) {
 
   const handleEdit = (disciplina: DisciplinaRow) => {
     setEditingDisciplina(disciplina)
-    setFormData({ nome: disciplina.nome })
+    setFormData({ nome_disciplina: disciplina.nome_disciplina })
     setError(null)
     setIsOpen(true)
   }
 
   const handleDelete = (disciplina: DisciplinaRow) => {
     startTransition(async () => {
-      const result = await apagarDisciplina(disciplina.idDisciplina)
+      // passa o nome — é o que o service espera
+      const result = await apagarDisciplina(disciplina.nome_disciplina)
       if (result.success) {
         router.refresh()
       } else {
@@ -103,9 +98,7 @@ export function DisciplinasContent({ disciplinas }: DisciplinasContentProps) {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Disciplinas</h1>
-          <p className="text-muted-foreground">
-            Gerir disciplinas e cargas horarias
-          </p>
+          <p className="text-muted-foreground">Gerir disciplinas e cargas horárias</p>
         </div>
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
@@ -121,18 +114,19 @@ export function DisciplinasContent({ disciplinas }: DisciplinasContentProps) {
               </DialogTitle>
               <DialogDescription>
                 {editingDisciplina
-                  ? "Atualize os dados da disciplina"
+                  ? "Actualize os dados da disciplina"
                   : "Preencha os dados para criar uma nova disciplina"}
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="nome">Nome</Label>
+                  <Label htmlFor="nome_disciplina">Nome</Label>
                   <Input
-                    id="nome"
-                    value={formData.nome}
-                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                    id="nome_disciplina"
+                    value={formData.nome_disciplina}
+                    onChange={(e) => setFormData({ ...formData, nome_disciplina: e.target.value })}
+                    placeholder="Ex: Matemática"
                     required
                   />
                 </div>
@@ -145,11 +139,7 @@ export function DisciplinasContent({ disciplinas }: DisciplinasContentProps) {
                   Cancelar
                 </Button>
                 <Button type="submit" disabled={isPending}>
-                  {isPending
-                    ? "A guardar..."
-                    : editingDisciplina
-                      ? "Guardar"
-                      : "Criar"}
+                  {isPending ? "A guardar..." : editingDisciplina ? "Guardar" : "Criar"}
                 </Button>
               </DialogFooter>
             </form>
@@ -163,16 +153,14 @@ export function DisciplinasContent({ disciplinas }: DisciplinasContentProps) {
         </div>
         <div>
           <p className="text-2xl font-bold">{disciplinas.length}</p>
-          <p className="text-sm text-muted-foreground">
-            Disciplinas registadas
-          </p>
+          <p className="text-sm text-muted-foreground">Disciplinas registadas</p>
         </div>
       </div>
 
       <DataTable
         data={rows}
         columns={columns}
-        searchKey="nome"
+        searchKey="nome_disciplina"
         searchPlaceholder="Pesquisar disciplinas..."
         onEdit={handleEdit}
         onDelete={handleDelete}

@@ -1,6 +1,16 @@
+// ════════════════════════════════════════════════════════════
+//  PRISMA SCHEMA — Portal de Horários Académicos
+// ════════════════════════════════════════════════════════════
+//
+//  REGRA DE OURO DO PRISMA:
+//  O nome do campo no schema determina o nome no cliente TypeScript.
+//  Exemplo: se o campo de relação se chama `professor` (minúsculo),
+//  o include será { professor: { ... } } — não { Professor: { ... } }.
+//  O nome do MODEL (ex: Professor) não afecta o nome do campo de relação.
+
 generator client {
   provider = "prisma-client-js"
-  output   = "../lib/generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -8,153 +18,124 @@ datasource db {
 }
 
 model Classe {
-  //idClasse Int     @id @default(autoincrement())
-  nome  String  @id
-  Turma Turma[]
+  nome_classe String @id @db.VarChar(20)
+
+  turmas Turma[]
+
+  @@map("classes")
 }
 
 model Curso {
-  nome  String  @id
-  Turma Turma[]
+  nome_curso String @id @db.VarChar(100)
+
+  turmas Turma[]
+
+  @@map("cursos")
 }
 
 model DiaSemana {
-  nome            String            @id @unique
-  Disponibilidade Disponibilidade[]
-  TempoLectivo    TempoLectivo[]
+  nome_dia String @id @db.VarChar(20)
+
+  disponibilidades Disponibilidade[]
+  tempo_lectivo    Tempo_Lectivo[]
+
+  @@map("dias_semana")
 }
 
 model Disciplina {
-  idDisciplina    Int               @id @default(autoincrement())
-  nome            String
-  ProfDisciplinas ProfDisciplinas[]
-  TempoLectivo    TempoLectivo[]
+  nome_disciplina String @id @db.VarChar(100)
+
+  profDisciplinas ProfDisciplinas[]
+  tempo_lectivo   Tempo_Lectivo[]
+
+  @@map("disciplinas")
 }
 
 model Disponibilidade {
-  idDisponibilidade Int       @id @default(autoincrement())
-  diaSemana         String
-  periodoId         String
-  ordem             Int
-  professorId       Int
-  DiaSemana         DiaSemana @relation(fields: [diaSemana], references: [nome])
-  Periodo           Periodo   @relation(fields: [periodoId], references: [periodo])
-  Professor         Professor @relation(fields: [professorId], references: [id_professor])
+  id_disponibilidade Int    @id @default(autoincrement())
+  professorId        Int
+  nome_dia           String @db.VarChar(20)
+  nome_periodo       String @db.VarChar(20)
+  ordem              Int
+
+  professor Professor @relation(fields: [professorId], references: [id_professor])
+  dia       DiaSemana @relation(fields: [nome_dia], references: [nome_dia])
+  periodo   Periodo   @relation(fields: [nome_periodo], references: [nome_periodo])
+
+  @@map("disponibilidades")
 }
-
-/**
- * model Admin {
- * id_admin   Int        @id @default(autoincrement())
- * id_Usuario Int        @unique
- * created_at DateTime   @default(now())
- * updated_at DateTime
- * Utilizador Utilizador @relation(fields: [id_Usuario], references: [id], onDelete: Cascade)
- * }
- * model Aluno {
- * id_aluno      Int        @id @default(autoincrement())
- * id_Usuario    Int        @unique
- * num_matricula String
- * created_at    DateTime   @default(now())
- * updated_at    DateTime
- * Utilizador    Utilizador @relation(fields: [id_Usuario], references: [id])
- * }
- */
-
-model Professor {
-  id_professor    Int               @id @default(autoincrement())
-  nome            String
-  email           String?
-  telefone        String?
-  //id_Usuario      Int               @unique
-  //disciplina_principal String
-  created_at      DateTime          @default(now())
-  updated_at      DateTime
-  Disponibilidade Disponibilidade[]
-  //Utilizador      Utilizador        @relation(fields: [id_Usuario], references: [id])
-  ProfDisciplinas ProfDisciplinas[]
-  ProfTurma       ProfTurma[]
-  TempoLectivo    TempoLectivo[]
-}
-
-/**
- * model Utilizador {
- * id         Int        @id @default(autoincrement())
- * workos_id  String?    @unique
- * nome       String
- * email      String?    @unique
- * tipo       UserType
- * created_at DateTime   @default(now())
- * updated_at DateTime
- * Admin      Admin?
- * Aluno      Aluno?
- * Professor  Professor?
- * }
- */
 
 model Periodo {
-  periodo         String            @id
-  Disponibilidade Disponibilidade[]
-  TempoLectivo    TempoLectivo[]
+  nome_periodo String @id @db.VarChar(20)
+
+  disponibilidades Disponibilidade[]
+  tempo_lectivo    Tempo_Lectivo[]
+
+  @@map("periodos")
+}
+
+model Professor {
+  id_professor Int      @id @default(autoincrement())
+  nome         String   @db.VarChar(100)
+  email        String   @db.VarChar(20)
+  telefone     String   @db.VarChar(15)
+  updated_at   DateTime @updatedAt
+
+  profDisciplinas  ProfDisciplinas[]
+  disponibilidades Disponibilidade[]
+  tempo_lectivo    Tempo_Lectivo[]
+
+  @@map("professores")
 }
 
 model ProfDisciplinas {
-  idProfDisciplina Int        @id @default(autoincrement())
-  professorId      Int
-  disciplinaId     Int
-  Disciplina       Disciplina @relation(fields: [disciplinaId], references: [idDisciplina])
-  Professor        Professor  @relation(fields: [professorId], references: [id_professor])
+  professorId     Int
+  nome_disciplina String @db.VarChar(100)
 
-  @@unique([professorId, disciplinaId])
-}
+  professor  Professor  @relation(fields: [professorId], references: [id_professor])
+  disciplina Disciplina @relation(fields: [nome_disciplina], references: [nome_disciplina])
 
-model ProfTurma {
-  idProfTurma Int       @id @default(autoincrement())
-  professorId Int
-  turmaId     Int
-  Professor   Professor @relation(fields: [professorId], references: [id_professor])
-  Turma       Turma     @relation(fields: [turmaId], references: [idTurma])
-
-  @@unique([professorId, turmaId])
+  @@id([professorId, nome_disciplina])
+  @@map("prof_disciplinas")
 }
 
 model Sala {
-  idSala       Int            @id @default(autoincrement())
-  nome         String
-  TempoLectivo TempoLectivo[]
+  nome_sala  String @id @db.VarChar(20)
+  capacidade Int
+
+  tempo_lectivo Tempo_Lectivo[]
+
+  @@map("salas")
 }
 
-model TempoLectivo {
-  idTempoLectivo Int        @id @default(autoincrement())
-  diaSemana      String
-  periodoId      String
-  ordem          Int
-  professorId    Int
-  disciplinaId   Int
-  salaId         Int
-  turmaId        Int
-  DiaSemana      DiaSemana  @relation(fields: [diaSemana], references: [nome])
-  Disciplina     Disciplina @relation(fields: [disciplinaId], references: [idDisciplina])
-  Periodo        Periodo    @relation(fields: [periodoId], references: [periodo])
-  Professor      Professor  @relation(fields: [professorId], references: [id_professor])
-  Sala           Sala       @relation(fields: [salaId], references: [idSala])
-  Turma          Turma      @relation(fields: [turmaId], references: [idTurma])
+model Tempo_Lectivo {
+  id              Int    @id @default(autoincrement())
+  professorId     Int
+  nome_turma      String @db.VarChar(100)
+  nome_disciplina String @db.VarChar(100)
+  nome_sala       String @db.VarChar(100)
+  nome_dia        String @db.VarChar(100)
+  nome_periodo    String @db.VarChar(100)
+  ordem           Int    @default(1)
+
+  professor  Professor  @relation(fields: [professorId], references: [id_professor])
+  turma      Turma      @relation(fields: [nome_turma], references: [nome_turma])
+  disciplina Disciplina @relation(fields: [nome_disciplina], references: [nome_disciplina])
+  sala       Sala       @relation(fields: [nome_sala], references: [nome_sala])
+  dia        DiaSemana  @relation(fields: [nome_dia], references: [nome_dia])
+  periodo    Periodo    @relation(fields: [nome_periodo], references: [nome_periodo])
+
+  @@map("tempo_lectivo")
 }
 
 model Turma {
-  idTurma      Int            @id @default(autoincrement())
-  nome         String
-  classe       String
-  curso        String
-  ProfTurma    ProfTurma[]
-  TempoLectivo TempoLectivo[]
-  Classe       Classe         @relation(fields: [classe], references: [nome])
-  Curso        Curso          @relation(fields: [curso], references: [nome])
-}
+  nome_turma  String @id @db.VarChar(20)
+  nome_curso  String @db.VarChar(20)
+  nome_classe String @db.VarChar(20)
 
-/**
- * enum UserType {
- * Admin
- * Professor
- * Aluno
- * }
- */
+  curso         Curso           @relation(fields: [nome_curso], references: [nome_curso])
+  classe        Classe          @relation(fields: [nome_classe], references: [nome_classe])
+  tempo_lectivo Tempo_Lectivo[]
+
+  @@map("turmas")
+}

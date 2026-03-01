@@ -39,35 +39,30 @@ export type Disciplina = $Result.DefaultSelection<Prisma.$DisciplinaPayload>
  */
 export type Disponibilidade = $Result.DefaultSelection<Prisma.$DisponibilidadePayload>
 /**
- * Model Professor
- * 
- */
-export type Professor = $Result.DefaultSelection<Prisma.$ProfessorPayload>
-/**
  * Model Periodo
  * 
  */
 export type Periodo = $Result.DefaultSelection<Prisma.$PeriodoPayload>
+/**
+ * Model Professor
+ * 
+ */
+export type Professor = $Result.DefaultSelection<Prisma.$ProfessorPayload>
 /**
  * Model ProfDisciplinas
  * 
  */
 export type ProfDisciplinas = $Result.DefaultSelection<Prisma.$ProfDisciplinasPayload>
 /**
- * Model ProfTurma
- * 
- */
-export type ProfTurma = $Result.DefaultSelection<Prisma.$ProfTurmaPayload>
-/**
  * Model Sala
  * 
  */
 export type Sala = $Result.DefaultSelection<Prisma.$SalaPayload>
 /**
- * Model TempoLectivo
+ * Model Tempo_Lectivo
  * 
  */
-export type TempoLectivo = $Result.DefaultSelection<Prisma.$TempoLectivoPayload>
+export type Tempo_Lectivo = $Result.DefaultSelection<Prisma.$Tempo_LectivoPayload>
 /**
  * Model Turma
  * 
@@ -242,16 +237,6 @@ export class PrismaClient<
   get disponibilidade(): Prisma.DisponibilidadeDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.professor`: Exposes CRUD operations for the **Professor** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Professors
-    * const professors = await prisma.professor.findMany()
-    * ```
-    */
-  get professor(): Prisma.ProfessorDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.periodo`: Exposes CRUD operations for the **Periodo** model.
     * Example usage:
     * ```ts
@@ -260,6 +245,16 @@ export class PrismaClient<
     * ```
     */
   get periodo(): Prisma.PeriodoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.professor`: Exposes CRUD operations for the **Professor** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Professors
+    * const professors = await prisma.professor.findMany()
+    * ```
+    */
+  get professor(): Prisma.ProfessorDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.profDisciplinas`: Exposes CRUD operations for the **ProfDisciplinas** model.
@@ -272,16 +267,6 @@ export class PrismaClient<
   get profDisciplinas(): Prisma.ProfDisciplinasDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.profTurma`: Exposes CRUD operations for the **ProfTurma** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ProfTurmas
-    * const profTurmas = await prisma.profTurma.findMany()
-    * ```
-    */
-  get profTurma(): Prisma.ProfTurmaDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.sala`: Exposes CRUD operations for the **Sala** model.
     * Example usage:
     * ```ts
@@ -292,14 +277,14 @@ export class PrismaClient<
   get sala(): Prisma.SalaDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.tempoLectivo`: Exposes CRUD operations for the **TempoLectivo** model.
+   * `prisma.tempo_Lectivo`: Exposes CRUD operations for the **Tempo_Lectivo** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more TempoLectivos
-    * const tempoLectivos = await prisma.tempoLectivo.findMany()
+    * // Fetch zero or more Tempo_Lectivos
+    * const tempo_Lectivos = await prisma.tempo_Lectivo.findMany()
     * ```
     */
-  get tempoLectivo(): Prisma.TempoLectivoDelegate<ExtArgs, ClientOptions>;
+  get tempo_Lectivo(): Prisma.Tempo_LectivoDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.turma`: Exposes CRUD operations for the **Turma** model.
@@ -749,12 +734,11 @@ export namespace Prisma {
     DiaSemana: 'DiaSemana',
     Disciplina: 'Disciplina',
     Disponibilidade: 'Disponibilidade',
-    Professor: 'Professor',
     Periodo: 'Periodo',
+    Professor: 'Professor',
     ProfDisciplinas: 'ProfDisciplinas',
-    ProfTurma: 'ProfTurma',
     Sala: 'Sala',
-    TempoLectivo: 'TempoLectivo',
+    Tempo_Lectivo: 'Tempo_Lectivo',
     Turma: 'Turma'
   };
 
@@ -771,7 +755,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "classe" | "curso" | "diaSemana" | "disciplina" | "disponibilidade" | "professor" | "periodo" | "profDisciplinas" | "profTurma" | "sala" | "tempoLectivo" | "turma"
+      modelProps: "classe" | "curso" | "diaSemana" | "disciplina" | "disponibilidade" | "periodo" | "professor" | "profDisciplinas" | "sala" | "tempo_Lectivo" | "turma"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1145,80 +1129,6 @@ export namespace Prisma {
           }
         }
       }
-      Professor: {
-        payload: Prisma.$ProfessorPayload<ExtArgs>
-        fields: Prisma.ProfessorFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ProfessorFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ProfessorFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
-          }
-          findFirst: {
-            args: Prisma.ProfessorFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ProfessorFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
-          }
-          findMany: {
-            args: Prisma.ProfessorFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>[]
-          }
-          create: {
-            args: Prisma.ProfessorCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
-          }
-          createMany: {
-            args: Prisma.ProfessorCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.ProfessorCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>[]
-          }
-          delete: {
-            args: Prisma.ProfessorDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
-          }
-          update: {
-            args: Prisma.ProfessorUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
-          }
-          deleteMany: {
-            args: Prisma.ProfessorDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ProfessorUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.ProfessorUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>[]
-          }
-          upsert: {
-            args: Prisma.ProfessorUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
-          }
-          aggregate: {
-            args: Prisma.ProfessorAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateProfessor>
-          }
-          groupBy: {
-            args: Prisma.ProfessorGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ProfessorGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ProfessorCountArgs<ExtArgs>
-            result: $Utils.Optional<ProfessorCountAggregateOutputType> | number
-          }
-        }
-      }
       Periodo: {
         payload: Prisma.$PeriodoPayload<ExtArgs>
         fields: Prisma.PeriodoFieldRefs
@@ -1290,6 +1200,80 @@ export namespace Prisma {
           count: {
             args: Prisma.PeriodoCountArgs<ExtArgs>
             result: $Utils.Optional<PeriodoCountAggregateOutputType> | number
+          }
+        }
+      }
+      Professor: {
+        payload: Prisma.$ProfessorPayload<ExtArgs>
+        fields: Prisma.ProfessorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProfessorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProfessorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
+          }
+          findFirst: {
+            args: Prisma.ProfessorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProfessorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
+          }
+          findMany: {
+            args: Prisma.ProfessorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>[]
+          }
+          create: {
+            args: Prisma.ProfessorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
+          }
+          createMany: {
+            args: Prisma.ProfessorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProfessorCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>[]
+          }
+          delete: {
+            args: Prisma.ProfessorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
+          }
+          update: {
+            args: Prisma.ProfessorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProfessorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProfessorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProfessorUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProfessorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfessorPayload>
+          }
+          aggregate: {
+            args: Prisma.ProfessorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProfessor>
+          }
+          groupBy: {
+            args: Prisma.ProfessorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProfessorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProfessorCountArgs<ExtArgs>
+            result: $Utils.Optional<ProfessorCountAggregateOutputType> | number
           }
         }
       }
@@ -1367,80 +1351,6 @@ export namespace Prisma {
           }
         }
       }
-      ProfTurma: {
-        payload: Prisma.$ProfTurmaPayload<ExtArgs>
-        fields: Prisma.ProfTurmaFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ProfTurmaFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfTurmaPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ProfTurmaFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfTurmaPayload>
-          }
-          findFirst: {
-            args: Prisma.ProfTurmaFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfTurmaPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ProfTurmaFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfTurmaPayload>
-          }
-          findMany: {
-            args: Prisma.ProfTurmaFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfTurmaPayload>[]
-          }
-          create: {
-            args: Prisma.ProfTurmaCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfTurmaPayload>
-          }
-          createMany: {
-            args: Prisma.ProfTurmaCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.ProfTurmaCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfTurmaPayload>[]
-          }
-          delete: {
-            args: Prisma.ProfTurmaDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfTurmaPayload>
-          }
-          update: {
-            args: Prisma.ProfTurmaUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfTurmaPayload>
-          }
-          deleteMany: {
-            args: Prisma.ProfTurmaDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ProfTurmaUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.ProfTurmaUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfTurmaPayload>[]
-          }
-          upsert: {
-            args: Prisma.ProfTurmaUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfTurmaPayload>
-          }
-          aggregate: {
-            args: Prisma.ProfTurmaAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateProfTurma>
-          }
-          groupBy: {
-            args: Prisma.ProfTurmaGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ProfTurmaGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ProfTurmaCountArgs<ExtArgs>
-            result: $Utils.Optional<ProfTurmaCountAggregateOutputType> | number
-          }
-        }
-      }
       Sala: {
         payload: Prisma.$SalaPayload<ExtArgs>
         fields: Prisma.SalaFieldRefs
@@ -1515,77 +1425,77 @@ export namespace Prisma {
           }
         }
       }
-      TempoLectivo: {
-        payload: Prisma.$TempoLectivoPayload<ExtArgs>
-        fields: Prisma.TempoLectivoFieldRefs
+      Tempo_Lectivo: {
+        payload: Prisma.$Tempo_LectivoPayload<ExtArgs>
+        fields: Prisma.Tempo_LectivoFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TempoLectivoFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TempoLectivoPayload> | null
+            args: Prisma.Tempo_LectivoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Tempo_LectivoPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TempoLectivoFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TempoLectivoPayload>
+            args: Prisma.Tempo_LectivoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Tempo_LectivoPayload>
           }
           findFirst: {
-            args: Prisma.TempoLectivoFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TempoLectivoPayload> | null
+            args: Prisma.Tempo_LectivoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Tempo_LectivoPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TempoLectivoFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TempoLectivoPayload>
+            args: Prisma.Tempo_LectivoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Tempo_LectivoPayload>
           }
           findMany: {
-            args: Prisma.TempoLectivoFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TempoLectivoPayload>[]
+            args: Prisma.Tempo_LectivoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Tempo_LectivoPayload>[]
           }
           create: {
-            args: Prisma.TempoLectivoCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TempoLectivoPayload>
+            args: Prisma.Tempo_LectivoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Tempo_LectivoPayload>
           }
           createMany: {
-            args: Prisma.TempoLectivoCreateManyArgs<ExtArgs>
+            args: Prisma.Tempo_LectivoCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.TempoLectivoCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TempoLectivoPayload>[]
+            args: Prisma.Tempo_LectivoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Tempo_LectivoPayload>[]
           }
           delete: {
-            args: Prisma.TempoLectivoDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TempoLectivoPayload>
+            args: Prisma.Tempo_LectivoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Tempo_LectivoPayload>
           }
           update: {
-            args: Prisma.TempoLectivoUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TempoLectivoPayload>
+            args: Prisma.Tempo_LectivoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Tempo_LectivoPayload>
           }
           deleteMany: {
-            args: Prisma.TempoLectivoDeleteManyArgs<ExtArgs>
+            args: Prisma.Tempo_LectivoDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.TempoLectivoUpdateManyArgs<ExtArgs>
+            args: Prisma.Tempo_LectivoUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.TempoLectivoUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TempoLectivoPayload>[]
+            args: Prisma.Tempo_LectivoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Tempo_LectivoPayload>[]
           }
           upsert: {
-            args: Prisma.TempoLectivoUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TempoLectivoPayload>
+            args: Prisma.Tempo_LectivoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Tempo_LectivoPayload>
           }
           aggregate: {
-            args: Prisma.TempoLectivoAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTempoLectivo>
+            args: Prisma.Tempo_LectivoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTempo_Lectivo>
           }
           groupBy: {
-            args: Prisma.TempoLectivoGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TempoLectivoGroupByOutputType>[]
+            args: Prisma.Tempo_LectivoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Tempo_LectivoGroupByOutputType>[]
           }
           count: {
-            args: Prisma.TempoLectivoCountArgs<ExtArgs>
-            result: $Utils.Optional<TempoLectivoCountAggregateOutputType> | number
+            args: Prisma.Tempo_LectivoCountArgs<ExtArgs>
+            result: $Utils.Optional<Tempo_LectivoCountAggregateOutputType> | number
           }
         }
       }
@@ -1776,12 +1686,11 @@ export namespace Prisma {
     diaSemana?: DiaSemanaOmit
     disciplina?: DisciplinaOmit
     disponibilidade?: DisponibilidadeOmit
-    professor?: ProfessorOmit
     periodo?: PeriodoOmit
+    professor?: ProfessorOmit
     profDisciplinas?: ProfDisciplinasOmit
-    profTurma?: ProfTurmaOmit
     sala?: SalaOmit
-    tempoLectivo?: TempoLectivoOmit
+    tempo_Lectivo?: Tempo_LectivoOmit
     turma?: TurmaOmit
   }
 
@@ -1863,11 +1772,11 @@ export namespace Prisma {
    */
 
   export type ClasseCountOutputType = {
-    Turma: number
+    turmas: number
   }
 
   export type ClasseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Turma?: boolean | ClasseCountOutputTypeCountTurmaArgs
+    turmas?: boolean | ClasseCountOutputTypeCountTurmasArgs
   }
 
   // Custom InputTypes
@@ -1884,7 +1793,7 @@ export namespace Prisma {
   /**
    * ClasseCountOutputType without action
    */
-  export type ClasseCountOutputTypeCountTurmaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClasseCountOutputTypeCountTurmasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TurmaWhereInput
   }
 
@@ -1894,11 +1803,11 @@ export namespace Prisma {
    */
 
   export type CursoCountOutputType = {
-    Turma: number
+    turmas: number
   }
 
   export type CursoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Turma?: boolean | CursoCountOutputTypeCountTurmaArgs
+    turmas?: boolean | CursoCountOutputTypeCountTurmasArgs
   }
 
   // Custom InputTypes
@@ -1915,7 +1824,7 @@ export namespace Prisma {
   /**
    * CursoCountOutputType without action
    */
-  export type CursoCountOutputTypeCountTurmaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CursoCountOutputTypeCountTurmasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TurmaWhereInput
   }
 
@@ -1925,13 +1834,13 @@ export namespace Prisma {
    */
 
   export type DiaSemanaCountOutputType = {
-    Disponibilidade: number
-    TempoLectivo: number
+    disponibilidades: number
+    tempo_lectivo: number
   }
 
   export type DiaSemanaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Disponibilidade?: boolean | DiaSemanaCountOutputTypeCountDisponibilidadeArgs
-    TempoLectivo?: boolean | DiaSemanaCountOutputTypeCountTempoLectivoArgs
+    disponibilidades?: boolean | DiaSemanaCountOutputTypeCountDisponibilidadesArgs
+    tempo_lectivo?: boolean | DiaSemanaCountOutputTypeCountTempo_lectivoArgs
   }
 
   // Custom InputTypes
@@ -1948,15 +1857,15 @@ export namespace Prisma {
   /**
    * DiaSemanaCountOutputType without action
    */
-  export type DiaSemanaCountOutputTypeCountDisponibilidadeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiaSemanaCountOutputTypeCountDisponibilidadesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DisponibilidadeWhereInput
   }
 
   /**
    * DiaSemanaCountOutputType without action
    */
-  export type DiaSemanaCountOutputTypeCountTempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TempoLectivoWhereInput
+  export type DiaSemanaCountOutputTypeCountTempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Tempo_LectivoWhereInput
   }
 
 
@@ -1965,13 +1874,13 @@ export namespace Prisma {
    */
 
   export type DisciplinaCountOutputType = {
-    ProfDisciplinas: number
-    TempoLectivo: number
+    profDisciplinas: number
+    tempo_lectivo: number
   }
 
   export type DisciplinaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ProfDisciplinas?: boolean | DisciplinaCountOutputTypeCountProfDisciplinasArgs
-    TempoLectivo?: boolean | DisciplinaCountOutputTypeCountTempoLectivoArgs
+    profDisciplinas?: boolean | DisciplinaCountOutputTypeCountProfDisciplinasArgs
+    tempo_lectivo?: boolean | DisciplinaCountOutputTypeCountTempo_lectivoArgs
   }
 
   // Custom InputTypes
@@ -1995,66 +1904,8 @@ export namespace Prisma {
   /**
    * DisciplinaCountOutputType without action
    */
-  export type DisciplinaCountOutputTypeCountTempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TempoLectivoWhereInput
-  }
-
-
-  /**
-   * Count Type ProfessorCountOutputType
-   */
-
-  export type ProfessorCountOutputType = {
-    Disponibilidade: number
-    ProfDisciplinas: number
-    ProfTurma: number
-    TempoLectivo: number
-  }
-
-  export type ProfessorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Disponibilidade?: boolean | ProfessorCountOutputTypeCountDisponibilidadeArgs
-    ProfDisciplinas?: boolean | ProfessorCountOutputTypeCountProfDisciplinasArgs
-    ProfTurma?: boolean | ProfessorCountOutputTypeCountProfTurmaArgs
-    TempoLectivo?: boolean | ProfessorCountOutputTypeCountTempoLectivoArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * ProfessorCountOutputType without action
-   */
-  export type ProfessorCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfessorCountOutputType
-     */
-    select?: ProfessorCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * ProfessorCountOutputType without action
-   */
-  export type ProfessorCountOutputTypeCountDisponibilidadeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DisponibilidadeWhereInput
-  }
-
-  /**
-   * ProfessorCountOutputType without action
-   */
-  export type ProfessorCountOutputTypeCountProfDisciplinasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProfDisciplinasWhereInput
-  }
-
-  /**
-   * ProfessorCountOutputType without action
-   */
-  export type ProfessorCountOutputTypeCountProfTurmaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProfTurmaWhereInput
-  }
-
-  /**
-   * ProfessorCountOutputType without action
-   */
-  export type ProfessorCountOutputTypeCountTempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TempoLectivoWhereInput
+  export type DisciplinaCountOutputTypeCountTempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Tempo_LectivoWhereInput
   }
 
 
@@ -2063,13 +1914,13 @@ export namespace Prisma {
    */
 
   export type PeriodoCountOutputType = {
-    Disponibilidade: number
-    TempoLectivo: number
+    disponibilidades: number
+    tempo_lectivo: number
   }
 
   export type PeriodoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Disponibilidade?: boolean | PeriodoCountOutputTypeCountDisponibilidadeArgs
-    TempoLectivo?: boolean | PeriodoCountOutputTypeCountTempoLectivoArgs
+    disponibilidades?: boolean | PeriodoCountOutputTypeCountDisponibilidadesArgs
+    tempo_lectivo?: boolean | PeriodoCountOutputTypeCountTempo_lectivoArgs
   }
 
   // Custom InputTypes
@@ -2086,15 +1937,64 @@ export namespace Prisma {
   /**
    * PeriodoCountOutputType without action
    */
-  export type PeriodoCountOutputTypeCountDisponibilidadeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PeriodoCountOutputTypeCountDisponibilidadesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DisponibilidadeWhereInput
   }
 
   /**
    * PeriodoCountOutputType without action
    */
-  export type PeriodoCountOutputTypeCountTempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TempoLectivoWhereInput
+  export type PeriodoCountOutputTypeCountTempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Tempo_LectivoWhereInput
+  }
+
+
+  /**
+   * Count Type ProfessorCountOutputType
+   */
+
+  export type ProfessorCountOutputType = {
+    profDisciplinas: number
+    disponibilidades: number
+    tempo_lectivo: number
+  }
+
+  export type ProfessorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profDisciplinas?: boolean | ProfessorCountOutputTypeCountProfDisciplinasArgs
+    disponibilidades?: boolean | ProfessorCountOutputTypeCountDisponibilidadesArgs
+    tempo_lectivo?: boolean | ProfessorCountOutputTypeCountTempo_lectivoArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProfessorCountOutputType without action
+   */
+  export type ProfessorCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfessorCountOutputType
+     */
+    select?: ProfessorCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProfessorCountOutputType without action
+   */
+  export type ProfessorCountOutputTypeCountProfDisciplinasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfDisciplinasWhereInput
+  }
+
+  /**
+   * ProfessorCountOutputType without action
+   */
+  export type ProfessorCountOutputTypeCountDisponibilidadesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DisponibilidadeWhereInput
+  }
+
+  /**
+   * ProfessorCountOutputType without action
+   */
+  export type ProfessorCountOutputTypeCountTempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Tempo_LectivoWhereInput
   }
 
 
@@ -2103,11 +2003,11 @@ export namespace Prisma {
    */
 
   export type SalaCountOutputType = {
-    TempoLectivo: number
+    tempo_lectivo: number
   }
 
   export type SalaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    TempoLectivo?: boolean | SalaCountOutputTypeCountTempoLectivoArgs
+    tempo_lectivo?: boolean | SalaCountOutputTypeCountTempo_lectivoArgs
   }
 
   // Custom InputTypes
@@ -2124,8 +2024,8 @@ export namespace Prisma {
   /**
    * SalaCountOutputType without action
    */
-  export type SalaCountOutputTypeCountTempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TempoLectivoWhereInput
+  export type SalaCountOutputTypeCountTempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Tempo_LectivoWhereInput
   }
 
 
@@ -2134,13 +2034,11 @@ export namespace Prisma {
    */
 
   export type TurmaCountOutputType = {
-    ProfTurma: number
-    TempoLectivo: number
+    tempo_lectivo: number
   }
 
   export type TurmaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ProfTurma?: boolean | TurmaCountOutputTypeCountProfTurmaArgs
-    TempoLectivo?: boolean | TurmaCountOutputTypeCountTempoLectivoArgs
+    tempo_lectivo?: boolean | TurmaCountOutputTypeCountTempo_lectivoArgs
   }
 
   // Custom InputTypes
@@ -2157,15 +2055,8 @@ export namespace Prisma {
   /**
    * TurmaCountOutputType without action
    */
-  export type TurmaCountOutputTypeCountProfTurmaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProfTurmaWhereInput
-  }
-
-  /**
-   * TurmaCountOutputType without action
-   */
-  export type TurmaCountOutputTypeCountTempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TempoLectivoWhereInput
+  export type TurmaCountOutputTypeCountTempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Tempo_LectivoWhereInput
   }
 
 
@@ -2184,29 +2075,29 @@ export namespace Prisma {
   }
 
   export type ClasseMinAggregateOutputType = {
-    nome: string | null
+    nome_classe: string | null
   }
 
   export type ClasseMaxAggregateOutputType = {
-    nome: string | null
+    nome_classe: string | null
   }
 
   export type ClasseCountAggregateOutputType = {
-    nome: number
+    nome_classe: number
     _all: number
   }
 
 
   export type ClasseMinAggregateInputType = {
-    nome?: true
+    nome_classe?: true
   }
 
   export type ClasseMaxAggregateInputType = {
-    nome?: true
+    nome_classe?: true
   }
 
   export type ClasseCountAggregateInputType = {
-    nome?: true
+    nome_classe?: true
     _all?: true
   }
 
@@ -2283,7 +2174,7 @@ export namespace Prisma {
   }
 
   export type ClasseGroupByOutputType = {
-    nome: string
+    nome_classe: string
     _count: ClasseCountAggregateOutputType | null
     _min: ClasseMinAggregateOutputType | null
     _max: ClasseMaxAggregateOutputType | null
@@ -2304,26 +2195,26 @@ export namespace Prisma {
 
 
   export type ClasseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nome?: boolean
-    Turma?: boolean | Classe$TurmaArgs<ExtArgs>
+    nome_classe?: boolean
+    turmas?: boolean | Classe$turmasArgs<ExtArgs>
     _count?: boolean | ClasseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classe"]>
 
   export type ClasseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nome?: boolean
+    nome_classe?: boolean
   }, ExtArgs["result"]["classe"]>
 
   export type ClasseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nome?: boolean
+    nome_classe?: boolean
   }, ExtArgs["result"]["classe"]>
 
   export type ClasseSelectScalar = {
-    nome?: boolean
+    nome_classe?: boolean
   }
 
-  export type ClasseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nome", ExtArgs["result"]["classe"]>
+  export type ClasseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nome_classe", ExtArgs["result"]["classe"]>
   export type ClasseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Turma?: boolean | Classe$TurmaArgs<ExtArgs>
+    turmas?: boolean | Classe$turmasArgs<ExtArgs>
     _count?: boolean | ClasseCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClasseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2332,10 +2223,10 @@ export namespace Prisma {
   export type $ClassePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Classe"
     objects: {
-      Turma: Prisma.$TurmaPayload<ExtArgs>[]
+      turmas: Prisma.$TurmaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      nome: string
+      nome_classe: string
     }, ExtArgs["result"]["classe"]>
     composites: {}
   }
@@ -2419,8 +2310,8 @@ export namespace Prisma {
      * // Get first 10 Classes
      * const classes = await prisma.classe.findMany({ take: 10 })
      * 
-     * // Only select the `nome`
-     * const classeWithNomeOnly = await prisma.classe.findMany({ select: { nome: true } })
+     * // Only select the `nome_classe`
+     * const classeWithNome_classeOnly = await prisma.classe.findMany({ select: { nome_classe: true } })
      * 
      */
     findMany<T extends ClasseFindManyArgs>(args?: SelectSubset<T, ClasseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -2464,9 +2355,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Classes and only return the `nome`
-     * const classeWithNomeOnly = await prisma.classe.createManyAndReturn({
-     *   select: { nome: true },
+     * // Create many Classes and only return the `nome_classe`
+     * const classeWithNome_classeOnly = await prisma.classe.createManyAndReturn({
+     *   select: { nome_classe: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -2555,9 +2446,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Classes and only return the `nome`
-     * const classeWithNomeOnly = await prisma.classe.updateManyAndReturn({
-     *   select: { nome: true },
+     * // Update zero or more Classes and only return the `nome_classe`
+     * const classeWithNome_classeOnly = await prisma.classe.updateManyAndReturn({
+     *   select: { nome_classe: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2730,7 +2621,7 @@ export namespace Prisma {
    */
   export interface Prisma__ClasseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Turma<T extends Classe$TurmaArgs<ExtArgs> = {}>(args?: Subset<T, Classe$TurmaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TurmaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    turmas<T extends Classe$turmasArgs<ExtArgs> = {}>(args?: Subset<T, Classe$turmasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TurmaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2760,7 +2651,7 @@ export namespace Prisma {
    * Fields of the Classe model
    */
   interface ClasseFieldRefs {
-    readonly nome: FieldRef<"Classe", 'String'>
+    readonly nome_classe: FieldRef<"Classe", 'String'>
   }
     
 
@@ -3149,9 +3040,9 @@ export namespace Prisma {
   }
 
   /**
-   * Classe.Turma
+   * Classe.turmas
    */
-  export type Classe$TurmaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Classe$turmasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Turma
      */
@@ -3202,29 +3093,29 @@ export namespace Prisma {
   }
 
   export type CursoMinAggregateOutputType = {
-    nome: string | null
+    nome_curso: string | null
   }
 
   export type CursoMaxAggregateOutputType = {
-    nome: string | null
+    nome_curso: string | null
   }
 
   export type CursoCountAggregateOutputType = {
-    nome: number
+    nome_curso: number
     _all: number
   }
 
 
   export type CursoMinAggregateInputType = {
-    nome?: true
+    nome_curso?: true
   }
 
   export type CursoMaxAggregateInputType = {
-    nome?: true
+    nome_curso?: true
   }
 
   export type CursoCountAggregateInputType = {
-    nome?: true
+    nome_curso?: true
     _all?: true
   }
 
@@ -3301,7 +3192,7 @@ export namespace Prisma {
   }
 
   export type CursoGroupByOutputType = {
-    nome: string
+    nome_curso: string
     _count: CursoCountAggregateOutputType | null
     _min: CursoMinAggregateOutputType | null
     _max: CursoMaxAggregateOutputType | null
@@ -3322,26 +3213,26 @@ export namespace Prisma {
 
 
   export type CursoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nome?: boolean
-    Turma?: boolean | Curso$TurmaArgs<ExtArgs>
+    nome_curso?: boolean
+    turmas?: boolean | Curso$turmasArgs<ExtArgs>
     _count?: boolean | CursoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["curso"]>
 
   export type CursoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nome?: boolean
+    nome_curso?: boolean
   }, ExtArgs["result"]["curso"]>
 
   export type CursoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nome?: boolean
+    nome_curso?: boolean
   }, ExtArgs["result"]["curso"]>
 
   export type CursoSelectScalar = {
-    nome?: boolean
+    nome_curso?: boolean
   }
 
-  export type CursoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nome", ExtArgs["result"]["curso"]>
+  export type CursoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nome_curso", ExtArgs["result"]["curso"]>
   export type CursoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Turma?: boolean | Curso$TurmaArgs<ExtArgs>
+    turmas?: boolean | Curso$turmasArgs<ExtArgs>
     _count?: boolean | CursoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CursoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3350,10 +3241,10 @@ export namespace Prisma {
   export type $CursoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Curso"
     objects: {
-      Turma: Prisma.$TurmaPayload<ExtArgs>[]
+      turmas: Prisma.$TurmaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      nome: string
+      nome_curso: string
     }, ExtArgs["result"]["curso"]>
     composites: {}
   }
@@ -3437,8 +3328,8 @@ export namespace Prisma {
      * // Get first 10 Cursos
      * const cursos = await prisma.curso.findMany({ take: 10 })
      * 
-     * // Only select the `nome`
-     * const cursoWithNomeOnly = await prisma.curso.findMany({ select: { nome: true } })
+     * // Only select the `nome_curso`
+     * const cursoWithNome_cursoOnly = await prisma.curso.findMany({ select: { nome_curso: true } })
      * 
      */
     findMany<T extends CursoFindManyArgs>(args?: SelectSubset<T, CursoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CursoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -3482,9 +3373,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Cursos and only return the `nome`
-     * const cursoWithNomeOnly = await prisma.curso.createManyAndReturn({
-     *   select: { nome: true },
+     * // Create many Cursos and only return the `nome_curso`
+     * const cursoWithNome_cursoOnly = await prisma.curso.createManyAndReturn({
+     *   select: { nome_curso: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -3573,9 +3464,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Cursos and only return the `nome`
-     * const cursoWithNomeOnly = await prisma.curso.updateManyAndReturn({
-     *   select: { nome: true },
+     * // Update zero or more Cursos and only return the `nome_curso`
+     * const cursoWithNome_cursoOnly = await prisma.curso.updateManyAndReturn({
+     *   select: { nome_curso: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3748,7 +3639,7 @@ export namespace Prisma {
    */
   export interface Prisma__CursoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Turma<T extends Curso$TurmaArgs<ExtArgs> = {}>(args?: Subset<T, Curso$TurmaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TurmaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    turmas<T extends Curso$turmasArgs<ExtArgs> = {}>(args?: Subset<T, Curso$turmasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TurmaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3778,7 +3669,7 @@ export namespace Prisma {
    * Fields of the Curso model
    */
   interface CursoFieldRefs {
-    readonly nome: FieldRef<"Curso", 'String'>
+    readonly nome_curso: FieldRef<"Curso", 'String'>
   }
     
 
@@ -4167,9 +4058,9 @@ export namespace Prisma {
   }
 
   /**
-   * Curso.Turma
+   * Curso.turmas
    */
-  export type Curso$TurmaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Curso$turmasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Turma
      */
@@ -4220,29 +4111,29 @@ export namespace Prisma {
   }
 
   export type DiaSemanaMinAggregateOutputType = {
-    nome: string | null
+    nome_dia: string | null
   }
 
   export type DiaSemanaMaxAggregateOutputType = {
-    nome: string | null
+    nome_dia: string | null
   }
 
   export type DiaSemanaCountAggregateOutputType = {
-    nome: number
+    nome_dia: number
     _all: number
   }
 
 
   export type DiaSemanaMinAggregateInputType = {
-    nome?: true
+    nome_dia?: true
   }
 
   export type DiaSemanaMaxAggregateInputType = {
-    nome?: true
+    nome_dia?: true
   }
 
   export type DiaSemanaCountAggregateInputType = {
-    nome?: true
+    nome_dia?: true
     _all?: true
   }
 
@@ -4319,7 +4210,7 @@ export namespace Prisma {
   }
 
   export type DiaSemanaGroupByOutputType = {
-    nome: string
+    nome_dia: string
     _count: DiaSemanaCountAggregateOutputType | null
     _min: DiaSemanaMinAggregateOutputType | null
     _max: DiaSemanaMaxAggregateOutputType | null
@@ -4340,28 +4231,28 @@ export namespace Prisma {
 
 
   export type DiaSemanaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nome?: boolean
-    Disponibilidade?: boolean | DiaSemana$DisponibilidadeArgs<ExtArgs>
-    TempoLectivo?: boolean | DiaSemana$TempoLectivoArgs<ExtArgs>
+    nome_dia?: boolean
+    disponibilidades?: boolean | DiaSemana$disponibilidadesArgs<ExtArgs>
+    tempo_lectivo?: boolean | DiaSemana$tempo_lectivoArgs<ExtArgs>
     _count?: boolean | DiaSemanaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["diaSemana"]>
 
   export type DiaSemanaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nome?: boolean
+    nome_dia?: boolean
   }, ExtArgs["result"]["diaSemana"]>
 
   export type DiaSemanaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nome?: boolean
+    nome_dia?: boolean
   }, ExtArgs["result"]["diaSemana"]>
 
   export type DiaSemanaSelectScalar = {
-    nome?: boolean
+    nome_dia?: boolean
   }
 
-  export type DiaSemanaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nome", ExtArgs["result"]["diaSemana"]>
+  export type DiaSemanaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nome_dia", ExtArgs["result"]["diaSemana"]>
   export type DiaSemanaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Disponibilidade?: boolean | DiaSemana$DisponibilidadeArgs<ExtArgs>
-    TempoLectivo?: boolean | DiaSemana$TempoLectivoArgs<ExtArgs>
+    disponibilidades?: boolean | DiaSemana$disponibilidadesArgs<ExtArgs>
+    tempo_lectivo?: boolean | DiaSemana$tempo_lectivoArgs<ExtArgs>
     _count?: boolean | DiaSemanaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DiaSemanaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4370,11 +4261,11 @@ export namespace Prisma {
   export type $DiaSemanaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "DiaSemana"
     objects: {
-      Disponibilidade: Prisma.$DisponibilidadePayload<ExtArgs>[]
-      TempoLectivo: Prisma.$TempoLectivoPayload<ExtArgs>[]
+      disponibilidades: Prisma.$DisponibilidadePayload<ExtArgs>[]
+      tempo_lectivo: Prisma.$Tempo_LectivoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      nome: string
+      nome_dia: string
     }, ExtArgs["result"]["diaSemana"]>
     composites: {}
   }
@@ -4458,8 +4349,8 @@ export namespace Prisma {
      * // Get first 10 DiaSemanas
      * const diaSemanas = await prisma.diaSemana.findMany({ take: 10 })
      * 
-     * // Only select the `nome`
-     * const diaSemanaWithNomeOnly = await prisma.diaSemana.findMany({ select: { nome: true } })
+     * // Only select the `nome_dia`
+     * const diaSemanaWithNome_diaOnly = await prisma.diaSemana.findMany({ select: { nome_dia: true } })
      * 
      */
     findMany<T extends DiaSemanaFindManyArgs>(args?: SelectSubset<T, DiaSemanaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiaSemanaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -4503,9 +4394,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many DiaSemanas and only return the `nome`
-     * const diaSemanaWithNomeOnly = await prisma.diaSemana.createManyAndReturn({
-     *   select: { nome: true },
+     * // Create many DiaSemanas and only return the `nome_dia`
+     * const diaSemanaWithNome_diaOnly = await prisma.diaSemana.createManyAndReturn({
+     *   select: { nome_dia: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -4594,9 +4485,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more DiaSemanas and only return the `nome`
-     * const diaSemanaWithNomeOnly = await prisma.diaSemana.updateManyAndReturn({
-     *   select: { nome: true },
+     * // Update zero or more DiaSemanas and only return the `nome_dia`
+     * const diaSemanaWithNome_diaOnly = await prisma.diaSemana.updateManyAndReturn({
+     *   select: { nome_dia: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -4769,8 +4660,8 @@ export namespace Prisma {
    */
   export interface Prisma__DiaSemanaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Disponibilidade<T extends DiaSemana$DisponibilidadeArgs<ExtArgs> = {}>(args?: Subset<T, DiaSemana$DisponibilidadeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DisponibilidadePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    TempoLectivo<T extends DiaSemana$TempoLectivoArgs<ExtArgs> = {}>(args?: Subset<T, DiaSemana$TempoLectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    disponibilidades<T extends DiaSemana$disponibilidadesArgs<ExtArgs> = {}>(args?: Subset<T, DiaSemana$disponibilidadesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DisponibilidadePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tempo_lectivo<T extends DiaSemana$tempo_lectivoArgs<ExtArgs> = {}>(args?: Subset<T, DiaSemana$tempo_lectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4800,7 +4691,7 @@ export namespace Prisma {
    * Fields of the DiaSemana model
    */
   interface DiaSemanaFieldRefs {
-    readonly nome: FieldRef<"DiaSemana", 'String'>
+    readonly nome_dia: FieldRef<"DiaSemana", 'String'>
   }
     
 
@@ -5189,9 +5080,9 @@ export namespace Prisma {
   }
 
   /**
-   * DiaSemana.Disponibilidade
+   * DiaSemana.disponibilidades
    */
-  export type DiaSemana$DisponibilidadeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiaSemana$disponibilidadesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Disponibilidade
      */
@@ -5213,27 +5104,27 @@ export namespace Prisma {
   }
 
   /**
-   * DiaSemana.TempoLectivo
+   * DiaSemana.tempo_lectivo
    */
-  export type DiaSemana$TempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiaSemana$tempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
-    where?: TempoLectivoWhereInput
-    orderBy?: TempoLectivoOrderByWithRelationInput | TempoLectivoOrderByWithRelationInput[]
-    cursor?: TempoLectivoWhereUniqueInput
+    include?: Tempo_LectivoInclude<ExtArgs> | null
+    where?: Tempo_LectivoWhereInput
+    orderBy?: Tempo_LectivoOrderByWithRelationInput | Tempo_LectivoOrderByWithRelationInput[]
+    cursor?: Tempo_LectivoWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: TempoLectivoScalarFieldEnum | TempoLectivoScalarFieldEnum[]
+    distinct?: Tempo_LectivoScalarFieldEnum | Tempo_LectivoScalarFieldEnum[]
   }
 
   /**
@@ -5261,58 +5152,34 @@ export namespace Prisma {
 
   export type AggregateDisciplina = {
     _count: DisciplinaCountAggregateOutputType | null
-    _avg: DisciplinaAvgAggregateOutputType | null
-    _sum: DisciplinaSumAggregateOutputType | null
     _min: DisciplinaMinAggregateOutputType | null
     _max: DisciplinaMaxAggregateOutputType | null
   }
 
-  export type DisciplinaAvgAggregateOutputType = {
-    idDisciplina: number | null
-  }
-
-  export type DisciplinaSumAggregateOutputType = {
-    idDisciplina: number | null
-  }
-
   export type DisciplinaMinAggregateOutputType = {
-    idDisciplina: number | null
-    nome: string | null
+    nome_disciplina: string | null
   }
 
   export type DisciplinaMaxAggregateOutputType = {
-    idDisciplina: number | null
-    nome: string | null
+    nome_disciplina: string | null
   }
 
   export type DisciplinaCountAggregateOutputType = {
-    idDisciplina: number
-    nome: number
+    nome_disciplina: number
     _all: number
   }
 
 
-  export type DisciplinaAvgAggregateInputType = {
-    idDisciplina?: true
-  }
-
-  export type DisciplinaSumAggregateInputType = {
-    idDisciplina?: true
-  }
-
   export type DisciplinaMinAggregateInputType = {
-    idDisciplina?: true
-    nome?: true
+    nome_disciplina?: true
   }
 
   export type DisciplinaMaxAggregateInputType = {
-    idDisciplina?: true
-    nome?: true
+    nome_disciplina?: true
   }
 
   export type DisciplinaCountAggregateInputType = {
-    idDisciplina?: true
-    nome?: true
+    nome_disciplina?: true
     _all?: true
   }
 
@@ -5354,18 +5221,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: DisciplinaAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: DisciplinaSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: DisciplinaMinAggregateInputType
@@ -5396,18 +5251,13 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: DisciplinaCountAggregateInputType | true
-    _avg?: DisciplinaAvgAggregateInputType
-    _sum?: DisciplinaSumAggregateInputType
     _min?: DisciplinaMinAggregateInputType
     _max?: DisciplinaMaxAggregateInputType
   }
 
   export type DisciplinaGroupByOutputType = {
-    idDisciplina: number
-    nome: string
+    nome_disciplina: string
     _count: DisciplinaCountAggregateOutputType | null
-    _avg: DisciplinaAvgAggregateOutputType | null
-    _sum: DisciplinaSumAggregateOutputType | null
     _min: DisciplinaMinAggregateOutputType | null
     _max: DisciplinaMaxAggregateOutputType | null
   }
@@ -5427,32 +5277,28 @@ export namespace Prisma {
 
 
   export type DisciplinaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idDisciplina?: boolean
-    nome?: boolean
-    ProfDisciplinas?: boolean | Disciplina$ProfDisciplinasArgs<ExtArgs>
-    TempoLectivo?: boolean | Disciplina$TempoLectivoArgs<ExtArgs>
+    nome_disciplina?: boolean
+    profDisciplinas?: boolean | Disciplina$profDisciplinasArgs<ExtArgs>
+    tempo_lectivo?: boolean | Disciplina$tempo_lectivoArgs<ExtArgs>
     _count?: boolean | DisciplinaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["disciplina"]>
 
   export type DisciplinaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idDisciplina?: boolean
-    nome?: boolean
+    nome_disciplina?: boolean
   }, ExtArgs["result"]["disciplina"]>
 
   export type DisciplinaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idDisciplina?: boolean
-    nome?: boolean
+    nome_disciplina?: boolean
   }, ExtArgs["result"]["disciplina"]>
 
   export type DisciplinaSelectScalar = {
-    idDisciplina?: boolean
-    nome?: boolean
+    nome_disciplina?: boolean
   }
 
-  export type DisciplinaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idDisciplina" | "nome", ExtArgs["result"]["disciplina"]>
+  export type DisciplinaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nome_disciplina", ExtArgs["result"]["disciplina"]>
   export type DisciplinaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ProfDisciplinas?: boolean | Disciplina$ProfDisciplinasArgs<ExtArgs>
-    TempoLectivo?: boolean | Disciplina$TempoLectivoArgs<ExtArgs>
+    profDisciplinas?: boolean | Disciplina$profDisciplinasArgs<ExtArgs>
+    tempo_lectivo?: boolean | Disciplina$tempo_lectivoArgs<ExtArgs>
     _count?: boolean | DisciplinaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DisciplinaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5461,12 +5307,11 @@ export namespace Prisma {
   export type $DisciplinaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Disciplina"
     objects: {
-      ProfDisciplinas: Prisma.$ProfDisciplinasPayload<ExtArgs>[]
-      TempoLectivo: Prisma.$TempoLectivoPayload<ExtArgs>[]
+      profDisciplinas: Prisma.$ProfDisciplinasPayload<ExtArgs>[]
+      tempo_lectivo: Prisma.$Tempo_LectivoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      idDisciplina: number
-      nome: string
+      nome_disciplina: string
     }, ExtArgs["result"]["disciplina"]>
     composites: {}
   }
@@ -5550,8 +5395,8 @@ export namespace Prisma {
      * // Get first 10 Disciplinas
      * const disciplinas = await prisma.disciplina.findMany({ take: 10 })
      * 
-     * // Only select the `idDisciplina`
-     * const disciplinaWithIdDisciplinaOnly = await prisma.disciplina.findMany({ select: { idDisciplina: true } })
+     * // Only select the `nome_disciplina`
+     * const disciplinaWithNome_disciplinaOnly = await prisma.disciplina.findMany({ select: { nome_disciplina: true } })
      * 
      */
     findMany<T extends DisciplinaFindManyArgs>(args?: SelectSubset<T, DisciplinaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DisciplinaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -5595,9 +5440,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Disciplinas and only return the `idDisciplina`
-     * const disciplinaWithIdDisciplinaOnly = await prisma.disciplina.createManyAndReturn({
-     *   select: { idDisciplina: true },
+     * // Create many Disciplinas and only return the `nome_disciplina`
+     * const disciplinaWithNome_disciplinaOnly = await prisma.disciplina.createManyAndReturn({
+     *   select: { nome_disciplina: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -5686,9 +5531,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Disciplinas and only return the `idDisciplina`
-     * const disciplinaWithIdDisciplinaOnly = await prisma.disciplina.updateManyAndReturn({
-     *   select: { idDisciplina: true },
+     * // Update zero or more Disciplinas and only return the `nome_disciplina`
+     * const disciplinaWithNome_disciplinaOnly = await prisma.disciplina.updateManyAndReturn({
+     *   select: { nome_disciplina: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5861,8 +5706,8 @@ export namespace Prisma {
    */
   export interface Prisma__DisciplinaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    ProfDisciplinas<T extends Disciplina$ProfDisciplinasArgs<ExtArgs> = {}>(args?: Subset<T, Disciplina$ProfDisciplinasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfDisciplinasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    TempoLectivo<T extends Disciplina$TempoLectivoArgs<ExtArgs> = {}>(args?: Subset<T, Disciplina$TempoLectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    profDisciplinas<T extends Disciplina$profDisciplinasArgs<ExtArgs> = {}>(args?: Subset<T, Disciplina$profDisciplinasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfDisciplinasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tempo_lectivo<T extends Disciplina$tempo_lectivoArgs<ExtArgs> = {}>(args?: Subset<T, Disciplina$tempo_lectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5892,8 +5737,7 @@ export namespace Prisma {
    * Fields of the Disciplina model
    */
   interface DisciplinaFieldRefs {
-    readonly idDisciplina: FieldRef<"Disciplina", 'Int'>
-    readonly nome: FieldRef<"Disciplina", 'String'>
+    readonly nome_disciplina: FieldRef<"Disciplina", 'String'>
   }
     
 
@@ -6282,9 +6126,9 @@ export namespace Prisma {
   }
 
   /**
-   * Disciplina.ProfDisciplinas
+   * Disciplina.profDisciplinas
    */
-  export type Disciplina$ProfDisciplinasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Disciplina$profDisciplinasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ProfDisciplinas
      */
@@ -6306,27 +6150,27 @@ export namespace Prisma {
   }
 
   /**
-   * Disciplina.TempoLectivo
+   * Disciplina.tempo_lectivo
    */
-  export type Disciplina$TempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Disciplina$tempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
-    where?: TempoLectivoWhereInput
-    orderBy?: TempoLectivoOrderByWithRelationInput | TempoLectivoOrderByWithRelationInput[]
-    cursor?: TempoLectivoWhereUniqueInput
+    include?: Tempo_LectivoInclude<ExtArgs> | null
+    where?: Tempo_LectivoWhereInput
+    orderBy?: Tempo_LectivoOrderByWithRelationInput | Tempo_LectivoOrderByWithRelationInput[]
+    cursor?: Tempo_LectivoWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: TempoLectivoScalarFieldEnum | TempoLectivoScalarFieldEnum[]
+    distinct?: Tempo_LectivoScalarFieldEnum | Tempo_LectivoScalarFieldEnum[]
   }
 
   /**
@@ -6361,77 +6205,77 @@ export namespace Prisma {
   }
 
   export type DisponibilidadeAvgAggregateOutputType = {
-    idDisponibilidade: number | null
-    ordem: number | null
+    id_disponibilidade: number | null
     professorId: number | null
+    ordem: number | null
   }
 
   export type DisponibilidadeSumAggregateOutputType = {
-    idDisponibilidade: number | null
-    ordem: number | null
+    id_disponibilidade: number | null
     professorId: number | null
+    ordem: number | null
   }
 
   export type DisponibilidadeMinAggregateOutputType = {
-    idDisponibilidade: number | null
-    diaSemana: string | null
-    periodoId: string | null
-    ordem: number | null
+    id_disponibilidade: number | null
     professorId: number | null
+    nome_dia: string | null
+    nome_periodo: string | null
+    ordem: number | null
   }
 
   export type DisponibilidadeMaxAggregateOutputType = {
-    idDisponibilidade: number | null
-    diaSemana: string | null
-    periodoId: string | null
-    ordem: number | null
+    id_disponibilidade: number | null
     professorId: number | null
+    nome_dia: string | null
+    nome_periodo: string | null
+    ordem: number | null
   }
 
   export type DisponibilidadeCountAggregateOutputType = {
-    idDisponibilidade: number
-    diaSemana: number
-    periodoId: number
-    ordem: number
+    id_disponibilidade: number
     professorId: number
+    nome_dia: number
+    nome_periodo: number
+    ordem: number
     _all: number
   }
 
 
   export type DisponibilidadeAvgAggregateInputType = {
-    idDisponibilidade?: true
-    ordem?: true
+    id_disponibilidade?: true
     professorId?: true
+    ordem?: true
   }
 
   export type DisponibilidadeSumAggregateInputType = {
-    idDisponibilidade?: true
-    ordem?: true
+    id_disponibilidade?: true
     professorId?: true
+    ordem?: true
   }
 
   export type DisponibilidadeMinAggregateInputType = {
-    idDisponibilidade?: true
-    diaSemana?: true
-    periodoId?: true
-    ordem?: true
+    id_disponibilidade?: true
     professorId?: true
+    nome_dia?: true
+    nome_periodo?: true
+    ordem?: true
   }
 
   export type DisponibilidadeMaxAggregateInputType = {
-    idDisponibilidade?: true
-    diaSemana?: true
-    periodoId?: true
-    ordem?: true
+    id_disponibilidade?: true
     professorId?: true
+    nome_dia?: true
+    nome_periodo?: true
+    ordem?: true
   }
 
   export type DisponibilidadeCountAggregateInputType = {
-    idDisponibilidade?: true
-    diaSemana?: true
-    periodoId?: true
-    ordem?: true
+    id_disponibilidade?: true
     professorId?: true
+    nome_dia?: true
+    nome_periodo?: true
+    ordem?: true
     _all?: true
   }
 
@@ -6522,11 +6366,11 @@ export namespace Prisma {
   }
 
   export type DisponibilidadeGroupByOutputType = {
-    idDisponibilidade: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
+    id_disponibilidade: number
     professorId: number
+    nome_dia: string
+    nome_periodo: string
+    ordem: number
     _count: DisponibilidadeCountAggregateOutputType | null
     _avg: DisponibilidadeAvgAggregateOutputType | null
     _sum: DisponibilidadeSumAggregateOutputType | null
@@ -6549,76 +6393,76 @@ export namespace Prisma {
 
 
   export type DisponibilidadeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idDisponibilidade?: boolean
-    diaSemana?: boolean
-    periodoId?: boolean
-    ordem?: boolean
+    id_disponibilidade?: boolean
     professorId?: boolean
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    nome_dia?: boolean
+    nome_periodo?: boolean
+    ordem?: boolean
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["disponibilidade"]>
 
   export type DisponibilidadeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idDisponibilidade?: boolean
-    diaSemana?: boolean
-    periodoId?: boolean
-    ordem?: boolean
+    id_disponibilidade?: boolean
     professorId?: boolean
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    nome_dia?: boolean
+    nome_periodo?: boolean
+    ordem?: boolean
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["disponibilidade"]>
 
   export type DisponibilidadeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idDisponibilidade?: boolean
-    diaSemana?: boolean
-    periodoId?: boolean
-    ordem?: boolean
+    id_disponibilidade?: boolean
     professorId?: boolean
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    nome_dia?: boolean
+    nome_periodo?: boolean
+    ordem?: boolean
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["disponibilidade"]>
 
   export type DisponibilidadeSelectScalar = {
-    idDisponibilidade?: boolean
-    diaSemana?: boolean
-    periodoId?: boolean
-    ordem?: boolean
+    id_disponibilidade?: boolean
     professorId?: boolean
+    nome_dia?: boolean
+    nome_periodo?: boolean
+    ordem?: boolean
   }
 
-  export type DisponibilidadeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idDisponibilidade" | "diaSemana" | "periodoId" | "ordem" | "professorId", ExtArgs["result"]["disponibilidade"]>
+  export type DisponibilidadeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_disponibilidade" | "professorId" | "nome_dia" | "nome_periodo" | "ordem", ExtArgs["result"]["disponibilidade"]>
   export type DisponibilidadeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
   }
   export type DisponibilidadeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
   }
   export type DisponibilidadeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
   }
 
   export type $DisponibilidadePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Disponibilidade"
     objects: {
-      DiaSemana: Prisma.$DiaSemanaPayload<ExtArgs>
-      Periodo: Prisma.$PeriodoPayload<ExtArgs>
-      Professor: Prisma.$ProfessorPayload<ExtArgs>
+      professor: Prisma.$ProfessorPayload<ExtArgs>
+      dia: Prisma.$DiaSemanaPayload<ExtArgs>
+      periodo: Prisma.$PeriodoPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      idDisponibilidade: number
-      diaSemana: string
-      periodoId: string
-      ordem: number
+      id_disponibilidade: number
       professorId: number
+      nome_dia: string
+      nome_periodo: string
+      ordem: number
     }, ExtArgs["result"]["disponibilidade"]>
     composites: {}
   }
@@ -6702,8 +6546,8 @@ export namespace Prisma {
      * // Get first 10 Disponibilidades
      * const disponibilidades = await prisma.disponibilidade.findMany({ take: 10 })
      * 
-     * // Only select the `idDisponibilidade`
-     * const disponibilidadeWithIdDisponibilidadeOnly = await prisma.disponibilidade.findMany({ select: { idDisponibilidade: true } })
+     * // Only select the `id_disponibilidade`
+     * const disponibilidadeWithId_disponibilidadeOnly = await prisma.disponibilidade.findMany({ select: { id_disponibilidade: true } })
      * 
      */
     findMany<T extends DisponibilidadeFindManyArgs>(args?: SelectSubset<T, DisponibilidadeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DisponibilidadePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -6747,9 +6591,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Disponibilidades and only return the `idDisponibilidade`
-     * const disponibilidadeWithIdDisponibilidadeOnly = await prisma.disponibilidade.createManyAndReturn({
-     *   select: { idDisponibilidade: true },
+     * // Create many Disponibilidades and only return the `id_disponibilidade`
+     * const disponibilidadeWithId_disponibilidadeOnly = await prisma.disponibilidade.createManyAndReturn({
+     *   select: { id_disponibilidade: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -6838,9 +6682,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Disponibilidades and only return the `idDisponibilidade`
-     * const disponibilidadeWithIdDisponibilidadeOnly = await prisma.disponibilidade.updateManyAndReturn({
-     *   select: { idDisponibilidade: true },
+     * // Update zero or more Disponibilidades and only return the `id_disponibilidade`
+     * const disponibilidadeWithId_disponibilidadeOnly = await prisma.disponibilidade.updateManyAndReturn({
+     *   select: { id_disponibilidade: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7013,9 +6857,9 @@ export namespace Prisma {
    */
   export interface Prisma__DisponibilidadeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    DiaSemana<T extends DiaSemanaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DiaSemanaDefaultArgs<ExtArgs>>): Prisma__DiaSemanaClient<$Result.GetResult<Prisma.$DiaSemanaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Periodo<T extends PeriodoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PeriodoDefaultArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Professor<T extends ProfessorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfessorDefaultArgs<ExtArgs>>): Prisma__ProfessorClient<$Result.GetResult<Prisma.$ProfessorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    professor<T extends ProfessorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfessorDefaultArgs<ExtArgs>>): Prisma__ProfessorClient<$Result.GetResult<Prisma.$ProfessorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    dia<T extends DiaSemanaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DiaSemanaDefaultArgs<ExtArgs>>): Prisma__DiaSemanaClient<$Result.GetResult<Prisma.$DiaSemanaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    periodo<T extends PeriodoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PeriodoDefaultArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7045,11 +6889,11 @@ export namespace Prisma {
    * Fields of the Disponibilidade model
    */
   interface DisponibilidadeFieldRefs {
-    readonly idDisponibilidade: FieldRef<"Disponibilidade", 'Int'>
-    readonly diaSemana: FieldRef<"Disponibilidade", 'String'>
-    readonly periodoId: FieldRef<"Disponibilidade", 'String'>
-    readonly ordem: FieldRef<"Disponibilidade", 'Int'>
+    readonly id_disponibilidade: FieldRef<"Disponibilidade", 'Int'>
     readonly professorId: FieldRef<"Disponibilidade", 'Int'>
+    readonly nome_dia: FieldRef<"Disponibilidade", 'String'>
+    readonly nome_periodo: FieldRef<"Disponibilidade", 'String'>
+    readonly ordem: FieldRef<"Disponibilidade", 'Int'>
   }
     
 
@@ -7465,6 +7309,1052 @@ export namespace Prisma {
 
 
   /**
+   * Model Periodo
+   */
+
+  export type AggregatePeriodo = {
+    _count: PeriodoCountAggregateOutputType | null
+    _min: PeriodoMinAggregateOutputType | null
+    _max: PeriodoMaxAggregateOutputType | null
+  }
+
+  export type PeriodoMinAggregateOutputType = {
+    nome_periodo: string | null
+  }
+
+  export type PeriodoMaxAggregateOutputType = {
+    nome_periodo: string | null
+  }
+
+  export type PeriodoCountAggregateOutputType = {
+    nome_periodo: number
+    _all: number
+  }
+
+
+  export type PeriodoMinAggregateInputType = {
+    nome_periodo?: true
+  }
+
+  export type PeriodoMaxAggregateInputType = {
+    nome_periodo?: true
+  }
+
+  export type PeriodoCountAggregateInputType = {
+    nome_periodo?: true
+    _all?: true
+  }
+
+  export type PeriodoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Periodo to aggregate.
+     */
+    where?: PeriodoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Periodos to fetch.
+     */
+    orderBy?: PeriodoOrderByWithRelationInput | PeriodoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PeriodoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Periodos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Periodos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Periodos
+    **/
+    _count?: true | PeriodoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PeriodoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PeriodoMaxAggregateInputType
+  }
+
+  export type GetPeriodoAggregateType<T extends PeriodoAggregateArgs> = {
+        [P in keyof T & keyof AggregatePeriodo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePeriodo[P]>
+      : GetScalarType<T[P], AggregatePeriodo[P]>
+  }
+
+
+
+
+  export type PeriodoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PeriodoWhereInput
+    orderBy?: PeriodoOrderByWithAggregationInput | PeriodoOrderByWithAggregationInput[]
+    by: PeriodoScalarFieldEnum[] | PeriodoScalarFieldEnum
+    having?: PeriodoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PeriodoCountAggregateInputType | true
+    _min?: PeriodoMinAggregateInputType
+    _max?: PeriodoMaxAggregateInputType
+  }
+
+  export type PeriodoGroupByOutputType = {
+    nome_periodo: string
+    _count: PeriodoCountAggregateOutputType | null
+    _min: PeriodoMinAggregateOutputType | null
+    _max: PeriodoMaxAggregateOutputType | null
+  }
+
+  type GetPeriodoGroupByPayload<T extends PeriodoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PeriodoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PeriodoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PeriodoGroupByOutputType[P]>
+            : GetScalarType<T[P], PeriodoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PeriodoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    nome_periodo?: boolean
+    disponibilidades?: boolean | Periodo$disponibilidadesArgs<ExtArgs>
+    tempo_lectivo?: boolean | Periodo$tempo_lectivoArgs<ExtArgs>
+    _count?: boolean | PeriodoCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["periodo"]>
+
+  export type PeriodoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    nome_periodo?: boolean
+  }, ExtArgs["result"]["periodo"]>
+
+  export type PeriodoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    nome_periodo?: boolean
+  }, ExtArgs["result"]["periodo"]>
+
+  export type PeriodoSelectScalar = {
+    nome_periodo?: boolean
+  }
+
+  export type PeriodoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nome_periodo", ExtArgs["result"]["periodo"]>
+  export type PeriodoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    disponibilidades?: boolean | Periodo$disponibilidadesArgs<ExtArgs>
+    tempo_lectivo?: boolean | Periodo$tempo_lectivoArgs<ExtArgs>
+    _count?: boolean | PeriodoCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PeriodoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type PeriodoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $PeriodoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Periodo"
+    objects: {
+      disponibilidades: Prisma.$DisponibilidadePayload<ExtArgs>[]
+      tempo_lectivo: Prisma.$Tempo_LectivoPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      nome_periodo: string
+    }, ExtArgs["result"]["periodo"]>
+    composites: {}
+  }
+
+  type PeriodoGetPayload<S extends boolean | null | undefined | PeriodoDefaultArgs> = $Result.GetResult<Prisma.$PeriodoPayload, S>
+
+  type PeriodoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PeriodoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PeriodoCountAggregateInputType | true
+    }
+
+  export interface PeriodoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Periodo'], meta: { name: 'Periodo' } }
+    /**
+     * Find zero or one Periodo that matches the filter.
+     * @param {PeriodoFindUniqueArgs} args - Arguments to find a Periodo
+     * @example
+     * // Get one Periodo
+     * const periodo = await prisma.periodo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PeriodoFindUniqueArgs>(args: SelectSubset<T, PeriodoFindUniqueArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Periodo that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PeriodoFindUniqueOrThrowArgs} args - Arguments to find a Periodo
+     * @example
+     * // Get one Periodo
+     * const periodo = await prisma.periodo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PeriodoFindUniqueOrThrowArgs>(args: SelectSubset<T, PeriodoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Periodo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PeriodoFindFirstArgs} args - Arguments to find a Periodo
+     * @example
+     * // Get one Periodo
+     * const periodo = await prisma.periodo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PeriodoFindFirstArgs>(args?: SelectSubset<T, PeriodoFindFirstArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Periodo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PeriodoFindFirstOrThrowArgs} args - Arguments to find a Periodo
+     * @example
+     * // Get one Periodo
+     * const periodo = await prisma.periodo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PeriodoFindFirstOrThrowArgs>(args?: SelectSubset<T, PeriodoFindFirstOrThrowArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Periodos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PeriodoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Periodos
+     * const periodos = await prisma.periodo.findMany()
+     * 
+     * // Get first 10 Periodos
+     * const periodos = await prisma.periodo.findMany({ take: 10 })
+     * 
+     * // Only select the `nome_periodo`
+     * const periodoWithNome_periodoOnly = await prisma.periodo.findMany({ select: { nome_periodo: true } })
+     * 
+     */
+    findMany<T extends PeriodoFindManyArgs>(args?: SelectSubset<T, PeriodoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Periodo.
+     * @param {PeriodoCreateArgs} args - Arguments to create a Periodo.
+     * @example
+     * // Create one Periodo
+     * const Periodo = await prisma.periodo.create({
+     *   data: {
+     *     // ... data to create a Periodo
+     *   }
+     * })
+     * 
+     */
+    create<T extends PeriodoCreateArgs>(args: SelectSubset<T, PeriodoCreateArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Periodos.
+     * @param {PeriodoCreateManyArgs} args - Arguments to create many Periodos.
+     * @example
+     * // Create many Periodos
+     * const periodo = await prisma.periodo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PeriodoCreateManyArgs>(args?: SelectSubset<T, PeriodoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Periodos and returns the data saved in the database.
+     * @param {PeriodoCreateManyAndReturnArgs} args - Arguments to create many Periodos.
+     * @example
+     * // Create many Periodos
+     * const periodo = await prisma.periodo.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Periodos and only return the `nome_periodo`
+     * const periodoWithNome_periodoOnly = await prisma.periodo.createManyAndReturn({
+     *   select: { nome_periodo: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PeriodoCreateManyAndReturnArgs>(args?: SelectSubset<T, PeriodoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Periodo.
+     * @param {PeriodoDeleteArgs} args - Arguments to delete one Periodo.
+     * @example
+     * // Delete one Periodo
+     * const Periodo = await prisma.periodo.delete({
+     *   where: {
+     *     // ... filter to delete one Periodo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PeriodoDeleteArgs>(args: SelectSubset<T, PeriodoDeleteArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Periodo.
+     * @param {PeriodoUpdateArgs} args - Arguments to update one Periodo.
+     * @example
+     * // Update one Periodo
+     * const periodo = await prisma.periodo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PeriodoUpdateArgs>(args: SelectSubset<T, PeriodoUpdateArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Periodos.
+     * @param {PeriodoDeleteManyArgs} args - Arguments to filter Periodos to delete.
+     * @example
+     * // Delete a few Periodos
+     * const { count } = await prisma.periodo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PeriodoDeleteManyArgs>(args?: SelectSubset<T, PeriodoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Periodos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PeriodoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Periodos
+     * const periodo = await prisma.periodo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PeriodoUpdateManyArgs>(args: SelectSubset<T, PeriodoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Periodos and returns the data updated in the database.
+     * @param {PeriodoUpdateManyAndReturnArgs} args - Arguments to update many Periodos.
+     * @example
+     * // Update many Periodos
+     * const periodo = await prisma.periodo.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Periodos and only return the `nome_periodo`
+     * const periodoWithNome_periodoOnly = await prisma.periodo.updateManyAndReturn({
+     *   select: { nome_periodo: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PeriodoUpdateManyAndReturnArgs>(args: SelectSubset<T, PeriodoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Periodo.
+     * @param {PeriodoUpsertArgs} args - Arguments to update or create a Periodo.
+     * @example
+     * // Update or create a Periodo
+     * const periodo = await prisma.periodo.upsert({
+     *   create: {
+     *     // ... data to create a Periodo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Periodo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PeriodoUpsertArgs>(args: SelectSubset<T, PeriodoUpsertArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Periodos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PeriodoCountArgs} args - Arguments to filter Periodos to count.
+     * @example
+     * // Count the number of Periodos
+     * const count = await prisma.periodo.count({
+     *   where: {
+     *     // ... the filter for the Periodos we want to count
+     *   }
+     * })
+    **/
+    count<T extends PeriodoCountArgs>(
+      args?: Subset<T, PeriodoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PeriodoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Periodo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PeriodoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PeriodoAggregateArgs>(args: Subset<T, PeriodoAggregateArgs>): Prisma.PrismaPromise<GetPeriodoAggregateType<T>>
+
+    /**
+     * Group by Periodo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PeriodoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PeriodoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PeriodoGroupByArgs['orderBy'] }
+        : { orderBy?: PeriodoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PeriodoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPeriodoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Periodo model
+   */
+  readonly fields: PeriodoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Periodo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PeriodoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    disponibilidades<T extends Periodo$disponibilidadesArgs<ExtArgs> = {}>(args?: Subset<T, Periodo$disponibilidadesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DisponibilidadePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tempo_lectivo<T extends Periodo$tempo_lectivoArgs<ExtArgs> = {}>(args?: Subset<T, Periodo$tempo_lectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Periodo model
+   */
+  interface PeriodoFieldRefs {
+    readonly nome_periodo: FieldRef<"Periodo", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Periodo findUnique
+   */
+  export type PeriodoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PeriodoInclude<ExtArgs> | null
+    /**
+     * Filter, which Periodo to fetch.
+     */
+    where: PeriodoWhereUniqueInput
+  }
+
+  /**
+   * Periodo findUniqueOrThrow
+   */
+  export type PeriodoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PeriodoInclude<ExtArgs> | null
+    /**
+     * Filter, which Periodo to fetch.
+     */
+    where: PeriodoWhereUniqueInput
+  }
+
+  /**
+   * Periodo findFirst
+   */
+  export type PeriodoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PeriodoInclude<ExtArgs> | null
+    /**
+     * Filter, which Periodo to fetch.
+     */
+    where?: PeriodoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Periodos to fetch.
+     */
+    orderBy?: PeriodoOrderByWithRelationInput | PeriodoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Periodos.
+     */
+    cursor?: PeriodoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Periodos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Periodos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Periodos.
+     */
+    distinct?: PeriodoScalarFieldEnum | PeriodoScalarFieldEnum[]
+  }
+
+  /**
+   * Periodo findFirstOrThrow
+   */
+  export type PeriodoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PeriodoInclude<ExtArgs> | null
+    /**
+     * Filter, which Periodo to fetch.
+     */
+    where?: PeriodoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Periodos to fetch.
+     */
+    orderBy?: PeriodoOrderByWithRelationInput | PeriodoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Periodos.
+     */
+    cursor?: PeriodoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Periodos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Periodos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Periodos.
+     */
+    distinct?: PeriodoScalarFieldEnum | PeriodoScalarFieldEnum[]
+  }
+
+  /**
+   * Periodo findMany
+   */
+  export type PeriodoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PeriodoInclude<ExtArgs> | null
+    /**
+     * Filter, which Periodos to fetch.
+     */
+    where?: PeriodoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Periodos to fetch.
+     */
+    orderBy?: PeriodoOrderByWithRelationInput | PeriodoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Periodos.
+     */
+    cursor?: PeriodoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Periodos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Periodos.
+     */
+    skip?: number
+    distinct?: PeriodoScalarFieldEnum | PeriodoScalarFieldEnum[]
+  }
+
+  /**
+   * Periodo create
+   */
+  export type PeriodoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PeriodoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Periodo.
+     */
+    data: XOR<PeriodoCreateInput, PeriodoUncheckedCreateInput>
+  }
+
+  /**
+   * Periodo createMany
+   */
+  export type PeriodoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Periodos.
+     */
+    data: PeriodoCreateManyInput | PeriodoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Periodo createManyAndReturn
+   */
+  export type PeriodoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * The data used to create many Periodos.
+     */
+    data: PeriodoCreateManyInput | PeriodoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Periodo update
+   */
+  export type PeriodoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PeriodoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Periodo.
+     */
+    data: XOR<PeriodoUpdateInput, PeriodoUncheckedUpdateInput>
+    /**
+     * Choose, which Periodo to update.
+     */
+    where: PeriodoWhereUniqueInput
+  }
+
+  /**
+   * Periodo updateMany
+   */
+  export type PeriodoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Periodos.
+     */
+    data: XOR<PeriodoUpdateManyMutationInput, PeriodoUncheckedUpdateManyInput>
+    /**
+     * Filter which Periodos to update
+     */
+    where?: PeriodoWhereInput
+    /**
+     * Limit how many Periodos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Periodo updateManyAndReturn
+   */
+  export type PeriodoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * The data used to update Periodos.
+     */
+    data: XOR<PeriodoUpdateManyMutationInput, PeriodoUncheckedUpdateManyInput>
+    /**
+     * Filter which Periodos to update
+     */
+    where?: PeriodoWhereInput
+    /**
+     * Limit how many Periodos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Periodo upsert
+   */
+  export type PeriodoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PeriodoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Periodo to update in case it exists.
+     */
+    where: PeriodoWhereUniqueInput
+    /**
+     * In case the Periodo found by the `where` argument doesn't exist, create a new Periodo with this data.
+     */
+    create: XOR<PeriodoCreateInput, PeriodoUncheckedCreateInput>
+    /**
+     * In case the Periodo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PeriodoUpdateInput, PeriodoUncheckedUpdateInput>
+  }
+
+  /**
+   * Periodo delete
+   */
+  export type PeriodoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PeriodoInclude<ExtArgs> | null
+    /**
+     * Filter which Periodo to delete.
+     */
+    where: PeriodoWhereUniqueInput
+  }
+
+  /**
+   * Periodo deleteMany
+   */
+  export type PeriodoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Periodos to delete
+     */
+    where?: PeriodoWhereInput
+    /**
+     * Limit how many Periodos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Periodo.disponibilidades
+   */
+  export type Periodo$disponibilidadesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Disponibilidade
+     */
+    select?: DisponibilidadeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Disponibilidade
+     */
+    omit?: DisponibilidadeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DisponibilidadeInclude<ExtArgs> | null
+    where?: DisponibilidadeWhereInput
+    orderBy?: DisponibilidadeOrderByWithRelationInput | DisponibilidadeOrderByWithRelationInput[]
+    cursor?: DisponibilidadeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DisponibilidadeScalarFieldEnum | DisponibilidadeScalarFieldEnum[]
+  }
+
+  /**
+   * Periodo.tempo_lectivo
+   */
+  export type Periodo$tempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tempo_Lectivo
+     */
+    select?: Tempo_LectivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tempo_Lectivo
+     */
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Tempo_LectivoInclude<ExtArgs> | null
+    where?: Tempo_LectivoWhereInput
+    orderBy?: Tempo_LectivoOrderByWithRelationInput | Tempo_LectivoOrderByWithRelationInput[]
+    cursor?: Tempo_LectivoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Tempo_LectivoScalarFieldEnum | Tempo_LectivoScalarFieldEnum[]
+  }
+
+  /**
+   * Periodo without action
+   */
+  export type PeriodoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Periodo
+     */
+    select?: PeriodoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Periodo
+     */
+    omit?: PeriodoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PeriodoInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Professor
    */
 
@@ -7489,7 +8379,6 @@ export namespace Prisma {
     nome: string | null
     email: string | null
     telefone: string | null
-    created_at: Date | null
     updated_at: Date | null
   }
 
@@ -7498,7 +8387,6 @@ export namespace Prisma {
     nome: string | null
     email: string | null
     telefone: string | null
-    created_at: Date | null
     updated_at: Date | null
   }
 
@@ -7507,7 +8395,6 @@ export namespace Prisma {
     nome: number
     email: number
     telefone: number
-    created_at: number
     updated_at: number
     _all: number
   }
@@ -7526,7 +8413,6 @@ export namespace Prisma {
     nome?: true
     email?: true
     telefone?: true
-    created_at?: true
     updated_at?: true
   }
 
@@ -7535,7 +8421,6 @@ export namespace Prisma {
     nome?: true
     email?: true
     telefone?: true
-    created_at?: true
     updated_at?: true
   }
 
@@ -7544,7 +8429,6 @@ export namespace Prisma {
     nome?: true
     email?: true
     telefone?: true
-    created_at?: true
     updated_at?: true
     _all?: true
   }
@@ -7638,9 +8522,8 @@ export namespace Prisma {
   export type ProfessorGroupByOutputType = {
     id_professor: number
     nome: string
-    email: string | null
-    telefone: string | null
-    created_at: Date
+    email: string
+    telefone: string
     updated_at: Date
     _count: ProfessorCountAggregateOutputType | null
     _avg: ProfessorAvgAggregateOutputType | null
@@ -7668,12 +8551,10 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     telefone?: boolean
-    created_at?: boolean
     updated_at?: boolean
-    Disponibilidade?: boolean | Professor$DisponibilidadeArgs<ExtArgs>
-    ProfDisciplinas?: boolean | Professor$ProfDisciplinasArgs<ExtArgs>
-    ProfTurma?: boolean | Professor$ProfTurmaArgs<ExtArgs>
-    TempoLectivo?: boolean | Professor$TempoLectivoArgs<ExtArgs>
+    profDisciplinas?: boolean | Professor$profDisciplinasArgs<ExtArgs>
+    disponibilidades?: boolean | Professor$disponibilidadesArgs<ExtArgs>
+    tempo_lectivo?: boolean | Professor$tempo_lectivoArgs<ExtArgs>
     _count?: boolean | ProfessorCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["professor"]>
 
@@ -7682,7 +8563,6 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     telefone?: boolean
-    created_at?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["professor"]>
 
@@ -7691,7 +8571,6 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     telefone?: boolean
-    created_at?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["professor"]>
 
@@ -7700,16 +8579,14 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     telefone?: boolean
-    created_at?: boolean
     updated_at?: boolean
   }
 
-  export type ProfessorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_professor" | "nome" | "email" | "telefone" | "created_at" | "updated_at", ExtArgs["result"]["professor"]>
+  export type ProfessorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_professor" | "nome" | "email" | "telefone" | "updated_at", ExtArgs["result"]["professor"]>
   export type ProfessorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Disponibilidade?: boolean | Professor$DisponibilidadeArgs<ExtArgs>
-    ProfDisciplinas?: boolean | Professor$ProfDisciplinasArgs<ExtArgs>
-    ProfTurma?: boolean | Professor$ProfTurmaArgs<ExtArgs>
-    TempoLectivo?: boolean | Professor$TempoLectivoArgs<ExtArgs>
+    profDisciplinas?: boolean | Professor$profDisciplinasArgs<ExtArgs>
+    disponibilidades?: boolean | Professor$disponibilidadesArgs<ExtArgs>
+    tempo_lectivo?: boolean | Professor$tempo_lectivoArgs<ExtArgs>
     _count?: boolean | ProfessorCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProfessorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7718,17 +8595,15 @@ export namespace Prisma {
   export type $ProfessorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Professor"
     objects: {
-      Disponibilidade: Prisma.$DisponibilidadePayload<ExtArgs>[]
-      ProfDisciplinas: Prisma.$ProfDisciplinasPayload<ExtArgs>[]
-      ProfTurma: Prisma.$ProfTurmaPayload<ExtArgs>[]
-      TempoLectivo: Prisma.$TempoLectivoPayload<ExtArgs>[]
+      profDisciplinas: Prisma.$ProfDisciplinasPayload<ExtArgs>[]
+      disponibilidades: Prisma.$DisponibilidadePayload<ExtArgs>[]
+      tempo_lectivo: Prisma.$Tempo_LectivoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id_professor: number
       nome: string
-      email: string | null
-      telefone: string | null
-      created_at: Date
+      email: string
+      telefone: string
       updated_at: Date
     }, ExtArgs["result"]["professor"]>
     composites: {}
@@ -8124,10 +8999,9 @@ export namespace Prisma {
    */
   export interface Prisma__ProfessorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Disponibilidade<T extends Professor$DisponibilidadeArgs<ExtArgs> = {}>(args?: Subset<T, Professor$DisponibilidadeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DisponibilidadePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    ProfDisciplinas<T extends Professor$ProfDisciplinasArgs<ExtArgs> = {}>(args?: Subset<T, Professor$ProfDisciplinasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfDisciplinasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    ProfTurma<T extends Professor$ProfTurmaArgs<ExtArgs> = {}>(args?: Subset<T, Professor$ProfTurmaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    TempoLectivo<T extends Professor$TempoLectivoArgs<ExtArgs> = {}>(args?: Subset<T, Professor$TempoLectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    profDisciplinas<T extends Professor$profDisciplinasArgs<ExtArgs> = {}>(args?: Subset<T, Professor$profDisciplinasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfDisciplinasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    disponibilidades<T extends Professor$disponibilidadesArgs<ExtArgs> = {}>(args?: Subset<T, Professor$disponibilidadesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DisponibilidadePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tempo_lectivo<T extends Professor$tempo_lectivoArgs<ExtArgs> = {}>(args?: Subset<T, Professor$tempo_lectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8161,7 +9035,6 @@ export namespace Prisma {
     readonly nome: FieldRef<"Professor", 'String'>
     readonly email: FieldRef<"Professor", 'String'>
     readonly telefone: FieldRef<"Professor", 'String'>
-    readonly created_at: FieldRef<"Professor", 'DateTime'>
     readonly updated_at: FieldRef<"Professor", 'DateTime'>
   }
     
@@ -8551,33 +9424,9 @@ export namespace Prisma {
   }
 
   /**
-   * Professor.Disponibilidade
+   * Professor.profDisciplinas
    */
-  export type Professor$DisponibilidadeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Disponibilidade
-     */
-    select?: DisponibilidadeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Disponibilidade
-     */
-    omit?: DisponibilidadeOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DisponibilidadeInclude<ExtArgs> | null
-    where?: DisponibilidadeWhereInput
-    orderBy?: DisponibilidadeOrderByWithRelationInput | DisponibilidadeOrderByWithRelationInput[]
-    cursor?: DisponibilidadeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DisponibilidadeScalarFieldEnum | DisponibilidadeScalarFieldEnum[]
-  }
-
-  /**
-   * Professor.ProfDisciplinas
-   */
-  export type Professor$ProfDisciplinasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Professor$profDisciplinasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ProfDisciplinas
      */
@@ -8599,51 +9448,51 @@ export namespace Prisma {
   }
 
   /**
-   * Professor.ProfTurma
+   * Professor.disponibilidades
    */
-  export type Professor$ProfTurmaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Professor$disponibilidadesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProfTurma
+     * Select specific fields to fetch from the Disponibilidade
      */
-    select?: ProfTurmaSelect<ExtArgs> | null
+    select?: DisponibilidadeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ProfTurma
+     * Omit specific fields from the Disponibilidade
      */
-    omit?: ProfTurmaOmit<ExtArgs> | null
+    omit?: DisponibilidadeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfTurmaInclude<ExtArgs> | null
-    where?: ProfTurmaWhereInput
-    orderBy?: ProfTurmaOrderByWithRelationInput | ProfTurmaOrderByWithRelationInput[]
-    cursor?: ProfTurmaWhereUniqueInput
+    include?: DisponibilidadeInclude<ExtArgs> | null
+    where?: DisponibilidadeWhereInput
+    orderBy?: DisponibilidadeOrderByWithRelationInput | DisponibilidadeOrderByWithRelationInput[]
+    cursor?: DisponibilidadeWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ProfTurmaScalarFieldEnum | ProfTurmaScalarFieldEnum[]
+    distinct?: DisponibilidadeScalarFieldEnum | DisponibilidadeScalarFieldEnum[]
   }
 
   /**
-   * Professor.TempoLectivo
+   * Professor.tempo_lectivo
    */
-  export type Professor$TempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Professor$tempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
-    where?: TempoLectivoWhereInput
-    orderBy?: TempoLectivoOrderByWithRelationInput | TempoLectivoOrderByWithRelationInput[]
-    cursor?: TempoLectivoWhereUniqueInput
+    include?: Tempo_LectivoInclude<ExtArgs> | null
+    where?: Tempo_LectivoWhereInput
+    orderBy?: Tempo_LectivoOrderByWithRelationInput | Tempo_LectivoOrderByWithRelationInput[]
+    cursor?: Tempo_LectivoWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: TempoLectivoScalarFieldEnum | TempoLectivoScalarFieldEnum[]
+    distinct?: Tempo_LectivoScalarFieldEnum | Tempo_LectivoScalarFieldEnum[]
   }
 
   /**
@@ -8666,1052 +9515,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Periodo
-   */
-
-  export type AggregatePeriodo = {
-    _count: PeriodoCountAggregateOutputType | null
-    _min: PeriodoMinAggregateOutputType | null
-    _max: PeriodoMaxAggregateOutputType | null
-  }
-
-  export type PeriodoMinAggregateOutputType = {
-    periodo: string | null
-  }
-
-  export type PeriodoMaxAggregateOutputType = {
-    periodo: string | null
-  }
-
-  export type PeriodoCountAggregateOutputType = {
-    periodo: number
-    _all: number
-  }
-
-
-  export type PeriodoMinAggregateInputType = {
-    periodo?: true
-  }
-
-  export type PeriodoMaxAggregateInputType = {
-    periodo?: true
-  }
-
-  export type PeriodoCountAggregateInputType = {
-    periodo?: true
-    _all?: true
-  }
-
-  export type PeriodoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Periodo to aggregate.
-     */
-    where?: PeriodoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Periodos to fetch.
-     */
-    orderBy?: PeriodoOrderByWithRelationInput | PeriodoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PeriodoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Periodos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Periodos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Periodos
-    **/
-    _count?: true | PeriodoCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PeriodoMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PeriodoMaxAggregateInputType
-  }
-
-  export type GetPeriodoAggregateType<T extends PeriodoAggregateArgs> = {
-        [P in keyof T & keyof AggregatePeriodo]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePeriodo[P]>
-      : GetScalarType<T[P], AggregatePeriodo[P]>
-  }
-
-
-
-
-  export type PeriodoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PeriodoWhereInput
-    orderBy?: PeriodoOrderByWithAggregationInput | PeriodoOrderByWithAggregationInput[]
-    by: PeriodoScalarFieldEnum[] | PeriodoScalarFieldEnum
-    having?: PeriodoScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PeriodoCountAggregateInputType | true
-    _min?: PeriodoMinAggregateInputType
-    _max?: PeriodoMaxAggregateInputType
-  }
-
-  export type PeriodoGroupByOutputType = {
-    periodo: string
-    _count: PeriodoCountAggregateOutputType | null
-    _min: PeriodoMinAggregateOutputType | null
-    _max: PeriodoMaxAggregateOutputType | null
-  }
-
-  type GetPeriodoGroupByPayload<T extends PeriodoGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PeriodoGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PeriodoGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PeriodoGroupByOutputType[P]>
-            : GetScalarType<T[P], PeriodoGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PeriodoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    periodo?: boolean
-    Disponibilidade?: boolean | Periodo$DisponibilidadeArgs<ExtArgs>
-    TempoLectivo?: boolean | Periodo$TempoLectivoArgs<ExtArgs>
-    _count?: boolean | PeriodoCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["periodo"]>
-
-  export type PeriodoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    periodo?: boolean
-  }, ExtArgs["result"]["periodo"]>
-
-  export type PeriodoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    periodo?: boolean
-  }, ExtArgs["result"]["periodo"]>
-
-  export type PeriodoSelectScalar = {
-    periodo?: boolean
-  }
-
-  export type PeriodoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"periodo", ExtArgs["result"]["periodo"]>
-  export type PeriodoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Disponibilidade?: boolean | Periodo$DisponibilidadeArgs<ExtArgs>
-    TempoLectivo?: boolean | Periodo$TempoLectivoArgs<ExtArgs>
-    _count?: boolean | PeriodoCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type PeriodoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type PeriodoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $PeriodoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Periodo"
-    objects: {
-      Disponibilidade: Prisma.$DisponibilidadePayload<ExtArgs>[]
-      TempoLectivo: Prisma.$TempoLectivoPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      periodo: string
-    }, ExtArgs["result"]["periodo"]>
-    composites: {}
-  }
-
-  type PeriodoGetPayload<S extends boolean | null | undefined | PeriodoDefaultArgs> = $Result.GetResult<Prisma.$PeriodoPayload, S>
-
-  type PeriodoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PeriodoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PeriodoCountAggregateInputType | true
-    }
-
-  export interface PeriodoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Periodo'], meta: { name: 'Periodo' } }
-    /**
-     * Find zero or one Periodo that matches the filter.
-     * @param {PeriodoFindUniqueArgs} args - Arguments to find a Periodo
-     * @example
-     * // Get one Periodo
-     * const periodo = await prisma.periodo.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PeriodoFindUniqueArgs>(args: SelectSubset<T, PeriodoFindUniqueArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Periodo that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PeriodoFindUniqueOrThrowArgs} args - Arguments to find a Periodo
-     * @example
-     * // Get one Periodo
-     * const periodo = await prisma.periodo.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PeriodoFindUniqueOrThrowArgs>(args: SelectSubset<T, PeriodoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Periodo that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PeriodoFindFirstArgs} args - Arguments to find a Periodo
-     * @example
-     * // Get one Periodo
-     * const periodo = await prisma.periodo.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PeriodoFindFirstArgs>(args?: SelectSubset<T, PeriodoFindFirstArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Periodo that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PeriodoFindFirstOrThrowArgs} args - Arguments to find a Periodo
-     * @example
-     * // Get one Periodo
-     * const periodo = await prisma.periodo.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PeriodoFindFirstOrThrowArgs>(args?: SelectSubset<T, PeriodoFindFirstOrThrowArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Periodos that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PeriodoFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Periodos
-     * const periodos = await prisma.periodo.findMany()
-     * 
-     * // Get first 10 Periodos
-     * const periodos = await prisma.periodo.findMany({ take: 10 })
-     * 
-     * // Only select the `periodo`
-     * const periodoWithPeriodoOnly = await prisma.periodo.findMany({ select: { periodo: true } })
-     * 
-     */
-    findMany<T extends PeriodoFindManyArgs>(args?: SelectSubset<T, PeriodoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Periodo.
-     * @param {PeriodoCreateArgs} args - Arguments to create a Periodo.
-     * @example
-     * // Create one Periodo
-     * const Periodo = await prisma.periodo.create({
-     *   data: {
-     *     // ... data to create a Periodo
-     *   }
-     * })
-     * 
-     */
-    create<T extends PeriodoCreateArgs>(args: SelectSubset<T, PeriodoCreateArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Periodos.
-     * @param {PeriodoCreateManyArgs} args - Arguments to create many Periodos.
-     * @example
-     * // Create many Periodos
-     * const periodo = await prisma.periodo.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PeriodoCreateManyArgs>(args?: SelectSubset<T, PeriodoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Periodos and returns the data saved in the database.
-     * @param {PeriodoCreateManyAndReturnArgs} args - Arguments to create many Periodos.
-     * @example
-     * // Create many Periodos
-     * const periodo = await prisma.periodo.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Periodos and only return the `periodo`
-     * const periodoWithPeriodoOnly = await prisma.periodo.createManyAndReturn({
-     *   select: { periodo: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PeriodoCreateManyAndReturnArgs>(args?: SelectSubset<T, PeriodoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Periodo.
-     * @param {PeriodoDeleteArgs} args - Arguments to delete one Periodo.
-     * @example
-     * // Delete one Periodo
-     * const Periodo = await prisma.periodo.delete({
-     *   where: {
-     *     // ... filter to delete one Periodo
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PeriodoDeleteArgs>(args: SelectSubset<T, PeriodoDeleteArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Periodo.
-     * @param {PeriodoUpdateArgs} args - Arguments to update one Periodo.
-     * @example
-     * // Update one Periodo
-     * const periodo = await prisma.periodo.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PeriodoUpdateArgs>(args: SelectSubset<T, PeriodoUpdateArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Periodos.
-     * @param {PeriodoDeleteManyArgs} args - Arguments to filter Periodos to delete.
-     * @example
-     * // Delete a few Periodos
-     * const { count } = await prisma.periodo.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PeriodoDeleteManyArgs>(args?: SelectSubset<T, PeriodoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Periodos.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PeriodoUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Periodos
-     * const periodo = await prisma.periodo.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PeriodoUpdateManyArgs>(args: SelectSubset<T, PeriodoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Periodos and returns the data updated in the database.
-     * @param {PeriodoUpdateManyAndReturnArgs} args - Arguments to update many Periodos.
-     * @example
-     * // Update many Periodos
-     * const periodo = await prisma.periodo.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Periodos and only return the `periodo`
-     * const periodoWithPeriodoOnly = await prisma.periodo.updateManyAndReturn({
-     *   select: { periodo: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends PeriodoUpdateManyAndReturnArgs>(args: SelectSubset<T, PeriodoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Periodo.
-     * @param {PeriodoUpsertArgs} args - Arguments to update or create a Periodo.
-     * @example
-     * // Update or create a Periodo
-     * const periodo = await prisma.periodo.upsert({
-     *   create: {
-     *     // ... data to create a Periodo
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Periodo we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PeriodoUpsertArgs>(args: SelectSubset<T, PeriodoUpsertArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Periodos.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PeriodoCountArgs} args - Arguments to filter Periodos to count.
-     * @example
-     * // Count the number of Periodos
-     * const count = await prisma.periodo.count({
-     *   where: {
-     *     // ... the filter for the Periodos we want to count
-     *   }
-     * })
-    **/
-    count<T extends PeriodoCountArgs>(
-      args?: Subset<T, PeriodoCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PeriodoCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Periodo.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PeriodoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PeriodoAggregateArgs>(args: Subset<T, PeriodoAggregateArgs>): Prisma.PrismaPromise<GetPeriodoAggregateType<T>>
-
-    /**
-     * Group by Periodo.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PeriodoGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PeriodoGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PeriodoGroupByArgs['orderBy'] }
-        : { orderBy?: PeriodoGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PeriodoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPeriodoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Periodo model
-   */
-  readonly fields: PeriodoFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Periodo.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PeriodoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    Disponibilidade<T extends Periodo$DisponibilidadeArgs<ExtArgs> = {}>(args?: Subset<T, Periodo$DisponibilidadeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DisponibilidadePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    TempoLectivo<T extends Periodo$TempoLectivoArgs<ExtArgs> = {}>(args?: Subset<T, Periodo$TempoLectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Periodo model
-   */
-  interface PeriodoFieldRefs {
-    readonly periodo: FieldRef<"Periodo", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Periodo findUnique
-   */
-  export type PeriodoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PeriodoInclude<ExtArgs> | null
-    /**
-     * Filter, which Periodo to fetch.
-     */
-    where: PeriodoWhereUniqueInput
-  }
-
-  /**
-   * Periodo findUniqueOrThrow
-   */
-  export type PeriodoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PeriodoInclude<ExtArgs> | null
-    /**
-     * Filter, which Periodo to fetch.
-     */
-    where: PeriodoWhereUniqueInput
-  }
-
-  /**
-   * Periodo findFirst
-   */
-  export type PeriodoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PeriodoInclude<ExtArgs> | null
-    /**
-     * Filter, which Periodo to fetch.
-     */
-    where?: PeriodoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Periodos to fetch.
-     */
-    orderBy?: PeriodoOrderByWithRelationInput | PeriodoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Periodos.
-     */
-    cursor?: PeriodoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Periodos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Periodos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Periodos.
-     */
-    distinct?: PeriodoScalarFieldEnum | PeriodoScalarFieldEnum[]
-  }
-
-  /**
-   * Periodo findFirstOrThrow
-   */
-  export type PeriodoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PeriodoInclude<ExtArgs> | null
-    /**
-     * Filter, which Periodo to fetch.
-     */
-    where?: PeriodoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Periodos to fetch.
-     */
-    orderBy?: PeriodoOrderByWithRelationInput | PeriodoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Periodos.
-     */
-    cursor?: PeriodoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Periodos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Periodos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Periodos.
-     */
-    distinct?: PeriodoScalarFieldEnum | PeriodoScalarFieldEnum[]
-  }
-
-  /**
-   * Periodo findMany
-   */
-  export type PeriodoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PeriodoInclude<ExtArgs> | null
-    /**
-     * Filter, which Periodos to fetch.
-     */
-    where?: PeriodoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Periodos to fetch.
-     */
-    orderBy?: PeriodoOrderByWithRelationInput | PeriodoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Periodos.
-     */
-    cursor?: PeriodoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Periodos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Periodos.
-     */
-    skip?: number
-    distinct?: PeriodoScalarFieldEnum | PeriodoScalarFieldEnum[]
-  }
-
-  /**
-   * Periodo create
-   */
-  export type PeriodoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PeriodoInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Periodo.
-     */
-    data: XOR<PeriodoCreateInput, PeriodoUncheckedCreateInput>
-  }
-
-  /**
-   * Periodo createMany
-   */
-  export type PeriodoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Periodos.
-     */
-    data: PeriodoCreateManyInput | PeriodoCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Periodo createManyAndReturn
-   */
-  export type PeriodoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * The data used to create many Periodos.
-     */
-    data: PeriodoCreateManyInput | PeriodoCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Periodo update
-   */
-  export type PeriodoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PeriodoInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Periodo.
-     */
-    data: XOR<PeriodoUpdateInput, PeriodoUncheckedUpdateInput>
-    /**
-     * Choose, which Periodo to update.
-     */
-    where: PeriodoWhereUniqueInput
-  }
-
-  /**
-   * Periodo updateMany
-   */
-  export type PeriodoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Periodos.
-     */
-    data: XOR<PeriodoUpdateManyMutationInput, PeriodoUncheckedUpdateManyInput>
-    /**
-     * Filter which Periodos to update
-     */
-    where?: PeriodoWhereInput
-    /**
-     * Limit how many Periodos to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Periodo updateManyAndReturn
-   */
-  export type PeriodoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * The data used to update Periodos.
-     */
-    data: XOR<PeriodoUpdateManyMutationInput, PeriodoUncheckedUpdateManyInput>
-    /**
-     * Filter which Periodos to update
-     */
-    where?: PeriodoWhereInput
-    /**
-     * Limit how many Periodos to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Periodo upsert
-   */
-  export type PeriodoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PeriodoInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Periodo to update in case it exists.
-     */
-    where: PeriodoWhereUniqueInput
-    /**
-     * In case the Periodo found by the `where` argument doesn't exist, create a new Periodo with this data.
-     */
-    create: XOR<PeriodoCreateInput, PeriodoUncheckedCreateInput>
-    /**
-     * In case the Periodo was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PeriodoUpdateInput, PeriodoUncheckedUpdateInput>
-  }
-
-  /**
-   * Periodo delete
-   */
-  export type PeriodoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PeriodoInclude<ExtArgs> | null
-    /**
-     * Filter which Periodo to delete.
-     */
-    where: PeriodoWhereUniqueInput
-  }
-
-  /**
-   * Periodo deleteMany
-   */
-  export type PeriodoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Periodos to delete
-     */
-    where?: PeriodoWhereInput
-    /**
-     * Limit how many Periodos to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Periodo.Disponibilidade
-   */
-  export type Periodo$DisponibilidadeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Disponibilidade
-     */
-    select?: DisponibilidadeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Disponibilidade
-     */
-    omit?: DisponibilidadeOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DisponibilidadeInclude<ExtArgs> | null
-    where?: DisponibilidadeWhereInput
-    orderBy?: DisponibilidadeOrderByWithRelationInput | DisponibilidadeOrderByWithRelationInput[]
-    cursor?: DisponibilidadeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DisponibilidadeScalarFieldEnum | DisponibilidadeScalarFieldEnum[]
-  }
-
-  /**
-   * Periodo.TempoLectivo
-   */
-  export type Periodo$TempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TempoLectivo
-     */
-    select?: TempoLectivoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TempoLectivo
-     */
-    omit?: TempoLectivoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TempoLectivoInclude<ExtArgs> | null
-    where?: TempoLectivoWhereInput
-    orderBy?: TempoLectivoOrderByWithRelationInput | TempoLectivoOrderByWithRelationInput[]
-    cursor?: TempoLectivoWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TempoLectivoScalarFieldEnum | TempoLectivoScalarFieldEnum[]
-  }
-
-  /**
-   * Periodo without action
-   */
-  export type PeriodoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Periodo
-     */
-    select?: PeriodoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Periodo
-     */
-    omit?: PeriodoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PeriodoInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model ProfDisciplinas
    */
 
@@ -9724,65 +9527,51 @@ export namespace Prisma {
   }
 
   export type ProfDisciplinasAvgAggregateOutputType = {
-    idProfDisciplina: number | null
     professorId: number | null
-    disciplinaId: number | null
   }
 
   export type ProfDisciplinasSumAggregateOutputType = {
-    idProfDisciplina: number | null
     professorId: number | null
-    disciplinaId: number | null
   }
 
   export type ProfDisciplinasMinAggregateOutputType = {
-    idProfDisciplina: number | null
     professorId: number | null
-    disciplinaId: number | null
+    nome_disciplina: string | null
   }
 
   export type ProfDisciplinasMaxAggregateOutputType = {
-    idProfDisciplina: number | null
     professorId: number | null
-    disciplinaId: number | null
+    nome_disciplina: string | null
   }
 
   export type ProfDisciplinasCountAggregateOutputType = {
-    idProfDisciplina: number
     professorId: number
-    disciplinaId: number
+    nome_disciplina: number
     _all: number
   }
 
 
   export type ProfDisciplinasAvgAggregateInputType = {
-    idProfDisciplina?: true
     professorId?: true
-    disciplinaId?: true
   }
 
   export type ProfDisciplinasSumAggregateInputType = {
-    idProfDisciplina?: true
     professorId?: true
-    disciplinaId?: true
   }
 
   export type ProfDisciplinasMinAggregateInputType = {
-    idProfDisciplina?: true
     professorId?: true
-    disciplinaId?: true
+    nome_disciplina?: true
   }
 
   export type ProfDisciplinasMaxAggregateInputType = {
-    idProfDisciplina?: true
     professorId?: true
-    disciplinaId?: true
+    nome_disciplina?: true
   }
 
   export type ProfDisciplinasCountAggregateInputType = {
-    idProfDisciplina?: true
     professorId?: true
-    disciplinaId?: true
+    nome_disciplina?: true
     _all?: true
   }
 
@@ -9873,9 +9662,8 @@ export namespace Prisma {
   }
 
   export type ProfDisciplinasGroupByOutputType = {
-    idProfDisciplina: number
     professorId: number
-    disciplinaId: number
+    nome_disciplina: string
     _count: ProfDisciplinasCountAggregateOutputType | null
     _avg: ProfDisciplinasAvgAggregateOutputType | null
     _sum: ProfDisciplinasSumAggregateOutputType | null
@@ -9898,59 +9686,54 @@ export namespace Prisma {
 
 
   export type ProfDisciplinasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idProfDisciplina?: boolean
     professorId?: boolean
-    disciplinaId?: boolean
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    nome_disciplina?: boolean
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profDisciplinas"]>
 
   export type ProfDisciplinasSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idProfDisciplina?: boolean
     professorId?: boolean
-    disciplinaId?: boolean
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    nome_disciplina?: boolean
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profDisciplinas"]>
 
   export type ProfDisciplinasSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idProfDisciplina?: boolean
     professorId?: boolean
-    disciplinaId?: boolean
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    nome_disciplina?: boolean
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profDisciplinas"]>
 
   export type ProfDisciplinasSelectScalar = {
-    idProfDisciplina?: boolean
     professorId?: boolean
-    disciplinaId?: boolean
+    nome_disciplina?: boolean
   }
 
-  export type ProfDisciplinasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idProfDisciplina" | "professorId" | "disciplinaId", ExtArgs["result"]["profDisciplinas"]>
+  export type ProfDisciplinasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"professorId" | "nome_disciplina", ExtArgs["result"]["profDisciplinas"]>
   export type ProfDisciplinasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
   }
   export type ProfDisciplinasIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
   }
   export type ProfDisciplinasIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
   }
 
   export type $ProfDisciplinasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ProfDisciplinas"
     objects: {
-      Disciplina: Prisma.$DisciplinaPayload<ExtArgs>
-      Professor: Prisma.$ProfessorPayload<ExtArgs>
+      professor: Prisma.$ProfessorPayload<ExtArgs>
+      disciplina: Prisma.$DisciplinaPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      idProfDisciplina: number
       professorId: number
-      disciplinaId: number
+      nome_disciplina: string
     }, ExtArgs["result"]["profDisciplinas"]>
     composites: {}
   }
@@ -10034,8 +9817,8 @@ export namespace Prisma {
      * // Get first 10 ProfDisciplinas
      * const profDisciplinas = await prisma.profDisciplinas.findMany({ take: 10 })
      * 
-     * // Only select the `idProfDisciplina`
-     * const profDisciplinasWithIdProfDisciplinaOnly = await prisma.profDisciplinas.findMany({ select: { idProfDisciplina: true } })
+     * // Only select the `professorId`
+     * const profDisciplinasWithProfessorIdOnly = await prisma.profDisciplinas.findMany({ select: { professorId: true } })
      * 
      */
     findMany<T extends ProfDisciplinasFindManyArgs>(args?: SelectSubset<T, ProfDisciplinasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfDisciplinasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -10079,9 +9862,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many ProfDisciplinas and only return the `idProfDisciplina`
-     * const profDisciplinasWithIdProfDisciplinaOnly = await prisma.profDisciplinas.createManyAndReturn({
-     *   select: { idProfDisciplina: true },
+     * // Create many ProfDisciplinas and only return the `professorId`
+     * const profDisciplinasWithProfessorIdOnly = await prisma.profDisciplinas.createManyAndReturn({
+     *   select: { professorId: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -10170,9 +9953,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more ProfDisciplinas and only return the `idProfDisciplina`
-     * const profDisciplinasWithIdProfDisciplinaOnly = await prisma.profDisciplinas.updateManyAndReturn({
-     *   select: { idProfDisciplina: true },
+     * // Update zero or more ProfDisciplinas and only return the `professorId`
+     * const profDisciplinasWithProfessorIdOnly = await prisma.profDisciplinas.updateManyAndReturn({
+     *   select: { professorId: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -10345,8 +10128,8 @@ export namespace Prisma {
    */
   export interface Prisma__ProfDisciplinasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Disciplina<T extends DisciplinaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DisciplinaDefaultArgs<ExtArgs>>): Prisma__DisciplinaClient<$Result.GetResult<Prisma.$DisciplinaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Professor<T extends ProfessorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfessorDefaultArgs<ExtArgs>>): Prisma__ProfessorClient<$Result.GetResult<Prisma.$ProfessorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    professor<T extends ProfessorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfessorDefaultArgs<ExtArgs>>): Prisma__ProfessorClient<$Result.GetResult<Prisma.$ProfessorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    disciplina<T extends DisciplinaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DisciplinaDefaultArgs<ExtArgs>>): Prisma__DisciplinaClient<$Result.GetResult<Prisma.$DisciplinaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10376,9 +10159,8 @@ export namespace Prisma {
    * Fields of the ProfDisciplinas model
    */
   interface ProfDisciplinasFieldRefs {
-    readonly idProfDisciplina: FieldRef<"ProfDisciplinas", 'Int'>
     readonly professorId: FieldRef<"ProfDisciplinas", 'Int'>
-    readonly disciplinaId: FieldRef<"ProfDisciplinas", 'Int'>
+    readonly nome_disciplina: FieldRef<"ProfDisciplinas", 'String'>
   }
     
 
@@ -10794,1088 +10576,6 @@ export namespace Prisma {
 
 
   /**
-   * Model ProfTurma
-   */
-
-  export type AggregateProfTurma = {
-    _count: ProfTurmaCountAggregateOutputType | null
-    _avg: ProfTurmaAvgAggregateOutputType | null
-    _sum: ProfTurmaSumAggregateOutputType | null
-    _min: ProfTurmaMinAggregateOutputType | null
-    _max: ProfTurmaMaxAggregateOutputType | null
-  }
-
-  export type ProfTurmaAvgAggregateOutputType = {
-    idProfTurma: number | null
-    professorId: number | null
-    turmaId: number | null
-  }
-
-  export type ProfTurmaSumAggregateOutputType = {
-    idProfTurma: number | null
-    professorId: number | null
-    turmaId: number | null
-  }
-
-  export type ProfTurmaMinAggregateOutputType = {
-    idProfTurma: number | null
-    professorId: number | null
-    turmaId: number | null
-  }
-
-  export type ProfTurmaMaxAggregateOutputType = {
-    idProfTurma: number | null
-    professorId: number | null
-    turmaId: number | null
-  }
-
-  export type ProfTurmaCountAggregateOutputType = {
-    idProfTurma: number
-    professorId: number
-    turmaId: number
-    _all: number
-  }
-
-
-  export type ProfTurmaAvgAggregateInputType = {
-    idProfTurma?: true
-    professorId?: true
-    turmaId?: true
-  }
-
-  export type ProfTurmaSumAggregateInputType = {
-    idProfTurma?: true
-    professorId?: true
-    turmaId?: true
-  }
-
-  export type ProfTurmaMinAggregateInputType = {
-    idProfTurma?: true
-    professorId?: true
-    turmaId?: true
-  }
-
-  export type ProfTurmaMaxAggregateInputType = {
-    idProfTurma?: true
-    professorId?: true
-    turmaId?: true
-  }
-
-  export type ProfTurmaCountAggregateInputType = {
-    idProfTurma?: true
-    professorId?: true
-    turmaId?: true
-    _all?: true
-  }
-
-  export type ProfTurmaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ProfTurma to aggregate.
-     */
-    where?: ProfTurmaWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ProfTurmas to fetch.
-     */
-    orderBy?: ProfTurmaOrderByWithRelationInput | ProfTurmaOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ProfTurmaWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ProfTurmas from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ProfTurmas.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ProfTurmas
-    **/
-    _count?: true | ProfTurmaCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ProfTurmaAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ProfTurmaSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ProfTurmaMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ProfTurmaMaxAggregateInputType
-  }
-
-  export type GetProfTurmaAggregateType<T extends ProfTurmaAggregateArgs> = {
-        [P in keyof T & keyof AggregateProfTurma]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateProfTurma[P]>
-      : GetScalarType<T[P], AggregateProfTurma[P]>
-  }
-
-
-
-
-  export type ProfTurmaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProfTurmaWhereInput
-    orderBy?: ProfTurmaOrderByWithAggregationInput | ProfTurmaOrderByWithAggregationInput[]
-    by: ProfTurmaScalarFieldEnum[] | ProfTurmaScalarFieldEnum
-    having?: ProfTurmaScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ProfTurmaCountAggregateInputType | true
-    _avg?: ProfTurmaAvgAggregateInputType
-    _sum?: ProfTurmaSumAggregateInputType
-    _min?: ProfTurmaMinAggregateInputType
-    _max?: ProfTurmaMaxAggregateInputType
-  }
-
-  export type ProfTurmaGroupByOutputType = {
-    idProfTurma: number
-    professorId: number
-    turmaId: number
-    _count: ProfTurmaCountAggregateOutputType | null
-    _avg: ProfTurmaAvgAggregateOutputType | null
-    _sum: ProfTurmaSumAggregateOutputType | null
-    _min: ProfTurmaMinAggregateOutputType | null
-    _max: ProfTurmaMaxAggregateOutputType | null
-  }
-
-  type GetProfTurmaGroupByPayload<T extends ProfTurmaGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ProfTurmaGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ProfTurmaGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ProfTurmaGroupByOutputType[P]>
-            : GetScalarType<T[P], ProfTurmaGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ProfTurmaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idProfTurma?: boolean
-    professorId?: boolean
-    turmaId?: boolean
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["profTurma"]>
-
-  export type ProfTurmaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idProfTurma?: boolean
-    professorId?: boolean
-    turmaId?: boolean
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["profTurma"]>
-
-  export type ProfTurmaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idProfTurma?: boolean
-    professorId?: boolean
-    turmaId?: boolean
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["profTurma"]>
-
-  export type ProfTurmaSelectScalar = {
-    idProfTurma?: boolean
-    professorId?: boolean
-    turmaId?: boolean
-  }
-
-  export type ProfTurmaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idProfTurma" | "professorId" | "turmaId", ExtArgs["result"]["profTurma"]>
-  export type ProfTurmaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
-  }
-  export type ProfTurmaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
-  }
-  export type ProfTurmaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
-  }
-
-  export type $ProfTurmaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ProfTurma"
-    objects: {
-      Professor: Prisma.$ProfessorPayload<ExtArgs>
-      Turma: Prisma.$TurmaPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      idProfTurma: number
-      professorId: number
-      turmaId: number
-    }, ExtArgs["result"]["profTurma"]>
-    composites: {}
-  }
-
-  type ProfTurmaGetPayload<S extends boolean | null | undefined | ProfTurmaDefaultArgs> = $Result.GetResult<Prisma.$ProfTurmaPayload, S>
-
-  type ProfTurmaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ProfTurmaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ProfTurmaCountAggregateInputType | true
-    }
-
-  export interface ProfTurmaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProfTurma'], meta: { name: 'ProfTurma' } }
-    /**
-     * Find zero or one ProfTurma that matches the filter.
-     * @param {ProfTurmaFindUniqueArgs} args - Arguments to find a ProfTurma
-     * @example
-     * // Get one ProfTurma
-     * const profTurma = await prisma.profTurma.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ProfTurmaFindUniqueArgs>(args: SelectSubset<T, ProfTurmaFindUniqueArgs<ExtArgs>>): Prisma__ProfTurmaClient<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one ProfTurma that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ProfTurmaFindUniqueOrThrowArgs} args - Arguments to find a ProfTurma
-     * @example
-     * // Get one ProfTurma
-     * const profTurma = await prisma.profTurma.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ProfTurmaFindUniqueOrThrowArgs>(args: SelectSubset<T, ProfTurmaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProfTurmaClient<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ProfTurma that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfTurmaFindFirstArgs} args - Arguments to find a ProfTurma
-     * @example
-     * // Get one ProfTurma
-     * const profTurma = await prisma.profTurma.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ProfTurmaFindFirstArgs>(args?: SelectSubset<T, ProfTurmaFindFirstArgs<ExtArgs>>): Prisma__ProfTurmaClient<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ProfTurma that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfTurmaFindFirstOrThrowArgs} args - Arguments to find a ProfTurma
-     * @example
-     * // Get one ProfTurma
-     * const profTurma = await prisma.profTurma.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ProfTurmaFindFirstOrThrowArgs>(args?: SelectSubset<T, ProfTurmaFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProfTurmaClient<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more ProfTurmas that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfTurmaFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ProfTurmas
-     * const profTurmas = await prisma.profTurma.findMany()
-     * 
-     * // Get first 10 ProfTurmas
-     * const profTurmas = await prisma.profTurma.findMany({ take: 10 })
-     * 
-     * // Only select the `idProfTurma`
-     * const profTurmaWithIdProfTurmaOnly = await prisma.profTurma.findMany({ select: { idProfTurma: true } })
-     * 
-     */
-    findMany<T extends ProfTurmaFindManyArgs>(args?: SelectSubset<T, ProfTurmaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a ProfTurma.
-     * @param {ProfTurmaCreateArgs} args - Arguments to create a ProfTurma.
-     * @example
-     * // Create one ProfTurma
-     * const ProfTurma = await prisma.profTurma.create({
-     *   data: {
-     *     // ... data to create a ProfTurma
-     *   }
-     * })
-     * 
-     */
-    create<T extends ProfTurmaCreateArgs>(args: SelectSubset<T, ProfTurmaCreateArgs<ExtArgs>>): Prisma__ProfTurmaClient<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many ProfTurmas.
-     * @param {ProfTurmaCreateManyArgs} args - Arguments to create many ProfTurmas.
-     * @example
-     * // Create many ProfTurmas
-     * const profTurma = await prisma.profTurma.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ProfTurmaCreateManyArgs>(args?: SelectSubset<T, ProfTurmaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many ProfTurmas and returns the data saved in the database.
-     * @param {ProfTurmaCreateManyAndReturnArgs} args - Arguments to create many ProfTurmas.
-     * @example
-     * // Create many ProfTurmas
-     * const profTurma = await prisma.profTurma.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many ProfTurmas and only return the `idProfTurma`
-     * const profTurmaWithIdProfTurmaOnly = await prisma.profTurma.createManyAndReturn({
-     *   select: { idProfTurma: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends ProfTurmaCreateManyAndReturnArgs>(args?: SelectSubset<T, ProfTurmaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a ProfTurma.
-     * @param {ProfTurmaDeleteArgs} args - Arguments to delete one ProfTurma.
-     * @example
-     * // Delete one ProfTurma
-     * const ProfTurma = await prisma.profTurma.delete({
-     *   where: {
-     *     // ... filter to delete one ProfTurma
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ProfTurmaDeleteArgs>(args: SelectSubset<T, ProfTurmaDeleteArgs<ExtArgs>>): Prisma__ProfTurmaClient<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one ProfTurma.
-     * @param {ProfTurmaUpdateArgs} args - Arguments to update one ProfTurma.
-     * @example
-     * // Update one ProfTurma
-     * const profTurma = await prisma.profTurma.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ProfTurmaUpdateArgs>(args: SelectSubset<T, ProfTurmaUpdateArgs<ExtArgs>>): Prisma__ProfTurmaClient<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more ProfTurmas.
-     * @param {ProfTurmaDeleteManyArgs} args - Arguments to filter ProfTurmas to delete.
-     * @example
-     * // Delete a few ProfTurmas
-     * const { count } = await prisma.profTurma.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ProfTurmaDeleteManyArgs>(args?: SelectSubset<T, ProfTurmaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ProfTurmas.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfTurmaUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ProfTurmas
-     * const profTurma = await prisma.profTurma.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ProfTurmaUpdateManyArgs>(args: SelectSubset<T, ProfTurmaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ProfTurmas and returns the data updated in the database.
-     * @param {ProfTurmaUpdateManyAndReturnArgs} args - Arguments to update many ProfTurmas.
-     * @example
-     * // Update many ProfTurmas
-     * const profTurma = await prisma.profTurma.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more ProfTurmas and only return the `idProfTurma`
-     * const profTurmaWithIdProfTurmaOnly = await prisma.profTurma.updateManyAndReturn({
-     *   select: { idProfTurma: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends ProfTurmaUpdateManyAndReturnArgs>(args: SelectSubset<T, ProfTurmaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one ProfTurma.
-     * @param {ProfTurmaUpsertArgs} args - Arguments to update or create a ProfTurma.
-     * @example
-     * // Update or create a ProfTurma
-     * const profTurma = await prisma.profTurma.upsert({
-     *   create: {
-     *     // ... data to create a ProfTurma
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ProfTurma we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ProfTurmaUpsertArgs>(args: SelectSubset<T, ProfTurmaUpsertArgs<ExtArgs>>): Prisma__ProfTurmaClient<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of ProfTurmas.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfTurmaCountArgs} args - Arguments to filter ProfTurmas to count.
-     * @example
-     * // Count the number of ProfTurmas
-     * const count = await prisma.profTurma.count({
-     *   where: {
-     *     // ... the filter for the ProfTurmas we want to count
-     *   }
-     * })
-    **/
-    count<T extends ProfTurmaCountArgs>(
-      args?: Subset<T, ProfTurmaCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ProfTurmaCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ProfTurma.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfTurmaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ProfTurmaAggregateArgs>(args: Subset<T, ProfTurmaAggregateArgs>): Prisma.PrismaPromise<GetProfTurmaAggregateType<T>>
-
-    /**
-     * Group by ProfTurma.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfTurmaGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ProfTurmaGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ProfTurmaGroupByArgs['orderBy'] }
-        : { orderBy?: ProfTurmaGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ProfTurmaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProfTurmaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ProfTurma model
-   */
-  readonly fields: ProfTurmaFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ProfTurma.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ProfTurmaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    Professor<T extends ProfessorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfessorDefaultArgs<ExtArgs>>): Prisma__ProfessorClient<$Result.GetResult<Prisma.$ProfessorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Turma<T extends TurmaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TurmaDefaultArgs<ExtArgs>>): Prisma__TurmaClient<$Result.GetResult<Prisma.$TurmaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ProfTurma model
-   */
-  interface ProfTurmaFieldRefs {
-    readonly idProfTurma: FieldRef<"ProfTurma", 'Int'>
-    readonly professorId: FieldRef<"ProfTurma", 'Int'>
-    readonly turmaId: FieldRef<"ProfTurma", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ProfTurma findUnique
-   */
-  export type ProfTurmaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaInclude<ExtArgs> | null
-    /**
-     * Filter, which ProfTurma to fetch.
-     */
-    where: ProfTurmaWhereUniqueInput
-  }
-
-  /**
-   * ProfTurma findUniqueOrThrow
-   */
-  export type ProfTurmaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaInclude<ExtArgs> | null
-    /**
-     * Filter, which ProfTurma to fetch.
-     */
-    where: ProfTurmaWhereUniqueInput
-  }
-
-  /**
-   * ProfTurma findFirst
-   */
-  export type ProfTurmaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaInclude<ExtArgs> | null
-    /**
-     * Filter, which ProfTurma to fetch.
-     */
-    where?: ProfTurmaWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ProfTurmas to fetch.
-     */
-    orderBy?: ProfTurmaOrderByWithRelationInput | ProfTurmaOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ProfTurmas.
-     */
-    cursor?: ProfTurmaWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ProfTurmas from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ProfTurmas.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ProfTurmas.
-     */
-    distinct?: ProfTurmaScalarFieldEnum | ProfTurmaScalarFieldEnum[]
-  }
-
-  /**
-   * ProfTurma findFirstOrThrow
-   */
-  export type ProfTurmaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaInclude<ExtArgs> | null
-    /**
-     * Filter, which ProfTurma to fetch.
-     */
-    where?: ProfTurmaWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ProfTurmas to fetch.
-     */
-    orderBy?: ProfTurmaOrderByWithRelationInput | ProfTurmaOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ProfTurmas.
-     */
-    cursor?: ProfTurmaWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ProfTurmas from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ProfTurmas.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ProfTurmas.
-     */
-    distinct?: ProfTurmaScalarFieldEnum | ProfTurmaScalarFieldEnum[]
-  }
-
-  /**
-   * ProfTurma findMany
-   */
-  export type ProfTurmaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaInclude<ExtArgs> | null
-    /**
-     * Filter, which ProfTurmas to fetch.
-     */
-    where?: ProfTurmaWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ProfTurmas to fetch.
-     */
-    orderBy?: ProfTurmaOrderByWithRelationInput | ProfTurmaOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ProfTurmas.
-     */
-    cursor?: ProfTurmaWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ProfTurmas from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ProfTurmas.
-     */
-    skip?: number
-    distinct?: ProfTurmaScalarFieldEnum | ProfTurmaScalarFieldEnum[]
-  }
-
-  /**
-   * ProfTurma create
-   */
-  export type ProfTurmaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ProfTurma.
-     */
-    data: XOR<ProfTurmaCreateInput, ProfTurmaUncheckedCreateInput>
-  }
-
-  /**
-   * ProfTurma createMany
-   */
-  export type ProfTurmaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ProfTurmas.
-     */
-    data: ProfTurmaCreateManyInput | ProfTurmaCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * ProfTurma createManyAndReturn
-   */
-  export type ProfTurmaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * The data used to create many ProfTurmas.
-     */
-    data: ProfTurmaCreateManyInput | ProfTurmaCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ProfTurma update
-   */
-  export type ProfTurmaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ProfTurma.
-     */
-    data: XOR<ProfTurmaUpdateInput, ProfTurmaUncheckedUpdateInput>
-    /**
-     * Choose, which ProfTurma to update.
-     */
-    where: ProfTurmaWhereUniqueInput
-  }
-
-  /**
-   * ProfTurma updateMany
-   */
-  export type ProfTurmaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ProfTurmas.
-     */
-    data: XOR<ProfTurmaUpdateManyMutationInput, ProfTurmaUncheckedUpdateManyInput>
-    /**
-     * Filter which ProfTurmas to update
-     */
-    where?: ProfTurmaWhereInput
-    /**
-     * Limit how many ProfTurmas to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * ProfTurma updateManyAndReturn
-   */
-  export type ProfTurmaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * The data used to update ProfTurmas.
-     */
-    data: XOR<ProfTurmaUpdateManyMutationInput, ProfTurmaUncheckedUpdateManyInput>
-    /**
-     * Filter which ProfTurmas to update
-     */
-    where?: ProfTurmaWhereInput
-    /**
-     * Limit how many ProfTurmas to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ProfTurma upsert
-   */
-  export type ProfTurmaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ProfTurma to update in case it exists.
-     */
-    where: ProfTurmaWhereUniqueInput
-    /**
-     * In case the ProfTurma found by the `where` argument doesn't exist, create a new ProfTurma with this data.
-     */
-    create: XOR<ProfTurmaCreateInput, ProfTurmaUncheckedCreateInput>
-    /**
-     * In case the ProfTurma was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ProfTurmaUpdateInput, ProfTurmaUncheckedUpdateInput>
-  }
-
-  /**
-   * ProfTurma delete
-   */
-  export type ProfTurmaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaInclude<ExtArgs> | null
-    /**
-     * Filter which ProfTurma to delete.
-     */
-    where: ProfTurmaWhereUniqueInput
-  }
-
-  /**
-   * ProfTurma deleteMany
-   */
-  export type ProfTurmaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ProfTurmas to delete
-     */
-    where?: ProfTurmaWhereInput
-    /**
-     * Limit how many ProfTurmas to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * ProfTurma without action
-   */
-  export type ProfTurmaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfTurma
-     */
-    select?: ProfTurmaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProfTurma
-     */
-    omit?: ProfTurmaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfTurmaInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Sala
    */
 
@@ -11888,51 +10588,51 @@ export namespace Prisma {
   }
 
   export type SalaAvgAggregateOutputType = {
-    idSala: number | null
+    capacidade: number | null
   }
 
   export type SalaSumAggregateOutputType = {
-    idSala: number | null
+    capacidade: number | null
   }
 
   export type SalaMinAggregateOutputType = {
-    idSala: number | null
-    nome: string | null
+    nome_sala: string | null
+    capacidade: number | null
   }
 
   export type SalaMaxAggregateOutputType = {
-    idSala: number | null
-    nome: string | null
+    nome_sala: string | null
+    capacidade: number | null
   }
 
   export type SalaCountAggregateOutputType = {
-    idSala: number
-    nome: number
+    nome_sala: number
+    capacidade: number
     _all: number
   }
 
 
   export type SalaAvgAggregateInputType = {
-    idSala?: true
+    capacidade?: true
   }
 
   export type SalaSumAggregateInputType = {
-    idSala?: true
+    capacidade?: true
   }
 
   export type SalaMinAggregateInputType = {
-    idSala?: true
-    nome?: true
+    nome_sala?: true
+    capacidade?: true
   }
 
   export type SalaMaxAggregateInputType = {
-    idSala?: true
-    nome?: true
+    nome_sala?: true
+    capacidade?: true
   }
 
   export type SalaCountAggregateInputType = {
-    idSala?: true
-    nome?: true
+    nome_sala?: true
+    capacidade?: true
     _all?: true
   }
 
@@ -12023,8 +10723,8 @@ export namespace Prisma {
   }
 
   export type SalaGroupByOutputType = {
-    idSala: number
-    nome: string
+    nome_sala: string
+    capacidade: number
     _count: SalaCountAggregateOutputType | null
     _avg: SalaAvgAggregateOutputType | null
     _sum: SalaSumAggregateOutputType | null
@@ -12047,30 +10747,30 @@ export namespace Prisma {
 
 
   export type SalaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idSala?: boolean
-    nome?: boolean
-    TempoLectivo?: boolean | Sala$TempoLectivoArgs<ExtArgs>
+    nome_sala?: boolean
+    capacidade?: boolean
+    tempo_lectivo?: boolean | Sala$tempo_lectivoArgs<ExtArgs>
     _count?: boolean | SalaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sala"]>
 
   export type SalaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idSala?: boolean
-    nome?: boolean
+    nome_sala?: boolean
+    capacidade?: boolean
   }, ExtArgs["result"]["sala"]>
 
   export type SalaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idSala?: boolean
-    nome?: boolean
+    nome_sala?: boolean
+    capacidade?: boolean
   }, ExtArgs["result"]["sala"]>
 
   export type SalaSelectScalar = {
-    idSala?: boolean
-    nome?: boolean
+    nome_sala?: boolean
+    capacidade?: boolean
   }
 
-  export type SalaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idSala" | "nome", ExtArgs["result"]["sala"]>
+  export type SalaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nome_sala" | "capacidade", ExtArgs["result"]["sala"]>
   export type SalaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    TempoLectivo?: boolean | Sala$TempoLectivoArgs<ExtArgs>
+    tempo_lectivo?: boolean | Sala$tempo_lectivoArgs<ExtArgs>
     _count?: boolean | SalaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SalaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -12079,11 +10779,11 @@ export namespace Prisma {
   export type $SalaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Sala"
     objects: {
-      TempoLectivo: Prisma.$TempoLectivoPayload<ExtArgs>[]
+      tempo_lectivo: Prisma.$Tempo_LectivoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      idSala: number
-      nome: string
+      nome_sala: string
+      capacidade: number
     }, ExtArgs["result"]["sala"]>
     composites: {}
   }
@@ -12167,8 +10867,8 @@ export namespace Prisma {
      * // Get first 10 Salas
      * const salas = await prisma.sala.findMany({ take: 10 })
      * 
-     * // Only select the `idSala`
-     * const salaWithIdSalaOnly = await prisma.sala.findMany({ select: { idSala: true } })
+     * // Only select the `nome_sala`
+     * const salaWithNome_salaOnly = await prisma.sala.findMany({ select: { nome_sala: true } })
      * 
      */
     findMany<T extends SalaFindManyArgs>(args?: SelectSubset<T, SalaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SalaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -12212,9 +10912,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Salas and only return the `idSala`
-     * const salaWithIdSalaOnly = await prisma.sala.createManyAndReturn({
-     *   select: { idSala: true },
+     * // Create many Salas and only return the `nome_sala`
+     * const salaWithNome_salaOnly = await prisma.sala.createManyAndReturn({
+     *   select: { nome_sala: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -12303,9 +11003,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Salas and only return the `idSala`
-     * const salaWithIdSalaOnly = await prisma.sala.updateManyAndReturn({
-     *   select: { idSala: true },
+     * // Update zero or more Salas and only return the `nome_sala`
+     * const salaWithNome_salaOnly = await prisma.sala.updateManyAndReturn({
+     *   select: { nome_sala: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -12478,7 +11178,7 @@ export namespace Prisma {
    */
   export interface Prisma__SalaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    TempoLectivo<T extends Sala$TempoLectivoArgs<ExtArgs> = {}>(args?: Subset<T, Sala$TempoLectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tempo_lectivo<T extends Sala$tempo_lectivoArgs<ExtArgs> = {}>(args?: Subset<T, Sala$tempo_lectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12508,8 +11208,8 @@ export namespace Prisma {
    * Fields of the Sala model
    */
   interface SalaFieldRefs {
-    readonly idSala: FieldRef<"Sala", 'Int'>
-    readonly nome: FieldRef<"Sala", 'String'>
+    readonly nome_sala: FieldRef<"Sala", 'String'>
+    readonly capacidade: FieldRef<"Sala", 'Int'>
   }
     
 
@@ -12898,27 +11598,27 @@ export namespace Prisma {
   }
 
   /**
-   * Sala.TempoLectivo
+   * Sala.tempo_lectivo
    */
-  export type Sala$TempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Sala$tempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
-    where?: TempoLectivoWhereInput
-    orderBy?: TempoLectivoOrderByWithRelationInput | TempoLectivoOrderByWithRelationInput[]
-    cursor?: TempoLectivoWhereUniqueInput
+    include?: Tempo_LectivoInclude<ExtArgs> | null
+    where?: Tempo_LectivoWhereInput
+    orderBy?: Tempo_LectivoOrderByWithRelationInput | Tempo_LectivoOrderByWithRelationInput[]
+    cursor?: Tempo_LectivoWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: TempoLectivoScalarFieldEnum | TempoLectivoScalarFieldEnum[]
+    distinct?: Tempo_LectivoScalarFieldEnum | Tempo_LectivoScalarFieldEnum[]
   }
 
   /**
@@ -12941,476 +11641,464 @@ export namespace Prisma {
 
 
   /**
-   * Model TempoLectivo
+   * Model Tempo_Lectivo
    */
 
-  export type AggregateTempoLectivo = {
-    _count: TempoLectivoCountAggregateOutputType | null
-    _avg: TempoLectivoAvgAggregateOutputType | null
-    _sum: TempoLectivoSumAggregateOutputType | null
-    _min: TempoLectivoMinAggregateOutputType | null
-    _max: TempoLectivoMaxAggregateOutputType | null
+  export type AggregateTempo_Lectivo = {
+    _count: Tempo_LectivoCountAggregateOutputType | null
+    _avg: Tempo_LectivoAvgAggregateOutputType | null
+    _sum: Tempo_LectivoSumAggregateOutputType | null
+    _min: Tempo_LectivoMinAggregateOutputType | null
+    _max: Tempo_LectivoMaxAggregateOutputType | null
   }
 
-  export type TempoLectivoAvgAggregateOutputType = {
-    idTempoLectivo: number | null
-    ordem: number | null
+  export type Tempo_LectivoAvgAggregateOutputType = {
+    id: number | null
     professorId: number | null
-    disciplinaId: number | null
-    salaId: number | null
-    turmaId: number | null
-  }
-
-  export type TempoLectivoSumAggregateOutputType = {
-    idTempoLectivo: number | null
     ordem: number | null
-    professorId: number | null
-    disciplinaId: number | null
-    salaId: number | null
-    turmaId: number | null
   }
 
-  export type TempoLectivoMinAggregateOutputType = {
-    idTempoLectivo: number | null
-    diaSemana: string | null
-    periodoId: string | null
+  export type Tempo_LectivoSumAggregateOutputType = {
+    id: number | null
+    professorId: number | null
     ordem: number | null
-    professorId: number | null
-    disciplinaId: number | null
-    salaId: number | null
-    turmaId: number | null
   }
 
-  export type TempoLectivoMaxAggregateOutputType = {
-    idTempoLectivo: number | null
-    diaSemana: string | null
-    periodoId: string | null
+  export type Tempo_LectivoMinAggregateOutputType = {
+    id: number | null
+    professorId: number | null
+    nome_turma: string | null
+    nome_disciplina: string | null
+    nome_sala: string | null
+    nome_dia: string | null
+    nome_periodo: string | null
     ordem: number | null
-    professorId: number | null
-    disciplinaId: number | null
-    salaId: number | null
-    turmaId: number | null
   }
 
-  export type TempoLectivoCountAggregateOutputType = {
-    idTempoLectivo: number
-    diaSemana: number
-    periodoId: number
-    ordem: number
+  export type Tempo_LectivoMaxAggregateOutputType = {
+    id: number | null
+    professorId: number | null
+    nome_turma: string | null
+    nome_disciplina: string | null
+    nome_sala: string | null
+    nome_dia: string | null
+    nome_periodo: string | null
+    ordem: number | null
+  }
+
+  export type Tempo_LectivoCountAggregateOutputType = {
+    id: number
     professorId: number
-    disciplinaId: number
-    salaId: number
-    turmaId: number
+    nome_turma: number
+    nome_disciplina: number
+    nome_sala: number
+    nome_dia: number
+    nome_periodo: number
+    ordem: number
     _all: number
   }
 
 
-  export type TempoLectivoAvgAggregateInputType = {
-    idTempoLectivo?: true
-    ordem?: true
+  export type Tempo_LectivoAvgAggregateInputType = {
+    id?: true
     professorId?: true
-    disciplinaId?: true
-    salaId?: true
-    turmaId?: true
+    ordem?: true
   }
 
-  export type TempoLectivoSumAggregateInputType = {
-    idTempoLectivo?: true
-    ordem?: true
+  export type Tempo_LectivoSumAggregateInputType = {
+    id?: true
     professorId?: true
-    disciplinaId?: true
-    salaId?: true
-    turmaId?: true
+    ordem?: true
   }
 
-  export type TempoLectivoMinAggregateInputType = {
-    idTempoLectivo?: true
-    diaSemana?: true
-    periodoId?: true
-    ordem?: true
+  export type Tempo_LectivoMinAggregateInputType = {
+    id?: true
     professorId?: true
-    disciplinaId?: true
-    salaId?: true
-    turmaId?: true
+    nome_turma?: true
+    nome_disciplina?: true
+    nome_sala?: true
+    nome_dia?: true
+    nome_periodo?: true
+    ordem?: true
   }
 
-  export type TempoLectivoMaxAggregateInputType = {
-    idTempoLectivo?: true
-    diaSemana?: true
-    periodoId?: true
-    ordem?: true
+  export type Tempo_LectivoMaxAggregateInputType = {
+    id?: true
     professorId?: true
-    disciplinaId?: true
-    salaId?: true
-    turmaId?: true
+    nome_turma?: true
+    nome_disciplina?: true
+    nome_sala?: true
+    nome_dia?: true
+    nome_periodo?: true
+    ordem?: true
   }
 
-  export type TempoLectivoCountAggregateInputType = {
-    idTempoLectivo?: true
-    diaSemana?: true
-    periodoId?: true
-    ordem?: true
+  export type Tempo_LectivoCountAggregateInputType = {
+    id?: true
     professorId?: true
-    disciplinaId?: true
-    salaId?: true
-    turmaId?: true
+    nome_turma?: true
+    nome_disciplina?: true
+    nome_sala?: true
+    nome_dia?: true
+    nome_periodo?: true
+    ordem?: true
     _all?: true
   }
 
-  export type TempoLectivoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which TempoLectivo to aggregate.
+     * Filter which Tempo_Lectivo to aggregate.
      */
-    where?: TempoLectivoWhereInput
+    where?: Tempo_LectivoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TempoLectivos to fetch.
+     * Determine the order of Tempo_Lectivos to fetch.
      */
-    orderBy?: TempoLectivoOrderByWithRelationInput | TempoLectivoOrderByWithRelationInput[]
+    orderBy?: Tempo_LectivoOrderByWithRelationInput | Tempo_LectivoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: TempoLectivoWhereUniqueInput
+    cursor?: Tempo_LectivoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TempoLectivos from the position of the cursor.
+     * Take `±n` Tempo_Lectivos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TempoLectivos.
+     * Skip the first `n` Tempo_Lectivos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned TempoLectivos
+     * Count returned Tempo_Lectivos
     **/
-    _count?: true | TempoLectivoCountAggregateInputType
+    _count?: true | Tempo_LectivoCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: TempoLectivoAvgAggregateInputType
+    _avg?: Tempo_LectivoAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: TempoLectivoSumAggregateInputType
+    _sum?: Tempo_LectivoSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: TempoLectivoMinAggregateInputType
+    _min?: Tempo_LectivoMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: TempoLectivoMaxAggregateInputType
+    _max?: Tempo_LectivoMaxAggregateInputType
   }
 
-  export type GetTempoLectivoAggregateType<T extends TempoLectivoAggregateArgs> = {
-        [P in keyof T & keyof AggregateTempoLectivo]: P extends '_count' | 'count'
+  export type GetTempo_LectivoAggregateType<T extends Tempo_LectivoAggregateArgs> = {
+        [P in keyof T & keyof AggregateTempo_Lectivo]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateTempoLectivo[P]>
-      : GetScalarType<T[P], AggregateTempoLectivo[P]>
+        : GetScalarType<T[P], AggregateTempo_Lectivo[P]>
+      : GetScalarType<T[P], AggregateTempo_Lectivo[P]>
   }
 
 
 
 
-  export type TempoLectivoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TempoLectivoWhereInput
-    orderBy?: TempoLectivoOrderByWithAggregationInput | TempoLectivoOrderByWithAggregationInput[]
-    by: TempoLectivoScalarFieldEnum[] | TempoLectivoScalarFieldEnum
-    having?: TempoLectivoScalarWhereWithAggregatesInput
+  export type Tempo_LectivoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Tempo_LectivoWhereInput
+    orderBy?: Tempo_LectivoOrderByWithAggregationInput | Tempo_LectivoOrderByWithAggregationInput[]
+    by: Tempo_LectivoScalarFieldEnum[] | Tempo_LectivoScalarFieldEnum
+    having?: Tempo_LectivoScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: TempoLectivoCountAggregateInputType | true
-    _avg?: TempoLectivoAvgAggregateInputType
-    _sum?: TempoLectivoSumAggregateInputType
-    _min?: TempoLectivoMinAggregateInputType
-    _max?: TempoLectivoMaxAggregateInputType
+    _count?: Tempo_LectivoCountAggregateInputType | true
+    _avg?: Tempo_LectivoAvgAggregateInputType
+    _sum?: Tempo_LectivoSumAggregateInputType
+    _min?: Tempo_LectivoMinAggregateInputType
+    _max?: Tempo_LectivoMaxAggregateInputType
   }
 
-  export type TempoLectivoGroupByOutputType = {
-    idTempoLectivo: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
+  export type Tempo_LectivoGroupByOutputType = {
+    id: number
     professorId: number
-    disciplinaId: number
-    salaId: number
-    turmaId: number
-    _count: TempoLectivoCountAggregateOutputType | null
-    _avg: TempoLectivoAvgAggregateOutputType | null
-    _sum: TempoLectivoSumAggregateOutputType | null
-    _min: TempoLectivoMinAggregateOutputType | null
-    _max: TempoLectivoMaxAggregateOutputType | null
+    nome_turma: string
+    nome_disciplina: string
+    nome_sala: string
+    nome_dia: string
+    nome_periodo: string
+    ordem: number
+    _count: Tempo_LectivoCountAggregateOutputType | null
+    _avg: Tempo_LectivoAvgAggregateOutputType | null
+    _sum: Tempo_LectivoSumAggregateOutputType | null
+    _min: Tempo_LectivoMinAggregateOutputType | null
+    _max: Tempo_LectivoMaxAggregateOutputType | null
   }
 
-  type GetTempoLectivoGroupByPayload<T extends TempoLectivoGroupByArgs> = Prisma.PrismaPromise<
+  type GetTempo_LectivoGroupByPayload<T extends Tempo_LectivoGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TempoLectivoGroupByOutputType, T['by']> &
+      PickEnumerable<Tempo_LectivoGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof TempoLectivoGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof Tempo_LectivoGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], TempoLectivoGroupByOutputType[P]>
-            : GetScalarType<T[P], TempoLectivoGroupByOutputType[P]>
+              : GetScalarType<T[P], Tempo_LectivoGroupByOutputType[P]>
+            : GetScalarType<T[P], Tempo_LectivoGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type TempoLectivoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idTempoLectivo?: boolean
-    diaSemana?: boolean
-    periodoId?: boolean
-    ordem?: boolean
+  export type Tempo_LectivoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     professorId?: boolean
-    disciplinaId?: boolean
-    salaId?: boolean
-    turmaId?: boolean
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Sala?: boolean | SalaDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["tempoLectivo"]>
+    nome_turma?: boolean
+    nome_disciplina?: boolean
+    nome_sala?: boolean
+    nome_dia?: boolean
+    nome_periodo?: boolean
+    ordem?: boolean
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    turma?: boolean | TurmaDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
+    sala?: boolean | SalaDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tempo_Lectivo"]>
 
-  export type TempoLectivoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idTempoLectivo?: boolean
-    diaSemana?: boolean
-    periodoId?: boolean
-    ordem?: boolean
+  export type Tempo_LectivoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     professorId?: boolean
-    disciplinaId?: boolean
-    salaId?: boolean
-    turmaId?: boolean
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Sala?: boolean | SalaDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["tempoLectivo"]>
+    nome_turma?: boolean
+    nome_disciplina?: boolean
+    nome_sala?: boolean
+    nome_dia?: boolean
+    nome_periodo?: boolean
+    ordem?: boolean
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    turma?: boolean | TurmaDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
+    sala?: boolean | SalaDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tempo_Lectivo"]>
 
-  export type TempoLectivoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idTempoLectivo?: boolean
-    diaSemana?: boolean
-    periodoId?: boolean
-    ordem?: boolean
+  export type Tempo_LectivoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     professorId?: boolean
-    disciplinaId?: boolean
-    salaId?: boolean
-    turmaId?: boolean
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Sala?: boolean | SalaDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["tempoLectivo"]>
+    nome_turma?: boolean
+    nome_disciplina?: boolean
+    nome_sala?: boolean
+    nome_dia?: boolean
+    nome_periodo?: boolean
+    ordem?: boolean
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    turma?: boolean | TurmaDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
+    sala?: boolean | SalaDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tempo_Lectivo"]>
 
-  export type TempoLectivoSelectScalar = {
-    idTempoLectivo?: boolean
-    diaSemana?: boolean
-    periodoId?: boolean
-    ordem?: boolean
+  export type Tempo_LectivoSelectScalar = {
+    id?: boolean
     professorId?: boolean
-    disciplinaId?: boolean
-    salaId?: boolean
-    turmaId?: boolean
+    nome_turma?: boolean
+    nome_disciplina?: boolean
+    nome_sala?: boolean
+    nome_dia?: boolean
+    nome_periodo?: boolean
+    ordem?: boolean
   }
 
-  export type TempoLectivoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idTempoLectivo" | "diaSemana" | "periodoId" | "ordem" | "professorId" | "disciplinaId" | "salaId" | "turmaId", ExtArgs["result"]["tempoLectivo"]>
-  export type TempoLectivoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Sala?: boolean | SalaDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
+  export type Tempo_LectivoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "professorId" | "nome_turma" | "nome_disciplina" | "nome_sala" | "nome_dia" | "nome_periodo" | "ordem", ExtArgs["result"]["tempo_Lectivo"]>
+  export type Tempo_LectivoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    turma?: boolean | TurmaDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
+    sala?: boolean | SalaDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
   }
-  export type TempoLectivoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Sala?: boolean | SalaDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
+  export type Tempo_LectivoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    turma?: boolean | TurmaDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
+    sala?: boolean | SalaDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
   }
-  export type TempoLectivoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    DiaSemana?: boolean | DiaSemanaDefaultArgs<ExtArgs>
-    Disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
-    Periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
-    Professor?: boolean | ProfessorDefaultArgs<ExtArgs>
-    Sala?: boolean | SalaDefaultArgs<ExtArgs>
-    Turma?: boolean | TurmaDefaultArgs<ExtArgs>
+  export type Tempo_LectivoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    professor?: boolean | ProfessorDefaultArgs<ExtArgs>
+    turma?: boolean | TurmaDefaultArgs<ExtArgs>
+    disciplina?: boolean | DisciplinaDefaultArgs<ExtArgs>
+    sala?: boolean | SalaDefaultArgs<ExtArgs>
+    dia?: boolean | DiaSemanaDefaultArgs<ExtArgs>
+    periodo?: boolean | PeriodoDefaultArgs<ExtArgs>
   }
 
-  export type $TempoLectivoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "TempoLectivo"
+  export type $Tempo_LectivoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Tempo_Lectivo"
     objects: {
-      DiaSemana: Prisma.$DiaSemanaPayload<ExtArgs>
-      Disciplina: Prisma.$DisciplinaPayload<ExtArgs>
-      Periodo: Prisma.$PeriodoPayload<ExtArgs>
-      Professor: Prisma.$ProfessorPayload<ExtArgs>
-      Sala: Prisma.$SalaPayload<ExtArgs>
-      Turma: Prisma.$TurmaPayload<ExtArgs>
+      professor: Prisma.$ProfessorPayload<ExtArgs>
+      turma: Prisma.$TurmaPayload<ExtArgs>
+      disciplina: Prisma.$DisciplinaPayload<ExtArgs>
+      sala: Prisma.$SalaPayload<ExtArgs>
+      dia: Prisma.$DiaSemanaPayload<ExtArgs>
+      periodo: Prisma.$PeriodoPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      idTempoLectivo: number
-      diaSemana: string
-      periodoId: string
-      ordem: number
+      id: number
       professorId: number
-      disciplinaId: number
-      salaId: number
-      turmaId: number
-    }, ExtArgs["result"]["tempoLectivo"]>
+      nome_turma: string
+      nome_disciplina: string
+      nome_sala: string
+      nome_dia: string
+      nome_periodo: string
+      ordem: number
+    }, ExtArgs["result"]["tempo_Lectivo"]>
     composites: {}
   }
 
-  type TempoLectivoGetPayload<S extends boolean | null | undefined | TempoLectivoDefaultArgs> = $Result.GetResult<Prisma.$TempoLectivoPayload, S>
+  type Tempo_LectivoGetPayload<S extends boolean | null | undefined | Tempo_LectivoDefaultArgs> = $Result.GetResult<Prisma.$Tempo_LectivoPayload, S>
 
-  type TempoLectivoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TempoLectivoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TempoLectivoCountAggregateInputType | true
+  type Tempo_LectivoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<Tempo_LectivoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Tempo_LectivoCountAggregateInputType | true
     }
 
-  export interface TempoLectivoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TempoLectivo'], meta: { name: 'TempoLectivo' } }
+  export interface Tempo_LectivoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Tempo_Lectivo'], meta: { name: 'Tempo_Lectivo' } }
     /**
-     * Find zero or one TempoLectivo that matches the filter.
-     * @param {TempoLectivoFindUniqueArgs} args - Arguments to find a TempoLectivo
+     * Find zero or one Tempo_Lectivo that matches the filter.
+     * @param {Tempo_LectivoFindUniqueArgs} args - Arguments to find a Tempo_Lectivo
      * @example
-     * // Get one TempoLectivo
-     * const tempoLectivo = await prisma.tempoLectivo.findUnique({
+     * // Get one Tempo_Lectivo
+     * const tempo_Lectivo = await prisma.tempo_Lectivo.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends TempoLectivoFindUniqueArgs>(args: SelectSubset<T, TempoLectivoFindUniqueArgs<ExtArgs>>): Prisma__TempoLectivoClient<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends Tempo_LectivoFindUniqueArgs>(args: SelectSubset<T, Tempo_LectivoFindUniqueArgs<ExtArgs>>): Prisma__Tempo_LectivoClient<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one TempoLectivo that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Tempo_Lectivo that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {TempoLectivoFindUniqueOrThrowArgs} args - Arguments to find a TempoLectivo
+     * @param {Tempo_LectivoFindUniqueOrThrowArgs} args - Arguments to find a Tempo_Lectivo
      * @example
-     * // Get one TempoLectivo
-     * const tempoLectivo = await prisma.tempoLectivo.findUniqueOrThrow({
+     * // Get one Tempo_Lectivo
+     * const tempo_Lectivo = await prisma.tempo_Lectivo.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends TempoLectivoFindUniqueOrThrowArgs>(args: SelectSubset<T, TempoLectivoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TempoLectivoClient<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends Tempo_LectivoFindUniqueOrThrowArgs>(args: SelectSubset<T, Tempo_LectivoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Tempo_LectivoClient<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first TempoLectivo that matches the filter.
+     * Find the first Tempo_Lectivo that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TempoLectivoFindFirstArgs} args - Arguments to find a TempoLectivo
+     * @param {Tempo_LectivoFindFirstArgs} args - Arguments to find a Tempo_Lectivo
      * @example
-     * // Get one TempoLectivo
-     * const tempoLectivo = await prisma.tempoLectivo.findFirst({
+     * // Get one Tempo_Lectivo
+     * const tempo_Lectivo = await prisma.tempo_Lectivo.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends TempoLectivoFindFirstArgs>(args?: SelectSubset<T, TempoLectivoFindFirstArgs<ExtArgs>>): Prisma__TempoLectivoClient<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends Tempo_LectivoFindFirstArgs>(args?: SelectSubset<T, Tempo_LectivoFindFirstArgs<ExtArgs>>): Prisma__Tempo_LectivoClient<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first TempoLectivo that matches the filter or
+     * Find the first Tempo_Lectivo that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TempoLectivoFindFirstOrThrowArgs} args - Arguments to find a TempoLectivo
+     * @param {Tempo_LectivoFindFirstOrThrowArgs} args - Arguments to find a Tempo_Lectivo
      * @example
-     * // Get one TempoLectivo
-     * const tempoLectivo = await prisma.tempoLectivo.findFirstOrThrow({
+     * // Get one Tempo_Lectivo
+     * const tempo_Lectivo = await prisma.tempo_Lectivo.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends TempoLectivoFindFirstOrThrowArgs>(args?: SelectSubset<T, TempoLectivoFindFirstOrThrowArgs<ExtArgs>>): Prisma__TempoLectivoClient<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends Tempo_LectivoFindFirstOrThrowArgs>(args?: SelectSubset<T, Tempo_LectivoFindFirstOrThrowArgs<ExtArgs>>): Prisma__Tempo_LectivoClient<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more TempoLectivos that matches the filter.
+     * Find zero or more Tempo_Lectivos that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TempoLectivoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {Tempo_LectivoFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all TempoLectivos
-     * const tempoLectivos = await prisma.tempoLectivo.findMany()
+     * // Get all Tempo_Lectivos
+     * const tempo_Lectivos = await prisma.tempo_Lectivo.findMany()
      * 
-     * // Get first 10 TempoLectivos
-     * const tempoLectivos = await prisma.tempoLectivo.findMany({ take: 10 })
+     * // Get first 10 Tempo_Lectivos
+     * const tempo_Lectivos = await prisma.tempo_Lectivo.findMany({ take: 10 })
      * 
-     * // Only select the `idTempoLectivo`
-     * const tempoLectivoWithIdTempoLectivoOnly = await prisma.tempoLectivo.findMany({ select: { idTempoLectivo: true } })
+     * // Only select the `id`
+     * const tempo_LectivoWithIdOnly = await prisma.tempo_Lectivo.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends TempoLectivoFindManyArgs>(args?: SelectSubset<T, TempoLectivoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends Tempo_LectivoFindManyArgs>(args?: SelectSubset<T, Tempo_LectivoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a TempoLectivo.
-     * @param {TempoLectivoCreateArgs} args - Arguments to create a TempoLectivo.
+     * Create a Tempo_Lectivo.
+     * @param {Tempo_LectivoCreateArgs} args - Arguments to create a Tempo_Lectivo.
      * @example
-     * // Create one TempoLectivo
-     * const TempoLectivo = await prisma.tempoLectivo.create({
+     * // Create one Tempo_Lectivo
+     * const Tempo_Lectivo = await prisma.tempo_Lectivo.create({
      *   data: {
-     *     // ... data to create a TempoLectivo
+     *     // ... data to create a Tempo_Lectivo
      *   }
      * })
      * 
      */
-    create<T extends TempoLectivoCreateArgs>(args: SelectSubset<T, TempoLectivoCreateArgs<ExtArgs>>): Prisma__TempoLectivoClient<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends Tempo_LectivoCreateArgs>(args: SelectSubset<T, Tempo_LectivoCreateArgs<ExtArgs>>): Prisma__Tempo_LectivoClient<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many TempoLectivos.
-     * @param {TempoLectivoCreateManyArgs} args - Arguments to create many TempoLectivos.
+     * Create many Tempo_Lectivos.
+     * @param {Tempo_LectivoCreateManyArgs} args - Arguments to create many Tempo_Lectivos.
      * @example
-     * // Create many TempoLectivos
-     * const tempoLectivo = await prisma.tempoLectivo.createMany({
+     * // Create many Tempo_Lectivos
+     * const tempo_Lectivo = await prisma.tempo_Lectivo.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends TempoLectivoCreateManyArgs>(args?: SelectSubset<T, TempoLectivoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends Tempo_LectivoCreateManyArgs>(args?: SelectSubset<T, Tempo_LectivoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many TempoLectivos and returns the data saved in the database.
-     * @param {TempoLectivoCreateManyAndReturnArgs} args - Arguments to create many TempoLectivos.
+     * Create many Tempo_Lectivos and returns the data saved in the database.
+     * @param {Tempo_LectivoCreateManyAndReturnArgs} args - Arguments to create many Tempo_Lectivos.
      * @example
-     * // Create many TempoLectivos
-     * const tempoLectivo = await prisma.tempoLectivo.createManyAndReturn({
+     * // Create many Tempo_Lectivos
+     * const tempo_Lectivo = await prisma.tempo_Lectivo.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many TempoLectivos and only return the `idTempoLectivo`
-     * const tempoLectivoWithIdTempoLectivoOnly = await prisma.tempoLectivo.createManyAndReturn({
-     *   select: { idTempoLectivo: true },
+     * // Create many Tempo_Lectivos and only return the `id`
+     * const tempo_LectivoWithIdOnly = await prisma.tempo_Lectivo.createManyAndReturn({
+     *   select: { id: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -13419,28 +12107,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends TempoLectivoCreateManyAndReturnArgs>(args?: SelectSubset<T, TempoLectivoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends Tempo_LectivoCreateManyAndReturnArgs>(args?: SelectSubset<T, Tempo_LectivoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a TempoLectivo.
-     * @param {TempoLectivoDeleteArgs} args - Arguments to delete one TempoLectivo.
+     * Delete a Tempo_Lectivo.
+     * @param {Tempo_LectivoDeleteArgs} args - Arguments to delete one Tempo_Lectivo.
      * @example
-     * // Delete one TempoLectivo
-     * const TempoLectivo = await prisma.tempoLectivo.delete({
+     * // Delete one Tempo_Lectivo
+     * const Tempo_Lectivo = await prisma.tempo_Lectivo.delete({
      *   where: {
-     *     // ... filter to delete one TempoLectivo
+     *     // ... filter to delete one Tempo_Lectivo
      *   }
      * })
      * 
      */
-    delete<T extends TempoLectivoDeleteArgs>(args: SelectSubset<T, TempoLectivoDeleteArgs<ExtArgs>>): Prisma__TempoLectivoClient<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends Tempo_LectivoDeleteArgs>(args: SelectSubset<T, Tempo_LectivoDeleteArgs<ExtArgs>>): Prisma__Tempo_LectivoClient<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one TempoLectivo.
-     * @param {TempoLectivoUpdateArgs} args - Arguments to update one TempoLectivo.
+     * Update one Tempo_Lectivo.
+     * @param {Tempo_LectivoUpdateArgs} args - Arguments to update one Tempo_Lectivo.
      * @example
-     * // Update one TempoLectivo
-     * const tempoLectivo = await prisma.tempoLectivo.update({
+     * // Update one Tempo_Lectivo
+     * const tempo_Lectivo = await prisma.tempo_Lectivo.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -13450,30 +12138,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends TempoLectivoUpdateArgs>(args: SelectSubset<T, TempoLectivoUpdateArgs<ExtArgs>>): Prisma__TempoLectivoClient<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends Tempo_LectivoUpdateArgs>(args: SelectSubset<T, Tempo_LectivoUpdateArgs<ExtArgs>>): Prisma__Tempo_LectivoClient<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more TempoLectivos.
-     * @param {TempoLectivoDeleteManyArgs} args - Arguments to filter TempoLectivos to delete.
+     * Delete zero or more Tempo_Lectivos.
+     * @param {Tempo_LectivoDeleteManyArgs} args - Arguments to filter Tempo_Lectivos to delete.
      * @example
-     * // Delete a few TempoLectivos
-     * const { count } = await prisma.tempoLectivo.deleteMany({
+     * // Delete a few Tempo_Lectivos
+     * const { count } = await prisma.tempo_Lectivo.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends TempoLectivoDeleteManyArgs>(args?: SelectSubset<T, TempoLectivoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends Tempo_LectivoDeleteManyArgs>(args?: SelectSubset<T, Tempo_LectivoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more TempoLectivos.
+     * Update zero or more Tempo_Lectivos.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TempoLectivoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {Tempo_LectivoUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many TempoLectivos
-     * const tempoLectivo = await prisma.tempoLectivo.updateMany({
+     * // Update many Tempo_Lectivos
+     * const tempo_Lectivo = await prisma.tempo_Lectivo.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -13483,14 +12171,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends TempoLectivoUpdateManyArgs>(args: SelectSubset<T, TempoLectivoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends Tempo_LectivoUpdateManyArgs>(args: SelectSubset<T, Tempo_LectivoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more TempoLectivos and returns the data updated in the database.
-     * @param {TempoLectivoUpdateManyAndReturnArgs} args - Arguments to update many TempoLectivos.
+     * Update zero or more Tempo_Lectivos and returns the data updated in the database.
+     * @param {Tempo_LectivoUpdateManyAndReturnArgs} args - Arguments to update many Tempo_Lectivos.
      * @example
-     * // Update many TempoLectivos
-     * const tempoLectivo = await prisma.tempoLectivo.updateManyAndReturn({
+     * // Update many Tempo_Lectivos
+     * const tempo_Lectivo = await prisma.tempo_Lectivo.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -13499,9 +12187,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more TempoLectivos and only return the `idTempoLectivo`
-     * const tempoLectivoWithIdTempoLectivoOnly = await prisma.tempoLectivo.updateManyAndReturn({
-     *   select: { idTempoLectivo: true },
+     * // Update zero or more Tempo_Lectivos and only return the `id`
+     * const tempo_LectivoWithIdOnly = await prisma.tempo_Lectivo.updateManyAndReturn({
+     *   select: { id: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -13513,56 +12201,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends TempoLectivoUpdateManyAndReturnArgs>(args: SelectSubset<T, TempoLectivoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends Tempo_LectivoUpdateManyAndReturnArgs>(args: SelectSubset<T, Tempo_LectivoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one TempoLectivo.
-     * @param {TempoLectivoUpsertArgs} args - Arguments to update or create a TempoLectivo.
+     * Create or update one Tempo_Lectivo.
+     * @param {Tempo_LectivoUpsertArgs} args - Arguments to update or create a Tempo_Lectivo.
      * @example
-     * // Update or create a TempoLectivo
-     * const tempoLectivo = await prisma.tempoLectivo.upsert({
+     * // Update or create a Tempo_Lectivo
+     * const tempo_Lectivo = await prisma.tempo_Lectivo.upsert({
      *   create: {
-     *     // ... data to create a TempoLectivo
+     *     // ... data to create a Tempo_Lectivo
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the TempoLectivo we want to update
+     *     // ... the filter for the Tempo_Lectivo we want to update
      *   }
      * })
      */
-    upsert<T extends TempoLectivoUpsertArgs>(args: SelectSubset<T, TempoLectivoUpsertArgs<ExtArgs>>): Prisma__TempoLectivoClient<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends Tempo_LectivoUpsertArgs>(args: SelectSubset<T, Tempo_LectivoUpsertArgs<ExtArgs>>): Prisma__Tempo_LectivoClient<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of TempoLectivos.
+     * Count the number of Tempo_Lectivos.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TempoLectivoCountArgs} args - Arguments to filter TempoLectivos to count.
+     * @param {Tempo_LectivoCountArgs} args - Arguments to filter Tempo_Lectivos to count.
      * @example
-     * // Count the number of TempoLectivos
-     * const count = await prisma.tempoLectivo.count({
+     * // Count the number of Tempo_Lectivos
+     * const count = await prisma.tempo_Lectivo.count({
      *   where: {
-     *     // ... the filter for the TempoLectivos we want to count
+     *     // ... the filter for the Tempo_Lectivos we want to count
      *   }
      * })
     **/
-    count<T extends TempoLectivoCountArgs>(
-      args?: Subset<T, TempoLectivoCountArgs>,
+    count<T extends Tempo_LectivoCountArgs>(
+      args?: Subset<T, Tempo_LectivoCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], TempoLectivoCountAggregateOutputType>
+          : GetScalarType<T['select'], Tempo_LectivoCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a TempoLectivo.
+     * Allows you to perform aggregations operations on a Tempo_Lectivo.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TempoLectivoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {Tempo_LectivoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -13582,13 +12270,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends TempoLectivoAggregateArgs>(args: Subset<T, TempoLectivoAggregateArgs>): Prisma.PrismaPromise<GetTempoLectivoAggregateType<T>>
+    aggregate<T extends Tempo_LectivoAggregateArgs>(args: Subset<T, Tempo_LectivoAggregateArgs>): Prisma.PrismaPromise<GetTempo_LectivoAggregateType<T>>
 
     /**
-     * Group by TempoLectivo.
+     * Group by Tempo_Lectivo.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TempoLectivoGroupByArgs} args - Group by arguments.
+     * @param {Tempo_LectivoGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -13603,14 +12291,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends TempoLectivoGroupByArgs,
+      T extends Tempo_LectivoGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TempoLectivoGroupByArgs['orderBy'] }
-        : { orderBy?: TempoLectivoGroupByArgs['orderBy'] },
+        ? { orderBy: Tempo_LectivoGroupByArgs['orderBy'] }
+        : { orderBy?: Tempo_LectivoGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -13659,27 +12347,27 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, TempoLectivoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTempoLectivoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, Tempo_LectivoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTempo_LectivoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the TempoLectivo model
+   * Fields of the Tempo_Lectivo model
    */
-  readonly fields: TempoLectivoFieldRefs;
+  readonly fields: Tempo_LectivoFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for TempoLectivo.
+   * The delegate class that acts as a "Promise-like" for Tempo_Lectivo.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__TempoLectivoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__Tempo_LectivoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    DiaSemana<T extends DiaSemanaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DiaSemanaDefaultArgs<ExtArgs>>): Prisma__DiaSemanaClient<$Result.GetResult<Prisma.$DiaSemanaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Disciplina<T extends DisciplinaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DisciplinaDefaultArgs<ExtArgs>>): Prisma__DisciplinaClient<$Result.GetResult<Prisma.$DisciplinaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Periodo<T extends PeriodoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PeriodoDefaultArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Professor<T extends ProfessorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfessorDefaultArgs<ExtArgs>>): Prisma__ProfessorClient<$Result.GetResult<Prisma.$ProfessorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Sala<T extends SalaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SalaDefaultArgs<ExtArgs>>): Prisma__SalaClient<$Result.GetResult<Prisma.$SalaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Turma<T extends TurmaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TurmaDefaultArgs<ExtArgs>>): Prisma__TurmaClient<$Result.GetResult<Prisma.$TurmaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    professor<T extends ProfessorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfessorDefaultArgs<ExtArgs>>): Prisma__ProfessorClient<$Result.GetResult<Prisma.$ProfessorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    turma<T extends TurmaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TurmaDefaultArgs<ExtArgs>>): Prisma__TurmaClient<$Result.GetResult<Prisma.$TurmaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    disciplina<T extends DisciplinaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DisciplinaDefaultArgs<ExtArgs>>): Prisma__DisciplinaClient<$Result.GetResult<Prisma.$DisciplinaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    sala<T extends SalaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SalaDefaultArgs<ExtArgs>>): Prisma__SalaClient<$Result.GetResult<Prisma.$SalaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    dia<T extends DiaSemanaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DiaSemanaDefaultArgs<ExtArgs>>): Prisma__DiaSemanaClient<$Result.GetResult<Prisma.$DiaSemanaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    periodo<T extends PeriodoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PeriodoDefaultArgs<ExtArgs>>): Prisma__PeriodoClient<$Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13706,428 +12394,428 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the TempoLectivo model
+   * Fields of the Tempo_Lectivo model
    */
-  interface TempoLectivoFieldRefs {
-    readonly idTempoLectivo: FieldRef<"TempoLectivo", 'Int'>
-    readonly diaSemana: FieldRef<"TempoLectivo", 'String'>
-    readonly periodoId: FieldRef<"TempoLectivo", 'String'>
-    readonly ordem: FieldRef<"TempoLectivo", 'Int'>
-    readonly professorId: FieldRef<"TempoLectivo", 'Int'>
-    readonly disciplinaId: FieldRef<"TempoLectivo", 'Int'>
-    readonly salaId: FieldRef<"TempoLectivo", 'Int'>
-    readonly turmaId: FieldRef<"TempoLectivo", 'Int'>
+  interface Tempo_LectivoFieldRefs {
+    readonly id: FieldRef<"Tempo_Lectivo", 'Int'>
+    readonly professorId: FieldRef<"Tempo_Lectivo", 'Int'>
+    readonly nome_turma: FieldRef<"Tempo_Lectivo", 'String'>
+    readonly nome_disciplina: FieldRef<"Tempo_Lectivo", 'String'>
+    readonly nome_sala: FieldRef<"Tempo_Lectivo", 'String'>
+    readonly nome_dia: FieldRef<"Tempo_Lectivo", 'String'>
+    readonly nome_periodo: FieldRef<"Tempo_Lectivo", 'String'>
+    readonly ordem: FieldRef<"Tempo_Lectivo", 'Int'>
   }
     
 
   // Custom InputTypes
   /**
-   * TempoLectivo findUnique
+   * Tempo_Lectivo findUnique
    */
-  export type TempoLectivoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
+    include?: Tempo_LectivoInclude<ExtArgs> | null
     /**
-     * Filter, which TempoLectivo to fetch.
+     * Filter, which Tempo_Lectivo to fetch.
      */
-    where: TempoLectivoWhereUniqueInput
+    where: Tempo_LectivoWhereUniqueInput
   }
 
   /**
-   * TempoLectivo findUniqueOrThrow
+   * Tempo_Lectivo findUniqueOrThrow
    */
-  export type TempoLectivoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
+    include?: Tempo_LectivoInclude<ExtArgs> | null
     /**
-     * Filter, which TempoLectivo to fetch.
+     * Filter, which Tempo_Lectivo to fetch.
      */
-    where: TempoLectivoWhereUniqueInput
+    where: Tempo_LectivoWhereUniqueInput
   }
 
   /**
-   * TempoLectivo findFirst
+   * Tempo_Lectivo findFirst
    */
-  export type TempoLectivoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
+    include?: Tempo_LectivoInclude<ExtArgs> | null
     /**
-     * Filter, which TempoLectivo to fetch.
+     * Filter, which Tempo_Lectivo to fetch.
      */
-    where?: TempoLectivoWhereInput
+    where?: Tempo_LectivoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TempoLectivos to fetch.
+     * Determine the order of Tempo_Lectivos to fetch.
      */
-    orderBy?: TempoLectivoOrderByWithRelationInput | TempoLectivoOrderByWithRelationInput[]
+    orderBy?: Tempo_LectivoOrderByWithRelationInput | Tempo_LectivoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for TempoLectivos.
+     * Sets the position for searching for Tempo_Lectivos.
      */
-    cursor?: TempoLectivoWhereUniqueInput
+    cursor?: Tempo_LectivoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TempoLectivos from the position of the cursor.
+     * Take `±n` Tempo_Lectivos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TempoLectivos.
+     * Skip the first `n` Tempo_Lectivos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of TempoLectivos.
+     * Filter by unique combinations of Tempo_Lectivos.
      */
-    distinct?: TempoLectivoScalarFieldEnum | TempoLectivoScalarFieldEnum[]
+    distinct?: Tempo_LectivoScalarFieldEnum | Tempo_LectivoScalarFieldEnum[]
   }
 
   /**
-   * TempoLectivo findFirstOrThrow
+   * Tempo_Lectivo findFirstOrThrow
    */
-  export type TempoLectivoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
+    include?: Tempo_LectivoInclude<ExtArgs> | null
     /**
-     * Filter, which TempoLectivo to fetch.
+     * Filter, which Tempo_Lectivo to fetch.
      */
-    where?: TempoLectivoWhereInput
+    where?: Tempo_LectivoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TempoLectivos to fetch.
+     * Determine the order of Tempo_Lectivos to fetch.
      */
-    orderBy?: TempoLectivoOrderByWithRelationInput | TempoLectivoOrderByWithRelationInput[]
+    orderBy?: Tempo_LectivoOrderByWithRelationInput | Tempo_LectivoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for TempoLectivos.
+     * Sets the position for searching for Tempo_Lectivos.
      */
-    cursor?: TempoLectivoWhereUniqueInput
+    cursor?: Tempo_LectivoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TempoLectivos from the position of the cursor.
+     * Take `±n` Tempo_Lectivos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TempoLectivos.
+     * Skip the first `n` Tempo_Lectivos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of TempoLectivos.
+     * Filter by unique combinations of Tempo_Lectivos.
      */
-    distinct?: TempoLectivoScalarFieldEnum | TempoLectivoScalarFieldEnum[]
+    distinct?: Tempo_LectivoScalarFieldEnum | Tempo_LectivoScalarFieldEnum[]
   }
 
   /**
-   * TempoLectivo findMany
+   * Tempo_Lectivo findMany
    */
-  export type TempoLectivoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
+    include?: Tempo_LectivoInclude<ExtArgs> | null
     /**
-     * Filter, which TempoLectivos to fetch.
+     * Filter, which Tempo_Lectivos to fetch.
      */
-    where?: TempoLectivoWhereInput
+    where?: Tempo_LectivoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TempoLectivos to fetch.
+     * Determine the order of Tempo_Lectivos to fetch.
      */
-    orderBy?: TempoLectivoOrderByWithRelationInput | TempoLectivoOrderByWithRelationInput[]
+    orderBy?: Tempo_LectivoOrderByWithRelationInput | Tempo_LectivoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing TempoLectivos.
+     * Sets the position for listing Tempo_Lectivos.
      */
-    cursor?: TempoLectivoWhereUniqueInput
+    cursor?: Tempo_LectivoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TempoLectivos from the position of the cursor.
+     * Take `±n` Tempo_Lectivos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TempoLectivos.
+     * Skip the first `n` Tempo_Lectivos.
      */
     skip?: number
-    distinct?: TempoLectivoScalarFieldEnum | TempoLectivoScalarFieldEnum[]
+    distinct?: Tempo_LectivoScalarFieldEnum | Tempo_LectivoScalarFieldEnum[]
   }
 
   /**
-   * TempoLectivo create
+   * Tempo_Lectivo create
    */
-  export type TempoLectivoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
+    include?: Tempo_LectivoInclude<ExtArgs> | null
     /**
-     * The data needed to create a TempoLectivo.
+     * The data needed to create a Tempo_Lectivo.
      */
-    data: XOR<TempoLectivoCreateInput, TempoLectivoUncheckedCreateInput>
+    data: XOR<Tempo_LectivoCreateInput, Tempo_LectivoUncheckedCreateInput>
   }
 
   /**
-   * TempoLectivo createMany
+   * Tempo_Lectivo createMany
    */
-  export type TempoLectivoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many TempoLectivos.
+     * The data used to create many Tempo_Lectivos.
      */
-    data: TempoLectivoCreateManyInput | TempoLectivoCreateManyInput[]
+    data: Tempo_LectivoCreateManyInput | Tempo_LectivoCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * TempoLectivo createManyAndReturn
+   * Tempo_Lectivo createManyAndReturn
    */
-  export type TempoLectivoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelectCreateManyAndReturn<ExtArgs> | null
+    select?: Tempo_LectivoSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
-     * The data used to create many TempoLectivos.
+     * The data used to create many Tempo_Lectivos.
      */
-    data: TempoLectivoCreateManyInput | TempoLectivoCreateManyInput[]
+    data: Tempo_LectivoCreateManyInput | Tempo_LectivoCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: Tempo_LectivoIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * TempoLectivo update
+   * Tempo_Lectivo update
    */
-  export type TempoLectivoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
+    include?: Tempo_LectivoInclude<ExtArgs> | null
     /**
-     * The data needed to update a TempoLectivo.
+     * The data needed to update a Tempo_Lectivo.
      */
-    data: XOR<TempoLectivoUpdateInput, TempoLectivoUncheckedUpdateInput>
+    data: XOR<Tempo_LectivoUpdateInput, Tempo_LectivoUncheckedUpdateInput>
     /**
-     * Choose, which TempoLectivo to update.
+     * Choose, which Tempo_Lectivo to update.
      */
-    where: TempoLectivoWhereUniqueInput
+    where: Tempo_LectivoWhereUniqueInput
   }
 
   /**
-   * TempoLectivo updateMany
+   * Tempo_Lectivo updateMany
    */
-  export type TempoLectivoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update TempoLectivos.
+     * The data used to update Tempo_Lectivos.
      */
-    data: XOR<TempoLectivoUpdateManyMutationInput, TempoLectivoUncheckedUpdateManyInput>
+    data: XOR<Tempo_LectivoUpdateManyMutationInput, Tempo_LectivoUncheckedUpdateManyInput>
     /**
-     * Filter which TempoLectivos to update
+     * Filter which Tempo_Lectivos to update
      */
-    where?: TempoLectivoWhereInput
+    where?: Tempo_LectivoWhereInput
     /**
-     * Limit how many TempoLectivos to update.
+     * Limit how many Tempo_Lectivos to update.
      */
     limit?: number
   }
 
   /**
-   * TempoLectivo updateManyAndReturn
+   * Tempo_Lectivo updateManyAndReturn
    */
-  export type TempoLectivoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: Tempo_LectivoSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
-     * The data used to update TempoLectivos.
+     * The data used to update Tempo_Lectivos.
      */
-    data: XOR<TempoLectivoUpdateManyMutationInput, TempoLectivoUncheckedUpdateManyInput>
+    data: XOR<Tempo_LectivoUpdateManyMutationInput, Tempo_LectivoUncheckedUpdateManyInput>
     /**
-     * Filter which TempoLectivos to update
+     * Filter which Tempo_Lectivos to update
      */
-    where?: TempoLectivoWhereInput
+    where?: Tempo_LectivoWhereInput
     /**
-     * Limit how many TempoLectivos to update.
+     * Limit how many Tempo_Lectivos to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: Tempo_LectivoIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * TempoLectivo upsert
+   * Tempo_Lectivo upsert
    */
-  export type TempoLectivoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
+    include?: Tempo_LectivoInclude<ExtArgs> | null
     /**
-     * The filter to search for the TempoLectivo to update in case it exists.
+     * The filter to search for the Tempo_Lectivo to update in case it exists.
      */
-    where: TempoLectivoWhereUniqueInput
+    where: Tempo_LectivoWhereUniqueInput
     /**
-     * In case the TempoLectivo found by the `where` argument doesn't exist, create a new TempoLectivo with this data.
+     * In case the Tempo_Lectivo found by the `where` argument doesn't exist, create a new Tempo_Lectivo with this data.
      */
-    create: XOR<TempoLectivoCreateInput, TempoLectivoUncheckedCreateInput>
+    create: XOR<Tempo_LectivoCreateInput, Tempo_LectivoUncheckedCreateInput>
     /**
-     * In case the TempoLectivo was found with the provided `where` argument, update it with this data.
+     * In case the Tempo_Lectivo was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<TempoLectivoUpdateInput, TempoLectivoUncheckedUpdateInput>
+    update: XOR<Tempo_LectivoUpdateInput, Tempo_LectivoUncheckedUpdateInput>
   }
 
   /**
-   * TempoLectivo delete
+   * Tempo_Lectivo delete
    */
-  export type TempoLectivoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
+    include?: Tempo_LectivoInclude<ExtArgs> | null
     /**
-     * Filter which TempoLectivo to delete.
+     * Filter which Tempo_Lectivo to delete.
      */
-    where: TempoLectivoWhereUniqueInput
+    where: Tempo_LectivoWhereUniqueInput
   }
 
   /**
-   * TempoLectivo deleteMany
+   * Tempo_Lectivo deleteMany
    */
-  export type TempoLectivoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which TempoLectivos to delete
+     * Filter which Tempo_Lectivos to delete
      */
-    where?: TempoLectivoWhereInput
+    where?: Tempo_LectivoWhereInput
     /**
-     * Limit how many TempoLectivos to delete.
+     * Limit how many Tempo_Lectivos to delete.
      */
     limit?: number
   }
 
   /**
-   * TempoLectivo without action
+   * Tempo_Lectivo without action
    */
-  export type TempoLectivoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tempo_LectivoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TempoLectivo
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: TempoLectivoSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TempoLectivo
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: TempoLectivoOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TempoLectivoInclude<ExtArgs> | null
+    include?: Tempo_LectivoInclude<ExtArgs> | null
   }
 
 
@@ -14137,70 +12825,46 @@ export namespace Prisma {
 
   export type AggregateTurma = {
     _count: TurmaCountAggregateOutputType | null
-    _avg: TurmaAvgAggregateOutputType | null
-    _sum: TurmaSumAggregateOutputType | null
     _min: TurmaMinAggregateOutputType | null
     _max: TurmaMaxAggregateOutputType | null
   }
 
-  export type TurmaAvgAggregateOutputType = {
-    idTurma: number | null
-  }
-
-  export type TurmaSumAggregateOutputType = {
-    idTurma: number | null
-  }
-
   export type TurmaMinAggregateOutputType = {
-    idTurma: number | null
-    nome: string | null
-    classe: string | null
-    curso: string | null
+    nome_turma: string | null
+    nome_curso: string | null
+    nome_classe: string | null
   }
 
   export type TurmaMaxAggregateOutputType = {
-    idTurma: number | null
-    nome: string | null
-    classe: string | null
-    curso: string | null
+    nome_turma: string | null
+    nome_curso: string | null
+    nome_classe: string | null
   }
 
   export type TurmaCountAggregateOutputType = {
-    idTurma: number
-    nome: number
-    classe: number
-    curso: number
+    nome_turma: number
+    nome_curso: number
+    nome_classe: number
     _all: number
   }
 
 
-  export type TurmaAvgAggregateInputType = {
-    idTurma?: true
-  }
-
-  export type TurmaSumAggregateInputType = {
-    idTurma?: true
-  }
-
   export type TurmaMinAggregateInputType = {
-    idTurma?: true
-    nome?: true
-    classe?: true
-    curso?: true
+    nome_turma?: true
+    nome_curso?: true
+    nome_classe?: true
   }
 
   export type TurmaMaxAggregateInputType = {
-    idTurma?: true
-    nome?: true
-    classe?: true
-    curso?: true
+    nome_turma?: true
+    nome_curso?: true
+    nome_classe?: true
   }
 
   export type TurmaCountAggregateInputType = {
-    idTurma?: true
-    nome?: true
-    classe?: true
-    curso?: true
+    nome_turma?: true
+    nome_curso?: true
+    nome_classe?: true
     _all?: true
   }
 
@@ -14242,18 +12906,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: TurmaAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: TurmaSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: TurmaMinAggregateInputType
@@ -14284,20 +12936,15 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: TurmaCountAggregateInputType | true
-    _avg?: TurmaAvgAggregateInputType
-    _sum?: TurmaSumAggregateInputType
     _min?: TurmaMinAggregateInputType
     _max?: TurmaMaxAggregateInputType
   }
 
   export type TurmaGroupByOutputType = {
-    idTurma: number
-    nome: string
-    classe: string
-    curso: string
+    nome_turma: string
+    nome_curso: string
+    nome_classe: string
     _count: TurmaCountAggregateOutputType | null
-    _avg: TurmaAvgAggregateOutputType | null
-    _sum: TurmaSumAggregateOutputType | null
     _min: TurmaMinAggregateOutputType | null
     _max: TurmaMaxAggregateOutputType | null
   }
@@ -14317,72 +12964,64 @@ export namespace Prisma {
 
 
   export type TurmaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idTurma?: boolean
-    nome?: boolean
-    classe?: boolean
-    curso?: boolean
-    ProfTurma?: boolean | Turma$ProfTurmaArgs<ExtArgs>
-    TempoLectivo?: boolean | Turma$TempoLectivoArgs<ExtArgs>
-    Classe?: boolean | ClasseDefaultArgs<ExtArgs>
-    Curso?: boolean | CursoDefaultArgs<ExtArgs>
+    nome_turma?: boolean
+    nome_curso?: boolean
+    nome_classe?: boolean
+    curso?: boolean | CursoDefaultArgs<ExtArgs>
+    classe?: boolean | ClasseDefaultArgs<ExtArgs>
+    tempo_lectivo?: boolean | Turma$tempo_lectivoArgs<ExtArgs>
     _count?: boolean | TurmaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["turma"]>
 
   export type TurmaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idTurma?: boolean
-    nome?: boolean
-    classe?: boolean
-    curso?: boolean
-    Classe?: boolean | ClasseDefaultArgs<ExtArgs>
-    Curso?: boolean | CursoDefaultArgs<ExtArgs>
+    nome_turma?: boolean
+    nome_curso?: boolean
+    nome_classe?: boolean
+    curso?: boolean | CursoDefaultArgs<ExtArgs>
+    classe?: boolean | ClasseDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["turma"]>
 
   export type TurmaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idTurma?: boolean
-    nome?: boolean
-    classe?: boolean
-    curso?: boolean
-    Classe?: boolean | ClasseDefaultArgs<ExtArgs>
-    Curso?: boolean | CursoDefaultArgs<ExtArgs>
+    nome_turma?: boolean
+    nome_curso?: boolean
+    nome_classe?: boolean
+    curso?: boolean | CursoDefaultArgs<ExtArgs>
+    classe?: boolean | ClasseDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["turma"]>
 
   export type TurmaSelectScalar = {
-    idTurma?: boolean
-    nome?: boolean
-    classe?: boolean
-    curso?: boolean
+    nome_turma?: boolean
+    nome_curso?: boolean
+    nome_classe?: boolean
   }
 
-  export type TurmaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idTurma" | "nome" | "classe" | "curso", ExtArgs["result"]["turma"]>
+  export type TurmaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nome_turma" | "nome_curso" | "nome_classe", ExtArgs["result"]["turma"]>
   export type TurmaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ProfTurma?: boolean | Turma$ProfTurmaArgs<ExtArgs>
-    TempoLectivo?: boolean | Turma$TempoLectivoArgs<ExtArgs>
-    Classe?: boolean | ClasseDefaultArgs<ExtArgs>
-    Curso?: boolean | CursoDefaultArgs<ExtArgs>
+    curso?: boolean | CursoDefaultArgs<ExtArgs>
+    classe?: boolean | ClasseDefaultArgs<ExtArgs>
+    tempo_lectivo?: boolean | Turma$tempo_lectivoArgs<ExtArgs>
     _count?: boolean | TurmaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TurmaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Classe?: boolean | ClasseDefaultArgs<ExtArgs>
-    Curso?: boolean | CursoDefaultArgs<ExtArgs>
+    curso?: boolean | CursoDefaultArgs<ExtArgs>
+    classe?: boolean | ClasseDefaultArgs<ExtArgs>
   }
   export type TurmaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Classe?: boolean | ClasseDefaultArgs<ExtArgs>
-    Curso?: boolean | CursoDefaultArgs<ExtArgs>
+    curso?: boolean | CursoDefaultArgs<ExtArgs>
+    classe?: boolean | ClasseDefaultArgs<ExtArgs>
   }
 
   export type $TurmaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Turma"
     objects: {
-      ProfTurma: Prisma.$ProfTurmaPayload<ExtArgs>[]
-      TempoLectivo: Prisma.$TempoLectivoPayload<ExtArgs>[]
-      Classe: Prisma.$ClassePayload<ExtArgs>
-      Curso: Prisma.$CursoPayload<ExtArgs>
+      curso: Prisma.$CursoPayload<ExtArgs>
+      classe: Prisma.$ClassePayload<ExtArgs>
+      tempo_lectivo: Prisma.$Tempo_LectivoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      idTurma: number
-      nome: string
-      classe: string
-      curso: string
+      nome_turma: string
+      nome_curso: string
+      nome_classe: string
     }, ExtArgs["result"]["turma"]>
     composites: {}
   }
@@ -14466,8 +13105,8 @@ export namespace Prisma {
      * // Get first 10 Turmas
      * const turmas = await prisma.turma.findMany({ take: 10 })
      * 
-     * // Only select the `idTurma`
-     * const turmaWithIdTurmaOnly = await prisma.turma.findMany({ select: { idTurma: true } })
+     * // Only select the `nome_turma`
+     * const turmaWithNome_turmaOnly = await prisma.turma.findMany({ select: { nome_turma: true } })
      * 
      */
     findMany<T extends TurmaFindManyArgs>(args?: SelectSubset<T, TurmaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TurmaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -14511,9 +13150,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Turmas and only return the `idTurma`
-     * const turmaWithIdTurmaOnly = await prisma.turma.createManyAndReturn({
-     *   select: { idTurma: true },
+     * // Create many Turmas and only return the `nome_turma`
+     * const turmaWithNome_turmaOnly = await prisma.turma.createManyAndReturn({
+     *   select: { nome_turma: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -14602,9 +13241,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Turmas and only return the `idTurma`
-     * const turmaWithIdTurmaOnly = await prisma.turma.updateManyAndReturn({
-     *   select: { idTurma: true },
+     * // Update zero or more Turmas and only return the `nome_turma`
+     * const turmaWithNome_turmaOnly = await prisma.turma.updateManyAndReturn({
+     *   select: { nome_turma: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -14777,10 +13416,9 @@ export namespace Prisma {
    */
   export interface Prisma__TurmaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    ProfTurma<T extends Turma$ProfTurmaArgs<ExtArgs> = {}>(args?: Subset<T, Turma$ProfTurmaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfTurmaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    TempoLectivo<T extends Turma$TempoLectivoArgs<ExtArgs> = {}>(args?: Subset<T, Turma$TempoLectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempoLectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Classe<T extends ClasseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClasseDefaultArgs<ExtArgs>>): Prisma__ClasseClient<$Result.GetResult<Prisma.$ClassePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Curso<T extends CursoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CursoDefaultArgs<ExtArgs>>): Prisma__CursoClient<$Result.GetResult<Prisma.$CursoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    curso<T extends CursoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CursoDefaultArgs<ExtArgs>>): Prisma__CursoClient<$Result.GetResult<Prisma.$CursoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    classe<T extends ClasseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClasseDefaultArgs<ExtArgs>>): Prisma__ClasseClient<$Result.GetResult<Prisma.$ClassePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    tempo_lectivo<T extends Turma$tempo_lectivoArgs<ExtArgs> = {}>(args?: Subset<T, Turma$tempo_lectivoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Tempo_LectivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14810,10 +13448,9 @@ export namespace Prisma {
    * Fields of the Turma model
    */
   interface TurmaFieldRefs {
-    readonly idTurma: FieldRef<"Turma", 'Int'>
-    readonly nome: FieldRef<"Turma", 'String'>
-    readonly classe: FieldRef<"Turma", 'String'>
-    readonly curso: FieldRef<"Turma", 'String'>
+    readonly nome_turma: FieldRef<"Turma", 'String'>
+    readonly nome_curso: FieldRef<"Turma", 'String'>
+    readonly nome_classe: FieldRef<"Turma", 'String'>
   }
     
 
@@ -15210,51 +13847,27 @@ export namespace Prisma {
   }
 
   /**
-   * Turma.ProfTurma
+   * Turma.tempo_lectivo
    */
-  export type Turma$ProfTurmaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Turma$tempo_lectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProfTurma
+     * Select specific fields to fetch from the Tempo_Lectivo
      */
-    select?: ProfTurmaSelect<ExtArgs> | null
+    select?: Tempo_LectivoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ProfTurma
+     * Omit specific fields from the Tempo_Lectivo
      */
-    omit?: ProfTurmaOmit<ExtArgs> | null
+    omit?: Tempo_LectivoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfTurmaInclude<ExtArgs> | null
-    where?: ProfTurmaWhereInput
-    orderBy?: ProfTurmaOrderByWithRelationInput | ProfTurmaOrderByWithRelationInput[]
-    cursor?: ProfTurmaWhereUniqueInput
+    include?: Tempo_LectivoInclude<ExtArgs> | null
+    where?: Tempo_LectivoWhereInput
+    orderBy?: Tempo_LectivoOrderByWithRelationInput | Tempo_LectivoOrderByWithRelationInput[]
+    cursor?: Tempo_LectivoWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ProfTurmaScalarFieldEnum | ProfTurmaScalarFieldEnum[]
-  }
-
-  /**
-   * Turma.TempoLectivo
-   */
-  export type Turma$TempoLectivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TempoLectivo
-     */
-    select?: TempoLectivoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TempoLectivo
-     */
-    omit?: TempoLectivoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TempoLectivoInclude<ExtArgs> | null
-    where?: TempoLectivoWhereInput
-    orderBy?: TempoLectivoOrderByWithRelationInput | TempoLectivoOrderByWithRelationInput[]
-    cursor?: TempoLectivoWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TempoLectivoScalarFieldEnum | TempoLectivoScalarFieldEnum[]
+    distinct?: Tempo_LectivoScalarFieldEnum | Tempo_LectivoScalarFieldEnum[]
   }
 
   /**
@@ -15291,43 +13904,49 @@ export namespace Prisma {
 
 
   export const ClasseScalarFieldEnum: {
-    nome: 'nome'
+    nome_classe: 'nome_classe'
   };
 
   export type ClasseScalarFieldEnum = (typeof ClasseScalarFieldEnum)[keyof typeof ClasseScalarFieldEnum]
 
 
   export const CursoScalarFieldEnum: {
-    nome: 'nome'
+    nome_curso: 'nome_curso'
   };
 
   export type CursoScalarFieldEnum = (typeof CursoScalarFieldEnum)[keyof typeof CursoScalarFieldEnum]
 
 
   export const DiaSemanaScalarFieldEnum: {
-    nome: 'nome'
+    nome_dia: 'nome_dia'
   };
 
   export type DiaSemanaScalarFieldEnum = (typeof DiaSemanaScalarFieldEnum)[keyof typeof DiaSemanaScalarFieldEnum]
 
 
   export const DisciplinaScalarFieldEnum: {
-    idDisciplina: 'idDisciplina',
-    nome: 'nome'
+    nome_disciplina: 'nome_disciplina'
   };
 
   export type DisciplinaScalarFieldEnum = (typeof DisciplinaScalarFieldEnum)[keyof typeof DisciplinaScalarFieldEnum]
 
 
   export const DisponibilidadeScalarFieldEnum: {
-    idDisponibilidade: 'idDisponibilidade',
-    diaSemana: 'diaSemana',
-    periodoId: 'periodoId',
-    ordem: 'ordem',
-    professorId: 'professorId'
+    id_disponibilidade: 'id_disponibilidade',
+    professorId: 'professorId',
+    nome_dia: 'nome_dia',
+    nome_periodo: 'nome_periodo',
+    ordem: 'ordem'
   };
 
   export type DisponibilidadeScalarFieldEnum = (typeof DisponibilidadeScalarFieldEnum)[keyof typeof DisponibilidadeScalarFieldEnum]
+
+
+  export const PeriodoScalarFieldEnum: {
+    nome_periodo: 'nome_periodo'
+  };
+
+  export type PeriodoScalarFieldEnum = (typeof PeriodoScalarFieldEnum)[keyof typeof PeriodoScalarFieldEnum]
 
 
   export const ProfessorScalarFieldEnum: {
@@ -15335,65 +13954,46 @@ export namespace Prisma {
     nome: 'nome',
     email: 'email',
     telefone: 'telefone',
-    created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
   export type ProfessorScalarFieldEnum = (typeof ProfessorScalarFieldEnum)[keyof typeof ProfessorScalarFieldEnum]
 
 
-  export const PeriodoScalarFieldEnum: {
-    periodo: 'periodo'
-  };
-
-  export type PeriodoScalarFieldEnum = (typeof PeriodoScalarFieldEnum)[keyof typeof PeriodoScalarFieldEnum]
-
-
   export const ProfDisciplinasScalarFieldEnum: {
-    idProfDisciplina: 'idProfDisciplina',
     professorId: 'professorId',
-    disciplinaId: 'disciplinaId'
+    nome_disciplina: 'nome_disciplina'
   };
 
   export type ProfDisciplinasScalarFieldEnum = (typeof ProfDisciplinasScalarFieldEnum)[keyof typeof ProfDisciplinasScalarFieldEnum]
 
 
-  export const ProfTurmaScalarFieldEnum: {
-    idProfTurma: 'idProfTurma',
-    professorId: 'professorId',
-    turmaId: 'turmaId'
-  };
-
-  export type ProfTurmaScalarFieldEnum = (typeof ProfTurmaScalarFieldEnum)[keyof typeof ProfTurmaScalarFieldEnum]
-
-
   export const SalaScalarFieldEnum: {
-    idSala: 'idSala',
-    nome: 'nome'
+    nome_sala: 'nome_sala',
+    capacidade: 'capacidade'
   };
 
   export type SalaScalarFieldEnum = (typeof SalaScalarFieldEnum)[keyof typeof SalaScalarFieldEnum]
 
 
-  export const TempoLectivoScalarFieldEnum: {
-    idTempoLectivo: 'idTempoLectivo',
-    diaSemana: 'diaSemana',
-    periodoId: 'periodoId',
-    ordem: 'ordem',
+  export const Tempo_LectivoScalarFieldEnum: {
+    id: 'id',
     professorId: 'professorId',
-    disciplinaId: 'disciplinaId',
-    salaId: 'salaId',
-    turmaId: 'turmaId'
+    nome_turma: 'nome_turma',
+    nome_disciplina: 'nome_disciplina',
+    nome_sala: 'nome_sala',
+    nome_dia: 'nome_dia',
+    nome_periodo: 'nome_periodo',
+    ordem: 'ordem'
   };
 
-  export type TempoLectivoScalarFieldEnum = (typeof TempoLectivoScalarFieldEnum)[keyof typeof TempoLectivoScalarFieldEnum]
+  export type Tempo_LectivoScalarFieldEnum = (typeof Tempo_LectivoScalarFieldEnum)[keyof typeof Tempo_LectivoScalarFieldEnum]
 
 
   export const TurmaScalarFieldEnum: {
-    idTurma: 'idTurma',
-    nome: 'nome',
-    classe: 'classe',
-    curso: 'curso'
+    nome_turma: 'nome_turma',
+    nome_curso: 'nome_curso',
+    nome_classe: 'nome_classe'
   };
 
   export type TurmaScalarFieldEnum = (typeof TurmaScalarFieldEnum)[keyof typeof TurmaScalarFieldEnum]
@@ -15413,14 +14013,6 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -15491,25 +14083,25 @@ export namespace Prisma {
     AND?: ClasseWhereInput | ClasseWhereInput[]
     OR?: ClasseWhereInput[]
     NOT?: ClasseWhereInput | ClasseWhereInput[]
-    nome?: StringFilter<"Classe"> | string
-    Turma?: TurmaListRelationFilter
+    nome_classe?: StringFilter<"Classe"> | string
+    turmas?: TurmaListRelationFilter
   }
 
   export type ClasseOrderByWithRelationInput = {
-    nome?: SortOrder
-    Turma?: TurmaOrderByRelationAggregateInput
+    nome_classe?: SortOrder
+    turmas?: TurmaOrderByRelationAggregateInput
   }
 
   export type ClasseWhereUniqueInput = Prisma.AtLeast<{
-    nome?: string
+    nome_classe?: string
     AND?: ClasseWhereInput | ClasseWhereInput[]
     OR?: ClasseWhereInput[]
     NOT?: ClasseWhereInput | ClasseWhereInput[]
-    Turma?: TurmaListRelationFilter
-  }, "nome">
+    turmas?: TurmaListRelationFilter
+  }, "nome_classe">
 
   export type ClasseOrderByWithAggregationInput = {
-    nome?: SortOrder
+    nome_classe?: SortOrder
     _count?: ClasseCountOrderByAggregateInput
     _max?: ClasseMaxOrderByAggregateInput
     _min?: ClasseMinOrderByAggregateInput
@@ -15519,32 +14111,32 @@ export namespace Prisma {
     AND?: ClasseScalarWhereWithAggregatesInput | ClasseScalarWhereWithAggregatesInput[]
     OR?: ClasseScalarWhereWithAggregatesInput[]
     NOT?: ClasseScalarWhereWithAggregatesInput | ClasseScalarWhereWithAggregatesInput[]
-    nome?: StringWithAggregatesFilter<"Classe"> | string
+    nome_classe?: StringWithAggregatesFilter<"Classe"> | string
   }
 
   export type CursoWhereInput = {
     AND?: CursoWhereInput | CursoWhereInput[]
     OR?: CursoWhereInput[]
     NOT?: CursoWhereInput | CursoWhereInput[]
-    nome?: StringFilter<"Curso"> | string
-    Turma?: TurmaListRelationFilter
+    nome_curso?: StringFilter<"Curso"> | string
+    turmas?: TurmaListRelationFilter
   }
 
   export type CursoOrderByWithRelationInput = {
-    nome?: SortOrder
-    Turma?: TurmaOrderByRelationAggregateInput
+    nome_curso?: SortOrder
+    turmas?: TurmaOrderByRelationAggregateInput
   }
 
   export type CursoWhereUniqueInput = Prisma.AtLeast<{
-    nome?: string
+    nome_curso?: string
     AND?: CursoWhereInput | CursoWhereInput[]
     OR?: CursoWhereInput[]
     NOT?: CursoWhereInput | CursoWhereInput[]
-    Turma?: TurmaListRelationFilter
-  }, "nome">
+    turmas?: TurmaListRelationFilter
+  }, "nome_curso">
 
   export type CursoOrderByWithAggregationInput = {
-    nome?: SortOrder
+    nome_curso?: SortOrder
     _count?: CursoCountOrderByAggregateInput
     _max?: CursoMaxOrderByAggregateInput
     _min?: CursoMinOrderByAggregateInput
@@ -15554,35 +14146,35 @@ export namespace Prisma {
     AND?: CursoScalarWhereWithAggregatesInput | CursoScalarWhereWithAggregatesInput[]
     OR?: CursoScalarWhereWithAggregatesInput[]
     NOT?: CursoScalarWhereWithAggregatesInput | CursoScalarWhereWithAggregatesInput[]
-    nome?: StringWithAggregatesFilter<"Curso"> | string
+    nome_curso?: StringWithAggregatesFilter<"Curso"> | string
   }
 
   export type DiaSemanaWhereInput = {
     AND?: DiaSemanaWhereInput | DiaSemanaWhereInput[]
     OR?: DiaSemanaWhereInput[]
     NOT?: DiaSemanaWhereInput | DiaSemanaWhereInput[]
-    nome?: StringFilter<"DiaSemana"> | string
-    Disponibilidade?: DisponibilidadeListRelationFilter
-    TempoLectivo?: TempoLectivoListRelationFilter
+    nome_dia?: StringFilter<"DiaSemana"> | string
+    disponibilidades?: DisponibilidadeListRelationFilter
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
   }
 
   export type DiaSemanaOrderByWithRelationInput = {
-    nome?: SortOrder
-    Disponibilidade?: DisponibilidadeOrderByRelationAggregateInput
-    TempoLectivo?: TempoLectivoOrderByRelationAggregateInput
+    nome_dia?: SortOrder
+    disponibilidades?: DisponibilidadeOrderByRelationAggregateInput
+    tempo_lectivo?: Tempo_LectivoOrderByRelationAggregateInput
   }
 
   export type DiaSemanaWhereUniqueInput = Prisma.AtLeast<{
-    nome?: string
+    nome_dia?: string
     AND?: DiaSemanaWhereInput | DiaSemanaWhereInput[]
     OR?: DiaSemanaWhereInput[]
     NOT?: DiaSemanaWhereInput | DiaSemanaWhereInput[]
-    Disponibilidade?: DisponibilidadeListRelationFilter
-    TempoLectivo?: TempoLectivoListRelationFilter
-  }, "nome" | "nome">
+    disponibilidades?: DisponibilidadeListRelationFilter
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
+  }, "nome_dia">
 
   export type DiaSemanaOrderByWithAggregationInput = {
-    nome?: SortOrder
+    nome_dia?: SortOrder
     _count?: DiaSemanaCountOrderByAggregateInput
     _max?: DiaSemanaMaxOrderByAggregateInput
     _min?: DiaSemanaMinOrderByAggregateInput
@@ -15592,99 +14184,92 @@ export namespace Prisma {
     AND?: DiaSemanaScalarWhereWithAggregatesInput | DiaSemanaScalarWhereWithAggregatesInput[]
     OR?: DiaSemanaScalarWhereWithAggregatesInput[]
     NOT?: DiaSemanaScalarWhereWithAggregatesInput | DiaSemanaScalarWhereWithAggregatesInput[]
-    nome?: StringWithAggregatesFilter<"DiaSemana"> | string
+    nome_dia?: StringWithAggregatesFilter<"DiaSemana"> | string
   }
 
   export type DisciplinaWhereInput = {
     AND?: DisciplinaWhereInput | DisciplinaWhereInput[]
     OR?: DisciplinaWhereInput[]
     NOT?: DisciplinaWhereInput | DisciplinaWhereInput[]
-    idDisciplina?: IntFilter<"Disciplina"> | number
-    nome?: StringFilter<"Disciplina"> | string
-    ProfDisciplinas?: ProfDisciplinasListRelationFilter
-    TempoLectivo?: TempoLectivoListRelationFilter
+    nome_disciplina?: StringFilter<"Disciplina"> | string
+    profDisciplinas?: ProfDisciplinasListRelationFilter
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
   }
 
   export type DisciplinaOrderByWithRelationInput = {
-    idDisciplina?: SortOrder
-    nome?: SortOrder
-    ProfDisciplinas?: ProfDisciplinasOrderByRelationAggregateInput
-    TempoLectivo?: TempoLectivoOrderByRelationAggregateInput
+    nome_disciplina?: SortOrder
+    profDisciplinas?: ProfDisciplinasOrderByRelationAggregateInput
+    tempo_lectivo?: Tempo_LectivoOrderByRelationAggregateInput
   }
 
   export type DisciplinaWhereUniqueInput = Prisma.AtLeast<{
-    idDisciplina?: number
+    nome_disciplina?: string
     AND?: DisciplinaWhereInput | DisciplinaWhereInput[]
     OR?: DisciplinaWhereInput[]
     NOT?: DisciplinaWhereInput | DisciplinaWhereInput[]
-    nome?: StringFilter<"Disciplina"> | string
-    ProfDisciplinas?: ProfDisciplinasListRelationFilter
-    TempoLectivo?: TempoLectivoListRelationFilter
-  }, "idDisciplina">
+    profDisciplinas?: ProfDisciplinasListRelationFilter
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
+  }, "nome_disciplina">
 
   export type DisciplinaOrderByWithAggregationInput = {
-    idDisciplina?: SortOrder
-    nome?: SortOrder
+    nome_disciplina?: SortOrder
     _count?: DisciplinaCountOrderByAggregateInput
-    _avg?: DisciplinaAvgOrderByAggregateInput
     _max?: DisciplinaMaxOrderByAggregateInput
     _min?: DisciplinaMinOrderByAggregateInput
-    _sum?: DisciplinaSumOrderByAggregateInput
   }
 
   export type DisciplinaScalarWhereWithAggregatesInput = {
     AND?: DisciplinaScalarWhereWithAggregatesInput | DisciplinaScalarWhereWithAggregatesInput[]
     OR?: DisciplinaScalarWhereWithAggregatesInput[]
     NOT?: DisciplinaScalarWhereWithAggregatesInput | DisciplinaScalarWhereWithAggregatesInput[]
-    idDisciplina?: IntWithAggregatesFilter<"Disciplina"> | number
-    nome?: StringWithAggregatesFilter<"Disciplina"> | string
+    nome_disciplina?: StringWithAggregatesFilter<"Disciplina"> | string
   }
 
   export type DisponibilidadeWhereInput = {
     AND?: DisponibilidadeWhereInput | DisponibilidadeWhereInput[]
     OR?: DisponibilidadeWhereInput[]
     NOT?: DisponibilidadeWhereInput | DisponibilidadeWhereInput[]
-    idDisponibilidade?: IntFilter<"Disponibilidade"> | number
-    diaSemana?: StringFilter<"Disponibilidade"> | string
-    periodoId?: StringFilter<"Disponibilidade"> | string
-    ordem?: IntFilter<"Disponibilidade"> | number
+    id_disponibilidade?: IntFilter<"Disponibilidade"> | number
     professorId?: IntFilter<"Disponibilidade"> | number
-    DiaSemana?: XOR<DiaSemanaScalarRelationFilter, DiaSemanaWhereInput>
-    Periodo?: XOR<PeriodoScalarRelationFilter, PeriodoWhereInput>
-    Professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
+    nome_dia?: StringFilter<"Disponibilidade"> | string
+    nome_periodo?: StringFilter<"Disponibilidade"> | string
+    ordem?: IntFilter<"Disponibilidade"> | number
+    professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
+    dia?: XOR<DiaSemanaScalarRelationFilter, DiaSemanaWhereInput>
+    periodo?: XOR<PeriodoScalarRelationFilter, PeriodoWhereInput>
   }
 
   export type DisponibilidadeOrderByWithRelationInput = {
-    idDisponibilidade?: SortOrder
-    diaSemana?: SortOrder
-    periodoId?: SortOrder
-    ordem?: SortOrder
+    id_disponibilidade?: SortOrder
     professorId?: SortOrder
-    DiaSemana?: DiaSemanaOrderByWithRelationInput
-    Periodo?: PeriodoOrderByWithRelationInput
-    Professor?: ProfessorOrderByWithRelationInput
+    nome_dia?: SortOrder
+    nome_periodo?: SortOrder
+    ordem?: SortOrder
+    professor?: ProfessorOrderByWithRelationInput
+    dia?: DiaSemanaOrderByWithRelationInput
+    periodo?: PeriodoOrderByWithRelationInput
   }
 
   export type DisponibilidadeWhereUniqueInput = Prisma.AtLeast<{
-    idDisponibilidade?: number
+    id_disponibilidade?: number
     AND?: DisponibilidadeWhereInput | DisponibilidadeWhereInput[]
     OR?: DisponibilidadeWhereInput[]
     NOT?: DisponibilidadeWhereInput | DisponibilidadeWhereInput[]
-    diaSemana?: StringFilter<"Disponibilidade"> | string
-    periodoId?: StringFilter<"Disponibilidade"> | string
-    ordem?: IntFilter<"Disponibilidade"> | number
     professorId?: IntFilter<"Disponibilidade"> | number
-    DiaSemana?: XOR<DiaSemanaScalarRelationFilter, DiaSemanaWhereInput>
-    Periodo?: XOR<PeriodoScalarRelationFilter, PeriodoWhereInput>
-    Professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
-  }, "idDisponibilidade">
+    nome_dia?: StringFilter<"Disponibilidade"> | string
+    nome_periodo?: StringFilter<"Disponibilidade"> | string
+    ordem?: IntFilter<"Disponibilidade"> | number
+    professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
+    dia?: XOR<DiaSemanaScalarRelationFilter, DiaSemanaWhereInput>
+    periodo?: XOR<PeriodoScalarRelationFilter, PeriodoWhereInput>
+  }, "id_disponibilidade">
 
   export type DisponibilidadeOrderByWithAggregationInput = {
-    idDisponibilidade?: SortOrder
-    diaSemana?: SortOrder
-    periodoId?: SortOrder
-    ordem?: SortOrder
+    id_disponibilidade?: SortOrder
     professorId?: SortOrder
+    nome_dia?: SortOrder
+    nome_periodo?: SortOrder
+    ordem?: SortOrder
     _count?: DisponibilidadeCountOrderByAggregateInput
     _avg?: DisponibilidadeAvgOrderByAggregateInput
     _max?: DisponibilidadeMaxOrderByAggregateInput
@@ -15696,11 +14281,49 @@ export namespace Prisma {
     AND?: DisponibilidadeScalarWhereWithAggregatesInput | DisponibilidadeScalarWhereWithAggregatesInput[]
     OR?: DisponibilidadeScalarWhereWithAggregatesInput[]
     NOT?: DisponibilidadeScalarWhereWithAggregatesInput | DisponibilidadeScalarWhereWithAggregatesInput[]
-    idDisponibilidade?: IntWithAggregatesFilter<"Disponibilidade"> | number
-    diaSemana?: StringWithAggregatesFilter<"Disponibilidade"> | string
-    periodoId?: StringWithAggregatesFilter<"Disponibilidade"> | string
-    ordem?: IntWithAggregatesFilter<"Disponibilidade"> | number
+    id_disponibilidade?: IntWithAggregatesFilter<"Disponibilidade"> | number
     professorId?: IntWithAggregatesFilter<"Disponibilidade"> | number
+    nome_dia?: StringWithAggregatesFilter<"Disponibilidade"> | string
+    nome_periodo?: StringWithAggregatesFilter<"Disponibilidade"> | string
+    ordem?: IntWithAggregatesFilter<"Disponibilidade"> | number
+  }
+
+  export type PeriodoWhereInput = {
+    AND?: PeriodoWhereInput | PeriodoWhereInput[]
+    OR?: PeriodoWhereInput[]
+    NOT?: PeriodoWhereInput | PeriodoWhereInput[]
+    nome_periodo?: StringFilter<"Periodo"> | string
+    disponibilidades?: DisponibilidadeListRelationFilter
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
+  }
+
+  export type PeriodoOrderByWithRelationInput = {
+    nome_periodo?: SortOrder
+    disponibilidades?: DisponibilidadeOrderByRelationAggregateInput
+    tempo_lectivo?: Tempo_LectivoOrderByRelationAggregateInput
+  }
+
+  export type PeriodoWhereUniqueInput = Prisma.AtLeast<{
+    nome_periodo?: string
+    AND?: PeriodoWhereInput | PeriodoWhereInput[]
+    OR?: PeriodoWhereInput[]
+    NOT?: PeriodoWhereInput | PeriodoWhereInput[]
+    disponibilidades?: DisponibilidadeListRelationFilter
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
+  }, "nome_periodo">
+
+  export type PeriodoOrderByWithAggregationInput = {
+    nome_periodo?: SortOrder
+    _count?: PeriodoCountOrderByAggregateInput
+    _max?: PeriodoMaxOrderByAggregateInput
+    _min?: PeriodoMinOrderByAggregateInput
+  }
+
+  export type PeriodoScalarWhereWithAggregatesInput = {
+    AND?: PeriodoScalarWhereWithAggregatesInput | PeriodoScalarWhereWithAggregatesInput[]
+    OR?: PeriodoScalarWhereWithAggregatesInput[]
+    NOT?: PeriodoScalarWhereWithAggregatesInput | PeriodoScalarWhereWithAggregatesInput[]
+    nome_periodo?: StringWithAggregatesFilter<"Periodo"> | string
   }
 
   export type ProfessorWhereInput = {
@@ -15709,27 +14332,23 @@ export namespace Prisma {
     NOT?: ProfessorWhereInput | ProfessorWhereInput[]
     id_professor?: IntFilter<"Professor"> | number
     nome?: StringFilter<"Professor"> | string
-    email?: StringNullableFilter<"Professor"> | string | null
-    telefone?: StringNullableFilter<"Professor"> | string | null
-    created_at?: DateTimeFilter<"Professor"> | Date | string
+    email?: StringFilter<"Professor"> | string
+    telefone?: StringFilter<"Professor"> | string
     updated_at?: DateTimeFilter<"Professor"> | Date | string
-    Disponibilidade?: DisponibilidadeListRelationFilter
-    ProfDisciplinas?: ProfDisciplinasListRelationFilter
-    ProfTurma?: ProfTurmaListRelationFilter
-    TempoLectivo?: TempoLectivoListRelationFilter
+    profDisciplinas?: ProfDisciplinasListRelationFilter
+    disponibilidades?: DisponibilidadeListRelationFilter
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
   }
 
   export type ProfessorOrderByWithRelationInput = {
     id_professor?: SortOrder
     nome?: SortOrder
-    email?: SortOrderInput | SortOrder
-    telefone?: SortOrderInput | SortOrder
-    created_at?: SortOrder
+    email?: SortOrder
+    telefone?: SortOrder
     updated_at?: SortOrder
-    Disponibilidade?: DisponibilidadeOrderByRelationAggregateInput
-    ProfDisciplinas?: ProfDisciplinasOrderByRelationAggregateInput
-    ProfTurma?: ProfTurmaOrderByRelationAggregateInput
-    TempoLectivo?: TempoLectivoOrderByRelationAggregateInput
+    profDisciplinas?: ProfDisciplinasOrderByRelationAggregateInput
+    disponibilidades?: DisponibilidadeOrderByRelationAggregateInput
+    tempo_lectivo?: Tempo_LectivoOrderByRelationAggregateInput
   }
 
   export type ProfessorWhereUniqueInput = Prisma.AtLeast<{
@@ -15738,22 +14357,19 @@ export namespace Prisma {
     OR?: ProfessorWhereInput[]
     NOT?: ProfessorWhereInput | ProfessorWhereInput[]
     nome?: StringFilter<"Professor"> | string
-    email?: StringNullableFilter<"Professor"> | string | null
-    telefone?: StringNullableFilter<"Professor"> | string | null
-    created_at?: DateTimeFilter<"Professor"> | Date | string
+    email?: StringFilter<"Professor"> | string
+    telefone?: StringFilter<"Professor"> | string
     updated_at?: DateTimeFilter<"Professor"> | Date | string
-    Disponibilidade?: DisponibilidadeListRelationFilter
-    ProfDisciplinas?: ProfDisciplinasListRelationFilter
-    ProfTurma?: ProfTurmaListRelationFilter
-    TempoLectivo?: TempoLectivoListRelationFilter
+    profDisciplinas?: ProfDisciplinasListRelationFilter
+    disponibilidades?: DisponibilidadeListRelationFilter
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
   }, "id_professor">
 
   export type ProfessorOrderByWithAggregationInput = {
     id_professor?: SortOrder
     nome?: SortOrder
-    email?: SortOrderInput | SortOrder
-    telefone?: SortOrderInput | SortOrder
-    created_at?: SortOrder
+    email?: SortOrder
+    telefone?: SortOrder
     updated_at?: SortOrder
     _count?: ProfessorCountOrderByAggregateInput
     _avg?: ProfessorAvgOrderByAggregateInput
@@ -15768,85 +14384,42 @@ export namespace Prisma {
     NOT?: ProfessorScalarWhereWithAggregatesInput | ProfessorScalarWhereWithAggregatesInput[]
     id_professor?: IntWithAggregatesFilter<"Professor"> | number
     nome?: StringWithAggregatesFilter<"Professor"> | string
-    email?: StringNullableWithAggregatesFilter<"Professor"> | string | null
-    telefone?: StringNullableWithAggregatesFilter<"Professor"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"Professor"> | Date | string
+    email?: StringWithAggregatesFilter<"Professor"> | string
+    telefone?: StringWithAggregatesFilter<"Professor"> | string
     updated_at?: DateTimeWithAggregatesFilter<"Professor"> | Date | string
-  }
-
-  export type PeriodoWhereInput = {
-    AND?: PeriodoWhereInput | PeriodoWhereInput[]
-    OR?: PeriodoWhereInput[]
-    NOT?: PeriodoWhereInput | PeriodoWhereInput[]
-    periodo?: StringFilter<"Periodo"> | string
-    Disponibilidade?: DisponibilidadeListRelationFilter
-    TempoLectivo?: TempoLectivoListRelationFilter
-  }
-
-  export type PeriodoOrderByWithRelationInput = {
-    periodo?: SortOrder
-    Disponibilidade?: DisponibilidadeOrderByRelationAggregateInput
-    TempoLectivo?: TempoLectivoOrderByRelationAggregateInput
-  }
-
-  export type PeriodoWhereUniqueInput = Prisma.AtLeast<{
-    periodo?: string
-    AND?: PeriodoWhereInput | PeriodoWhereInput[]
-    OR?: PeriodoWhereInput[]
-    NOT?: PeriodoWhereInput | PeriodoWhereInput[]
-    Disponibilidade?: DisponibilidadeListRelationFilter
-    TempoLectivo?: TempoLectivoListRelationFilter
-  }, "periodo">
-
-  export type PeriodoOrderByWithAggregationInput = {
-    periodo?: SortOrder
-    _count?: PeriodoCountOrderByAggregateInput
-    _max?: PeriodoMaxOrderByAggregateInput
-    _min?: PeriodoMinOrderByAggregateInput
-  }
-
-  export type PeriodoScalarWhereWithAggregatesInput = {
-    AND?: PeriodoScalarWhereWithAggregatesInput | PeriodoScalarWhereWithAggregatesInput[]
-    OR?: PeriodoScalarWhereWithAggregatesInput[]
-    NOT?: PeriodoScalarWhereWithAggregatesInput | PeriodoScalarWhereWithAggregatesInput[]
-    periodo?: StringWithAggregatesFilter<"Periodo"> | string
   }
 
   export type ProfDisciplinasWhereInput = {
     AND?: ProfDisciplinasWhereInput | ProfDisciplinasWhereInput[]
     OR?: ProfDisciplinasWhereInput[]
     NOT?: ProfDisciplinasWhereInput | ProfDisciplinasWhereInput[]
-    idProfDisciplina?: IntFilter<"ProfDisciplinas"> | number
     professorId?: IntFilter<"ProfDisciplinas"> | number
-    disciplinaId?: IntFilter<"ProfDisciplinas"> | number
-    Disciplina?: XOR<DisciplinaScalarRelationFilter, DisciplinaWhereInput>
-    Professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
+    nome_disciplina?: StringFilter<"ProfDisciplinas"> | string
+    professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
+    disciplina?: XOR<DisciplinaScalarRelationFilter, DisciplinaWhereInput>
   }
 
   export type ProfDisciplinasOrderByWithRelationInput = {
-    idProfDisciplina?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
-    Disciplina?: DisciplinaOrderByWithRelationInput
-    Professor?: ProfessorOrderByWithRelationInput
+    nome_disciplina?: SortOrder
+    professor?: ProfessorOrderByWithRelationInput
+    disciplina?: DisciplinaOrderByWithRelationInput
   }
 
   export type ProfDisciplinasWhereUniqueInput = Prisma.AtLeast<{
-    idProfDisciplina?: number
-    professorId_disciplinaId?: ProfDisciplinasProfessorIdDisciplinaIdCompoundUniqueInput
+    professorId_nome_disciplina?: ProfDisciplinasProfessorIdNome_disciplinaCompoundUniqueInput
     AND?: ProfDisciplinasWhereInput | ProfDisciplinasWhereInput[]
     OR?: ProfDisciplinasWhereInput[]
     NOT?: ProfDisciplinasWhereInput | ProfDisciplinasWhereInput[]
     professorId?: IntFilter<"ProfDisciplinas"> | number
-    disciplinaId?: IntFilter<"ProfDisciplinas"> | number
-    Disciplina?: XOR<DisciplinaScalarRelationFilter, DisciplinaWhereInput>
-    Professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
-  }, "idProfDisciplina" | "professorId_disciplinaId">
+    nome_disciplina?: StringFilter<"ProfDisciplinas"> | string
+    professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
+    disciplina?: XOR<DisciplinaScalarRelationFilter, DisciplinaWhereInput>
+  }, "professorId_nome_disciplina">
 
   export type ProfDisciplinasOrderByWithAggregationInput = {
-    idProfDisciplina?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
+    nome_disciplina?: SortOrder
     _count?: ProfDisciplinasCountOrderByAggregateInput
     _avg?: ProfDisciplinasAvgOrderByAggregateInput
     _max?: ProfDisciplinasMaxOrderByAggregateInput
@@ -15858,89 +14431,37 @@ export namespace Prisma {
     AND?: ProfDisciplinasScalarWhereWithAggregatesInput | ProfDisciplinasScalarWhereWithAggregatesInput[]
     OR?: ProfDisciplinasScalarWhereWithAggregatesInput[]
     NOT?: ProfDisciplinasScalarWhereWithAggregatesInput | ProfDisciplinasScalarWhereWithAggregatesInput[]
-    idProfDisciplina?: IntWithAggregatesFilter<"ProfDisciplinas"> | number
     professorId?: IntWithAggregatesFilter<"ProfDisciplinas"> | number
-    disciplinaId?: IntWithAggregatesFilter<"ProfDisciplinas"> | number
-  }
-
-  export type ProfTurmaWhereInput = {
-    AND?: ProfTurmaWhereInput | ProfTurmaWhereInput[]
-    OR?: ProfTurmaWhereInput[]
-    NOT?: ProfTurmaWhereInput | ProfTurmaWhereInput[]
-    idProfTurma?: IntFilter<"ProfTurma"> | number
-    professorId?: IntFilter<"ProfTurma"> | number
-    turmaId?: IntFilter<"ProfTurma"> | number
-    Professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
-    Turma?: XOR<TurmaScalarRelationFilter, TurmaWhereInput>
-  }
-
-  export type ProfTurmaOrderByWithRelationInput = {
-    idProfTurma?: SortOrder
-    professorId?: SortOrder
-    turmaId?: SortOrder
-    Professor?: ProfessorOrderByWithRelationInput
-    Turma?: TurmaOrderByWithRelationInput
-  }
-
-  export type ProfTurmaWhereUniqueInput = Prisma.AtLeast<{
-    idProfTurma?: number
-    professorId_turmaId?: ProfTurmaProfessorIdTurmaIdCompoundUniqueInput
-    AND?: ProfTurmaWhereInput | ProfTurmaWhereInput[]
-    OR?: ProfTurmaWhereInput[]
-    NOT?: ProfTurmaWhereInput | ProfTurmaWhereInput[]
-    professorId?: IntFilter<"ProfTurma"> | number
-    turmaId?: IntFilter<"ProfTurma"> | number
-    Professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
-    Turma?: XOR<TurmaScalarRelationFilter, TurmaWhereInput>
-  }, "idProfTurma" | "professorId_turmaId">
-
-  export type ProfTurmaOrderByWithAggregationInput = {
-    idProfTurma?: SortOrder
-    professorId?: SortOrder
-    turmaId?: SortOrder
-    _count?: ProfTurmaCountOrderByAggregateInput
-    _avg?: ProfTurmaAvgOrderByAggregateInput
-    _max?: ProfTurmaMaxOrderByAggregateInput
-    _min?: ProfTurmaMinOrderByAggregateInput
-    _sum?: ProfTurmaSumOrderByAggregateInput
-  }
-
-  export type ProfTurmaScalarWhereWithAggregatesInput = {
-    AND?: ProfTurmaScalarWhereWithAggregatesInput | ProfTurmaScalarWhereWithAggregatesInput[]
-    OR?: ProfTurmaScalarWhereWithAggregatesInput[]
-    NOT?: ProfTurmaScalarWhereWithAggregatesInput | ProfTurmaScalarWhereWithAggregatesInput[]
-    idProfTurma?: IntWithAggregatesFilter<"ProfTurma"> | number
-    professorId?: IntWithAggregatesFilter<"ProfTurma"> | number
-    turmaId?: IntWithAggregatesFilter<"ProfTurma"> | number
+    nome_disciplina?: StringWithAggregatesFilter<"ProfDisciplinas"> | string
   }
 
   export type SalaWhereInput = {
     AND?: SalaWhereInput | SalaWhereInput[]
     OR?: SalaWhereInput[]
     NOT?: SalaWhereInput | SalaWhereInput[]
-    idSala?: IntFilter<"Sala"> | number
-    nome?: StringFilter<"Sala"> | string
-    TempoLectivo?: TempoLectivoListRelationFilter
+    nome_sala?: StringFilter<"Sala"> | string
+    capacidade?: IntFilter<"Sala"> | number
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
   }
 
   export type SalaOrderByWithRelationInput = {
-    idSala?: SortOrder
-    nome?: SortOrder
-    TempoLectivo?: TempoLectivoOrderByRelationAggregateInput
+    nome_sala?: SortOrder
+    capacidade?: SortOrder
+    tempo_lectivo?: Tempo_LectivoOrderByRelationAggregateInput
   }
 
   export type SalaWhereUniqueInput = Prisma.AtLeast<{
-    idSala?: number
+    nome_sala?: string
     AND?: SalaWhereInput | SalaWhereInput[]
     OR?: SalaWhereInput[]
     NOT?: SalaWhereInput | SalaWhereInput[]
-    nome?: StringFilter<"Sala"> | string
-    TempoLectivo?: TempoLectivoListRelationFilter
-  }, "idSala">
+    capacidade?: IntFilter<"Sala"> | number
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
+  }, "nome_sala">
 
   export type SalaOrderByWithAggregationInput = {
-    idSala?: SortOrder
-    nome?: SortOrder
+    nome_sala?: SortOrder
+    capacidade?: SortOrder
     _count?: SalaCountOrderByAggregateInput
     _avg?: SalaAvgOrderByAggregateInput
     _max?: SalaMaxOrderByAggregateInput
@@ -15952,334 +14473,320 @@ export namespace Prisma {
     AND?: SalaScalarWhereWithAggregatesInput | SalaScalarWhereWithAggregatesInput[]
     OR?: SalaScalarWhereWithAggregatesInput[]
     NOT?: SalaScalarWhereWithAggregatesInput | SalaScalarWhereWithAggregatesInput[]
-    idSala?: IntWithAggregatesFilter<"Sala"> | number
-    nome?: StringWithAggregatesFilter<"Sala"> | string
+    nome_sala?: StringWithAggregatesFilter<"Sala"> | string
+    capacidade?: IntWithAggregatesFilter<"Sala"> | number
   }
 
-  export type TempoLectivoWhereInput = {
-    AND?: TempoLectivoWhereInput | TempoLectivoWhereInput[]
-    OR?: TempoLectivoWhereInput[]
-    NOT?: TempoLectivoWhereInput | TempoLectivoWhereInput[]
-    idTempoLectivo?: IntFilter<"TempoLectivo"> | number
-    diaSemana?: StringFilter<"TempoLectivo"> | string
-    periodoId?: StringFilter<"TempoLectivo"> | string
-    ordem?: IntFilter<"TempoLectivo"> | number
-    professorId?: IntFilter<"TempoLectivo"> | number
-    disciplinaId?: IntFilter<"TempoLectivo"> | number
-    salaId?: IntFilter<"TempoLectivo"> | number
-    turmaId?: IntFilter<"TempoLectivo"> | number
-    DiaSemana?: XOR<DiaSemanaScalarRelationFilter, DiaSemanaWhereInput>
-    Disciplina?: XOR<DisciplinaScalarRelationFilter, DisciplinaWhereInput>
-    Periodo?: XOR<PeriodoScalarRelationFilter, PeriodoWhereInput>
-    Professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
-    Sala?: XOR<SalaScalarRelationFilter, SalaWhereInput>
-    Turma?: XOR<TurmaScalarRelationFilter, TurmaWhereInput>
+  export type Tempo_LectivoWhereInput = {
+    AND?: Tempo_LectivoWhereInput | Tempo_LectivoWhereInput[]
+    OR?: Tempo_LectivoWhereInput[]
+    NOT?: Tempo_LectivoWhereInput | Tempo_LectivoWhereInput[]
+    id?: IntFilter<"Tempo_Lectivo"> | number
+    professorId?: IntFilter<"Tempo_Lectivo"> | number
+    nome_turma?: StringFilter<"Tempo_Lectivo"> | string
+    nome_disciplina?: StringFilter<"Tempo_Lectivo"> | string
+    nome_sala?: StringFilter<"Tempo_Lectivo"> | string
+    nome_dia?: StringFilter<"Tempo_Lectivo"> | string
+    nome_periodo?: StringFilter<"Tempo_Lectivo"> | string
+    ordem?: IntFilter<"Tempo_Lectivo"> | number
+    professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
+    turma?: XOR<TurmaScalarRelationFilter, TurmaWhereInput>
+    disciplina?: XOR<DisciplinaScalarRelationFilter, DisciplinaWhereInput>
+    sala?: XOR<SalaScalarRelationFilter, SalaWhereInput>
+    dia?: XOR<DiaSemanaScalarRelationFilter, DiaSemanaWhereInput>
+    periodo?: XOR<PeriodoScalarRelationFilter, PeriodoWhereInput>
   }
 
-  export type TempoLectivoOrderByWithRelationInput = {
-    idTempoLectivo?: SortOrder
-    diaSemana?: SortOrder
-    periodoId?: SortOrder
-    ordem?: SortOrder
+  export type Tempo_LectivoOrderByWithRelationInput = {
+    id?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
-    salaId?: SortOrder
-    turmaId?: SortOrder
-    DiaSemana?: DiaSemanaOrderByWithRelationInput
-    Disciplina?: DisciplinaOrderByWithRelationInput
-    Periodo?: PeriodoOrderByWithRelationInput
-    Professor?: ProfessorOrderByWithRelationInput
-    Sala?: SalaOrderByWithRelationInput
-    Turma?: TurmaOrderByWithRelationInput
-  }
-
-  export type TempoLectivoWhereUniqueInput = Prisma.AtLeast<{
-    idTempoLectivo?: number
-    AND?: TempoLectivoWhereInput | TempoLectivoWhereInput[]
-    OR?: TempoLectivoWhereInput[]
-    NOT?: TempoLectivoWhereInput | TempoLectivoWhereInput[]
-    diaSemana?: StringFilter<"TempoLectivo"> | string
-    periodoId?: StringFilter<"TempoLectivo"> | string
-    ordem?: IntFilter<"TempoLectivo"> | number
-    professorId?: IntFilter<"TempoLectivo"> | number
-    disciplinaId?: IntFilter<"TempoLectivo"> | number
-    salaId?: IntFilter<"TempoLectivo"> | number
-    turmaId?: IntFilter<"TempoLectivo"> | number
-    DiaSemana?: XOR<DiaSemanaScalarRelationFilter, DiaSemanaWhereInput>
-    Disciplina?: XOR<DisciplinaScalarRelationFilter, DisciplinaWhereInput>
-    Periodo?: XOR<PeriodoScalarRelationFilter, PeriodoWhereInput>
-    Professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
-    Sala?: XOR<SalaScalarRelationFilter, SalaWhereInput>
-    Turma?: XOR<TurmaScalarRelationFilter, TurmaWhereInput>
-  }, "idTempoLectivo">
-
-  export type TempoLectivoOrderByWithAggregationInput = {
-    idTempoLectivo?: SortOrder
-    diaSemana?: SortOrder
-    periodoId?: SortOrder
+    nome_turma?: SortOrder
+    nome_disciplina?: SortOrder
+    nome_sala?: SortOrder
+    nome_dia?: SortOrder
+    nome_periodo?: SortOrder
     ordem?: SortOrder
-    professorId?: SortOrder
-    disciplinaId?: SortOrder
-    salaId?: SortOrder
-    turmaId?: SortOrder
-    _count?: TempoLectivoCountOrderByAggregateInput
-    _avg?: TempoLectivoAvgOrderByAggregateInput
-    _max?: TempoLectivoMaxOrderByAggregateInput
-    _min?: TempoLectivoMinOrderByAggregateInput
-    _sum?: TempoLectivoSumOrderByAggregateInput
+    professor?: ProfessorOrderByWithRelationInput
+    turma?: TurmaOrderByWithRelationInput
+    disciplina?: DisciplinaOrderByWithRelationInput
+    sala?: SalaOrderByWithRelationInput
+    dia?: DiaSemanaOrderByWithRelationInput
+    periodo?: PeriodoOrderByWithRelationInput
   }
 
-  export type TempoLectivoScalarWhereWithAggregatesInput = {
-    AND?: TempoLectivoScalarWhereWithAggregatesInput | TempoLectivoScalarWhereWithAggregatesInput[]
-    OR?: TempoLectivoScalarWhereWithAggregatesInput[]
-    NOT?: TempoLectivoScalarWhereWithAggregatesInput | TempoLectivoScalarWhereWithAggregatesInput[]
-    idTempoLectivo?: IntWithAggregatesFilter<"TempoLectivo"> | number
-    diaSemana?: StringWithAggregatesFilter<"TempoLectivo"> | string
-    periodoId?: StringWithAggregatesFilter<"TempoLectivo"> | string
-    ordem?: IntWithAggregatesFilter<"TempoLectivo"> | number
-    professorId?: IntWithAggregatesFilter<"TempoLectivo"> | number
-    disciplinaId?: IntWithAggregatesFilter<"TempoLectivo"> | number
-    salaId?: IntWithAggregatesFilter<"TempoLectivo"> | number
-    turmaId?: IntWithAggregatesFilter<"TempoLectivo"> | number
+  export type Tempo_LectivoWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: Tempo_LectivoWhereInput | Tempo_LectivoWhereInput[]
+    OR?: Tempo_LectivoWhereInput[]
+    NOT?: Tempo_LectivoWhereInput | Tempo_LectivoWhereInput[]
+    professorId?: IntFilter<"Tempo_Lectivo"> | number
+    nome_turma?: StringFilter<"Tempo_Lectivo"> | string
+    nome_disciplina?: StringFilter<"Tempo_Lectivo"> | string
+    nome_sala?: StringFilter<"Tempo_Lectivo"> | string
+    nome_dia?: StringFilter<"Tempo_Lectivo"> | string
+    nome_periodo?: StringFilter<"Tempo_Lectivo"> | string
+    ordem?: IntFilter<"Tempo_Lectivo"> | number
+    professor?: XOR<ProfessorScalarRelationFilter, ProfessorWhereInput>
+    turma?: XOR<TurmaScalarRelationFilter, TurmaWhereInput>
+    disciplina?: XOR<DisciplinaScalarRelationFilter, DisciplinaWhereInput>
+    sala?: XOR<SalaScalarRelationFilter, SalaWhereInput>
+    dia?: XOR<DiaSemanaScalarRelationFilter, DiaSemanaWhereInput>
+    periodo?: XOR<PeriodoScalarRelationFilter, PeriodoWhereInput>
+  }, "id">
+
+  export type Tempo_LectivoOrderByWithAggregationInput = {
+    id?: SortOrder
+    professorId?: SortOrder
+    nome_turma?: SortOrder
+    nome_disciplina?: SortOrder
+    nome_sala?: SortOrder
+    nome_dia?: SortOrder
+    nome_periodo?: SortOrder
+    ordem?: SortOrder
+    _count?: Tempo_LectivoCountOrderByAggregateInput
+    _avg?: Tempo_LectivoAvgOrderByAggregateInput
+    _max?: Tempo_LectivoMaxOrderByAggregateInput
+    _min?: Tempo_LectivoMinOrderByAggregateInput
+    _sum?: Tempo_LectivoSumOrderByAggregateInput
+  }
+
+  export type Tempo_LectivoScalarWhereWithAggregatesInput = {
+    AND?: Tempo_LectivoScalarWhereWithAggregatesInput | Tempo_LectivoScalarWhereWithAggregatesInput[]
+    OR?: Tempo_LectivoScalarWhereWithAggregatesInput[]
+    NOT?: Tempo_LectivoScalarWhereWithAggregatesInput | Tempo_LectivoScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Tempo_Lectivo"> | number
+    professorId?: IntWithAggregatesFilter<"Tempo_Lectivo"> | number
+    nome_turma?: StringWithAggregatesFilter<"Tempo_Lectivo"> | string
+    nome_disciplina?: StringWithAggregatesFilter<"Tempo_Lectivo"> | string
+    nome_sala?: StringWithAggregatesFilter<"Tempo_Lectivo"> | string
+    nome_dia?: StringWithAggregatesFilter<"Tempo_Lectivo"> | string
+    nome_periodo?: StringWithAggregatesFilter<"Tempo_Lectivo"> | string
+    ordem?: IntWithAggregatesFilter<"Tempo_Lectivo"> | number
   }
 
   export type TurmaWhereInput = {
     AND?: TurmaWhereInput | TurmaWhereInput[]
     OR?: TurmaWhereInput[]
     NOT?: TurmaWhereInput | TurmaWhereInput[]
-    idTurma?: IntFilter<"Turma"> | number
-    nome?: StringFilter<"Turma"> | string
-    classe?: StringFilter<"Turma"> | string
-    curso?: StringFilter<"Turma"> | string
-    ProfTurma?: ProfTurmaListRelationFilter
-    TempoLectivo?: TempoLectivoListRelationFilter
-    Classe?: XOR<ClasseScalarRelationFilter, ClasseWhereInput>
-    Curso?: XOR<CursoScalarRelationFilter, CursoWhereInput>
+    nome_turma?: StringFilter<"Turma"> | string
+    nome_curso?: StringFilter<"Turma"> | string
+    nome_classe?: StringFilter<"Turma"> | string
+    curso?: XOR<CursoScalarRelationFilter, CursoWhereInput>
+    classe?: XOR<ClasseScalarRelationFilter, ClasseWhereInput>
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
   }
 
   export type TurmaOrderByWithRelationInput = {
-    idTurma?: SortOrder
-    nome?: SortOrder
-    classe?: SortOrder
-    curso?: SortOrder
-    ProfTurma?: ProfTurmaOrderByRelationAggregateInput
-    TempoLectivo?: TempoLectivoOrderByRelationAggregateInput
-    Classe?: ClasseOrderByWithRelationInput
-    Curso?: CursoOrderByWithRelationInput
+    nome_turma?: SortOrder
+    nome_curso?: SortOrder
+    nome_classe?: SortOrder
+    curso?: CursoOrderByWithRelationInput
+    classe?: ClasseOrderByWithRelationInput
+    tempo_lectivo?: Tempo_LectivoOrderByRelationAggregateInput
   }
 
   export type TurmaWhereUniqueInput = Prisma.AtLeast<{
-    idTurma?: number
+    nome_turma?: string
     AND?: TurmaWhereInput | TurmaWhereInput[]
     OR?: TurmaWhereInput[]
     NOT?: TurmaWhereInput | TurmaWhereInput[]
-    nome?: StringFilter<"Turma"> | string
-    classe?: StringFilter<"Turma"> | string
-    curso?: StringFilter<"Turma"> | string
-    ProfTurma?: ProfTurmaListRelationFilter
-    TempoLectivo?: TempoLectivoListRelationFilter
-    Classe?: XOR<ClasseScalarRelationFilter, ClasseWhereInput>
-    Curso?: XOR<CursoScalarRelationFilter, CursoWhereInput>
-  }, "idTurma">
+    nome_curso?: StringFilter<"Turma"> | string
+    nome_classe?: StringFilter<"Turma"> | string
+    curso?: XOR<CursoScalarRelationFilter, CursoWhereInput>
+    classe?: XOR<ClasseScalarRelationFilter, ClasseWhereInput>
+    tempo_lectivo?: Tempo_LectivoListRelationFilter
+  }, "nome_turma">
 
   export type TurmaOrderByWithAggregationInput = {
-    idTurma?: SortOrder
-    nome?: SortOrder
-    classe?: SortOrder
-    curso?: SortOrder
+    nome_turma?: SortOrder
+    nome_curso?: SortOrder
+    nome_classe?: SortOrder
     _count?: TurmaCountOrderByAggregateInput
-    _avg?: TurmaAvgOrderByAggregateInput
     _max?: TurmaMaxOrderByAggregateInput
     _min?: TurmaMinOrderByAggregateInput
-    _sum?: TurmaSumOrderByAggregateInput
   }
 
   export type TurmaScalarWhereWithAggregatesInput = {
     AND?: TurmaScalarWhereWithAggregatesInput | TurmaScalarWhereWithAggregatesInput[]
     OR?: TurmaScalarWhereWithAggregatesInput[]
     NOT?: TurmaScalarWhereWithAggregatesInput | TurmaScalarWhereWithAggregatesInput[]
-    idTurma?: IntWithAggregatesFilter<"Turma"> | number
-    nome?: StringWithAggregatesFilter<"Turma"> | string
-    classe?: StringWithAggregatesFilter<"Turma"> | string
-    curso?: StringWithAggregatesFilter<"Turma"> | string
+    nome_turma?: StringWithAggregatesFilter<"Turma"> | string
+    nome_curso?: StringWithAggregatesFilter<"Turma"> | string
+    nome_classe?: StringWithAggregatesFilter<"Turma"> | string
   }
 
   export type ClasseCreateInput = {
-    nome: string
-    Turma?: TurmaCreateNestedManyWithoutClasseInput
+    nome_classe: string
+    turmas?: TurmaCreateNestedManyWithoutClasseInput
   }
 
   export type ClasseUncheckedCreateInput = {
-    nome: string
-    Turma?: TurmaUncheckedCreateNestedManyWithoutClasseInput
+    nome_classe: string
+    turmas?: TurmaUncheckedCreateNestedManyWithoutClasseInput
   }
 
   export type ClasseUpdateInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    Turma?: TurmaUpdateManyWithoutClasseNestedInput
+    nome_classe?: StringFieldUpdateOperationsInput | string
+    turmas?: TurmaUpdateManyWithoutClasseNestedInput
   }
 
   export type ClasseUncheckedUpdateInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    Turma?: TurmaUncheckedUpdateManyWithoutClasseNestedInput
+    nome_classe?: StringFieldUpdateOperationsInput | string
+    turmas?: TurmaUncheckedUpdateManyWithoutClasseNestedInput
   }
 
   export type ClasseCreateManyInput = {
-    nome: string
+    nome_classe: string
   }
 
   export type ClasseUpdateManyMutationInput = {
-    nome?: StringFieldUpdateOperationsInput | string
+    nome_classe?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClasseUncheckedUpdateManyInput = {
-    nome?: StringFieldUpdateOperationsInput | string
+    nome_classe?: StringFieldUpdateOperationsInput | string
   }
 
   export type CursoCreateInput = {
-    nome: string
-    Turma?: TurmaCreateNestedManyWithoutCursoInput
+    nome_curso: string
+    turmas?: TurmaCreateNestedManyWithoutCursoInput
   }
 
   export type CursoUncheckedCreateInput = {
-    nome: string
-    Turma?: TurmaUncheckedCreateNestedManyWithoutCursoInput
+    nome_curso: string
+    turmas?: TurmaUncheckedCreateNestedManyWithoutCursoInput
   }
 
   export type CursoUpdateInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    Turma?: TurmaUpdateManyWithoutCursoNestedInput
+    nome_curso?: StringFieldUpdateOperationsInput | string
+    turmas?: TurmaUpdateManyWithoutCursoNestedInput
   }
 
   export type CursoUncheckedUpdateInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    Turma?: TurmaUncheckedUpdateManyWithoutCursoNestedInput
+    nome_curso?: StringFieldUpdateOperationsInput | string
+    turmas?: TurmaUncheckedUpdateManyWithoutCursoNestedInput
   }
 
   export type CursoCreateManyInput = {
-    nome: string
+    nome_curso: string
   }
 
   export type CursoUpdateManyMutationInput = {
-    nome?: StringFieldUpdateOperationsInput | string
+    nome_curso?: StringFieldUpdateOperationsInput | string
   }
 
   export type CursoUncheckedUpdateManyInput = {
-    nome?: StringFieldUpdateOperationsInput | string
+    nome_curso?: StringFieldUpdateOperationsInput | string
   }
 
   export type DiaSemanaCreateInput = {
-    nome: string
-    Disponibilidade?: DisponibilidadeCreateNestedManyWithoutDiaSemanaInput
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutDiaSemanaInput
+    nome_dia: string
+    disponibilidades?: DisponibilidadeCreateNestedManyWithoutDiaInput
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutDiaInput
   }
 
   export type DiaSemanaUncheckedCreateInput = {
-    nome: string
-    Disponibilidade?: DisponibilidadeUncheckedCreateNestedManyWithoutDiaSemanaInput
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutDiaSemanaInput
+    nome_dia: string
+    disponibilidades?: DisponibilidadeUncheckedCreateNestedManyWithoutDiaInput
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutDiaInput
   }
 
   export type DiaSemanaUpdateInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    Disponibilidade?: DisponibilidadeUpdateManyWithoutDiaSemanaNestedInput
-    TempoLectivo?: TempoLectivoUpdateManyWithoutDiaSemanaNestedInput
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    disponibilidades?: DisponibilidadeUpdateManyWithoutDiaNestedInput
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutDiaNestedInput
   }
 
   export type DiaSemanaUncheckedUpdateInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    Disponibilidade?: DisponibilidadeUncheckedUpdateManyWithoutDiaSemanaNestedInput
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutDiaSemanaNestedInput
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    disponibilidades?: DisponibilidadeUncheckedUpdateManyWithoutDiaNestedInput
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutDiaNestedInput
   }
 
   export type DiaSemanaCreateManyInput = {
-    nome: string
+    nome_dia: string
   }
 
   export type DiaSemanaUpdateManyMutationInput = {
-    nome?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
   }
 
   export type DiaSemanaUncheckedUpdateManyInput = {
-    nome?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
   }
 
   export type DisciplinaCreateInput = {
-    nome: string
-    ProfDisciplinas?: ProfDisciplinasCreateNestedManyWithoutDisciplinaInput
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutDisciplinaInput
+    nome_disciplina: string
+    profDisciplinas?: ProfDisciplinasCreateNestedManyWithoutDisciplinaInput
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutDisciplinaInput
   }
 
   export type DisciplinaUncheckedCreateInput = {
-    idDisciplina?: number
-    nome: string
-    ProfDisciplinas?: ProfDisciplinasUncheckedCreateNestedManyWithoutDisciplinaInput
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutDisciplinaInput
+    nome_disciplina: string
+    profDisciplinas?: ProfDisciplinasUncheckedCreateNestedManyWithoutDisciplinaInput
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutDisciplinaInput
   }
 
   export type DisciplinaUpdateInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    ProfDisciplinas?: ProfDisciplinasUpdateManyWithoutDisciplinaNestedInput
-    TempoLectivo?: TempoLectivoUpdateManyWithoutDisciplinaNestedInput
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    profDisciplinas?: ProfDisciplinasUpdateManyWithoutDisciplinaNestedInput
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutDisciplinaNestedInput
   }
 
   export type DisciplinaUncheckedUpdateInput = {
-    idDisciplina?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    ProfDisciplinas?: ProfDisciplinasUncheckedUpdateManyWithoutDisciplinaNestedInput
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutDisciplinaNestedInput
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    profDisciplinas?: ProfDisciplinasUncheckedUpdateManyWithoutDisciplinaNestedInput
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutDisciplinaNestedInput
   }
 
   export type DisciplinaCreateManyInput = {
-    idDisciplina?: number
-    nome: string
+    nome_disciplina: string
   }
 
   export type DisciplinaUpdateManyMutationInput = {
-    nome?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
   }
 
   export type DisciplinaUncheckedUpdateManyInput = {
-    idDisciplina?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
   }
 
   export type DisponibilidadeCreateInput = {
     ordem: number
-    DiaSemana: DiaSemanaCreateNestedOneWithoutDisponibilidadeInput
-    Periodo: PeriodoCreateNestedOneWithoutDisponibilidadeInput
-    Professor: ProfessorCreateNestedOneWithoutDisponibilidadeInput
+    professor: ProfessorCreateNestedOneWithoutDisponibilidadesInput
+    dia: DiaSemanaCreateNestedOneWithoutDisponibilidadesInput
+    periodo: PeriodoCreateNestedOneWithoutDisponibilidadesInput
   }
 
   export type DisponibilidadeUncheckedCreateInput = {
-    idDisponibilidade?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
+    id_disponibilidade?: number
     professorId: number
+    nome_dia: string
+    nome_periodo: string
+    ordem: number
   }
 
   export type DisponibilidadeUpdateInput = {
     ordem?: IntFieldUpdateOperationsInput | number
-    DiaSemana?: DiaSemanaUpdateOneRequiredWithoutDisponibilidadeNestedInput
-    Periodo?: PeriodoUpdateOneRequiredWithoutDisponibilidadeNestedInput
-    Professor?: ProfessorUpdateOneRequiredWithoutDisponibilidadeNestedInput
+    professor?: ProfessorUpdateOneRequiredWithoutDisponibilidadesNestedInput
+    dia?: DiaSemanaUpdateOneRequiredWithoutDisponibilidadesNestedInput
+    periodo?: PeriodoUpdateOneRequiredWithoutDisponibilidadesNestedInput
   }
 
   export type DisponibilidadeUncheckedUpdateInput = {
-    idDisponibilidade?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+    id_disponibilidade?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
   export type DisponibilidadeCreateManyInput = {
-    idDisponibilidade?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
+    id_disponibilidade?: number
     professorId: number
+    nome_dia: string
+    nome_periodo: string
+    ordem: number
   }
 
   export type DisponibilidadeUpdateManyMutationInput = {
@@ -16287,151 +14794,137 @@ export namespace Prisma {
   }
 
   export type DisponibilidadeUncheckedUpdateManyInput = {
-    idDisponibilidade?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+    id_disponibilidade?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PeriodoCreateInput = {
+    nome_periodo: string
+    disponibilidades?: DisponibilidadeCreateNestedManyWithoutPeriodoInput
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutPeriodoInput
+  }
+
+  export type PeriodoUncheckedCreateInput = {
+    nome_periodo: string
+    disponibilidades?: DisponibilidadeUncheckedCreateNestedManyWithoutPeriodoInput
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutPeriodoInput
+  }
+
+  export type PeriodoUpdateInput = {
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    disponibilidades?: DisponibilidadeUpdateManyWithoutPeriodoNestedInput
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutPeriodoNestedInput
+  }
+
+  export type PeriodoUncheckedUpdateInput = {
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    disponibilidades?: DisponibilidadeUncheckedUpdateManyWithoutPeriodoNestedInput
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutPeriodoNestedInput
+  }
+
+  export type PeriodoCreateManyInput = {
+    nome_periodo: string
+  }
+
+  export type PeriodoUpdateManyMutationInput = {
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PeriodoUncheckedUpdateManyInput = {
+    nome_periodo?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProfessorCreateInput = {
     nome: string
-    email?: string | null
-    telefone?: string | null
-    created_at?: Date | string
-    updated_at: Date | string
-    Disponibilidade?: DisponibilidadeCreateNestedManyWithoutProfessorInput
-    ProfDisciplinas?: ProfDisciplinasCreateNestedManyWithoutProfessorInput
-    ProfTurma?: ProfTurmaCreateNestedManyWithoutProfessorInput
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutProfessorInput
+    email: string
+    telefone: string
+    updated_at?: Date | string
+    profDisciplinas?: ProfDisciplinasCreateNestedManyWithoutProfessorInput
+    disponibilidades?: DisponibilidadeCreateNestedManyWithoutProfessorInput
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutProfessorInput
   }
 
   export type ProfessorUncheckedCreateInput = {
     id_professor?: number
     nome: string
-    email?: string | null
-    telefone?: string | null
-    created_at?: Date | string
-    updated_at: Date | string
-    Disponibilidade?: DisponibilidadeUncheckedCreateNestedManyWithoutProfessorInput
-    ProfDisciplinas?: ProfDisciplinasUncheckedCreateNestedManyWithoutProfessorInput
-    ProfTurma?: ProfTurmaUncheckedCreateNestedManyWithoutProfessorInput
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutProfessorInput
+    email: string
+    telefone: string
+    updated_at?: Date | string
+    profDisciplinas?: ProfDisciplinasUncheckedCreateNestedManyWithoutProfessorInput
+    disponibilidades?: DisponibilidadeUncheckedCreateNestedManyWithoutProfessorInput
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutProfessorInput
   }
 
   export type ProfessorUpdateInput = {
     nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    Disponibilidade?: DisponibilidadeUpdateManyWithoutProfessorNestedInput
-    ProfDisciplinas?: ProfDisciplinasUpdateManyWithoutProfessorNestedInput
-    ProfTurma?: ProfTurmaUpdateManyWithoutProfessorNestedInput
-    TempoLectivo?: TempoLectivoUpdateManyWithoutProfessorNestedInput
+    profDisciplinas?: ProfDisciplinasUpdateManyWithoutProfessorNestedInput
+    disponibilidades?: DisponibilidadeUpdateManyWithoutProfessorNestedInput
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutProfessorNestedInput
   }
 
   export type ProfessorUncheckedUpdateInput = {
     id_professor?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    Disponibilidade?: DisponibilidadeUncheckedUpdateManyWithoutProfessorNestedInput
-    ProfDisciplinas?: ProfDisciplinasUncheckedUpdateManyWithoutProfessorNestedInput
-    ProfTurma?: ProfTurmaUncheckedUpdateManyWithoutProfessorNestedInput
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutProfessorNestedInput
+    profDisciplinas?: ProfDisciplinasUncheckedUpdateManyWithoutProfessorNestedInput
+    disponibilidades?: DisponibilidadeUncheckedUpdateManyWithoutProfessorNestedInput
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutProfessorNestedInput
   }
 
   export type ProfessorCreateManyInput = {
     id_professor?: number
     nome: string
-    email?: string | null
-    telefone?: string | null
-    created_at?: Date | string
-    updated_at: Date | string
+    email: string
+    telefone: string
+    updated_at?: Date | string
   }
 
   export type ProfessorUpdateManyMutationInput = {
     nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProfessorUncheckedUpdateManyInput = {
     id_professor?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PeriodoCreateInput = {
-    periodo: string
-    Disponibilidade?: DisponibilidadeCreateNestedManyWithoutPeriodoInput
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutPeriodoInput
-  }
-
-  export type PeriodoUncheckedCreateInput = {
-    periodo: string
-    Disponibilidade?: DisponibilidadeUncheckedCreateNestedManyWithoutPeriodoInput
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutPeriodoInput
-  }
-
-  export type PeriodoUpdateInput = {
-    periodo?: StringFieldUpdateOperationsInput | string
-    Disponibilidade?: DisponibilidadeUpdateManyWithoutPeriodoNestedInput
-    TempoLectivo?: TempoLectivoUpdateManyWithoutPeriodoNestedInput
-  }
-
-  export type PeriodoUncheckedUpdateInput = {
-    periodo?: StringFieldUpdateOperationsInput | string
-    Disponibilidade?: DisponibilidadeUncheckedUpdateManyWithoutPeriodoNestedInput
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutPeriodoNestedInput
-  }
-
-  export type PeriodoCreateManyInput = {
-    periodo: string
-  }
-
-  export type PeriodoUpdateManyMutationInput = {
-    periodo?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PeriodoUncheckedUpdateManyInput = {
-    periodo?: StringFieldUpdateOperationsInput | string
-  }
-
   export type ProfDisciplinasCreateInput = {
-    Disciplina: DisciplinaCreateNestedOneWithoutProfDisciplinasInput
-    Professor: ProfessorCreateNestedOneWithoutProfDisciplinasInput
+    professor: ProfessorCreateNestedOneWithoutProfDisciplinasInput
+    disciplina: DisciplinaCreateNestedOneWithoutProfDisciplinasInput
   }
 
   export type ProfDisciplinasUncheckedCreateInput = {
-    idProfDisciplina?: number
     professorId: number
-    disciplinaId: number
+    nome_disciplina: string
   }
 
   export type ProfDisciplinasUpdateInput = {
-    Disciplina?: DisciplinaUpdateOneRequiredWithoutProfDisciplinasNestedInput
-    Professor?: ProfessorUpdateOneRequiredWithoutProfDisciplinasNestedInput
+    professor?: ProfessorUpdateOneRequiredWithoutProfDisciplinasNestedInput
+    disciplina?: DisciplinaUpdateOneRequiredWithoutProfDisciplinasNestedInput
   }
 
   export type ProfDisciplinasUncheckedUpdateInput = {
-    idProfDisciplina?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProfDisciplinasCreateManyInput = {
-    idProfDisciplina?: number
     professorId: number
-    disciplinaId: number
+    nome_disciplina: string
   }
 
   export type ProfDisciplinasUpdateManyMutationInput = {
@@ -16439,203 +14932,159 @@ export namespace Prisma {
   }
 
   export type ProfDisciplinasUncheckedUpdateManyInput = {
-    idProfDisciplina?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ProfTurmaCreateInput = {
-    Professor: ProfessorCreateNestedOneWithoutProfTurmaInput
-    Turma: TurmaCreateNestedOneWithoutProfTurmaInput
-  }
-
-  export type ProfTurmaUncheckedCreateInput = {
-    idProfTurma?: number
-    professorId: number
-    turmaId: number
-  }
-
-  export type ProfTurmaUpdateInput = {
-    Professor?: ProfessorUpdateOneRequiredWithoutProfTurmaNestedInput
-    Turma?: TurmaUpdateOneRequiredWithoutProfTurmaNestedInput
-  }
-
-  export type ProfTurmaUncheckedUpdateInput = {
-    idProfTurma?: IntFieldUpdateOperationsInput | number
-    professorId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ProfTurmaCreateManyInput = {
-    idProfTurma?: number
-    professorId: number
-    turmaId: number
-  }
-
-  export type ProfTurmaUpdateManyMutationInput = {
-
-  }
-
-  export type ProfTurmaUncheckedUpdateManyInput = {
-    idProfTurma?: IntFieldUpdateOperationsInput | number
-    professorId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
   }
 
   export type SalaCreateInput = {
-    nome: string
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutSalaInput
+    nome_sala: string
+    capacidade: number
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutSalaInput
   }
 
   export type SalaUncheckedCreateInput = {
-    idSala?: number
-    nome: string
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutSalaInput
+    nome_sala: string
+    capacidade: number
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutSalaInput
   }
 
   export type SalaUpdateInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    TempoLectivo?: TempoLectivoUpdateManyWithoutSalaNestedInput
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    capacidade?: IntFieldUpdateOperationsInput | number
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutSalaNestedInput
   }
 
   export type SalaUncheckedUpdateInput = {
-    idSala?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutSalaNestedInput
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    capacidade?: IntFieldUpdateOperationsInput | number
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutSalaNestedInput
   }
 
   export type SalaCreateManyInput = {
-    idSala?: number
-    nome: string
+    nome_sala: string
+    capacidade: number
   }
 
   export type SalaUpdateManyMutationInput = {
-    nome?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    capacidade?: IntFieldUpdateOperationsInput | number
   }
 
   export type SalaUncheckedUpdateManyInput = {
-    idSala?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    capacidade?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TempoLectivoCreateInput = {
-    ordem: number
-    DiaSemana: DiaSemanaCreateNestedOneWithoutTempoLectivoInput
-    Disciplina: DisciplinaCreateNestedOneWithoutTempoLectivoInput
-    Periodo: PeriodoCreateNestedOneWithoutTempoLectivoInput
-    Professor: ProfessorCreateNestedOneWithoutTempoLectivoInput
-    Sala: SalaCreateNestedOneWithoutTempoLectivoInput
-    Turma: TurmaCreateNestedOneWithoutTempoLectivoInput
+  export type Tempo_LectivoCreateInput = {
+    ordem?: number
+    professor: ProfessorCreateNestedOneWithoutTempo_lectivoInput
+    turma: TurmaCreateNestedOneWithoutTempo_lectivoInput
+    disciplina: DisciplinaCreateNestedOneWithoutTempo_lectivoInput
+    sala: SalaCreateNestedOneWithoutTempo_lectivoInput
+    dia: DiaSemanaCreateNestedOneWithoutTempo_lectivoInput
+    periodo: PeriodoCreateNestedOneWithoutTempo_lectivoInput
   }
 
-  export type TempoLectivoUncheckedCreateInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
+  export type Tempo_LectivoUncheckedCreateInput = {
+    id?: number
     professorId: number
-    disciplinaId: number
-    salaId: number
-    turmaId: number
+    nome_turma: string
+    nome_disciplina: string
+    nome_sala: string
+    nome_dia: string
+    nome_periodo: string
+    ordem?: number
   }
 
-  export type TempoLectivoUpdateInput = {
+  export type Tempo_LectivoUpdateInput = {
     ordem?: IntFieldUpdateOperationsInput | number
-    DiaSemana?: DiaSemanaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Disciplina?: DisciplinaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Periodo?: PeriodoUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Professor?: ProfessorUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Sala?: SalaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Turma?: TurmaUpdateOneRequiredWithoutTempoLectivoNestedInput
+    professor?: ProfessorUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    turma?: TurmaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    disciplina?: DisciplinaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    sala?: SalaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    dia?: DiaSemanaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    periodo?: PeriodoUpdateOneRequiredWithoutTempo_lectivoNestedInput
   }
 
-  export type TempoLectivoUncheckedUpdateInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type Tempo_LectivoUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TempoLectivoCreateManyInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
+  export type Tempo_LectivoCreateManyInput = {
+    id?: number
     professorId: number
-    disciplinaId: number
-    salaId: number
-    turmaId: number
+    nome_turma: string
+    nome_disciplina: string
+    nome_sala: string
+    nome_dia: string
+    nome_periodo: string
+    ordem?: number
   }
 
-  export type TempoLectivoUpdateManyMutationInput = {
+  export type Tempo_LectivoUpdateManyMutationInput = {
     ordem?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TempoLectivoUncheckedUpdateManyInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type Tempo_LectivoUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
   export type TurmaCreateInput = {
-    nome: string
-    ProfTurma?: ProfTurmaCreateNestedManyWithoutTurmaInput
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutTurmaInput
-    Classe: ClasseCreateNestedOneWithoutTurmaInput
-    Curso: CursoCreateNestedOneWithoutTurmaInput
+    nome_turma: string
+    curso: CursoCreateNestedOneWithoutTurmasInput
+    classe: ClasseCreateNestedOneWithoutTurmasInput
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutTurmaInput
   }
 
   export type TurmaUncheckedCreateInput = {
-    idTurma?: number
-    nome: string
-    classe: string
-    curso: string
-    ProfTurma?: ProfTurmaUncheckedCreateNestedManyWithoutTurmaInput
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutTurmaInput
+    nome_turma: string
+    nome_curso: string
+    nome_classe: string
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutTurmaInput
   }
 
   export type TurmaUpdateInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    ProfTurma?: ProfTurmaUpdateManyWithoutTurmaNestedInput
-    TempoLectivo?: TempoLectivoUpdateManyWithoutTurmaNestedInput
-    Classe?: ClasseUpdateOneRequiredWithoutTurmaNestedInput
-    Curso?: CursoUpdateOneRequiredWithoutTurmaNestedInput
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    curso?: CursoUpdateOneRequiredWithoutTurmasNestedInput
+    classe?: ClasseUpdateOneRequiredWithoutTurmasNestedInput
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutTurmaNestedInput
   }
 
   export type TurmaUncheckedUpdateInput = {
-    idTurma?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    classe?: StringFieldUpdateOperationsInput | string
-    curso?: StringFieldUpdateOperationsInput | string
-    ProfTurma?: ProfTurmaUncheckedUpdateManyWithoutTurmaNestedInput
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutTurmaNestedInput
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_curso?: StringFieldUpdateOperationsInput | string
+    nome_classe?: StringFieldUpdateOperationsInput | string
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutTurmaNestedInput
   }
 
   export type TurmaCreateManyInput = {
-    idTurma?: number
-    nome: string
-    classe: string
-    curso: string
+    nome_turma: string
+    nome_curso: string
+    nome_classe: string
   }
 
   export type TurmaUpdateManyMutationInput = {
-    nome?: StringFieldUpdateOperationsInput | string
+    nome_turma?: StringFieldUpdateOperationsInput | string
   }
 
   export type TurmaUncheckedUpdateManyInput = {
-    idTurma?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    classe?: StringFieldUpdateOperationsInput | string
-    curso?: StringFieldUpdateOperationsInput | string
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_curso?: StringFieldUpdateOperationsInput | string
+    nome_classe?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -16664,15 +15113,15 @@ export namespace Prisma {
   }
 
   export type ClasseCountOrderByAggregateInput = {
-    nome?: SortOrder
+    nome_classe?: SortOrder
   }
 
   export type ClasseMaxOrderByAggregateInput = {
-    nome?: SortOrder
+    nome_classe?: SortOrder
   }
 
   export type ClasseMinOrderByAggregateInput = {
-    nome?: SortOrder
+    nome_classe?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -16694,15 +15143,15 @@ export namespace Prisma {
   }
 
   export type CursoCountOrderByAggregateInput = {
-    nome?: SortOrder
+    nome_curso?: SortOrder
   }
 
   export type CursoMaxOrderByAggregateInput = {
-    nome?: SortOrder
+    nome_curso?: SortOrder
   }
 
   export type CursoMinOrderByAggregateInput = {
-    nome?: SortOrder
+    nome_curso?: SortOrder
   }
 
   export type DisponibilidadeListRelationFilter = {
@@ -16711,41 +15160,30 @@ export namespace Prisma {
     none?: DisponibilidadeWhereInput
   }
 
-  export type TempoLectivoListRelationFilter = {
-    every?: TempoLectivoWhereInput
-    some?: TempoLectivoWhereInput
-    none?: TempoLectivoWhereInput
+  export type Tempo_LectivoListRelationFilter = {
+    every?: Tempo_LectivoWhereInput
+    some?: Tempo_LectivoWhereInput
+    none?: Tempo_LectivoWhereInput
   }
 
   export type DisponibilidadeOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type TempoLectivoOrderByRelationAggregateInput = {
+  export type Tempo_LectivoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type DiaSemanaCountOrderByAggregateInput = {
-    nome?: SortOrder
+    nome_dia?: SortOrder
   }
 
   export type DiaSemanaMaxOrderByAggregateInput = {
-    nome?: SortOrder
+    nome_dia?: SortOrder
   }
 
   export type DiaSemanaMinOrderByAggregateInput = {
-    nome?: SortOrder
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    nome_dia?: SortOrder
   }
 
   export type ProfDisciplinasListRelationFilter = {
@@ -16759,26 +15197,77 @@ export namespace Prisma {
   }
 
   export type DisciplinaCountOrderByAggregateInput = {
-    idDisciplina?: SortOrder
-    nome?: SortOrder
-  }
-
-  export type DisciplinaAvgOrderByAggregateInput = {
-    idDisciplina?: SortOrder
+    nome_disciplina?: SortOrder
   }
 
   export type DisciplinaMaxOrderByAggregateInput = {
-    idDisciplina?: SortOrder
-    nome?: SortOrder
+    nome_disciplina?: SortOrder
   }
 
   export type DisciplinaMinOrderByAggregateInput = {
-    idDisciplina?: SortOrder
-    nome?: SortOrder
+    nome_disciplina?: SortOrder
   }
 
-  export type DisciplinaSumOrderByAggregateInput = {
-    idDisciplina?: SortOrder
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type ProfessorScalarRelationFilter = {
+    is?: ProfessorWhereInput
+    isNot?: ProfessorWhereInput
+  }
+
+  export type DiaSemanaScalarRelationFilter = {
+    is?: DiaSemanaWhereInput
+    isNot?: DiaSemanaWhereInput
+  }
+
+  export type PeriodoScalarRelationFilter = {
+    is?: PeriodoWhereInput
+    isNot?: PeriodoWhereInput
+  }
+
+  export type DisponibilidadeCountOrderByAggregateInput = {
+    id_disponibilidade?: SortOrder
+    professorId?: SortOrder
+    nome_dia?: SortOrder
+    nome_periodo?: SortOrder
+    ordem?: SortOrder
+  }
+
+  export type DisponibilidadeAvgOrderByAggregateInput = {
+    id_disponibilidade?: SortOrder
+    professorId?: SortOrder
+    ordem?: SortOrder
+  }
+
+  export type DisponibilidadeMaxOrderByAggregateInput = {
+    id_disponibilidade?: SortOrder
+    professorId?: SortOrder
+    nome_dia?: SortOrder
+    nome_periodo?: SortOrder
+    ordem?: SortOrder
+  }
+
+  export type DisponibilidadeMinOrderByAggregateInput = {
+    id_disponibilidade?: SortOrder
+    professorId?: SortOrder
+    nome_dia?: SortOrder
+    nome_periodo?: SortOrder
+    ordem?: SortOrder
+  }
+
+  export type DisponibilidadeSumOrderByAggregateInput = {
+    id_disponibilidade?: SortOrder
+    professorId?: SortOrder
+    ordem?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -16797,70 +15286,16 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type DiaSemanaScalarRelationFilter = {
-    is?: DiaSemanaWhereInput
-    isNot?: DiaSemanaWhereInput
+  export type PeriodoCountOrderByAggregateInput = {
+    nome_periodo?: SortOrder
   }
 
-  export type PeriodoScalarRelationFilter = {
-    is?: PeriodoWhereInput
-    isNot?: PeriodoWhereInput
+  export type PeriodoMaxOrderByAggregateInput = {
+    nome_periodo?: SortOrder
   }
 
-  export type ProfessorScalarRelationFilter = {
-    is?: ProfessorWhereInput
-    isNot?: ProfessorWhereInput
-  }
-
-  export type DisponibilidadeCountOrderByAggregateInput = {
-    idDisponibilidade?: SortOrder
-    diaSemana?: SortOrder
-    periodoId?: SortOrder
-    ordem?: SortOrder
-    professorId?: SortOrder
-  }
-
-  export type DisponibilidadeAvgOrderByAggregateInput = {
-    idDisponibilidade?: SortOrder
-    ordem?: SortOrder
-    professorId?: SortOrder
-  }
-
-  export type DisponibilidadeMaxOrderByAggregateInput = {
-    idDisponibilidade?: SortOrder
-    diaSemana?: SortOrder
-    periodoId?: SortOrder
-    ordem?: SortOrder
-    professorId?: SortOrder
-  }
-
-  export type DisponibilidadeMinOrderByAggregateInput = {
-    idDisponibilidade?: SortOrder
-    diaSemana?: SortOrder
-    periodoId?: SortOrder
-    ordem?: SortOrder
-    professorId?: SortOrder
-  }
-
-  export type DisponibilidadeSumOrderByAggregateInput = {
-    idDisponibilidade?: SortOrder
-    ordem?: SortOrder
-    professorId?: SortOrder
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  export type PeriodoMinOrderByAggregateInput = {
+    nome_periodo?: SortOrder
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -16874,27 +15309,11 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type ProfTurmaListRelationFilter = {
-    every?: ProfTurmaWhereInput
-    some?: ProfTurmaWhereInput
-    none?: ProfTurmaWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
-  export type ProfTurmaOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type ProfessorCountOrderByAggregateInput = {
     id_professor?: SortOrder
     nome?: SortOrder
     email?: SortOrder
     telefone?: SortOrder
-    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
@@ -16907,7 +15326,6 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     telefone?: SortOrder
-    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
@@ -16916,30 +15334,11 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     telefone?: SortOrder
-    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type ProfessorSumOrderByAggregateInput = {
     id_professor?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -16956,56 +15355,60 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type PeriodoCountOrderByAggregateInput = {
-    periodo?: SortOrder
-  }
-
-  export type PeriodoMaxOrderByAggregateInput = {
-    periodo?: SortOrder
-  }
-
-  export type PeriodoMinOrderByAggregateInput = {
-    periodo?: SortOrder
-  }
-
   export type DisciplinaScalarRelationFilter = {
     is?: DisciplinaWhereInput
     isNot?: DisciplinaWhereInput
   }
 
-  export type ProfDisciplinasProfessorIdDisciplinaIdCompoundUniqueInput = {
+  export type ProfDisciplinasProfessorIdNome_disciplinaCompoundUniqueInput = {
     professorId: number
-    disciplinaId: number
+    nome_disciplina: string
   }
 
   export type ProfDisciplinasCountOrderByAggregateInput = {
-    idProfDisciplina?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
+    nome_disciplina?: SortOrder
   }
 
   export type ProfDisciplinasAvgOrderByAggregateInput = {
-    idProfDisciplina?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
   }
 
   export type ProfDisciplinasMaxOrderByAggregateInput = {
-    idProfDisciplina?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
+    nome_disciplina?: SortOrder
   }
 
   export type ProfDisciplinasMinOrderByAggregateInput = {
-    idProfDisciplina?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
+    nome_disciplina?: SortOrder
   }
 
   export type ProfDisciplinasSumOrderByAggregateInput = {
-    idProfDisciplina?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
+  }
+
+  export type SalaCountOrderByAggregateInput = {
+    nome_sala?: SortOrder
+    capacidade?: SortOrder
+  }
+
+  export type SalaAvgOrderByAggregateInput = {
+    capacidade?: SortOrder
+  }
+
+  export type SalaMaxOrderByAggregateInput = {
+    nome_sala?: SortOrder
+    capacidade?: SortOrder
+  }
+
+  export type SalaMinOrderByAggregateInput = {
+    nome_sala?: SortOrder
+    capacidade?: SortOrder
+  }
+
+  export type SalaSumOrderByAggregateInput = {
+    capacidade?: SortOrder
   }
 
   export type TurmaScalarRelationFilter = {
@@ -17013,123 +15416,54 @@ export namespace Prisma {
     isNot?: TurmaWhereInput
   }
 
-  export type ProfTurmaProfessorIdTurmaIdCompoundUniqueInput = {
-    professorId: number
-    turmaId: number
-  }
-
-  export type ProfTurmaCountOrderByAggregateInput = {
-    idProfTurma?: SortOrder
-    professorId?: SortOrder
-    turmaId?: SortOrder
-  }
-
-  export type ProfTurmaAvgOrderByAggregateInput = {
-    idProfTurma?: SortOrder
-    professorId?: SortOrder
-    turmaId?: SortOrder
-  }
-
-  export type ProfTurmaMaxOrderByAggregateInput = {
-    idProfTurma?: SortOrder
-    professorId?: SortOrder
-    turmaId?: SortOrder
-  }
-
-  export type ProfTurmaMinOrderByAggregateInput = {
-    idProfTurma?: SortOrder
-    professorId?: SortOrder
-    turmaId?: SortOrder
-  }
-
-  export type ProfTurmaSumOrderByAggregateInput = {
-    idProfTurma?: SortOrder
-    professorId?: SortOrder
-    turmaId?: SortOrder
-  }
-
-  export type SalaCountOrderByAggregateInput = {
-    idSala?: SortOrder
-    nome?: SortOrder
-  }
-
-  export type SalaAvgOrderByAggregateInput = {
-    idSala?: SortOrder
-  }
-
-  export type SalaMaxOrderByAggregateInput = {
-    idSala?: SortOrder
-    nome?: SortOrder
-  }
-
-  export type SalaMinOrderByAggregateInput = {
-    idSala?: SortOrder
-    nome?: SortOrder
-  }
-
-  export type SalaSumOrderByAggregateInput = {
-    idSala?: SortOrder
-  }
-
   export type SalaScalarRelationFilter = {
     is?: SalaWhereInput
     isNot?: SalaWhereInput
   }
 
-  export type TempoLectivoCountOrderByAggregateInput = {
-    idTempoLectivo?: SortOrder
-    diaSemana?: SortOrder
-    periodoId?: SortOrder
-    ordem?: SortOrder
+  export type Tempo_LectivoCountOrderByAggregateInput = {
+    id?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
-    salaId?: SortOrder
-    turmaId?: SortOrder
+    nome_turma?: SortOrder
+    nome_disciplina?: SortOrder
+    nome_sala?: SortOrder
+    nome_dia?: SortOrder
+    nome_periodo?: SortOrder
+    ordem?: SortOrder
   }
 
-  export type TempoLectivoAvgOrderByAggregateInput = {
-    idTempoLectivo?: SortOrder
-    ordem?: SortOrder
+  export type Tempo_LectivoAvgOrderByAggregateInput = {
+    id?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
-    salaId?: SortOrder
-    turmaId?: SortOrder
+    ordem?: SortOrder
   }
 
-  export type TempoLectivoMaxOrderByAggregateInput = {
-    idTempoLectivo?: SortOrder
-    diaSemana?: SortOrder
-    periodoId?: SortOrder
-    ordem?: SortOrder
+  export type Tempo_LectivoMaxOrderByAggregateInput = {
+    id?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
-    salaId?: SortOrder
-    turmaId?: SortOrder
+    nome_turma?: SortOrder
+    nome_disciplina?: SortOrder
+    nome_sala?: SortOrder
+    nome_dia?: SortOrder
+    nome_periodo?: SortOrder
+    ordem?: SortOrder
   }
 
-  export type TempoLectivoMinOrderByAggregateInput = {
-    idTempoLectivo?: SortOrder
-    diaSemana?: SortOrder
-    periodoId?: SortOrder
-    ordem?: SortOrder
+  export type Tempo_LectivoMinOrderByAggregateInput = {
+    id?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
-    salaId?: SortOrder
-    turmaId?: SortOrder
+    nome_turma?: SortOrder
+    nome_disciplina?: SortOrder
+    nome_sala?: SortOrder
+    nome_dia?: SortOrder
+    nome_periodo?: SortOrder
+    ordem?: SortOrder
   }
 
-  export type TempoLectivoSumOrderByAggregateInput = {
-    idTempoLectivo?: SortOrder
-    ordem?: SortOrder
+  export type Tempo_LectivoSumOrderByAggregateInput = {
+    id?: SortOrder
     professorId?: SortOrder
-    disciplinaId?: SortOrder
-    salaId?: SortOrder
-    turmaId?: SortOrder
-  }
-
-  export type ClasseScalarRelationFilter = {
-    is?: ClasseWhereInput
-    isNot?: ClasseWhereInput
+    ordem?: SortOrder
   }
 
   export type CursoScalarRelationFilter = {
@@ -17137,33 +15471,27 @@ export namespace Prisma {
     isNot?: CursoWhereInput
   }
 
-  export type TurmaCountOrderByAggregateInput = {
-    idTurma?: SortOrder
-    nome?: SortOrder
-    classe?: SortOrder
-    curso?: SortOrder
+  export type ClasseScalarRelationFilter = {
+    is?: ClasseWhereInput
+    isNot?: ClasseWhereInput
   }
 
-  export type TurmaAvgOrderByAggregateInput = {
-    idTurma?: SortOrder
+  export type TurmaCountOrderByAggregateInput = {
+    nome_turma?: SortOrder
+    nome_curso?: SortOrder
+    nome_classe?: SortOrder
   }
 
   export type TurmaMaxOrderByAggregateInput = {
-    idTurma?: SortOrder
-    nome?: SortOrder
-    classe?: SortOrder
-    curso?: SortOrder
+    nome_turma?: SortOrder
+    nome_curso?: SortOrder
+    nome_classe?: SortOrder
   }
 
   export type TurmaMinOrderByAggregateInput = {
-    idTurma?: SortOrder
-    nome?: SortOrder
-    classe?: SortOrder
-    curso?: SortOrder
-  }
-
-  export type TurmaSumOrderByAggregateInput = {
-    idTurma?: SortOrder
+    nome_turma?: SortOrder
+    nome_curso?: SortOrder
+    nome_classe?: SortOrder
   }
 
   export type TurmaCreateNestedManyWithoutClasseInput = {
@@ -17254,88 +15582,88 @@ export namespace Prisma {
     deleteMany?: TurmaScalarWhereInput | TurmaScalarWhereInput[]
   }
 
-  export type DisponibilidadeCreateNestedManyWithoutDiaSemanaInput = {
-    create?: XOR<DisponibilidadeCreateWithoutDiaSemanaInput, DisponibilidadeUncheckedCreateWithoutDiaSemanaInput> | DisponibilidadeCreateWithoutDiaSemanaInput[] | DisponibilidadeUncheckedCreateWithoutDiaSemanaInput[]
-    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutDiaSemanaInput | DisponibilidadeCreateOrConnectWithoutDiaSemanaInput[]
-    createMany?: DisponibilidadeCreateManyDiaSemanaInputEnvelope
+  export type DisponibilidadeCreateNestedManyWithoutDiaInput = {
+    create?: XOR<DisponibilidadeCreateWithoutDiaInput, DisponibilidadeUncheckedCreateWithoutDiaInput> | DisponibilidadeCreateWithoutDiaInput[] | DisponibilidadeUncheckedCreateWithoutDiaInput[]
+    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutDiaInput | DisponibilidadeCreateOrConnectWithoutDiaInput[]
+    createMany?: DisponibilidadeCreateManyDiaInputEnvelope
     connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
   }
 
-  export type TempoLectivoCreateNestedManyWithoutDiaSemanaInput = {
-    create?: XOR<TempoLectivoCreateWithoutDiaSemanaInput, TempoLectivoUncheckedCreateWithoutDiaSemanaInput> | TempoLectivoCreateWithoutDiaSemanaInput[] | TempoLectivoUncheckedCreateWithoutDiaSemanaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutDiaSemanaInput | TempoLectivoCreateOrConnectWithoutDiaSemanaInput[]
-    createMany?: TempoLectivoCreateManyDiaSemanaInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
+  export type Tempo_LectivoCreateNestedManyWithoutDiaInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutDiaInput, Tempo_LectivoUncheckedCreateWithoutDiaInput> | Tempo_LectivoCreateWithoutDiaInput[] | Tempo_LectivoUncheckedCreateWithoutDiaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutDiaInput | Tempo_LectivoCreateOrConnectWithoutDiaInput[]
+    createMany?: Tempo_LectivoCreateManyDiaInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
   }
 
-  export type DisponibilidadeUncheckedCreateNestedManyWithoutDiaSemanaInput = {
-    create?: XOR<DisponibilidadeCreateWithoutDiaSemanaInput, DisponibilidadeUncheckedCreateWithoutDiaSemanaInput> | DisponibilidadeCreateWithoutDiaSemanaInput[] | DisponibilidadeUncheckedCreateWithoutDiaSemanaInput[]
-    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutDiaSemanaInput | DisponibilidadeCreateOrConnectWithoutDiaSemanaInput[]
-    createMany?: DisponibilidadeCreateManyDiaSemanaInputEnvelope
+  export type DisponibilidadeUncheckedCreateNestedManyWithoutDiaInput = {
+    create?: XOR<DisponibilidadeCreateWithoutDiaInput, DisponibilidadeUncheckedCreateWithoutDiaInput> | DisponibilidadeCreateWithoutDiaInput[] | DisponibilidadeUncheckedCreateWithoutDiaInput[]
+    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutDiaInput | DisponibilidadeCreateOrConnectWithoutDiaInput[]
+    createMany?: DisponibilidadeCreateManyDiaInputEnvelope
     connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
   }
 
-  export type TempoLectivoUncheckedCreateNestedManyWithoutDiaSemanaInput = {
-    create?: XOR<TempoLectivoCreateWithoutDiaSemanaInput, TempoLectivoUncheckedCreateWithoutDiaSemanaInput> | TempoLectivoCreateWithoutDiaSemanaInput[] | TempoLectivoUncheckedCreateWithoutDiaSemanaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutDiaSemanaInput | TempoLectivoCreateOrConnectWithoutDiaSemanaInput[]
-    createMany?: TempoLectivoCreateManyDiaSemanaInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
+  export type Tempo_LectivoUncheckedCreateNestedManyWithoutDiaInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutDiaInput, Tempo_LectivoUncheckedCreateWithoutDiaInput> | Tempo_LectivoCreateWithoutDiaInput[] | Tempo_LectivoUncheckedCreateWithoutDiaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutDiaInput | Tempo_LectivoCreateOrConnectWithoutDiaInput[]
+    createMany?: Tempo_LectivoCreateManyDiaInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
   }
 
-  export type DisponibilidadeUpdateManyWithoutDiaSemanaNestedInput = {
-    create?: XOR<DisponibilidadeCreateWithoutDiaSemanaInput, DisponibilidadeUncheckedCreateWithoutDiaSemanaInput> | DisponibilidadeCreateWithoutDiaSemanaInput[] | DisponibilidadeUncheckedCreateWithoutDiaSemanaInput[]
-    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutDiaSemanaInput | DisponibilidadeCreateOrConnectWithoutDiaSemanaInput[]
-    upsert?: DisponibilidadeUpsertWithWhereUniqueWithoutDiaSemanaInput | DisponibilidadeUpsertWithWhereUniqueWithoutDiaSemanaInput[]
-    createMany?: DisponibilidadeCreateManyDiaSemanaInputEnvelope
+  export type DisponibilidadeUpdateManyWithoutDiaNestedInput = {
+    create?: XOR<DisponibilidadeCreateWithoutDiaInput, DisponibilidadeUncheckedCreateWithoutDiaInput> | DisponibilidadeCreateWithoutDiaInput[] | DisponibilidadeUncheckedCreateWithoutDiaInput[]
+    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutDiaInput | DisponibilidadeCreateOrConnectWithoutDiaInput[]
+    upsert?: DisponibilidadeUpsertWithWhereUniqueWithoutDiaInput | DisponibilidadeUpsertWithWhereUniqueWithoutDiaInput[]
+    createMany?: DisponibilidadeCreateManyDiaInputEnvelope
     set?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
     disconnect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
     delete?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
     connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
-    update?: DisponibilidadeUpdateWithWhereUniqueWithoutDiaSemanaInput | DisponibilidadeUpdateWithWhereUniqueWithoutDiaSemanaInput[]
-    updateMany?: DisponibilidadeUpdateManyWithWhereWithoutDiaSemanaInput | DisponibilidadeUpdateManyWithWhereWithoutDiaSemanaInput[]
+    update?: DisponibilidadeUpdateWithWhereUniqueWithoutDiaInput | DisponibilidadeUpdateWithWhereUniqueWithoutDiaInput[]
+    updateMany?: DisponibilidadeUpdateManyWithWhereWithoutDiaInput | DisponibilidadeUpdateManyWithWhereWithoutDiaInput[]
     deleteMany?: DisponibilidadeScalarWhereInput | DisponibilidadeScalarWhereInput[]
   }
 
-  export type TempoLectivoUpdateManyWithoutDiaSemanaNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutDiaSemanaInput, TempoLectivoUncheckedCreateWithoutDiaSemanaInput> | TempoLectivoCreateWithoutDiaSemanaInput[] | TempoLectivoUncheckedCreateWithoutDiaSemanaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutDiaSemanaInput | TempoLectivoCreateOrConnectWithoutDiaSemanaInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutDiaSemanaInput | TempoLectivoUpsertWithWhereUniqueWithoutDiaSemanaInput[]
-    createMany?: TempoLectivoCreateManyDiaSemanaInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutDiaSemanaInput | TempoLectivoUpdateWithWhereUniqueWithoutDiaSemanaInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutDiaSemanaInput | TempoLectivoUpdateManyWithWhereWithoutDiaSemanaInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
+  export type Tempo_LectivoUpdateManyWithoutDiaNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutDiaInput, Tempo_LectivoUncheckedCreateWithoutDiaInput> | Tempo_LectivoCreateWithoutDiaInput[] | Tempo_LectivoUncheckedCreateWithoutDiaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutDiaInput | Tempo_LectivoCreateOrConnectWithoutDiaInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutDiaInput | Tempo_LectivoUpsertWithWhereUniqueWithoutDiaInput[]
+    createMany?: Tempo_LectivoCreateManyDiaInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutDiaInput | Tempo_LectivoUpdateWithWhereUniqueWithoutDiaInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutDiaInput | Tempo_LectivoUpdateManyWithWhereWithoutDiaInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
   }
 
-  export type DisponibilidadeUncheckedUpdateManyWithoutDiaSemanaNestedInput = {
-    create?: XOR<DisponibilidadeCreateWithoutDiaSemanaInput, DisponibilidadeUncheckedCreateWithoutDiaSemanaInput> | DisponibilidadeCreateWithoutDiaSemanaInput[] | DisponibilidadeUncheckedCreateWithoutDiaSemanaInput[]
-    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutDiaSemanaInput | DisponibilidadeCreateOrConnectWithoutDiaSemanaInput[]
-    upsert?: DisponibilidadeUpsertWithWhereUniqueWithoutDiaSemanaInput | DisponibilidadeUpsertWithWhereUniqueWithoutDiaSemanaInput[]
-    createMany?: DisponibilidadeCreateManyDiaSemanaInputEnvelope
+  export type DisponibilidadeUncheckedUpdateManyWithoutDiaNestedInput = {
+    create?: XOR<DisponibilidadeCreateWithoutDiaInput, DisponibilidadeUncheckedCreateWithoutDiaInput> | DisponibilidadeCreateWithoutDiaInput[] | DisponibilidadeUncheckedCreateWithoutDiaInput[]
+    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutDiaInput | DisponibilidadeCreateOrConnectWithoutDiaInput[]
+    upsert?: DisponibilidadeUpsertWithWhereUniqueWithoutDiaInput | DisponibilidadeUpsertWithWhereUniqueWithoutDiaInput[]
+    createMany?: DisponibilidadeCreateManyDiaInputEnvelope
     set?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
     disconnect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
     delete?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
     connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
-    update?: DisponibilidadeUpdateWithWhereUniqueWithoutDiaSemanaInput | DisponibilidadeUpdateWithWhereUniqueWithoutDiaSemanaInput[]
-    updateMany?: DisponibilidadeUpdateManyWithWhereWithoutDiaSemanaInput | DisponibilidadeUpdateManyWithWhereWithoutDiaSemanaInput[]
+    update?: DisponibilidadeUpdateWithWhereUniqueWithoutDiaInput | DisponibilidadeUpdateWithWhereUniqueWithoutDiaInput[]
+    updateMany?: DisponibilidadeUpdateManyWithWhereWithoutDiaInput | DisponibilidadeUpdateManyWithWhereWithoutDiaInput[]
     deleteMany?: DisponibilidadeScalarWhereInput | DisponibilidadeScalarWhereInput[]
   }
 
-  export type TempoLectivoUncheckedUpdateManyWithoutDiaSemanaNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutDiaSemanaInput, TempoLectivoUncheckedCreateWithoutDiaSemanaInput> | TempoLectivoCreateWithoutDiaSemanaInput[] | TempoLectivoUncheckedCreateWithoutDiaSemanaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutDiaSemanaInput | TempoLectivoCreateOrConnectWithoutDiaSemanaInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutDiaSemanaInput | TempoLectivoUpsertWithWhereUniqueWithoutDiaSemanaInput[]
-    createMany?: TempoLectivoCreateManyDiaSemanaInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutDiaSemanaInput | TempoLectivoUpdateWithWhereUniqueWithoutDiaSemanaInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutDiaSemanaInput | TempoLectivoUpdateManyWithWhereWithoutDiaSemanaInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
+  export type Tempo_LectivoUncheckedUpdateManyWithoutDiaNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutDiaInput, Tempo_LectivoUncheckedCreateWithoutDiaInput> | Tempo_LectivoCreateWithoutDiaInput[] | Tempo_LectivoUncheckedCreateWithoutDiaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutDiaInput | Tempo_LectivoCreateOrConnectWithoutDiaInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutDiaInput | Tempo_LectivoUpsertWithWhereUniqueWithoutDiaInput[]
+    createMany?: Tempo_LectivoCreateManyDiaInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutDiaInput | Tempo_LectivoUpdateWithWhereUniqueWithoutDiaInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutDiaInput | Tempo_LectivoUpdateManyWithWhereWithoutDiaInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
   }
 
   export type ProfDisciplinasCreateNestedManyWithoutDisciplinaInput = {
@@ -17345,11 +15673,11 @@ export namespace Prisma {
     connect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
   }
 
-  export type TempoLectivoCreateNestedManyWithoutDisciplinaInput = {
-    create?: XOR<TempoLectivoCreateWithoutDisciplinaInput, TempoLectivoUncheckedCreateWithoutDisciplinaInput> | TempoLectivoCreateWithoutDisciplinaInput[] | TempoLectivoUncheckedCreateWithoutDisciplinaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutDisciplinaInput | TempoLectivoCreateOrConnectWithoutDisciplinaInput[]
-    createMany?: TempoLectivoCreateManyDisciplinaInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
+  export type Tempo_LectivoCreateNestedManyWithoutDisciplinaInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutDisciplinaInput, Tempo_LectivoUncheckedCreateWithoutDisciplinaInput> | Tempo_LectivoCreateWithoutDisciplinaInput[] | Tempo_LectivoUncheckedCreateWithoutDisciplinaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutDisciplinaInput | Tempo_LectivoCreateOrConnectWithoutDisciplinaInput[]
+    createMany?: Tempo_LectivoCreateManyDisciplinaInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
   }
 
   export type ProfDisciplinasUncheckedCreateNestedManyWithoutDisciplinaInput = {
@@ -17359,11 +15687,11 @@ export namespace Prisma {
     connect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
   }
 
-  export type TempoLectivoUncheckedCreateNestedManyWithoutDisciplinaInput = {
-    create?: XOR<TempoLectivoCreateWithoutDisciplinaInput, TempoLectivoUncheckedCreateWithoutDisciplinaInput> | TempoLectivoCreateWithoutDisciplinaInput[] | TempoLectivoUncheckedCreateWithoutDisciplinaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutDisciplinaInput | TempoLectivoCreateOrConnectWithoutDisciplinaInput[]
-    createMany?: TempoLectivoCreateManyDisciplinaInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
+  export type Tempo_LectivoUncheckedCreateNestedManyWithoutDisciplinaInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutDisciplinaInput, Tempo_LectivoUncheckedCreateWithoutDisciplinaInput> | Tempo_LectivoCreateWithoutDisciplinaInput[] | Tempo_LectivoUncheckedCreateWithoutDisciplinaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutDisciplinaInput | Tempo_LectivoCreateOrConnectWithoutDisciplinaInput[]
+    createMany?: Tempo_LectivoCreateManyDisciplinaInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
   }
 
   export type ProfDisciplinasUpdateManyWithoutDisciplinaNestedInput = {
@@ -17380,26 +15708,18 @@ export namespace Prisma {
     deleteMany?: ProfDisciplinasScalarWhereInput | ProfDisciplinasScalarWhereInput[]
   }
 
-  export type TempoLectivoUpdateManyWithoutDisciplinaNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutDisciplinaInput, TempoLectivoUncheckedCreateWithoutDisciplinaInput> | TempoLectivoCreateWithoutDisciplinaInput[] | TempoLectivoUncheckedCreateWithoutDisciplinaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutDisciplinaInput | TempoLectivoCreateOrConnectWithoutDisciplinaInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutDisciplinaInput | TempoLectivoUpsertWithWhereUniqueWithoutDisciplinaInput[]
-    createMany?: TempoLectivoCreateManyDisciplinaInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutDisciplinaInput | TempoLectivoUpdateWithWhereUniqueWithoutDisciplinaInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutDisciplinaInput | TempoLectivoUpdateManyWithWhereWithoutDisciplinaInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type Tempo_LectivoUpdateManyWithoutDisciplinaNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutDisciplinaInput, Tempo_LectivoUncheckedCreateWithoutDisciplinaInput> | Tempo_LectivoCreateWithoutDisciplinaInput[] | Tempo_LectivoUncheckedCreateWithoutDisciplinaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutDisciplinaInput | Tempo_LectivoCreateOrConnectWithoutDisciplinaInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutDisciplinaInput | Tempo_LectivoUpsertWithWhereUniqueWithoutDisciplinaInput[]
+    createMany?: Tempo_LectivoCreateManyDisciplinaInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutDisciplinaInput | Tempo_LectivoUpdateWithWhereUniqueWithoutDisciplinaInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutDisciplinaInput | Tempo_LectivoUpdateManyWithWhereWithoutDisciplinaInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
   }
 
   export type ProfDisciplinasUncheckedUpdateManyWithoutDisciplinaNestedInput = {
@@ -17416,236 +15736,68 @@ export namespace Prisma {
     deleteMany?: ProfDisciplinasScalarWhereInput | ProfDisciplinasScalarWhereInput[]
   }
 
-  export type TempoLectivoUncheckedUpdateManyWithoutDisciplinaNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutDisciplinaInput, TempoLectivoUncheckedCreateWithoutDisciplinaInput> | TempoLectivoCreateWithoutDisciplinaInput[] | TempoLectivoUncheckedCreateWithoutDisciplinaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutDisciplinaInput | TempoLectivoCreateOrConnectWithoutDisciplinaInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutDisciplinaInput | TempoLectivoUpsertWithWhereUniqueWithoutDisciplinaInput[]
-    createMany?: TempoLectivoCreateManyDisciplinaInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutDisciplinaInput | TempoLectivoUpdateWithWhereUniqueWithoutDisciplinaInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutDisciplinaInput | TempoLectivoUpdateManyWithWhereWithoutDisciplinaInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
+  export type Tempo_LectivoUncheckedUpdateManyWithoutDisciplinaNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutDisciplinaInput, Tempo_LectivoUncheckedCreateWithoutDisciplinaInput> | Tempo_LectivoCreateWithoutDisciplinaInput[] | Tempo_LectivoUncheckedCreateWithoutDisciplinaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutDisciplinaInput | Tempo_LectivoCreateOrConnectWithoutDisciplinaInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutDisciplinaInput | Tempo_LectivoUpsertWithWhereUniqueWithoutDisciplinaInput[]
+    createMany?: Tempo_LectivoCreateManyDisciplinaInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutDisciplinaInput | Tempo_LectivoUpdateWithWhereUniqueWithoutDisciplinaInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutDisciplinaInput | Tempo_LectivoUpdateManyWithWhereWithoutDisciplinaInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
   }
 
-  export type DiaSemanaCreateNestedOneWithoutDisponibilidadeInput = {
-    create?: XOR<DiaSemanaCreateWithoutDisponibilidadeInput, DiaSemanaUncheckedCreateWithoutDisponibilidadeInput>
-    connectOrCreate?: DiaSemanaCreateOrConnectWithoutDisponibilidadeInput
-    connect?: DiaSemanaWhereUniqueInput
-  }
-
-  export type PeriodoCreateNestedOneWithoutDisponibilidadeInput = {
-    create?: XOR<PeriodoCreateWithoutDisponibilidadeInput, PeriodoUncheckedCreateWithoutDisponibilidadeInput>
-    connectOrCreate?: PeriodoCreateOrConnectWithoutDisponibilidadeInput
-    connect?: PeriodoWhereUniqueInput
-  }
-
-  export type ProfessorCreateNestedOneWithoutDisponibilidadeInput = {
-    create?: XOR<ProfessorCreateWithoutDisponibilidadeInput, ProfessorUncheckedCreateWithoutDisponibilidadeInput>
-    connectOrCreate?: ProfessorCreateOrConnectWithoutDisponibilidadeInput
+  export type ProfessorCreateNestedOneWithoutDisponibilidadesInput = {
+    create?: XOR<ProfessorCreateWithoutDisponibilidadesInput, ProfessorUncheckedCreateWithoutDisponibilidadesInput>
+    connectOrCreate?: ProfessorCreateOrConnectWithoutDisponibilidadesInput
     connect?: ProfessorWhereUniqueInput
   }
 
-  export type DiaSemanaUpdateOneRequiredWithoutDisponibilidadeNestedInput = {
-    create?: XOR<DiaSemanaCreateWithoutDisponibilidadeInput, DiaSemanaUncheckedCreateWithoutDisponibilidadeInput>
-    connectOrCreate?: DiaSemanaCreateOrConnectWithoutDisponibilidadeInput
-    upsert?: DiaSemanaUpsertWithoutDisponibilidadeInput
+  export type DiaSemanaCreateNestedOneWithoutDisponibilidadesInput = {
+    create?: XOR<DiaSemanaCreateWithoutDisponibilidadesInput, DiaSemanaUncheckedCreateWithoutDisponibilidadesInput>
+    connectOrCreate?: DiaSemanaCreateOrConnectWithoutDisponibilidadesInput
     connect?: DiaSemanaWhereUniqueInput
-    update?: XOR<XOR<DiaSemanaUpdateToOneWithWhereWithoutDisponibilidadeInput, DiaSemanaUpdateWithoutDisponibilidadeInput>, DiaSemanaUncheckedUpdateWithoutDisponibilidadeInput>
   }
 
-  export type PeriodoUpdateOneRequiredWithoutDisponibilidadeNestedInput = {
-    create?: XOR<PeriodoCreateWithoutDisponibilidadeInput, PeriodoUncheckedCreateWithoutDisponibilidadeInput>
-    connectOrCreate?: PeriodoCreateOrConnectWithoutDisponibilidadeInput
-    upsert?: PeriodoUpsertWithoutDisponibilidadeInput
+  export type PeriodoCreateNestedOneWithoutDisponibilidadesInput = {
+    create?: XOR<PeriodoCreateWithoutDisponibilidadesInput, PeriodoUncheckedCreateWithoutDisponibilidadesInput>
+    connectOrCreate?: PeriodoCreateOrConnectWithoutDisponibilidadesInput
     connect?: PeriodoWhereUniqueInput
-    update?: XOR<XOR<PeriodoUpdateToOneWithWhereWithoutDisponibilidadeInput, PeriodoUpdateWithoutDisponibilidadeInput>, PeriodoUncheckedUpdateWithoutDisponibilidadeInput>
   }
 
-  export type ProfessorUpdateOneRequiredWithoutDisponibilidadeNestedInput = {
-    create?: XOR<ProfessorCreateWithoutDisponibilidadeInput, ProfessorUncheckedCreateWithoutDisponibilidadeInput>
-    connectOrCreate?: ProfessorCreateOrConnectWithoutDisponibilidadeInput
-    upsert?: ProfessorUpsertWithoutDisponibilidadeInput
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ProfessorUpdateOneRequiredWithoutDisponibilidadesNestedInput = {
+    create?: XOR<ProfessorCreateWithoutDisponibilidadesInput, ProfessorUncheckedCreateWithoutDisponibilidadesInput>
+    connectOrCreate?: ProfessorCreateOrConnectWithoutDisponibilidadesInput
+    upsert?: ProfessorUpsertWithoutDisponibilidadesInput
     connect?: ProfessorWhereUniqueInput
-    update?: XOR<XOR<ProfessorUpdateToOneWithWhereWithoutDisponibilidadeInput, ProfessorUpdateWithoutDisponibilidadeInput>, ProfessorUncheckedUpdateWithoutDisponibilidadeInput>
+    update?: XOR<XOR<ProfessorUpdateToOneWithWhereWithoutDisponibilidadesInput, ProfessorUpdateWithoutDisponibilidadesInput>, ProfessorUncheckedUpdateWithoutDisponibilidadesInput>
   }
 
-  export type DisponibilidadeCreateNestedManyWithoutProfessorInput = {
-    create?: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput> | DisponibilidadeCreateWithoutProfessorInput[] | DisponibilidadeUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutProfessorInput | DisponibilidadeCreateOrConnectWithoutProfessorInput[]
-    createMany?: DisponibilidadeCreateManyProfessorInputEnvelope
-    connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
+  export type DiaSemanaUpdateOneRequiredWithoutDisponibilidadesNestedInput = {
+    create?: XOR<DiaSemanaCreateWithoutDisponibilidadesInput, DiaSemanaUncheckedCreateWithoutDisponibilidadesInput>
+    connectOrCreate?: DiaSemanaCreateOrConnectWithoutDisponibilidadesInput
+    upsert?: DiaSemanaUpsertWithoutDisponibilidadesInput
+    connect?: DiaSemanaWhereUniqueInput
+    update?: XOR<XOR<DiaSemanaUpdateToOneWithWhereWithoutDisponibilidadesInput, DiaSemanaUpdateWithoutDisponibilidadesInput>, DiaSemanaUncheckedUpdateWithoutDisponibilidadesInput>
   }
 
-  export type ProfDisciplinasCreateNestedManyWithoutProfessorInput = {
-    create?: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput> | ProfDisciplinasCreateWithoutProfessorInput[] | ProfDisciplinasUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: ProfDisciplinasCreateOrConnectWithoutProfessorInput | ProfDisciplinasCreateOrConnectWithoutProfessorInput[]
-    createMany?: ProfDisciplinasCreateManyProfessorInputEnvelope
-    connect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
-  }
-
-  export type ProfTurmaCreateNestedManyWithoutProfessorInput = {
-    create?: XOR<ProfTurmaCreateWithoutProfessorInput, ProfTurmaUncheckedCreateWithoutProfessorInput> | ProfTurmaCreateWithoutProfessorInput[] | ProfTurmaUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: ProfTurmaCreateOrConnectWithoutProfessorInput | ProfTurmaCreateOrConnectWithoutProfessorInput[]
-    createMany?: ProfTurmaCreateManyProfessorInputEnvelope
-    connect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-  }
-
-  export type TempoLectivoCreateNestedManyWithoutProfessorInput = {
-    create?: XOR<TempoLectivoCreateWithoutProfessorInput, TempoLectivoUncheckedCreateWithoutProfessorInput> | TempoLectivoCreateWithoutProfessorInput[] | TempoLectivoUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutProfessorInput | TempoLectivoCreateOrConnectWithoutProfessorInput[]
-    createMany?: TempoLectivoCreateManyProfessorInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-  }
-
-  export type DisponibilidadeUncheckedCreateNestedManyWithoutProfessorInput = {
-    create?: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput> | DisponibilidadeCreateWithoutProfessorInput[] | DisponibilidadeUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutProfessorInput | DisponibilidadeCreateOrConnectWithoutProfessorInput[]
-    createMany?: DisponibilidadeCreateManyProfessorInputEnvelope
-    connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
-  }
-
-  export type ProfDisciplinasUncheckedCreateNestedManyWithoutProfessorInput = {
-    create?: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput> | ProfDisciplinasCreateWithoutProfessorInput[] | ProfDisciplinasUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: ProfDisciplinasCreateOrConnectWithoutProfessorInput | ProfDisciplinasCreateOrConnectWithoutProfessorInput[]
-    createMany?: ProfDisciplinasCreateManyProfessorInputEnvelope
-    connect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
-  }
-
-  export type ProfTurmaUncheckedCreateNestedManyWithoutProfessorInput = {
-    create?: XOR<ProfTurmaCreateWithoutProfessorInput, ProfTurmaUncheckedCreateWithoutProfessorInput> | ProfTurmaCreateWithoutProfessorInput[] | ProfTurmaUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: ProfTurmaCreateOrConnectWithoutProfessorInput | ProfTurmaCreateOrConnectWithoutProfessorInput[]
-    createMany?: ProfTurmaCreateManyProfessorInputEnvelope
-    connect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-  }
-
-  export type TempoLectivoUncheckedCreateNestedManyWithoutProfessorInput = {
-    create?: XOR<TempoLectivoCreateWithoutProfessorInput, TempoLectivoUncheckedCreateWithoutProfessorInput> | TempoLectivoCreateWithoutProfessorInput[] | TempoLectivoUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutProfessorInput | TempoLectivoCreateOrConnectWithoutProfessorInput[]
-    createMany?: TempoLectivoCreateManyProfessorInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
-  export type DisponibilidadeUpdateManyWithoutProfessorNestedInput = {
-    create?: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput> | DisponibilidadeCreateWithoutProfessorInput[] | DisponibilidadeUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutProfessorInput | DisponibilidadeCreateOrConnectWithoutProfessorInput[]
-    upsert?: DisponibilidadeUpsertWithWhereUniqueWithoutProfessorInput | DisponibilidadeUpsertWithWhereUniqueWithoutProfessorInput[]
-    createMany?: DisponibilidadeCreateManyProfessorInputEnvelope
-    set?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
-    disconnect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
-    delete?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
-    connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
-    update?: DisponibilidadeUpdateWithWhereUniqueWithoutProfessorInput | DisponibilidadeUpdateWithWhereUniqueWithoutProfessorInput[]
-    updateMany?: DisponibilidadeUpdateManyWithWhereWithoutProfessorInput | DisponibilidadeUpdateManyWithWhereWithoutProfessorInput[]
-    deleteMany?: DisponibilidadeScalarWhereInput | DisponibilidadeScalarWhereInput[]
-  }
-
-  export type ProfDisciplinasUpdateManyWithoutProfessorNestedInput = {
-    create?: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput> | ProfDisciplinasCreateWithoutProfessorInput[] | ProfDisciplinasUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: ProfDisciplinasCreateOrConnectWithoutProfessorInput | ProfDisciplinasCreateOrConnectWithoutProfessorInput[]
-    upsert?: ProfDisciplinasUpsertWithWhereUniqueWithoutProfessorInput | ProfDisciplinasUpsertWithWhereUniqueWithoutProfessorInput[]
-    createMany?: ProfDisciplinasCreateManyProfessorInputEnvelope
-    set?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
-    disconnect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
-    delete?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
-    connect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
-    update?: ProfDisciplinasUpdateWithWhereUniqueWithoutProfessorInput | ProfDisciplinasUpdateWithWhereUniqueWithoutProfessorInput[]
-    updateMany?: ProfDisciplinasUpdateManyWithWhereWithoutProfessorInput | ProfDisciplinasUpdateManyWithWhereWithoutProfessorInput[]
-    deleteMany?: ProfDisciplinasScalarWhereInput | ProfDisciplinasScalarWhereInput[]
-  }
-
-  export type ProfTurmaUpdateManyWithoutProfessorNestedInput = {
-    create?: XOR<ProfTurmaCreateWithoutProfessorInput, ProfTurmaUncheckedCreateWithoutProfessorInput> | ProfTurmaCreateWithoutProfessorInput[] | ProfTurmaUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: ProfTurmaCreateOrConnectWithoutProfessorInput | ProfTurmaCreateOrConnectWithoutProfessorInput[]
-    upsert?: ProfTurmaUpsertWithWhereUniqueWithoutProfessorInput | ProfTurmaUpsertWithWhereUniqueWithoutProfessorInput[]
-    createMany?: ProfTurmaCreateManyProfessorInputEnvelope
-    set?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    disconnect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    delete?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    connect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    update?: ProfTurmaUpdateWithWhereUniqueWithoutProfessorInput | ProfTurmaUpdateWithWhereUniqueWithoutProfessorInput[]
-    updateMany?: ProfTurmaUpdateManyWithWhereWithoutProfessorInput | ProfTurmaUpdateManyWithWhereWithoutProfessorInput[]
-    deleteMany?: ProfTurmaScalarWhereInput | ProfTurmaScalarWhereInput[]
-  }
-
-  export type TempoLectivoUpdateManyWithoutProfessorNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutProfessorInput, TempoLectivoUncheckedCreateWithoutProfessorInput> | TempoLectivoCreateWithoutProfessorInput[] | TempoLectivoUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutProfessorInput | TempoLectivoCreateOrConnectWithoutProfessorInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutProfessorInput | TempoLectivoUpsertWithWhereUniqueWithoutProfessorInput[]
-    createMany?: TempoLectivoCreateManyProfessorInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutProfessorInput | TempoLectivoUpdateWithWhereUniqueWithoutProfessorInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutProfessorInput | TempoLectivoUpdateManyWithWhereWithoutProfessorInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
-  }
-
-  export type DisponibilidadeUncheckedUpdateManyWithoutProfessorNestedInput = {
-    create?: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput> | DisponibilidadeCreateWithoutProfessorInput[] | DisponibilidadeUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutProfessorInput | DisponibilidadeCreateOrConnectWithoutProfessorInput[]
-    upsert?: DisponibilidadeUpsertWithWhereUniqueWithoutProfessorInput | DisponibilidadeUpsertWithWhereUniqueWithoutProfessorInput[]
-    createMany?: DisponibilidadeCreateManyProfessorInputEnvelope
-    set?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
-    disconnect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
-    delete?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
-    connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
-    update?: DisponibilidadeUpdateWithWhereUniqueWithoutProfessorInput | DisponibilidadeUpdateWithWhereUniqueWithoutProfessorInput[]
-    updateMany?: DisponibilidadeUpdateManyWithWhereWithoutProfessorInput | DisponibilidadeUpdateManyWithWhereWithoutProfessorInput[]
-    deleteMany?: DisponibilidadeScalarWhereInput | DisponibilidadeScalarWhereInput[]
-  }
-
-  export type ProfDisciplinasUncheckedUpdateManyWithoutProfessorNestedInput = {
-    create?: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput> | ProfDisciplinasCreateWithoutProfessorInput[] | ProfDisciplinasUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: ProfDisciplinasCreateOrConnectWithoutProfessorInput | ProfDisciplinasCreateOrConnectWithoutProfessorInput[]
-    upsert?: ProfDisciplinasUpsertWithWhereUniqueWithoutProfessorInput | ProfDisciplinasUpsertWithWhereUniqueWithoutProfessorInput[]
-    createMany?: ProfDisciplinasCreateManyProfessorInputEnvelope
-    set?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
-    disconnect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
-    delete?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
-    connect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
-    update?: ProfDisciplinasUpdateWithWhereUniqueWithoutProfessorInput | ProfDisciplinasUpdateWithWhereUniqueWithoutProfessorInput[]
-    updateMany?: ProfDisciplinasUpdateManyWithWhereWithoutProfessorInput | ProfDisciplinasUpdateManyWithWhereWithoutProfessorInput[]
-    deleteMany?: ProfDisciplinasScalarWhereInput | ProfDisciplinasScalarWhereInput[]
-  }
-
-  export type ProfTurmaUncheckedUpdateManyWithoutProfessorNestedInput = {
-    create?: XOR<ProfTurmaCreateWithoutProfessorInput, ProfTurmaUncheckedCreateWithoutProfessorInput> | ProfTurmaCreateWithoutProfessorInput[] | ProfTurmaUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: ProfTurmaCreateOrConnectWithoutProfessorInput | ProfTurmaCreateOrConnectWithoutProfessorInput[]
-    upsert?: ProfTurmaUpsertWithWhereUniqueWithoutProfessorInput | ProfTurmaUpsertWithWhereUniqueWithoutProfessorInput[]
-    createMany?: ProfTurmaCreateManyProfessorInputEnvelope
-    set?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    disconnect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    delete?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    connect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    update?: ProfTurmaUpdateWithWhereUniqueWithoutProfessorInput | ProfTurmaUpdateWithWhereUniqueWithoutProfessorInput[]
-    updateMany?: ProfTurmaUpdateManyWithWhereWithoutProfessorInput | ProfTurmaUpdateManyWithWhereWithoutProfessorInput[]
-    deleteMany?: ProfTurmaScalarWhereInput | ProfTurmaScalarWhereInput[]
-  }
-
-  export type TempoLectivoUncheckedUpdateManyWithoutProfessorNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutProfessorInput, TempoLectivoUncheckedCreateWithoutProfessorInput> | TempoLectivoCreateWithoutProfessorInput[] | TempoLectivoUncheckedCreateWithoutProfessorInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutProfessorInput | TempoLectivoCreateOrConnectWithoutProfessorInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutProfessorInput | TempoLectivoUpsertWithWhereUniqueWithoutProfessorInput[]
-    createMany?: TempoLectivoCreateManyProfessorInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutProfessorInput | TempoLectivoUpdateWithWhereUniqueWithoutProfessorInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutProfessorInput | TempoLectivoUpdateManyWithWhereWithoutProfessorInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
+  export type PeriodoUpdateOneRequiredWithoutDisponibilidadesNestedInput = {
+    create?: XOR<PeriodoCreateWithoutDisponibilidadesInput, PeriodoUncheckedCreateWithoutDisponibilidadesInput>
+    connectOrCreate?: PeriodoCreateOrConnectWithoutDisponibilidadesInput
+    upsert?: PeriodoUpsertWithoutDisponibilidadesInput
+    connect?: PeriodoWhereUniqueInput
+    update?: XOR<XOR<PeriodoUpdateToOneWithWhereWithoutDisponibilidadesInput, PeriodoUpdateWithoutDisponibilidadesInput>, PeriodoUncheckedUpdateWithoutDisponibilidadesInput>
   }
 
   export type DisponibilidadeCreateNestedManyWithoutPeriodoInput = {
@@ -17655,11 +15807,11 @@ export namespace Prisma {
     connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
   }
 
-  export type TempoLectivoCreateNestedManyWithoutPeriodoInput = {
-    create?: XOR<TempoLectivoCreateWithoutPeriodoInput, TempoLectivoUncheckedCreateWithoutPeriodoInput> | TempoLectivoCreateWithoutPeriodoInput[] | TempoLectivoUncheckedCreateWithoutPeriodoInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutPeriodoInput | TempoLectivoCreateOrConnectWithoutPeriodoInput[]
-    createMany?: TempoLectivoCreateManyPeriodoInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
+  export type Tempo_LectivoCreateNestedManyWithoutPeriodoInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutPeriodoInput, Tempo_LectivoUncheckedCreateWithoutPeriodoInput> | Tempo_LectivoCreateWithoutPeriodoInput[] | Tempo_LectivoUncheckedCreateWithoutPeriodoInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutPeriodoInput | Tempo_LectivoCreateOrConnectWithoutPeriodoInput[]
+    createMany?: Tempo_LectivoCreateManyPeriodoInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
   }
 
   export type DisponibilidadeUncheckedCreateNestedManyWithoutPeriodoInput = {
@@ -17669,11 +15821,11 @@ export namespace Prisma {
     connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
   }
 
-  export type TempoLectivoUncheckedCreateNestedManyWithoutPeriodoInput = {
-    create?: XOR<TempoLectivoCreateWithoutPeriodoInput, TempoLectivoUncheckedCreateWithoutPeriodoInput> | TempoLectivoCreateWithoutPeriodoInput[] | TempoLectivoUncheckedCreateWithoutPeriodoInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutPeriodoInput | TempoLectivoCreateOrConnectWithoutPeriodoInput[]
-    createMany?: TempoLectivoCreateManyPeriodoInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
+  export type Tempo_LectivoUncheckedCreateNestedManyWithoutPeriodoInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutPeriodoInput, Tempo_LectivoUncheckedCreateWithoutPeriodoInput> | Tempo_LectivoCreateWithoutPeriodoInput[] | Tempo_LectivoUncheckedCreateWithoutPeriodoInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutPeriodoInput | Tempo_LectivoCreateOrConnectWithoutPeriodoInput[]
+    createMany?: Tempo_LectivoCreateManyPeriodoInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
   }
 
   export type DisponibilidadeUpdateManyWithoutPeriodoNestedInput = {
@@ -17690,18 +15842,18 @@ export namespace Prisma {
     deleteMany?: DisponibilidadeScalarWhereInput | DisponibilidadeScalarWhereInput[]
   }
 
-  export type TempoLectivoUpdateManyWithoutPeriodoNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutPeriodoInput, TempoLectivoUncheckedCreateWithoutPeriodoInput> | TempoLectivoCreateWithoutPeriodoInput[] | TempoLectivoUncheckedCreateWithoutPeriodoInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutPeriodoInput | TempoLectivoCreateOrConnectWithoutPeriodoInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutPeriodoInput | TempoLectivoUpsertWithWhereUniqueWithoutPeriodoInput[]
-    createMany?: TempoLectivoCreateManyPeriodoInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutPeriodoInput | TempoLectivoUpdateWithWhereUniqueWithoutPeriodoInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutPeriodoInput | TempoLectivoUpdateManyWithWhereWithoutPeriodoInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
+  export type Tempo_LectivoUpdateManyWithoutPeriodoNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutPeriodoInput, Tempo_LectivoUncheckedCreateWithoutPeriodoInput> | Tempo_LectivoCreateWithoutPeriodoInput[] | Tempo_LectivoUncheckedCreateWithoutPeriodoInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutPeriodoInput | Tempo_LectivoCreateOrConnectWithoutPeriodoInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutPeriodoInput | Tempo_LectivoUpsertWithWhereUniqueWithoutPeriodoInput[]
+    createMany?: Tempo_LectivoCreateManyPeriodoInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutPeriodoInput | Tempo_LectivoUpdateWithWhereUniqueWithoutPeriodoInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutPeriodoInput | Tempo_LectivoUpdateManyWithWhereWithoutPeriodoInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
   }
 
   export type DisponibilidadeUncheckedUpdateManyWithoutPeriodoNestedInput = {
@@ -17718,24 +15870,148 @@ export namespace Prisma {
     deleteMany?: DisponibilidadeScalarWhereInput | DisponibilidadeScalarWhereInput[]
   }
 
-  export type TempoLectivoUncheckedUpdateManyWithoutPeriodoNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutPeriodoInput, TempoLectivoUncheckedCreateWithoutPeriodoInput> | TempoLectivoCreateWithoutPeriodoInput[] | TempoLectivoUncheckedCreateWithoutPeriodoInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutPeriodoInput | TempoLectivoCreateOrConnectWithoutPeriodoInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutPeriodoInput | TempoLectivoUpsertWithWhereUniqueWithoutPeriodoInput[]
-    createMany?: TempoLectivoCreateManyPeriodoInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutPeriodoInput | TempoLectivoUpdateWithWhereUniqueWithoutPeriodoInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutPeriodoInput | TempoLectivoUpdateManyWithWhereWithoutPeriodoInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
+  export type Tempo_LectivoUncheckedUpdateManyWithoutPeriodoNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutPeriodoInput, Tempo_LectivoUncheckedCreateWithoutPeriodoInput> | Tempo_LectivoCreateWithoutPeriodoInput[] | Tempo_LectivoUncheckedCreateWithoutPeriodoInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutPeriodoInput | Tempo_LectivoCreateOrConnectWithoutPeriodoInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutPeriodoInput | Tempo_LectivoUpsertWithWhereUniqueWithoutPeriodoInput[]
+    createMany?: Tempo_LectivoCreateManyPeriodoInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutPeriodoInput | Tempo_LectivoUpdateWithWhereUniqueWithoutPeriodoInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutPeriodoInput | Tempo_LectivoUpdateManyWithWhereWithoutPeriodoInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
   }
 
-  export type DisciplinaCreateNestedOneWithoutProfDisciplinasInput = {
-    create?: XOR<DisciplinaCreateWithoutProfDisciplinasInput, DisciplinaUncheckedCreateWithoutProfDisciplinasInput>
-    connectOrCreate?: DisciplinaCreateOrConnectWithoutProfDisciplinasInput
-    connect?: DisciplinaWhereUniqueInput
+  export type ProfDisciplinasCreateNestedManyWithoutProfessorInput = {
+    create?: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput> | ProfDisciplinasCreateWithoutProfessorInput[] | ProfDisciplinasUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: ProfDisciplinasCreateOrConnectWithoutProfessorInput | ProfDisciplinasCreateOrConnectWithoutProfessorInput[]
+    createMany?: ProfDisciplinasCreateManyProfessorInputEnvelope
+    connect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
+  }
+
+  export type DisponibilidadeCreateNestedManyWithoutProfessorInput = {
+    create?: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput> | DisponibilidadeCreateWithoutProfessorInput[] | DisponibilidadeUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutProfessorInput | DisponibilidadeCreateOrConnectWithoutProfessorInput[]
+    createMany?: DisponibilidadeCreateManyProfessorInputEnvelope
+    connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
+  }
+
+  export type Tempo_LectivoCreateNestedManyWithoutProfessorInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutProfessorInput, Tempo_LectivoUncheckedCreateWithoutProfessorInput> | Tempo_LectivoCreateWithoutProfessorInput[] | Tempo_LectivoUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutProfessorInput | Tempo_LectivoCreateOrConnectWithoutProfessorInput[]
+    createMany?: Tempo_LectivoCreateManyProfessorInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+  }
+
+  export type ProfDisciplinasUncheckedCreateNestedManyWithoutProfessorInput = {
+    create?: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput> | ProfDisciplinasCreateWithoutProfessorInput[] | ProfDisciplinasUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: ProfDisciplinasCreateOrConnectWithoutProfessorInput | ProfDisciplinasCreateOrConnectWithoutProfessorInput[]
+    createMany?: ProfDisciplinasCreateManyProfessorInputEnvelope
+    connect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
+  }
+
+  export type DisponibilidadeUncheckedCreateNestedManyWithoutProfessorInput = {
+    create?: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput> | DisponibilidadeCreateWithoutProfessorInput[] | DisponibilidadeUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutProfessorInput | DisponibilidadeCreateOrConnectWithoutProfessorInput[]
+    createMany?: DisponibilidadeCreateManyProfessorInputEnvelope
+    connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
+  }
+
+  export type Tempo_LectivoUncheckedCreateNestedManyWithoutProfessorInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutProfessorInput, Tempo_LectivoUncheckedCreateWithoutProfessorInput> | Tempo_LectivoCreateWithoutProfessorInput[] | Tempo_LectivoUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutProfessorInput | Tempo_LectivoCreateOrConnectWithoutProfessorInput[]
+    createMany?: Tempo_LectivoCreateManyProfessorInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type ProfDisciplinasUpdateManyWithoutProfessorNestedInput = {
+    create?: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput> | ProfDisciplinasCreateWithoutProfessorInput[] | ProfDisciplinasUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: ProfDisciplinasCreateOrConnectWithoutProfessorInput | ProfDisciplinasCreateOrConnectWithoutProfessorInput[]
+    upsert?: ProfDisciplinasUpsertWithWhereUniqueWithoutProfessorInput | ProfDisciplinasUpsertWithWhereUniqueWithoutProfessorInput[]
+    createMany?: ProfDisciplinasCreateManyProfessorInputEnvelope
+    set?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
+    disconnect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
+    delete?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
+    connect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
+    update?: ProfDisciplinasUpdateWithWhereUniqueWithoutProfessorInput | ProfDisciplinasUpdateWithWhereUniqueWithoutProfessorInput[]
+    updateMany?: ProfDisciplinasUpdateManyWithWhereWithoutProfessorInput | ProfDisciplinasUpdateManyWithWhereWithoutProfessorInput[]
+    deleteMany?: ProfDisciplinasScalarWhereInput | ProfDisciplinasScalarWhereInput[]
+  }
+
+  export type DisponibilidadeUpdateManyWithoutProfessorNestedInput = {
+    create?: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput> | DisponibilidadeCreateWithoutProfessorInput[] | DisponibilidadeUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutProfessorInput | DisponibilidadeCreateOrConnectWithoutProfessorInput[]
+    upsert?: DisponibilidadeUpsertWithWhereUniqueWithoutProfessorInput | DisponibilidadeUpsertWithWhereUniqueWithoutProfessorInput[]
+    createMany?: DisponibilidadeCreateManyProfessorInputEnvelope
+    set?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
+    disconnect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
+    delete?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
+    connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
+    update?: DisponibilidadeUpdateWithWhereUniqueWithoutProfessorInput | DisponibilidadeUpdateWithWhereUniqueWithoutProfessorInput[]
+    updateMany?: DisponibilidadeUpdateManyWithWhereWithoutProfessorInput | DisponibilidadeUpdateManyWithWhereWithoutProfessorInput[]
+    deleteMany?: DisponibilidadeScalarWhereInput | DisponibilidadeScalarWhereInput[]
+  }
+
+  export type Tempo_LectivoUpdateManyWithoutProfessorNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutProfessorInput, Tempo_LectivoUncheckedCreateWithoutProfessorInput> | Tempo_LectivoCreateWithoutProfessorInput[] | Tempo_LectivoUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutProfessorInput | Tempo_LectivoCreateOrConnectWithoutProfessorInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutProfessorInput | Tempo_LectivoUpsertWithWhereUniqueWithoutProfessorInput[]
+    createMany?: Tempo_LectivoCreateManyProfessorInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutProfessorInput | Tempo_LectivoUpdateWithWhereUniqueWithoutProfessorInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutProfessorInput | Tempo_LectivoUpdateManyWithWhereWithoutProfessorInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
+  }
+
+  export type ProfDisciplinasUncheckedUpdateManyWithoutProfessorNestedInput = {
+    create?: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput> | ProfDisciplinasCreateWithoutProfessorInput[] | ProfDisciplinasUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: ProfDisciplinasCreateOrConnectWithoutProfessorInput | ProfDisciplinasCreateOrConnectWithoutProfessorInput[]
+    upsert?: ProfDisciplinasUpsertWithWhereUniqueWithoutProfessorInput | ProfDisciplinasUpsertWithWhereUniqueWithoutProfessorInput[]
+    createMany?: ProfDisciplinasCreateManyProfessorInputEnvelope
+    set?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
+    disconnect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
+    delete?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
+    connect?: ProfDisciplinasWhereUniqueInput | ProfDisciplinasWhereUniqueInput[]
+    update?: ProfDisciplinasUpdateWithWhereUniqueWithoutProfessorInput | ProfDisciplinasUpdateWithWhereUniqueWithoutProfessorInput[]
+    updateMany?: ProfDisciplinasUpdateManyWithWhereWithoutProfessorInput | ProfDisciplinasUpdateManyWithWhereWithoutProfessorInput[]
+    deleteMany?: ProfDisciplinasScalarWhereInput | ProfDisciplinasScalarWhereInput[]
+  }
+
+  export type DisponibilidadeUncheckedUpdateManyWithoutProfessorNestedInput = {
+    create?: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput> | DisponibilidadeCreateWithoutProfessorInput[] | DisponibilidadeUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: DisponibilidadeCreateOrConnectWithoutProfessorInput | DisponibilidadeCreateOrConnectWithoutProfessorInput[]
+    upsert?: DisponibilidadeUpsertWithWhereUniqueWithoutProfessorInput | DisponibilidadeUpsertWithWhereUniqueWithoutProfessorInput[]
+    createMany?: DisponibilidadeCreateManyProfessorInputEnvelope
+    set?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
+    disconnect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
+    delete?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
+    connect?: DisponibilidadeWhereUniqueInput | DisponibilidadeWhereUniqueInput[]
+    update?: DisponibilidadeUpdateWithWhereUniqueWithoutProfessorInput | DisponibilidadeUpdateWithWhereUniqueWithoutProfessorInput[]
+    updateMany?: DisponibilidadeUpdateManyWithWhereWithoutProfessorInput | DisponibilidadeUpdateManyWithWhereWithoutProfessorInput[]
+    deleteMany?: DisponibilidadeScalarWhereInput | DisponibilidadeScalarWhereInput[]
+  }
+
+  export type Tempo_LectivoUncheckedUpdateManyWithoutProfessorNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutProfessorInput, Tempo_LectivoUncheckedCreateWithoutProfessorInput> | Tempo_LectivoCreateWithoutProfessorInput[] | Tempo_LectivoUncheckedCreateWithoutProfessorInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutProfessorInput | Tempo_LectivoCreateOrConnectWithoutProfessorInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutProfessorInput | Tempo_LectivoUpsertWithWhereUniqueWithoutProfessorInput[]
+    createMany?: Tempo_LectivoCreateManyProfessorInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutProfessorInput | Tempo_LectivoUpdateWithWhereUniqueWithoutProfessorInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutProfessorInput | Tempo_LectivoUpdateManyWithWhereWithoutProfessorInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
   }
 
   export type ProfessorCreateNestedOneWithoutProfDisciplinasInput = {
@@ -17744,12 +16020,10 @@ export namespace Prisma {
     connect?: ProfessorWhereUniqueInput
   }
 
-  export type DisciplinaUpdateOneRequiredWithoutProfDisciplinasNestedInput = {
+  export type DisciplinaCreateNestedOneWithoutProfDisciplinasInput = {
     create?: XOR<DisciplinaCreateWithoutProfDisciplinasInput, DisciplinaUncheckedCreateWithoutProfDisciplinasInput>
     connectOrCreate?: DisciplinaCreateOrConnectWithoutProfDisciplinasInput
-    upsert?: DisciplinaUpsertWithoutProfDisciplinasInput
     connect?: DisciplinaWhereUniqueInput
-    update?: XOR<XOR<DisciplinaUpdateToOneWithWhereWithoutProfDisciplinasInput, DisciplinaUpdateWithoutProfDisciplinasInput>, DisciplinaUncheckedUpdateWithoutProfDisciplinasInput>
   }
 
   export type ProfessorUpdateOneRequiredWithoutProfDisciplinasNestedInput = {
@@ -17760,270 +16034,208 @@ export namespace Prisma {
     update?: XOR<XOR<ProfessorUpdateToOneWithWhereWithoutProfDisciplinasInput, ProfessorUpdateWithoutProfDisciplinasInput>, ProfessorUncheckedUpdateWithoutProfDisciplinasInput>
   }
 
-  export type ProfessorCreateNestedOneWithoutProfTurmaInput = {
-    create?: XOR<ProfessorCreateWithoutProfTurmaInput, ProfessorUncheckedCreateWithoutProfTurmaInput>
-    connectOrCreate?: ProfessorCreateOrConnectWithoutProfTurmaInput
+  export type DisciplinaUpdateOneRequiredWithoutProfDisciplinasNestedInput = {
+    create?: XOR<DisciplinaCreateWithoutProfDisciplinasInput, DisciplinaUncheckedCreateWithoutProfDisciplinasInput>
+    connectOrCreate?: DisciplinaCreateOrConnectWithoutProfDisciplinasInput
+    upsert?: DisciplinaUpsertWithoutProfDisciplinasInput
+    connect?: DisciplinaWhereUniqueInput
+    update?: XOR<XOR<DisciplinaUpdateToOneWithWhereWithoutProfDisciplinasInput, DisciplinaUpdateWithoutProfDisciplinasInput>, DisciplinaUncheckedUpdateWithoutProfDisciplinasInput>
+  }
+
+  export type Tempo_LectivoCreateNestedManyWithoutSalaInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutSalaInput, Tempo_LectivoUncheckedCreateWithoutSalaInput> | Tempo_LectivoCreateWithoutSalaInput[] | Tempo_LectivoUncheckedCreateWithoutSalaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutSalaInput | Tempo_LectivoCreateOrConnectWithoutSalaInput[]
+    createMany?: Tempo_LectivoCreateManySalaInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+  }
+
+  export type Tempo_LectivoUncheckedCreateNestedManyWithoutSalaInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutSalaInput, Tempo_LectivoUncheckedCreateWithoutSalaInput> | Tempo_LectivoCreateWithoutSalaInput[] | Tempo_LectivoUncheckedCreateWithoutSalaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutSalaInput | Tempo_LectivoCreateOrConnectWithoutSalaInput[]
+    createMany?: Tempo_LectivoCreateManySalaInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+  }
+
+  export type Tempo_LectivoUpdateManyWithoutSalaNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutSalaInput, Tempo_LectivoUncheckedCreateWithoutSalaInput> | Tempo_LectivoCreateWithoutSalaInput[] | Tempo_LectivoUncheckedCreateWithoutSalaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutSalaInput | Tempo_LectivoCreateOrConnectWithoutSalaInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutSalaInput | Tempo_LectivoUpsertWithWhereUniqueWithoutSalaInput[]
+    createMany?: Tempo_LectivoCreateManySalaInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutSalaInput | Tempo_LectivoUpdateWithWhereUniqueWithoutSalaInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutSalaInput | Tempo_LectivoUpdateManyWithWhereWithoutSalaInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
+  }
+
+  export type Tempo_LectivoUncheckedUpdateManyWithoutSalaNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutSalaInput, Tempo_LectivoUncheckedCreateWithoutSalaInput> | Tempo_LectivoCreateWithoutSalaInput[] | Tempo_LectivoUncheckedCreateWithoutSalaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutSalaInput | Tempo_LectivoCreateOrConnectWithoutSalaInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutSalaInput | Tempo_LectivoUpsertWithWhereUniqueWithoutSalaInput[]
+    createMany?: Tempo_LectivoCreateManySalaInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutSalaInput | Tempo_LectivoUpdateWithWhereUniqueWithoutSalaInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutSalaInput | Tempo_LectivoUpdateManyWithWhereWithoutSalaInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
+  }
+
+  export type ProfessorCreateNestedOneWithoutTempo_lectivoInput = {
+    create?: XOR<ProfessorCreateWithoutTempo_lectivoInput, ProfessorUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: ProfessorCreateOrConnectWithoutTempo_lectivoInput
     connect?: ProfessorWhereUniqueInput
   }
 
-  export type TurmaCreateNestedOneWithoutProfTurmaInput = {
-    create?: XOR<TurmaCreateWithoutProfTurmaInput, TurmaUncheckedCreateWithoutProfTurmaInput>
-    connectOrCreate?: TurmaCreateOrConnectWithoutProfTurmaInput
+  export type TurmaCreateNestedOneWithoutTempo_lectivoInput = {
+    create?: XOR<TurmaCreateWithoutTempo_lectivoInput, TurmaUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: TurmaCreateOrConnectWithoutTempo_lectivoInput
     connect?: TurmaWhereUniqueInput
   }
 
-  export type ProfessorUpdateOneRequiredWithoutProfTurmaNestedInput = {
-    create?: XOR<ProfessorCreateWithoutProfTurmaInput, ProfessorUncheckedCreateWithoutProfTurmaInput>
-    connectOrCreate?: ProfessorCreateOrConnectWithoutProfTurmaInput
-    upsert?: ProfessorUpsertWithoutProfTurmaInput
-    connect?: ProfessorWhereUniqueInput
-    update?: XOR<XOR<ProfessorUpdateToOneWithWhereWithoutProfTurmaInput, ProfessorUpdateWithoutProfTurmaInput>, ProfessorUncheckedUpdateWithoutProfTurmaInput>
-  }
-
-  export type TurmaUpdateOneRequiredWithoutProfTurmaNestedInput = {
-    create?: XOR<TurmaCreateWithoutProfTurmaInput, TurmaUncheckedCreateWithoutProfTurmaInput>
-    connectOrCreate?: TurmaCreateOrConnectWithoutProfTurmaInput
-    upsert?: TurmaUpsertWithoutProfTurmaInput
-    connect?: TurmaWhereUniqueInput
-    update?: XOR<XOR<TurmaUpdateToOneWithWhereWithoutProfTurmaInput, TurmaUpdateWithoutProfTurmaInput>, TurmaUncheckedUpdateWithoutProfTurmaInput>
-  }
-
-  export type TempoLectivoCreateNestedManyWithoutSalaInput = {
-    create?: XOR<TempoLectivoCreateWithoutSalaInput, TempoLectivoUncheckedCreateWithoutSalaInput> | TempoLectivoCreateWithoutSalaInput[] | TempoLectivoUncheckedCreateWithoutSalaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutSalaInput | TempoLectivoCreateOrConnectWithoutSalaInput[]
-    createMany?: TempoLectivoCreateManySalaInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-  }
-
-  export type TempoLectivoUncheckedCreateNestedManyWithoutSalaInput = {
-    create?: XOR<TempoLectivoCreateWithoutSalaInput, TempoLectivoUncheckedCreateWithoutSalaInput> | TempoLectivoCreateWithoutSalaInput[] | TempoLectivoUncheckedCreateWithoutSalaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutSalaInput | TempoLectivoCreateOrConnectWithoutSalaInput[]
-    createMany?: TempoLectivoCreateManySalaInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-  }
-
-  export type TempoLectivoUpdateManyWithoutSalaNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutSalaInput, TempoLectivoUncheckedCreateWithoutSalaInput> | TempoLectivoCreateWithoutSalaInput[] | TempoLectivoUncheckedCreateWithoutSalaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutSalaInput | TempoLectivoCreateOrConnectWithoutSalaInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutSalaInput | TempoLectivoUpsertWithWhereUniqueWithoutSalaInput[]
-    createMany?: TempoLectivoCreateManySalaInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutSalaInput | TempoLectivoUpdateWithWhereUniqueWithoutSalaInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutSalaInput | TempoLectivoUpdateManyWithWhereWithoutSalaInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
-  }
-
-  export type TempoLectivoUncheckedUpdateManyWithoutSalaNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutSalaInput, TempoLectivoUncheckedCreateWithoutSalaInput> | TempoLectivoCreateWithoutSalaInput[] | TempoLectivoUncheckedCreateWithoutSalaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutSalaInput | TempoLectivoCreateOrConnectWithoutSalaInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutSalaInput | TempoLectivoUpsertWithWhereUniqueWithoutSalaInput[]
-    createMany?: TempoLectivoCreateManySalaInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutSalaInput | TempoLectivoUpdateWithWhereUniqueWithoutSalaInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutSalaInput | TempoLectivoUpdateManyWithWhereWithoutSalaInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
-  }
-
-  export type DiaSemanaCreateNestedOneWithoutTempoLectivoInput = {
-    create?: XOR<DiaSemanaCreateWithoutTempoLectivoInput, DiaSemanaUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: DiaSemanaCreateOrConnectWithoutTempoLectivoInput
-    connect?: DiaSemanaWhereUniqueInput
-  }
-
-  export type DisciplinaCreateNestedOneWithoutTempoLectivoInput = {
-    create?: XOR<DisciplinaCreateWithoutTempoLectivoInput, DisciplinaUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: DisciplinaCreateOrConnectWithoutTempoLectivoInput
+  export type DisciplinaCreateNestedOneWithoutTempo_lectivoInput = {
+    create?: XOR<DisciplinaCreateWithoutTempo_lectivoInput, DisciplinaUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: DisciplinaCreateOrConnectWithoutTempo_lectivoInput
     connect?: DisciplinaWhereUniqueInput
   }
 
-  export type PeriodoCreateNestedOneWithoutTempoLectivoInput = {
-    create?: XOR<PeriodoCreateWithoutTempoLectivoInput, PeriodoUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: PeriodoCreateOrConnectWithoutTempoLectivoInput
-    connect?: PeriodoWhereUniqueInput
-  }
-
-  export type ProfessorCreateNestedOneWithoutTempoLectivoInput = {
-    create?: XOR<ProfessorCreateWithoutTempoLectivoInput, ProfessorUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: ProfessorCreateOrConnectWithoutTempoLectivoInput
-    connect?: ProfessorWhereUniqueInput
-  }
-
-  export type SalaCreateNestedOneWithoutTempoLectivoInput = {
-    create?: XOR<SalaCreateWithoutTempoLectivoInput, SalaUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: SalaCreateOrConnectWithoutTempoLectivoInput
+  export type SalaCreateNestedOneWithoutTempo_lectivoInput = {
+    create?: XOR<SalaCreateWithoutTempo_lectivoInput, SalaUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: SalaCreateOrConnectWithoutTempo_lectivoInput
     connect?: SalaWhereUniqueInput
   }
 
-  export type TurmaCreateNestedOneWithoutTempoLectivoInput = {
-    create?: XOR<TurmaCreateWithoutTempoLectivoInput, TurmaUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: TurmaCreateOrConnectWithoutTempoLectivoInput
-    connect?: TurmaWhereUniqueInput
-  }
-
-  export type DiaSemanaUpdateOneRequiredWithoutTempoLectivoNestedInput = {
-    create?: XOR<DiaSemanaCreateWithoutTempoLectivoInput, DiaSemanaUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: DiaSemanaCreateOrConnectWithoutTempoLectivoInput
-    upsert?: DiaSemanaUpsertWithoutTempoLectivoInput
+  export type DiaSemanaCreateNestedOneWithoutTempo_lectivoInput = {
+    create?: XOR<DiaSemanaCreateWithoutTempo_lectivoInput, DiaSemanaUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: DiaSemanaCreateOrConnectWithoutTempo_lectivoInput
     connect?: DiaSemanaWhereUniqueInput
-    update?: XOR<XOR<DiaSemanaUpdateToOneWithWhereWithoutTempoLectivoInput, DiaSemanaUpdateWithoutTempoLectivoInput>, DiaSemanaUncheckedUpdateWithoutTempoLectivoInput>
   }
 
-  export type DisciplinaUpdateOneRequiredWithoutTempoLectivoNestedInput = {
-    create?: XOR<DisciplinaCreateWithoutTempoLectivoInput, DisciplinaUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: DisciplinaCreateOrConnectWithoutTempoLectivoInput
-    upsert?: DisciplinaUpsertWithoutTempoLectivoInput
-    connect?: DisciplinaWhereUniqueInput
-    update?: XOR<XOR<DisciplinaUpdateToOneWithWhereWithoutTempoLectivoInput, DisciplinaUpdateWithoutTempoLectivoInput>, DisciplinaUncheckedUpdateWithoutTempoLectivoInput>
-  }
-
-  export type PeriodoUpdateOneRequiredWithoutTempoLectivoNestedInput = {
-    create?: XOR<PeriodoCreateWithoutTempoLectivoInput, PeriodoUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: PeriodoCreateOrConnectWithoutTempoLectivoInput
-    upsert?: PeriodoUpsertWithoutTempoLectivoInput
+  export type PeriodoCreateNestedOneWithoutTempo_lectivoInput = {
+    create?: XOR<PeriodoCreateWithoutTempo_lectivoInput, PeriodoUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: PeriodoCreateOrConnectWithoutTempo_lectivoInput
     connect?: PeriodoWhereUniqueInput
-    update?: XOR<XOR<PeriodoUpdateToOneWithWhereWithoutTempoLectivoInput, PeriodoUpdateWithoutTempoLectivoInput>, PeriodoUncheckedUpdateWithoutTempoLectivoInput>
   }
 
-  export type ProfessorUpdateOneRequiredWithoutTempoLectivoNestedInput = {
-    create?: XOR<ProfessorCreateWithoutTempoLectivoInput, ProfessorUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: ProfessorCreateOrConnectWithoutTempoLectivoInput
-    upsert?: ProfessorUpsertWithoutTempoLectivoInput
+  export type ProfessorUpdateOneRequiredWithoutTempo_lectivoNestedInput = {
+    create?: XOR<ProfessorCreateWithoutTempo_lectivoInput, ProfessorUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: ProfessorCreateOrConnectWithoutTempo_lectivoInput
+    upsert?: ProfessorUpsertWithoutTempo_lectivoInput
     connect?: ProfessorWhereUniqueInput
-    update?: XOR<XOR<ProfessorUpdateToOneWithWhereWithoutTempoLectivoInput, ProfessorUpdateWithoutTempoLectivoInput>, ProfessorUncheckedUpdateWithoutTempoLectivoInput>
+    update?: XOR<XOR<ProfessorUpdateToOneWithWhereWithoutTempo_lectivoInput, ProfessorUpdateWithoutTempo_lectivoInput>, ProfessorUncheckedUpdateWithoutTempo_lectivoInput>
   }
 
-  export type SalaUpdateOneRequiredWithoutTempoLectivoNestedInput = {
-    create?: XOR<SalaCreateWithoutTempoLectivoInput, SalaUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: SalaCreateOrConnectWithoutTempoLectivoInput
-    upsert?: SalaUpsertWithoutTempoLectivoInput
-    connect?: SalaWhereUniqueInput
-    update?: XOR<XOR<SalaUpdateToOneWithWhereWithoutTempoLectivoInput, SalaUpdateWithoutTempoLectivoInput>, SalaUncheckedUpdateWithoutTempoLectivoInput>
-  }
-
-  export type TurmaUpdateOneRequiredWithoutTempoLectivoNestedInput = {
-    create?: XOR<TurmaCreateWithoutTempoLectivoInput, TurmaUncheckedCreateWithoutTempoLectivoInput>
-    connectOrCreate?: TurmaCreateOrConnectWithoutTempoLectivoInput
-    upsert?: TurmaUpsertWithoutTempoLectivoInput
+  export type TurmaUpdateOneRequiredWithoutTempo_lectivoNestedInput = {
+    create?: XOR<TurmaCreateWithoutTempo_lectivoInput, TurmaUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: TurmaCreateOrConnectWithoutTempo_lectivoInput
+    upsert?: TurmaUpsertWithoutTempo_lectivoInput
     connect?: TurmaWhereUniqueInput
-    update?: XOR<XOR<TurmaUpdateToOneWithWhereWithoutTempoLectivoInput, TurmaUpdateWithoutTempoLectivoInput>, TurmaUncheckedUpdateWithoutTempoLectivoInput>
+    update?: XOR<XOR<TurmaUpdateToOneWithWhereWithoutTempo_lectivoInput, TurmaUpdateWithoutTempo_lectivoInput>, TurmaUncheckedUpdateWithoutTempo_lectivoInput>
   }
 
-  export type ProfTurmaCreateNestedManyWithoutTurmaInput = {
-    create?: XOR<ProfTurmaCreateWithoutTurmaInput, ProfTurmaUncheckedCreateWithoutTurmaInput> | ProfTurmaCreateWithoutTurmaInput[] | ProfTurmaUncheckedCreateWithoutTurmaInput[]
-    connectOrCreate?: ProfTurmaCreateOrConnectWithoutTurmaInput | ProfTurmaCreateOrConnectWithoutTurmaInput[]
-    createMany?: ProfTurmaCreateManyTurmaInputEnvelope
-    connect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
+  export type DisciplinaUpdateOneRequiredWithoutTempo_lectivoNestedInput = {
+    create?: XOR<DisciplinaCreateWithoutTempo_lectivoInput, DisciplinaUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: DisciplinaCreateOrConnectWithoutTempo_lectivoInput
+    upsert?: DisciplinaUpsertWithoutTempo_lectivoInput
+    connect?: DisciplinaWhereUniqueInput
+    update?: XOR<XOR<DisciplinaUpdateToOneWithWhereWithoutTempo_lectivoInput, DisciplinaUpdateWithoutTempo_lectivoInput>, DisciplinaUncheckedUpdateWithoutTempo_lectivoInput>
   }
 
-  export type TempoLectivoCreateNestedManyWithoutTurmaInput = {
-    create?: XOR<TempoLectivoCreateWithoutTurmaInput, TempoLectivoUncheckedCreateWithoutTurmaInput> | TempoLectivoCreateWithoutTurmaInput[] | TempoLectivoUncheckedCreateWithoutTurmaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutTurmaInput | TempoLectivoCreateOrConnectWithoutTurmaInput[]
-    createMany?: TempoLectivoCreateManyTurmaInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
+  export type SalaUpdateOneRequiredWithoutTempo_lectivoNestedInput = {
+    create?: XOR<SalaCreateWithoutTempo_lectivoInput, SalaUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: SalaCreateOrConnectWithoutTempo_lectivoInput
+    upsert?: SalaUpsertWithoutTempo_lectivoInput
+    connect?: SalaWhereUniqueInput
+    update?: XOR<XOR<SalaUpdateToOneWithWhereWithoutTempo_lectivoInput, SalaUpdateWithoutTempo_lectivoInput>, SalaUncheckedUpdateWithoutTempo_lectivoInput>
   }
 
-  export type ClasseCreateNestedOneWithoutTurmaInput = {
-    create?: XOR<ClasseCreateWithoutTurmaInput, ClasseUncheckedCreateWithoutTurmaInput>
-    connectOrCreate?: ClasseCreateOrConnectWithoutTurmaInput
-    connect?: ClasseWhereUniqueInput
+  export type DiaSemanaUpdateOneRequiredWithoutTempo_lectivoNestedInput = {
+    create?: XOR<DiaSemanaCreateWithoutTempo_lectivoInput, DiaSemanaUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: DiaSemanaCreateOrConnectWithoutTempo_lectivoInput
+    upsert?: DiaSemanaUpsertWithoutTempo_lectivoInput
+    connect?: DiaSemanaWhereUniqueInput
+    update?: XOR<XOR<DiaSemanaUpdateToOneWithWhereWithoutTempo_lectivoInput, DiaSemanaUpdateWithoutTempo_lectivoInput>, DiaSemanaUncheckedUpdateWithoutTempo_lectivoInput>
   }
 
-  export type CursoCreateNestedOneWithoutTurmaInput = {
-    create?: XOR<CursoCreateWithoutTurmaInput, CursoUncheckedCreateWithoutTurmaInput>
-    connectOrCreate?: CursoCreateOrConnectWithoutTurmaInput
+  export type PeriodoUpdateOneRequiredWithoutTempo_lectivoNestedInput = {
+    create?: XOR<PeriodoCreateWithoutTempo_lectivoInput, PeriodoUncheckedCreateWithoutTempo_lectivoInput>
+    connectOrCreate?: PeriodoCreateOrConnectWithoutTempo_lectivoInput
+    upsert?: PeriodoUpsertWithoutTempo_lectivoInput
+    connect?: PeriodoWhereUniqueInput
+    update?: XOR<XOR<PeriodoUpdateToOneWithWhereWithoutTempo_lectivoInput, PeriodoUpdateWithoutTempo_lectivoInput>, PeriodoUncheckedUpdateWithoutTempo_lectivoInput>
+  }
+
+  export type CursoCreateNestedOneWithoutTurmasInput = {
+    create?: XOR<CursoCreateWithoutTurmasInput, CursoUncheckedCreateWithoutTurmasInput>
+    connectOrCreate?: CursoCreateOrConnectWithoutTurmasInput
     connect?: CursoWhereUniqueInput
   }
 
-  export type ProfTurmaUncheckedCreateNestedManyWithoutTurmaInput = {
-    create?: XOR<ProfTurmaCreateWithoutTurmaInput, ProfTurmaUncheckedCreateWithoutTurmaInput> | ProfTurmaCreateWithoutTurmaInput[] | ProfTurmaUncheckedCreateWithoutTurmaInput[]
-    connectOrCreate?: ProfTurmaCreateOrConnectWithoutTurmaInput | ProfTurmaCreateOrConnectWithoutTurmaInput[]
-    createMany?: ProfTurmaCreateManyTurmaInputEnvelope
-    connect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-  }
-
-  export type TempoLectivoUncheckedCreateNestedManyWithoutTurmaInput = {
-    create?: XOR<TempoLectivoCreateWithoutTurmaInput, TempoLectivoUncheckedCreateWithoutTurmaInput> | TempoLectivoCreateWithoutTurmaInput[] | TempoLectivoUncheckedCreateWithoutTurmaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutTurmaInput | TempoLectivoCreateOrConnectWithoutTurmaInput[]
-    createMany?: TempoLectivoCreateManyTurmaInputEnvelope
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-  }
-
-  export type ProfTurmaUpdateManyWithoutTurmaNestedInput = {
-    create?: XOR<ProfTurmaCreateWithoutTurmaInput, ProfTurmaUncheckedCreateWithoutTurmaInput> | ProfTurmaCreateWithoutTurmaInput[] | ProfTurmaUncheckedCreateWithoutTurmaInput[]
-    connectOrCreate?: ProfTurmaCreateOrConnectWithoutTurmaInput | ProfTurmaCreateOrConnectWithoutTurmaInput[]
-    upsert?: ProfTurmaUpsertWithWhereUniqueWithoutTurmaInput | ProfTurmaUpsertWithWhereUniqueWithoutTurmaInput[]
-    createMany?: ProfTurmaCreateManyTurmaInputEnvelope
-    set?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    disconnect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    delete?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    connect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    update?: ProfTurmaUpdateWithWhereUniqueWithoutTurmaInput | ProfTurmaUpdateWithWhereUniqueWithoutTurmaInput[]
-    updateMany?: ProfTurmaUpdateManyWithWhereWithoutTurmaInput | ProfTurmaUpdateManyWithWhereWithoutTurmaInput[]
-    deleteMany?: ProfTurmaScalarWhereInput | ProfTurmaScalarWhereInput[]
-  }
-
-  export type TempoLectivoUpdateManyWithoutTurmaNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutTurmaInput, TempoLectivoUncheckedCreateWithoutTurmaInput> | TempoLectivoCreateWithoutTurmaInput[] | TempoLectivoUncheckedCreateWithoutTurmaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutTurmaInput | TempoLectivoCreateOrConnectWithoutTurmaInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutTurmaInput | TempoLectivoUpsertWithWhereUniqueWithoutTurmaInput[]
-    createMany?: TempoLectivoCreateManyTurmaInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutTurmaInput | TempoLectivoUpdateWithWhereUniqueWithoutTurmaInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutTurmaInput | TempoLectivoUpdateManyWithWhereWithoutTurmaInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
-  }
-
-  export type ClasseUpdateOneRequiredWithoutTurmaNestedInput = {
-    create?: XOR<ClasseCreateWithoutTurmaInput, ClasseUncheckedCreateWithoutTurmaInput>
-    connectOrCreate?: ClasseCreateOrConnectWithoutTurmaInput
-    upsert?: ClasseUpsertWithoutTurmaInput
+  export type ClasseCreateNestedOneWithoutTurmasInput = {
+    create?: XOR<ClasseCreateWithoutTurmasInput, ClasseUncheckedCreateWithoutTurmasInput>
+    connectOrCreate?: ClasseCreateOrConnectWithoutTurmasInput
     connect?: ClasseWhereUniqueInput
-    update?: XOR<XOR<ClasseUpdateToOneWithWhereWithoutTurmaInput, ClasseUpdateWithoutTurmaInput>, ClasseUncheckedUpdateWithoutTurmaInput>
   }
 
-  export type CursoUpdateOneRequiredWithoutTurmaNestedInput = {
-    create?: XOR<CursoCreateWithoutTurmaInput, CursoUncheckedCreateWithoutTurmaInput>
-    connectOrCreate?: CursoCreateOrConnectWithoutTurmaInput
-    upsert?: CursoUpsertWithoutTurmaInput
+  export type Tempo_LectivoCreateNestedManyWithoutTurmaInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutTurmaInput, Tempo_LectivoUncheckedCreateWithoutTurmaInput> | Tempo_LectivoCreateWithoutTurmaInput[] | Tempo_LectivoUncheckedCreateWithoutTurmaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutTurmaInput | Tempo_LectivoCreateOrConnectWithoutTurmaInput[]
+    createMany?: Tempo_LectivoCreateManyTurmaInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+  }
+
+  export type Tempo_LectivoUncheckedCreateNestedManyWithoutTurmaInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutTurmaInput, Tempo_LectivoUncheckedCreateWithoutTurmaInput> | Tempo_LectivoCreateWithoutTurmaInput[] | Tempo_LectivoUncheckedCreateWithoutTurmaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutTurmaInput | Tempo_LectivoCreateOrConnectWithoutTurmaInput[]
+    createMany?: Tempo_LectivoCreateManyTurmaInputEnvelope
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+  }
+
+  export type CursoUpdateOneRequiredWithoutTurmasNestedInput = {
+    create?: XOR<CursoCreateWithoutTurmasInput, CursoUncheckedCreateWithoutTurmasInput>
+    connectOrCreate?: CursoCreateOrConnectWithoutTurmasInput
+    upsert?: CursoUpsertWithoutTurmasInput
     connect?: CursoWhereUniqueInput
-    update?: XOR<XOR<CursoUpdateToOneWithWhereWithoutTurmaInput, CursoUpdateWithoutTurmaInput>, CursoUncheckedUpdateWithoutTurmaInput>
+    update?: XOR<XOR<CursoUpdateToOneWithWhereWithoutTurmasInput, CursoUpdateWithoutTurmasInput>, CursoUncheckedUpdateWithoutTurmasInput>
   }
 
-  export type ProfTurmaUncheckedUpdateManyWithoutTurmaNestedInput = {
-    create?: XOR<ProfTurmaCreateWithoutTurmaInput, ProfTurmaUncheckedCreateWithoutTurmaInput> | ProfTurmaCreateWithoutTurmaInput[] | ProfTurmaUncheckedCreateWithoutTurmaInput[]
-    connectOrCreate?: ProfTurmaCreateOrConnectWithoutTurmaInput | ProfTurmaCreateOrConnectWithoutTurmaInput[]
-    upsert?: ProfTurmaUpsertWithWhereUniqueWithoutTurmaInput | ProfTurmaUpsertWithWhereUniqueWithoutTurmaInput[]
-    createMany?: ProfTurmaCreateManyTurmaInputEnvelope
-    set?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    disconnect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    delete?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    connect?: ProfTurmaWhereUniqueInput | ProfTurmaWhereUniqueInput[]
-    update?: ProfTurmaUpdateWithWhereUniqueWithoutTurmaInput | ProfTurmaUpdateWithWhereUniqueWithoutTurmaInput[]
-    updateMany?: ProfTurmaUpdateManyWithWhereWithoutTurmaInput | ProfTurmaUpdateManyWithWhereWithoutTurmaInput[]
-    deleteMany?: ProfTurmaScalarWhereInput | ProfTurmaScalarWhereInput[]
+  export type ClasseUpdateOneRequiredWithoutTurmasNestedInput = {
+    create?: XOR<ClasseCreateWithoutTurmasInput, ClasseUncheckedCreateWithoutTurmasInput>
+    connectOrCreate?: ClasseCreateOrConnectWithoutTurmasInput
+    upsert?: ClasseUpsertWithoutTurmasInput
+    connect?: ClasseWhereUniqueInput
+    update?: XOR<XOR<ClasseUpdateToOneWithWhereWithoutTurmasInput, ClasseUpdateWithoutTurmasInput>, ClasseUncheckedUpdateWithoutTurmasInput>
   }
 
-  export type TempoLectivoUncheckedUpdateManyWithoutTurmaNestedInput = {
-    create?: XOR<TempoLectivoCreateWithoutTurmaInput, TempoLectivoUncheckedCreateWithoutTurmaInput> | TempoLectivoCreateWithoutTurmaInput[] | TempoLectivoUncheckedCreateWithoutTurmaInput[]
-    connectOrCreate?: TempoLectivoCreateOrConnectWithoutTurmaInput | TempoLectivoCreateOrConnectWithoutTurmaInput[]
-    upsert?: TempoLectivoUpsertWithWhereUniqueWithoutTurmaInput | TempoLectivoUpsertWithWhereUniqueWithoutTurmaInput[]
-    createMany?: TempoLectivoCreateManyTurmaInputEnvelope
-    set?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    disconnect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    delete?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    connect?: TempoLectivoWhereUniqueInput | TempoLectivoWhereUniqueInput[]
-    update?: TempoLectivoUpdateWithWhereUniqueWithoutTurmaInput | TempoLectivoUpdateWithWhereUniqueWithoutTurmaInput[]
-    updateMany?: TempoLectivoUpdateManyWithWhereWithoutTurmaInput | TempoLectivoUpdateManyWithWhereWithoutTurmaInput[]
-    deleteMany?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
+  export type Tempo_LectivoUpdateManyWithoutTurmaNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutTurmaInput, Tempo_LectivoUncheckedCreateWithoutTurmaInput> | Tempo_LectivoCreateWithoutTurmaInput[] | Tempo_LectivoUncheckedCreateWithoutTurmaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutTurmaInput | Tempo_LectivoCreateOrConnectWithoutTurmaInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutTurmaInput | Tempo_LectivoUpsertWithWhereUniqueWithoutTurmaInput[]
+    createMany?: Tempo_LectivoCreateManyTurmaInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutTurmaInput | Tempo_LectivoUpdateWithWhereUniqueWithoutTurmaInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutTurmaInput | Tempo_LectivoUpdateManyWithWhereWithoutTurmaInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
+  }
+
+  export type Tempo_LectivoUncheckedUpdateManyWithoutTurmaNestedInput = {
+    create?: XOR<Tempo_LectivoCreateWithoutTurmaInput, Tempo_LectivoUncheckedCreateWithoutTurmaInput> | Tempo_LectivoCreateWithoutTurmaInput[] | Tempo_LectivoUncheckedCreateWithoutTurmaInput[]
+    connectOrCreate?: Tempo_LectivoCreateOrConnectWithoutTurmaInput | Tempo_LectivoCreateOrConnectWithoutTurmaInput[]
+    upsert?: Tempo_LectivoUpsertWithWhereUniqueWithoutTurmaInput | Tempo_LectivoUpsertWithWhereUniqueWithoutTurmaInput[]
+    createMany?: Tempo_LectivoCreateManyTurmaInputEnvelope
+    set?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    disconnect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    delete?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    connect?: Tempo_LectivoWhereUniqueInput | Tempo_LectivoWhereUniqueInput[]
+    update?: Tempo_LectivoUpdateWithWhereUniqueWithoutTurmaInput | Tempo_LectivoUpdateWithWhereUniqueWithoutTurmaInput[]
+    updateMany?: Tempo_LectivoUpdateManyWithWhereWithoutTurmaInput | Tempo_LectivoUpdateManyWithWhereWithoutTurmaInput[]
+    deleteMany?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -18095,20 +16307,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -18118,34 +16316,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -18163,18 +16333,15 @@ export namespace Prisma {
   }
 
   export type TurmaCreateWithoutClasseInput = {
-    nome: string
-    ProfTurma?: ProfTurmaCreateNestedManyWithoutTurmaInput
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutTurmaInput
-    Curso: CursoCreateNestedOneWithoutTurmaInput
+    nome_turma: string
+    curso: CursoCreateNestedOneWithoutTurmasInput
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutTurmaInput
   }
 
   export type TurmaUncheckedCreateWithoutClasseInput = {
-    idTurma?: number
-    nome: string
-    curso: string
-    ProfTurma?: ProfTurmaUncheckedCreateNestedManyWithoutTurmaInput
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutTurmaInput
+    nome_turma: string
+    nome_curso: string
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutTurmaInput
   }
 
   export type TurmaCreateOrConnectWithoutClasseInput = {
@@ -18207,25 +16374,21 @@ export namespace Prisma {
     AND?: TurmaScalarWhereInput | TurmaScalarWhereInput[]
     OR?: TurmaScalarWhereInput[]
     NOT?: TurmaScalarWhereInput | TurmaScalarWhereInput[]
-    idTurma?: IntFilter<"Turma"> | number
-    nome?: StringFilter<"Turma"> | string
-    classe?: StringFilter<"Turma"> | string
-    curso?: StringFilter<"Turma"> | string
+    nome_turma?: StringFilter<"Turma"> | string
+    nome_curso?: StringFilter<"Turma"> | string
+    nome_classe?: StringFilter<"Turma"> | string
   }
 
   export type TurmaCreateWithoutCursoInput = {
-    nome: string
-    ProfTurma?: ProfTurmaCreateNestedManyWithoutTurmaInput
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutTurmaInput
-    Classe: ClasseCreateNestedOneWithoutTurmaInput
+    nome_turma: string
+    classe: ClasseCreateNestedOneWithoutTurmasInput
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutTurmaInput
   }
 
   export type TurmaUncheckedCreateWithoutCursoInput = {
-    idTurma?: number
-    nome: string
-    classe: string
-    ProfTurma?: ProfTurmaUncheckedCreateNestedManyWithoutTurmaInput
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutTurmaInput
+    nome_turma: string
+    nome_classe: string
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutTurmaInput
   }
 
   export type TurmaCreateOrConnectWithoutCursoInput = {
@@ -18254,121 +16417,120 @@ export namespace Prisma {
     data: XOR<TurmaUpdateManyMutationInput, TurmaUncheckedUpdateManyWithoutCursoInput>
   }
 
-  export type DisponibilidadeCreateWithoutDiaSemanaInput = {
+  export type DisponibilidadeCreateWithoutDiaInput = {
     ordem: number
-    Periodo: PeriodoCreateNestedOneWithoutDisponibilidadeInput
-    Professor: ProfessorCreateNestedOneWithoutDisponibilidadeInput
+    professor: ProfessorCreateNestedOneWithoutDisponibilidadesInput
+    periodo: PeriodoCreateNestedOneWithoutDisponibilidadesInput
   }
 
-  export type DisponibilidadeUncheckedCreateWithoutDiaSemanaInput = {
-    idDisponibilidade?: number
-    periodoId: string
-    ordem: number
+  export type DisponibilidadeUncheckedCreateWithoutDiaInput = {
+    id_disponibilidade?: number
     professorId: number
+    nome_periodo: string
+    ordem: number
   }
 
-  export type DisponibilidadeCreateOrConnectWithoutDiaSemanaInput = {
+  export type DisponibilidadeCreateOrConnectWithoutDiaInput = {
     where: DisponibilidadeWhereUniqueInput
-    create: XOR<DisponibilidadeCreateWithoutDiaSemanaInput, DisponibilidadeUncheckedCreateWithoutDiaSemanaInput>
+    create: XOR<DisponibilidadeCreateWithoutDiaInput, DisponibilidadeUncheckedCreateWithoutDiaInput>
   }
 
-  export type DisponibilidadeCreateManyDiaSemanaInputEnvelope = {
-    data: DisponibilidadeCreateManyDiaSemanaInput | DisponibilidadeCreateManyDiaSemanaInput[]
+  export type DisponibilidadeCreateManyDiaInputEnvelope = {
+    data: DisponibilidadeCreateManyDiaInput | DisponibilidadeCreateManyDiaInput[]
     skipDuplicates?: boolean
   }
 
-  export type TempoLectivoCreateWithoutDiaSemanaInput = {
-    ordem: number
-    Disciplina: DisciplinaCreateNestedOneWithoutTempoLectivoInput
-    Periodo: PeriodoCreateNestedOneWithoutTempoLectivoInput
-    Professor: ProfessorCreateNestedOneWithoutTempoLectivoInput
-    Sala: SalaCreateNestedOneWithoutTempoLectivoInput
-    Turma: TurmaCreateNestedOneWithoutTempoLectivoInput
+  export type Tempo_LectivoCreateWithoutDiaInput = {
+    ordem?: number
+    professor: ProfessorCreateNestedOneWithoutTempo_lectivoInput
+    turma: TurmaCreateNestedOneWithoutTempo_lectivoInput
+    disciplina: DisciplinaCreateNestedOneWithoutTempo_lectivoInput
+    sala: SalaCreateNestedOneWithoutTempo_lectivoInput
+    periodo: PeriodoCreateNestedOneWithoutTempo_lectivoInput
   }
 
-  export type TempoLectivoUncheckedCreateWithoutDiaSemanaInput = {
-    idTempoLectivo?: number
-    periodoId: string
-    ordem: number
+  export type Tempo_LectivoUncheckedCreateWithoutDiaInput = {
+    id?: number
     professorId: number
-    disciplinaId: number
-    salaId: number
-    turmaId: number
+    nome_turma: string
+    nome_disciplina: string
+    nome_sala: string
+    nome_periodo: string
+    ordem?: number
   }
 
-  export type TempoLectivoCreateOrConnectWithoutDiaSemanaInput = {
-    where: TempoLectivoWhereUniqueInput
-    create: XOR<TempoLectivoCreateWithoutDiaSemanaInput, TempoLectivoUncheckedCreateWithoutDiaSemanaInput>
+  export type Tempo_LectivoCreateOrConnectWithoutDiaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    create: XOR<Tempo_LectivoCreateWithoutDiaInput, Tempo_LectivoUncheckedCreateWithoutDiaInput>
   }
 
-  export type TempoLectivoCreateManyDiaSemanaInputEnvelope = {
-    data: TempoLectivoCreateManyDiaSemanaInput | TempoLectivoCreateManyDiaSemanaInput[]
+  export type Tempo_LectivoCreateManyDiaInputEnvelope = {
+    data: Tempo_LectivoCreateManyDiaInput | Tempo_LectivoCreateManyDiaInput[]
     skipDuplicates?: boolean
   }
 
-  export type DisponibilidadeUpsertWithWhereUniqueWithoutDiaSemanaInput = {
+  export type DisponibilidadeUpsertWithWhereUniqueWithoutDiaInput = {
     where: DisponibilidadeWhereUniqueInput
-    update: XOR<DisponibilidadeUpdateWithoutDiaSemanaInput, DisponibilidadeUncheckedUpdateWithoutDiaSemanaInput>
-    create: XOR<DisponibilidadeCreateWithoutDiaSemanaInput, DisponibilidadeUncheckedCreateWithoutDiaSemanaInput>
+    update: XOR<DisponibilidadeUpdateWithoutDiaInput, DisponibilidadeUncheckedUpdateWithoutDiaInput>
+    create: XOR<DisponibilidadeCreateWithoutDiaInput, DisponibilidadeUncheckedCreateWithoutDiaInput>
   }
 
-  export type DisponibilidadeUpdateWithWhereUniqueWithoutDiaSemanaInput = {
+  export type DisponibilidadeUpdateWithWhereUniqueWithoutDiaInput = {
     where: DisponibilidadeWhereUniqueInput
-    data: XOR<DisponibilidadeUpdateWithoutDiaSemanaInput, DisponibilidadeUncheckedUpdateWithoutDiaSemanaInput>
+    data: XOR<DisponibilidadeUpdateWithoutDiaInput, DisponibilidadeUncheckedUpdateWithoutDiaInput>
   }
 
-  export type DisponibilidadeUpdateManyWithWhereWithoutDiaSemanaInput = {
+  export type DisponibilidadeUpdateManyWithWhereWithoutDiaInput = {
     where: DisponibilidadeScalarWhereInput
-    data: XOR<DisponibilidadeUpdateManyMutationInput, DisponibilidadeUncheckedUpdateManyWithoutDiaSemanaInput>
+    data: XOR<DisponibilidadeUpdateManyMutationInput, DisponibilidadeUncheckedUpdateManyWithoutDiaInput>
   }
 
   export type DisponibilidadeScalarWhereInput = {
     AND?: DisponibilidadeScalarWhereInput | DisponibilidadeScalarWhereInput[]
     OR?: DisponibilidadeScalarWhereInput[]
     NOT?: DisponibilidadeScalarWhereInput | DisponibilidadeScalarWhereInput[]
-    idDisponibilidade?: IntFilter<"Disponibilidade"> | number
-    diaSemana?: StringFilter<"Disponibilidade"> | string
-    periodoId?: StringFilter<"Disponibilidade"> | string
-    ordem?: IntFilter<"Disponibilidade"> | number
+    id_disponibilidade?: IntFilter<"Disponibilidade"> | number
     professorId?: IntFilter<"Disponibilidade"> | number
+    nome_dia?: StringFilter<"Disponibilidade"> | string
+    nome_periodo?: StringFilter<"Disponibilidade"> | string
+    ordem?: IntFilter<"Disponibilidade"> | number
   }
 
-  export type TempoLectivoUpsertWithWhereUniqueWithoutDiaSemanaInput = {
-    where: TempoLectivoWhereUniqueInput
-    update: XOR<TempoLectivoUpdateWithoutDiaSemanaInput, TempoLectivoUncheckedUpdateWithoutDiaSemanaInput>
-    create: XOR<TempoLectivoCreateWithoutDiaSemanaInput, TempoLectivoUncheckedCreateWithoutDiaSemanaInput>
+  export type Tempo_LectivoUpsertWithWhereUniqueWithoutDiaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    update: XOR<Tempo_LectivoUpdateWithoutDiaInput, Tempo_LectivoUncheckedUpdateWithoutDiaInput>
+    create: XOR<Tempo_LectivoCreateWithoutDiaInput, Tempo_LectivoUncheckedCreateWithoutDiaInput>
   }
 
-  export type TempoLectivoUpdateWithWhereUniqueWithoutDiaSemanaInput = {
-    where: TempoLectivoWhereUniqueInput
-    data: XOR<TempoLectivoUpdateWithoutDiaSemanaInput, TempoLectivoUncheckedUpdateWithoutDiaSemanaInput>
+  export type Tempo_LectivoUpdateWithWhereUniqueWithoutDiaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    data: XOR<Tempo_LectivoUpdateWithoutDiaInput, Tempo_LectivoUncheckedUpdateWithoutDiaInput>
   }
 
-  export type TempoLectivoUpdateManyWithWhereWithoutDiaSemanaInput = {
-    where: TempoLectivoScalarWhereInput
-    data: XOR<TempoLectivoUpdateManyMutationInput, TempoLectivoUncheckedUpdateManyWithoutDiaSemanaInput>
+  export type Tempo_LectivoUpdateManyWithWhereWithoutDiaInput = {
+    where: Tempo_LectivoScalarWhereInput
+    data: XOR<Tempo_LectivoUpdateManyMutationInput, Tempo_LectivoUncheckedUpdateManyWithoutDiaInput>
   }
 
-  export type TempoLectivoScalarWhereInput = {
-    AND?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
-    OR?: TempoLectivoScalarWhereInput[]
-    NOT?: TempoLectivoScalarWhereInput | TempoLectivoScalarWhereInput[]
-    idTempoLectivo?: IntFilter<"TempoLectivo"> | number
-    diaSemana?: StringFilter<"TempoLectivo"> | string
-    periodoId?: StringFilter<"TempoLectivo"> | string
-    ordem?: IntFilter<"TempoLectivo"> | number
-    professorId?: IntFilter<"TempoLectivo"> | number
-    disciplinaId?: IntFilter<"TempoLectivo"> | number
-    salaId?: IntFilter<"TempoLectivo"> | number
-    turmaId?: IntFilter<"TempoLectivo"> | number
+  export type Tempo_LectivoScalarWhereInput = {
+    AND?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
+    OR?: Tempo_LectivoScalarWhereInput[]
+    NOT?: Tempo_LectivoScalarWhereInput | Tempo_LectivoScalarWhereInput[]
+    id?: IntFilter<"Tempo_Lectivo"> | number
+    professorId?: IntFilter<"Tempo_Lectivo"> | number
+    nome_turma?: StringFilter<"Tempo_Lectivo"> | string
+    nome_disciplina?: StringFilter<"Tempo_Lectivo"> | string
+    nome_sala?: StringFilter<"Tempo_Lectivo"> | string
+    nome_dia?: StringFilter<"Tempo_Lectivo"> | string
+    nome_periodo?: StringFilter<"Tempo_Lectivo"> | string
+    ordem?: IntFilter<"Tempo_Lectivo"> | number
   }
 
   export type ProfDisciplinasCreateWithoutDisciplinaInput = {
-    Professor: ProfessorCreateNestedOneWithoutProfDisciplinasInput
+    professor: ProfessorCreateNestedOneWithoutProfDisciplinasInput
   }
 
   export type ProfDisciplinasUncheckedCreateWithoutDisciplinaInput = {
-    idProfDisciplina?: number
     professorId: number
   }
 
@@ -18382,32 +16544,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type TempoLectivoCreateWithoutDisciplinaInput = {
-    ordem: number
-    DiaSemana: DiaSemanaCreateNestedOneWithoutTempoLectivoInput
-    Periodo: PeriodoCreateNestedOneWithoutTempoLectivoInput
-    Professor: ProfessorCreateNestedOneWithoutTempoLectivoInput
-    Sala: SalaCreateNestedOneWithoutTempoLectivoInput
-    Turma: TurmaCreateNestedOneWithoutTempoLectivoInput
+  export type Tempo_LectivoCreateWithoutDisciplinaInput = {
+    ordem?: number
+    professor: ProfessorCreateNestedOneWithoutTempo_lectivoInput
+    turma: TurmaCreateNestedOneWithoutTempo_lectivoInput
+    sala: SalaCreateNestedOneWithoutTempo_lectivoInput
+    dia: DiaSemanaCreateNestedOneWithoutTempo_lectivoInput
+    periodo: PeriodoCreateNestedOneWithoutTempo_lectivoInput
   }
 
-  export type TempoLectivoUncheckedCreateWithoutDisciplinaInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
+  export type Tempo_LectivoUncheckedCreateWithoutDisciplinaInput = {
+    id?: number
     professorId: number
-    salaId: number
-    turmaId: number
+    nome_turma: string
+    nome_sala: string
+    nome_dia: string
+    nome_periodo: string
+    ordem?: number
   }
 
-  export type TempoLectivoCreateOrConnectWithoutDisciplinaInput = {
-    where: TempoLectivoWhereUniqueInput
-    create: XOR<TempoLectivoCreateWithoutDisciplinaInput, TempoLectivoUncheckedCreateWithoutDisciplinaInput>
+  export type Tempo_LectivoCreateOrConnectWithoutDisciplinaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    create: XOR<Tempo_LectivoCreateWithoutDisciplinaInput, Tempo_LectivoUncheckedCreateWithoutDisciplinaInput>
   }
 
-  export type TempoLectivoCreateManyDisciplinaInputEnvelope = {
-    data: TempoLectivoCreateManyDisciplinaInput | TempoLectivoCreateManyDisciplinaInput[]
+  export type Tempo_LectivoCreateManyDisciplinaInputEnvelope = {
+    data: Tempo_LectivoCreateManyDisciplinaInput | Tempo_LectivoCreateManyDisciplinaInput[]
     skipDuplicates?: boolean
   }
 
@@ -18431,335 +16593,163 @@ export namespace Prisma {
     AND?: ProfDisciplinasScalarWhereInput | ProfDisciplinasScalarWhereInput[]
     OR?: ProfDisciplinasScalarWhereInput[]
     NOT?: ProfDisciplinasScalarWhereInput | ProfDisciplinasScalarWhereInput[]
-    idProfDisciplina?: IntFilter<"ProfDisciplinas"> | number
     professorId?: IntFilter<"ProfDisciplinas"> | number
-    disciplinaId?: IntFilter<"ProfDisciplinas"> | number
+    nome_disciplina?: StringFilter<"ProfDisciplinas"> | string
   }
 
-  export type TempoLectivoUpsertWithWhereUniqueWithoutDisciplinaInput = {
-    where: TempoLectivoWhereUniqueInput
-    update: XOR<TempoLectivoUpdateWithoutDisciplinaInput, TempoLectivoUncheckedUpdateWithoutDisciplinaInput>
-    create: XOR<TempoLectivoCreateWithoutDisciplinaInput, TempoLectivoUncheckedCreateWithoutDisciplinaInput>
+  export type Tempo_LectivoUpsertWithWhereUniqueWithoutDisciplinaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    update: XOR<Tempo_LectivoUpdateWithoutDisciplinaInput, Tempo_LectivoUncheckedUpdateWithoutDisciplinaInput>
+    create: XOR<Tempo_LectivoCreateWithoutDisciplinaInput, Tempo_LectivoUncheckedCreateWithoutDisciplinaInput>
   }
 
-  export type TempoLectivoUpdateWithWhereUniqueWithoutDisciplinaInput = {
-    where: TempoLectivoWhereUniqueInput
-    data: XOR<TempoLectivoUpdateWithoutDisciplinaInput, TempoLectivoUncheckedUpdateWithoutDisciplinaInput>
+  export type Tempo_LectivoUpdateWithWhereUniqueWithoutDisciplinaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    data: XOR<Tempo_LectivoUpdateWithoutDisciplinaInput, Tempo_LectivoUncheckedUpdateWithoutDisciplinaInput>
   }
 
-  export type TempoLectivoUpdateManyWithWhereWithoutDisciplinaInput = {
-    where: TempoLectivoScalarWhereInput
-    data: XOR<TempoLectivoUpdateManyMutationInput, TempoLectivoUncheckedUpdateManyWithoutDisciplinaInput>
+  export type Tempo_LectivoUpdateManyWithWhereWithoutDisciplinaInput = {
+    where: Tempo_LectivoScalarWhereInput
+    data: XOR<Tempo_LectivoUpdateManyMutationInput, Tempo_LectivoUncheckedUpdateManyWithoutDisciplinaInput>
   }
 
-  export type DiaSemanaCreateWithoutDisponibilidadeInput = {
+  export type ProfessorCreateWithoutDisponibilidadesInput = {
     nome: string
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutDiaSemanaInput
+    email: string
+    telefone: string
+    updated_at?: Date | string
+    profDisciplinas?: ProfDisciplinasCreateNestedManyWithoutProfessorInput
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutProfessorInput
   }
 
-  export type DiaSemanaUncheckedCreateWithoutDisponibilidadeInput = {
-    nome: string
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutDiaSemanaInput
-  }
-
-  export type DiaSemanaCreateOrConnectWithoutDisponibilidadeInput = {
-    where: DiaSemanaWhereUniqueInput
-    create: XOR<DiaSemanaCreateWithoutDisponibilidadeInput, DiaSemanaUncheckedCreateWithoutDisponibilidadeInput>
-  }
-
-  export type PeriodoCreateWithoutDisponibilidadeInput = {
-    periodo: string
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutPeriodoInput
-  }
-
-  export type PeriodoUncheckedCreateWithoutDisponibilidadeInput = {
-    periodo: string
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutPeriodoInput
-  }
-
-  export type PeriodoCreateOrConnectWithoutDisponibilidadeInput = {
-    where: PeriodoWhereUniqueInput
-    create: XOR<PeriodoCreateWithoutDisponibilidadeInput, PeriodoUncheckedCreateWithoutDisponibilidadeInput>
-  }
-
-  export type ProfessorCreateWithoutDisponibilidadeInput = {
-    nome: string
-    email?: string | null
-    telefone?: string | null
-    created_at?: Date | string
-    updated_at: Date | string
-    ProfDisciplinas?: ProfDisciplinasCreateNestedManyWithoutProfessorInput
-    ProfTurma?: ProfTurmaCreateNestedManyWithoutProfessorInput
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutProfessorInput
-  }
-
-  export type ProfessorUncheckedCreateWithoutDisponibilidadeInput = {
+  export type ProfessorUncheckedCreateWithoutDisponibilidadesInput = {
     id_professor?: number
     nome: string
-    email?: string | null
-    telefone?: string | null
-    created_at?: Date | string
-    updated_at: Date | string
-    ProfDisciplinas?: ProfDisciplinasUncheckedCreateNestedManyWithoutProfessorInput
-    ProfTurma?: ProfTurmaUncheckedCreateNestedManyWithoutProfessorInput
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutProfessorInput
+    email: string
+    telefone: string
+    updated_at?: Date | string
+    profDisciplinas?: ProfDisciplinasUncheckedCreateNestedManyWithoutProfessorInput
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutProfessorInput
   }
 
-  export type ProfessorCreateOrConnectWithoutDisponibilidadeInput = {
+  export type ProfessorCreateOrConnectWithoutDisponibilidadesInput = {
     where: ProfessorWhereUniqueInput
-    create: XOR<ProfessorCreateWithoutDisponibilidadeInput, ProfessorUncheckedCreateWithoutDisponibilidadeInput>
+    create: XOR<ProfessorCreateWithoutDisponibilidadesInput, ProfessorUncheckedCreateWithoutDisponibilidadesInput>
   }
 
-  export type DiaSemanaUpsertWithoutDisponibilidadeInput = {
-    update: XOR<DiaSemanaUpdateWithoutDisponibilidadeInput, DiaSemanaUncheckedUpdateWithoutDisponibilidadeInput>
-    create: XOR<DiaSemanaCreateWithoutDisponibilidadeInput, DiaSemanaUncheckedCreateWithoutDisponibilidadeInput>
-    where?: DiaSemanaWhereInput
+  export type DiaSemanaCreateWithoutDisponibilidadesInput = {
+    nome_dia: string
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutDiaInput
   }
 
-  export type DiaSemanaUpdateToOneWithWhereWithoutDisponibilidadeInput = {
-    where?: DiaSemanaWhereInput
-    data: XOR<DiaSemanaUpdateWithoutDisponibilidadeInput, DiaSemanaUncheckedUpdateWithoutDisponibilidadeInput>
+  export type DiaSemanaUncheckedCreateWithoutDisponibilidadesInput = {
+    nome_dia: string
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutDiaInput
   }
 
-  export type DiaSemanaUpdateWithoutDisponibilidadeInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    TempoLectivo?: TempoLectivoUpdateManyWithoutDiaSemanaNestedInput
+  export type DiaSemanaCreateOrConnectWithoutDisponibilidadesInput = {
+    where: DiaSemanaWhereUniqueInput
+    create: XOR<DiaSemanaCreateWithoutDisponibilidadesInput, DiaSemanaUncheckedCreateWithoutDisponibilidadesInput>
   }
 
-  export type DiaSemanaUncheckedUpdateWithoutDisponibilidadeInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutDiaSemanaNestedInput
+  export type PeriodoCreateWithoutDisponibilidadesInput = {
+    nome_periodo: string
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutPeriodoInput
   }
 
-  export type PeriodoUpsertWithoutDisponibilidadeInput = {
-    update: XOR<PeriodoUpdateWithoutDisponibilidadeInput, PeriodoUncheckedUpdateWithoutDisponibilidadeInput>
-    create: XOR<PeriodoCreateWithoutDisponibilidadeInput, PeriodoUncheckedCreateWithoutDisponibilidadeInput>
-    where?: PeriodoWhereInput
+  export type PeriodoUncheckedCreateWithoutDisponibilidadesInput = {
+    nome_periodo: string
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutPeriodoInput
   }
 
-  export type PeriodoUpdateToOneWithWhereWithoutDisponibilidadeInput = {
-    where?: PeriodoWhereInput
-    data: XOR<PeriodoUpdateWithoutDisponibilidadeInput, PeriodoUncheckedUpdateWithoutDisponibilidadeInput>
+  export type PeriodoCreateOrConnectWithoutDisponibilidadesInput = {
+    where: PeriodoWhereUniqueInput
+    create: XOR<PeriodoCreateWithoutDisponibilidadesInput, PeriodoUncheckedCreateWithoutDisponibilidadesInput>
   }
 
-  export type PeriodoUpdateWithoutDisponibilidadeInput = {
-    periodo?: StringFieldUpdateOperationsInput | string
-    TempoLectivo?: TempoLectivoUpdateManyWithoutPeriodoNestedInput
-  }
-
-  export type PeriodoUncheckedUpdateWithoutDisponibilidadeInput = {
-    periodo?: StringFieldUpdateOperationsInput | string
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutPeriodoNestedInput
-  }
-
-  export type ProfessorUpsertWithoutDisponibilidadeInput = {
-    update: XOR<ProfessorUpdateWithoutDisponibilidadeInput, ProfessorUncheckedUpdateWithoutDisponibilidadeInput>
-    create: XOR<ProfessorCreateWithoutDisponibilidadeInput, ProfessorUncheckedCreateWithoutDisponibilidadeInput>
+  export type ProfessorUpsertWithoutDisponibilidadesInput = {
+    update: XOR<ProfessorUpdateWithoutDisponibilidadesInput, ProfessorUncheckedUpdateWithoutDisponibilidadesInput>
+    create: XOR<ProfessorCreateWithoutDisponibilidadesInput, ProfessorUncheckedCreateWithoutDisponibilidadesInput>
     where?: ProfessorWhereInput
   }
 
-  export type ProfessorUpdateToOneWithWhereWithoutDisponibilidadeInput = {
+  export type ProfessorUpdateToOneWithWhereWithoutDisponibilidadesInput = {
     where?: ProfessorWhereInput
-    data: XOR<ProfessorUpdateWithoutDisponibilidadeInput, ProfessorUncheckedUpdateWithoutDisponibilidadeInput>
+    data: XOR<ProfessorUpdateWithoutDisponibilidadesInput, ProfessorUncheckedUpdateWithoutDisponibilidadesInput>
   }
 
-  export type ProfessorUpdateWithoutDisponibilidadeInput = {
+  export type ProfessorUpdateWithoutDisponibilidadesInput = {
     nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    ProfDisciplinas?: ProfDisciplinasUpdateManyWithoutProfessorNestedInput
-    ProfTurma?: ProfTurmaUpdateManyWithoutProfessorNestedInput
-    TempoLectivo?: TempoLectivoUpdateManyWithoutProfessorNestedInput
+    profDisciplinas?: ProfDisciplinasUpdateManyWithoutProfessorNestedInput
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutProfessorNestedInput
   }
 
-  export type ProfessorUncheckedUpdateWithoutDisponibilidadeInput = {
+  export type ProfessorUncheckedUpdateWithoutDisponibilidadesInput = {
     id_professor?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    ProfDisciplinas?: ProfDisciplinasUncheckedUpdateManyWithoutProfessorNestedInput
-    ProfTurma?: ProfTurmaUncheckedUpdateManyWithoutProfessorNestedInput
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutProfessorNestedInput
+    profDisciplinas?: ProfDisciplinasUncheckedUpdateManyWithoutProfessorNestedInput
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutProfessorNestedInput
   }
 
-  export type DisponibilidadeCreateWithoutProfessorInput = {
-    ordem: number
-    DiaSemana: DiaSemanaCreateNestedOneWithoutDisponibilidadeInput
-    Periodo: PeriodoCreateNestedOneWithoutDisponibilidadeInput
+  export type DiaSemanaUpsertWithoutDisponibilidadesInput = {
+    update: XOR<DiaSemanaUpdateWithoutDisponibilidadesInput, DiaSemanaUncheckedUpdateWithoutDisponibilidadesInput>
+    create: XOR<DiaSemanaCreateWithoutDisponibilidadesInput, DiaSemanaUncheckedCreateWithoutDisponibilidadesInput>
+    where?: DiaSemanaWhereInput
   }
 
-  export type DisponibilidadeUncheckedCreateWithoutProfessorInput = {
-    idDisponibilidade?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
+  export type DiaSemanaUpdateToOneWithWhereWithoutDisponibilidadesInput = {
+    where?: DiaSemanaWhereInput
+    data: XOR<DiaSemanaUpdateWithoutDisponibilidadesInput, DiaSemanaUncheckedUpdateWithoutDisponibilidadesInput>
   }
 
-  export type DisponibilidadeCreateOrConnectWithoutProfessorInput = {
-    where: DisponibilidadeWhereUniqueInput
-    create: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput>
+  export type DiaSemanaUpdateWithoutDisponibilidadesInput = {
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutDiaNestedInput
   }
 
-  export type DisponibilidadeCreateManyProfessorInputEnvelope = {
-    data: DisponibilidadeCreateManyProfessorInput | DisponibilidadeCreateManyProfessorInput[]
-    skipDuplicates?: boolean
+  export type DiaSemanaUncheckedUpdateWithoutDisponibilidadesInput = {
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutDiaNestedInput
   }
 
-  export type ProfDisciplinasCreateWithoutProfessorInput = {
-    Disciplina: DisciplinaCreateNestedOneWithoutProfDisciplinasInput
+  export type PeriodoUpsertWithoutDisponibilidadesInput = {
+    update: XOR<PeriodoUpdateWithoutDisponibilidadesInput, PeriodoUncheckedUpdateWithoutDisponibilidadesInput>
+    create: XOR<PeriodoCreateWithoutDisponibilidadesInput, PeriodoUncheckedCreateWithoutDisponibilidadesInput>
+    where?: PeriodoWhereInput
   }
 
-  export type ProfDisciplinasUncheckedCreateWithoutProfessorInput = {
-    idProfDisciplina?: number
-    disciplinaId: number
+  export type PeriodoUpdateToOneWithWhereWithoutDisponibilidadesInput = {
+    where?: PeriodoWhereInput
+    data: XOR<PeriodoUpdateWithoutDisponibilidadesInput, PeriodoUncheckedUpdateWithoutDisponibilidadesInput>
   }
 
-  export type ProfDisciplinasCreateOrConnectWithoutProfessorInput = {
-    where: ProfDisciplinasWhereUniqueInput
-    create: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput>
+  export type PeriodoUpdateWithoutDisponibilidadesInput = {
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutPeriodoNestedInput
   }
 
-  export type ProfDisciplinasCreateManyProfessorInputEnvelope = {
-    data: ProfDisciplinasCreateManyProfessorInput | ProfDisciplinasCreateManyProfessorInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ProfTurmaCreateWithoutProfessorInput = {
-    Turma: TurmaCreateNestedOneWithoutProfTurmaInput
-  }
-
-  export type ProfTurmaUncheckedCreateWithoutProfessorInput = {
-    idProfTurma?: number
-    turmaId: number
-  }
-
-  export type ProfTurmaCreateOrConnectWithoutProfessorInput = {
-    where: ProfTurmaWhereUniqueInput
-    create: XOR<ProfTurmaCreateWithoutProfessorInput, ProfTurmaUncheckedCreateWithoutProfessorInput>
-  }
-
-  export type ProfTurmaCreateManyProfessorInputEnvelope = {
-    data: ProfTurmaCreateManyProfessorInput | ProfTurmaCreateManyProfessorInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type TempoLectivoCreateWithoutProfessorInput = {
-    ordem: number
-    DiaSemana: DiaSemanaCreateNestedOneWithoutTempoLectivoInput
-    Disciplina: DisciplinaCreateNestedOneWithoutTempoLectivoInput
-    Periodo: PeriodoCreateNestedOneWithoutTempoLectivoInput
-    Sala: SalaCreateNestedOneWithoutTempoLectivoInput
-    Turma: TurmaCreateNestedOneWithoutTempoLectivoInput
-  }
-
-  export type TempoLectivoUncheckedCreateWithoutProfessorInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
-    disciplinaId: number
-    salaId: number
-    turmaId: number
-  }
-
-  export type TempoLectivoCreateOrConnectWithoutProfessorInput = {
-    where: TempoLectivoWhereUniqueInput
-    create: XOR<TempoLectivoCreateWithoutProfessorInput, TempoLectivoUncheckedCreateWithoutProfessorInput>
-  }
-
-  export type TempoLectivoCreateManyProfessorInputEnvelope = {
-    data: TempoLectivoCreateManyProfessorInput | TempoLectivoCreateManyProfessorInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type DisponibilidadeUpsertWithWhereUniqueWithoutProfessorInput = {
-    where: DisponibilidadeWhereUniqueInput
-    update: XOR<DisponibilidadeUpdateWithoutProfessorInput, DisponibilidadeUncheckedUpdateWithoutProfessorInput>
-    create: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput>
-  }
-
-  export type DisponibilidadeUpdateWithWhereUniqueWithoutProfessorInput = {
-    where: DisponibilidadeWhereUniqueInput
-    data: XOR<DisponibilidadeUpdateWithoutProfessorInput, DisponibilidadeUncheckedUpdateWithoutProfessorInput>
-  }
-
-  export type DisponibilidadeUpdateManyWithWhereWithoutProfessorInput = {
-    where: DisponibilidadeScalarWhereInput
-    data: XOR<DisponibilidadeUpdateManyMutationInput, DisponibilidadeUncheckedUpdateManyWithoutProfessorInput>
-  }
-
-  export type ProfDisciplinasUpsertWithWhereUniqueWithoutProfessorInput = {
-    where: ProfDisciplinasWhereUniqueInput
-    update: XOR<ProfDisciplinasUpdateWithoutProfessorInput, ProfDisciplinasUncheckedUpdateWithoutProfessorInput>
-    create: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput>
-  }
-
-  export type ProfDisciplinasUpdateWithWhereUniqueWithoutProfessorInput = {
-    where: ProfDisciplinasWhereUniqueInput
-    data: XOR<ProfDisciplinasUpdateWithoutProfessorInput, ProfDisciplinasUncheckedUpdateWithoutProfessorInput>
-  }
-
-  export type ProfDisciplinasUpdateManyWithWhereWithoutProfessorInput = {
-    where: ProfDisciplinasScalarWhereInput
-    data: XOR<ProfDisciplinasUpdateManyMutationInput, ProfDisciplinasUncheckedUpdateManyWithoutProfessorInput>
-  }
-
-  export type ProfTurmaUpsertWithWhereUniqueWithoutProfessorInput = {
-    where: ProfTurmaWhereUniqueInput
-    update: XOR<ProfTurmaUpdateWithoutProfessorInput, ProfTurmaUncheckedUpdateWithoutProfessorInput>
-    create: XOR<ProfTurmaCreateWithoutProfessorInput, ProfTurmaUncheckedCreateWithoutProfessorInput>
-  }
-
-  export type ProfTurmaUpdateWithWhereUniqueWithoutProfessorInput = {
-    where: ProfTurmaWhereUniqueInput
-    data: XOR<ProfTurmaUpdateWithoutProfessorInput, ProfTurmaUncheckedUpdateWithoutProfessorInput>
-  }
-
-  export type ProfTurmaUpdateManyWithWhereWithoutProfessorInput = {
-    where: ProfTurmaScalarWhereInput
-    data: XOR<ProfTurmaUpdateManyMutationInput, ProfTurmaUncheckedUpdateManyWithoutProfessorInput>
-  }
-
-  export type ProfTurmaScalarWhereInput = {
-    AND?: ProfTurmaScalarWhereInput | ProfTurmaScalarWhereInput[]
-    OR?: ProfTurmaScalarWhereInput[]
-    NOT?: ProfTurmaScalarWhereInput | ProfTurmaScalarWhereInput[]
-    idProfTurma?: IntFilter<"ProfTurma"> | number
-    professorId?: IntFilter<"ProfTurma"> | number
-    turmaId?: IntFilter<"ProfTurma"> | number
-  }
-
-  export type TempoLectivoUpsertWithWhereUniqueWithoutProfessorInput = {
-    where: TempoLectivoWhereUniqueInput
-    update: XOR<TempoLectivoUpdateWithoutProfessorInput, TempoLectivoUncheckedUpdateWithoutProfessorInput>
-    create: XOR<TempoLectivoCreateWithoutProfessorInput, TempoLectivoUncheckedCreateWithoutProfessorInput>
-  }
-
-  export type TempoLectivoUpdateWithWhereUniqueWithoutProfessorInput = {
-    where: TempoLectivoWhereUniqueInput
-    data: XOR<TempoLectivoUpdateWithoutProfessorInput, TempoLectivoUncheckedUpdateWithoutProfessorInput>
-  }
-
-  export type TempoLectivoUpdateManyWithWhereWithoutProfessorInput = {
-    where: TempoLectivoScalarWhereInput
-    data: XOR<TempoLectivoUpdateManyMutationInput, TempoLectivoUncheckedUpdateManyWithoutProfessorInput>
+  export type PeriodoUncheckedUpdateWithoutDisponibilidadesInput = {
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutPeriodoNestedInput
   }
 
   export type DisponibilidadeCreateWithoutPeriodoInput = {
     ordem: number
-    DiaSemana: DiaSemanaCreateNestedOneWithoutDisponibilidadeInput
-    Professor: ProfessorCreateNestedOneWithoutDisponibilidadeInput
+    professor: ProfessorCreateNestedOneWithoutDisponibilidadesInput
+    dia: DiaSemanaCreateNestedOneWithoutDisponibilidadesInput
   }
 
   export type DisponibilidadeUncheckedCreateWithoutPeriodoInput = {
-    idDisponibilidade?: number
-    diaSemana: string
-    ordem: number
+    id_disponibilidade?: number
     professorId: number
+    nome_dia: string
+    ordem: number
   }
 
   export type DisponibilidadeCreateOrConnectWithoutPeriodoInput = {
@@ -18772,32 +16762,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type TempoLectivoCreateWithoutPeriodoInput = {
-    ordem: number
-    DiaSemana: DiaSemanaCreateNestedOneWithoutTempoLectivoInput
-    Disciplina: DisciplinaCreateNestedOneWithoutTempoLectivoInput
-    Professor: ProfessorCreateNestedOneWithoutTempoLectivoInput
-    Sala: SalaCreateNestedOneWithoutTempoLectivoInput
-    Turma: TurmaCreateNestedOneWithoutTempoLectivoInput
+  export type Tempo_LectivoCreateWithoutPeriodoInput = {
+    ordem?: number
+    professor: ProfessorCreateNestedOneWithoutTempo_lectivoInput
+    turma: TurmaCreateNestedOneWithoutTempo_lectivoInput
+    disciplina: DisciplinaCreateNestedOneWithoutTempo_lectivoInput
+    sala: SalaCreateNestedOneWithoutTempo_lectivoInput
+    dia: DiaSemanaCreateNestedOneWithoutTempo_lectivoInput
   }
 
-  export type TempoLectivoUncheckedCreateWithoutPeriodoInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    ordem: number
+  export type Tempo_LectivoUncheckedCreateWithoutPeriodoInput = {
+    id?: number
     professorId: number
-    disciplinaId: number
-    salaId: number
-    turmaId: number
+    nome_turma: string
+    nome_disciplina: string
+    nome_sala: string
+    nome_dia: string
+    ordem?: number
   }
 
-  export type TempoLectivoCreateOrConnectWithoutPeriodoInput = {
-    where: TempoLectivoWhereUniqueInput
-    create: XOR<TempoLectivoCreateWithoutPeriodoInput, TempoLectivoUncheckedCreateWithoutPeriodoInput>
+  export type Tempo_LectivoCreateOrConnectWithoutPeriodoInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    create: XOR<Tempo_LectivoCreateWithoutPeriodoInput, Tempo_LectivoUncheckedCreateWithoutPeriodoInput>
   }
 
-  export type TempoLectivoCreateManyPeriodoInputEnvelope = {
-    data: TempoLectivoCreateManyPeriodoInput | TempoLectivoCreateManyPeriodoInput[]
+  export type Tempo_LectivoCreateManyPeriodoInputEnvelope = {
+    data: Tempo_LectivoCreateManyPeriodoInput | Tempo_LectivoCreateManyPeriodoInput[]
     skipDuplicates?: boolean
   }
 
@@ -18817,59 +16807,157 @@ export namespace Prisma {
     data: XOR<DisponibilidadeUpdateManyMutationInput, DisponibilidadeUncheckedUpdateManyWithoutPeriodoInput>
   }
 
-  export type TempoLectivoUpsertWithWhereUniqueWithoutPeriodoInput = {
-    where: TempoLectivoWhereUniqueInput
-    update: XOR<TempoLectivoUpdateWithoutPeriodoInput, TempoLectivoUncheckedUpdateWithoutPeriodoInput>
-    create: XOR<TempoLectivoCreateWithoutPeriodoInput, TempoLectivoUncheckedCreateWithoutPeriodoInput>
+  export type Tempo_LectivoUpsertWithWhereUniqueWithoutPeriodoInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    update: XOR<Tempo_LectivoUpdateWithoutPeriodoInput, Tempo_LectivoUncheckedUpdateWithoutPeriodoInput>
+    create: XOR<Tempo_LectivoCreateWithoutPeriodoInput, Tempo_LectivoUncheckedCreateWithoutPeriodoInput>
   }
 
-  export type TempoLectivoUpdateWithWhereUniqueWithoutPeriodoInput = {
-    where: TempoLectivoWhereUniqueInput
-    data: XOR<TempoLectivoUpdateWithoutPeriodoInput, TempoLectivoUncheckedUpdateWithoutPeriodoInput>
+  export type Tempo_LectivoUpdateWithWhereUniqueWithoutPeriodoInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    data: XOR<Tempo_LectivoUpdateWithoutPeriodoInput, Tempo_LectivoUncheckedUpdateWithoutPeriodoInput>
   }
 
-  export type TempoLectivoUpdateManyWithWhereWithoutPeriodoInput = {
-    where: TempoLectivoScalarWhereInput
-    data: XOR<TempoLectivoUpdateManyMutationInput, TempoLectivoUncheckedUpdateManyWithoutPeriodoInput>
+  export type Tempo_LectivoUpdateManyWithWhereWithoutPeriodoInput = {
+    where: Tempo_LectivoScalarWhereInput
+    data: XOR<Tempo_LectivoUpdateManyMutationInput, Tempo_LectivoUncheckedUpdateManyWithoutPeriodoInput>
   }
 
-  export type DisciplinaCreateWithoutProfDisciplinasInput = {
-    nome: string
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutDisciplinaInput
+  export type ProfDisciplinasCreateWithoutProfessorInput = {
+    disciplina: DisciplinaCreateNestedOneWithoutProfDisciplinasInput
   }
 
-  export type DisciplinaUncheckedCreateWithoutProfDisciplinasInput = {
-    idDisciplina?: number
-    nome: string
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutDisciplinaInput
+  export type ProfDisciplinasUncheckedCreateWithoutProfessorInput = {
+    nome_disciplina: string
   }
 
-  export type DisciplinaCreateOrConnectWithoutProfDisciplinasInput = {
-    where: DisciplinaWhereUniqueInput
-    create: XOR<DisciplinaCreateWithoutProfDisciplinasInput, DisciplinaUncheckedCreateWithoutProfDisciplinasInput>
+  export type ProfDisciplinasCreateOrConnectWithoutProfessorInput = {
+    where: ProfDisciplinasWhereUniqueInput
+    create: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput>
+  }
+
+  export type ProfDisciplinasCreateManyProfessorInputEnvelope = {
+    data: ProfDisciplinasCreateManyProfessorInput | ProfDisciplinasCreateManyProfessorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DisponibilidadeCreateWithoutProfessorInput = {
+    ordem: number
+    dia: DiaSemanaCreateNestedOneWithoutDisponibilidadesInput
+    periodo: PeriodoCreateNestedOneWithoutDisponibilidadesInput
+  }
+
+  export type DisponibilidadeUncheckedCreateWithoutProfessorInput = {
+    id_disponibilidade?: number
+    nome_dia: string
+    nome_periodo: string
+    ordem: number
+  }
+
+  export type DisponibilidadeCreateOrConnectWithoutProfessorInput = {
+    where: DisponibilidadeWhereUniqueInput
+    create: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput>
+  }
+
+  export type DisponibilidadeCreateManyProfessorInputEnvelope = {
+    data: DisponibilidadeCreateManyProfessorInput | DisponibilidadeCreateManyProfessorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type Tempo_LectivoCreateWithoutProfessorInput = {
+    ordem?: number
+    turma: TurmaCreateNestedOneWithoutTempo_lectivoInput
+    disciplina: DisciplinaCreateNestedOneWithoutTempo_lectivoInput
+    sala: SalaCreateNestedOneWithoutTempo_lectivoInput
+    dia: DiaSemanaCreateNestedOneWithoutTempo_lectivoInput
+    periodo: PeriodoCreateNestedOneWithoutTempo_lectivoInput
+  }
+
+  export type Tempo_LectivoUncheckedCreateWithoutProfessorInput = {
+    id?: number
+    nome_turma: string
+    nome_disciplina: string
+    nome_sala: string
+    nome_dia: string
+    nome_periodo: string
+    ordem?: number
+  }
+
+  export type Tempo_LectivoCreateOrConnectWithoutProfessorInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    create: XOR<Tempo_LectivoCreateWithoutProfessorInput, Tempo_LectivoUncheckedCreateWithoutProfessorInput>
+  }
+
+  export type Tempo_LectivoCreateManyProfessorInputEnvelope = {
+    data: Tempo_LectivoCreateManyProfessorInput | Tempo_LectivoCreateManyProfessorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProfDisciplinasUpsertWithWhereUniqueWithoutProfessorInput = {
+    where: ProfDisciplinasWhereUniqueInput
+    update: XOR<ProfDisciplinasUpdateWithoutProfessorInput, ProfDisciplinasUncheckedUpdateWithoutProfessorInput>
+    create: XOR<ProfDisciplinasCreateWithoutProfessorInput, ProfDisciplinasUncheckedCreateWithoutProfessorInput>
+  }
+
+  export type ProfDisciplinasUpdateWithWhereUniqueWithoutProfessorInput = {
+    where: ProfDisciplinasWhereUniqueInput
+    data: XOR<ProfDisciplinasUpdateWithoutProfessorInput, ProfDisciplinasUncheckedUpdateWithoutProfessorInput>
+  }
+
+  export type ProfDisciplinasUpdateManyWithWhereWithoutProfessorInput = {
+    where: ProfDisciplinasScalarWhereInput
+    data: XOR<ProfDisciplinasUpdateManyMutationInput, ProfDisciplinasUncheckedUpdateManyWithoutProfessorInput>
+  }
+
+  export type DisponibilidadeUpsertWithWhereUniqueWithoutProfessorInput = {
+    where: DisponibilidadeWhereUniqueInput
+    update: XOR<DisponibilidadeUpdateWithoutProfessorInput, DisponibilidadeUncheckedUpdateWithoutProfessorInput>
+    create: XOR<DisponibilidadeCreateWithoutProfessorInput, DisponibilidadeUncheckedCreateWithoutProfessorInput>
+  }
+
+  export type DisponibilidadeUpdateWithWhereUniqueWithoutProfessorInput = {
+    where: DisponibilidadeWhereUniqueInput
+    data: XOR<DisponibilidadeUpdateWithoutProfessorInput, DisponibilidadeUncheckedUpdateWithoutProfessorInput>
+  }
+
+  export type DisponibilidadeUpdateManyWithWhereWithoutProfessorInput = {
+    where: DisponibilidadeScalarWhereInput
+    data: XOR<DisponibilidadeUpdateManyMutationInput, DisponibilidadeUncheckedUpdateManyWithoutProfessorInput>
+  }
+
+  export type Tempo_LectivoUpsertWithWhereUniqueWithoutProfessorInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    update: XOR<Tempo_LectivoUpdateWithoutProfessorInput, Tempo_LectivoUncheckedUpdateWithoutProfessorInput>
+    create: XOR<Tempo_LectivoCreateWithoutProfessorInput, Tempo_LectivoUncheckedCreateWithoutProfessorInput>
+  }
+
+  export type Tempo_LectivoUpdateWithWhereUniqueWithoutProfessorInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    data: XOR<Tempo_LectivoUpdateWithoutProfessorInput, Tempo_LectivoUncheckedUpdateWithoutProfessorInput>
+  }
+
+  export type Tempo_LectivoUpdateManyWithWhereWithoutProfessorInput = {
+    where: Tempo_LectivoScalarWhereInput
+    data: XOR<Tempo_LectivoUpdateManyMutationInput, Tempo_LectivoUncheckedUpdateManyWithoutProfessorInput>
   }
 
   export type ProfessorCreateWithoutProfDisciplinasInput = {
     nome: string
-    email?: string | null
-    telefone?: string | null
-    created_at?: Date | string
-    updated_at: Date | string
-    Disponibilidade?: DisponibilidadeCreateNestedManyWithoutProfessorInput
-    ProfTurma?: ProfTurmaCreateNestedManyWithoutProfessorInput
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutProfessorInput
+    email: string
+    telefone: string
+    updated_at?: Date | string
+    disponibilidades?: DisponibilidadeCreateNestedManyWithoutProfessorInput
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutProfessorInput
   }
 
   export type ProfessorUncheckedCreateWithoutProfDisciplinasInput = {
     id_professor?: number
     nome: string
-    email?: string | null
-    telefone?: string | null
-    created_at?: Date | string
-    updated_at: Date | string
-    Disponibilidade?: DisponibilidadeUncheckedCreateNestedManyWithoutProfessorInput
-    ProfTurma?: ProfTurmaUncheckedCreateNestedManyWithoutProfessorInput
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutProfessorInput
+    email: string
+    telefone: string
+    updated_at?: Date | string
+    disponibilidades?: DisponibilidadeUncheckedCreateNestedManyWithoutProfessorInput
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutProfessorInput
   }
 
   export type ProfessorCreateOrConnectWithoutProfDisciplinasInput = {
@@ -18877,26 +16965,19 @@ export namespace Prisma {
     create: XOR<ProfessorCreateWithoutProfDisciplinasInput, ProfessorUncheckedCreateWithoutProfDisciplinasInput>
   }
 
-  export type DisciplinaUpsertWithoutProfDisciplinasInput = {
-    update: XOR<DisciplinaUpdateWithoutProfDisciplinasInput, DisciplinaUncheckedUpdateWithoutProfDisciplinasInput>
+  export type DisciplinaCreateWithoutProfDisciplinasInput = {
+    nome_disciplina: string
+    tempo_lectivo?: Tempo_LectivoCreateNestedManyWithoutDisciplinaInput
+  }
+
+  export type DisciplinaUncheckedCreateWithoutProfDisciplinasInput = {
+    nome_disciplina: string
+    tempo_lectivo?: Tempo_LectivoUncheckedCreateNestedManyWithoutDisciplinaInput
+  }
+
+  export type DisciplinaCreateOrConnectWithoutProfDisciplinasInput = {
+    where: DisciplinaWhereUniqueInput
     create: XOR<DisciplinaCreateWithoutProfDisciplinasInput, DisciplinaUncheckedCreateWithoutProfDisciplinasInput>
-    where?: DisciplinaWhereInput
-  }
-
-  export type DisciplinaUpdateToOneWithWhereWithoutProfDisciplinasInput = {
-    where?: DisciplinaWhereInput
-    data: XOR<DisciplinaUpdateWithoutProfDisciplinasInput, DisciplinaUncheckedUpdateWithoutProfDisciplinasInput>
-  }
-
-  export type DisciplinaUpdateWithoutProfDisciplinasInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    TempoLectivo?: TempoLectivoUpdateManyWithoutDisciplinaNestedInput
-  }
-
-  export type DisciplinaUncheckedUpdateWithoutProfDisciplinasInput = {
-    idDisciplina?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutDisciplinaNestedInput
   }
 
   export type ProfessorUpsertWithoutProfDisciplinasInput = {
@@ -18912,1019 +16993,825 @@ export namespace Prisma {
 
   export type ProfessorUpdateWithoutProfDisciplinasInput = {
     nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    Disponibilidade?: DisponibilidadeUpdateManyWithoutProfessorNestedInput
-    ProfTurma?: ProfTurmaUpdateManyWithoutProfessorNestedInput
-    TempoLectivo?: TempoLectivoUpdateManyWithoutProfessorNestedInput
+    disponibilidades?: DisponibilidadeUpdateManyWithoutProfessorNestedInput
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutProfessorNestedInput
   }
 
   export type ProfessorUncheckedUpdateWithoutProfDisciplinasInput = {
     id_professor?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    Disponibilidade?: DisponibilidadeUncheckedUpdateManyWithoutProfessorNestedInput
-    ProfTurma?: ProfTurmaUncheckedUpdateManyWithoutProfessorNestedInput
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutProfessorNestedInput
+    disponibilidades?: DisponibilidadeUncheckedUpdateManyWithoutProfessorNestedInput
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutProfessorNestedInput
   }
 
-  export type ProfessorCreateWithoutProfTurmaInput = {
-    nome: string
-    email?: string | null
-    telefone?: string | null
-    created_at?: Date | string
-    updated_at: Date | string
-    Disponibilidade?: DisponibilidadeCreateNestedManyWithoutProfessorInput
-    ProfDisciplinas?: ProfDisciplinasCreateNestedManyWithoutProfessorInput
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutProfessorInput
+  export type DisciplinaUpsertWithoutProfDisciplinasInput = {
+    update: XOR<DisciplinaUpdateWithoutProfDisciplinasInput, DisciplinaUncheckedUpdateWithoutProfDisciplinasInput>
+    create: XOR<DisciplinaCreateWithoutProfDisciplinasInput, DisciplinaUncheckedCreateWithoutProfDisciplinasInput>
+    where?: DisciplinaWhereInput
   }
 
-  export type ProfessorUncheckedCreateWithoutProfTurmaInput = {
-    id_professor?: number
-    nome: string
-    email?: string | null
-    telefone?: string | null
-    created_at?: Date | string
-    updated_at: Date | string
-    Disponibilidade?: DisponibilidadeUncheckedCreateNestedManyWithoutProfessorInput
-    ProfDisciplinas?: ProfDisciplinasUncheckedCreateNestedManyWithoutProfessorInput
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutProfessorInput
+  export type DisciplinaUpdateToOneWithWhereWithoutProfDisciplinasInput = {
+    where?: DisciplinaWhereInput
+    data: XOR<DisciplinaUpdateWithoutProfDisciplinasInput, DisciplinaUncheckedUpdateWithoutProfDisciplinasInput>
   }
 
-  export type ProfessorCreateOrConnectWithoutProfTurmaInput = {
-    where: ProfessorWhereUniqueInput
-    create: XOR<ProfessorCreateWithoutProfTurmaInput, ProfessorUncheckedCreateWithoutProfTurmaInput>
+  export type DisciplinaUpdateWithoutProfDisciplinasInput = {
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutDisciplinaNestedInput
   }
 
-  export type TurmaCreateWithoutProfTurmaInput = {
-    nome: string
-    TempoLectivo?: TempoLectivoCreateNestedManyWithoutTurmaInput
-    Classe: ClasseCreateNestedOneWithoutTurmaInput
-    Curso: CursoCreateNestedOneWithoutTurmaInput
+  export type DisciplinaUncheckedUpdateWithoutProfDisciplinasInput = {
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutDisciplinaNestedInput
   }
 
-  export type TurmaUncheckedCreateWithoutProfTurmaInput = {
-    idTurma?: number
-    nome: string
-    classe: string
-    curso: string
-    TempoLectivo?: TempoLectivoUncheckedCreateNestedManyWithoutTurmaInput
+  export type Tempo_LectivoCreateWithoutSalaInput = {
+    ordem?: number
+    professor: ProfessorCreateNestedOneWithoutTempo_lectivoInput
+    turma: TurmaCreateNestedOneWithoutTempo_lectivoInput
+    disciplina: DisciplinaCreateNestedOneWithoutTempo_lectivoInput
+    dia: DiaSemanaCreateNestedOneWithoutTempo_lectivoInput
+    periodo: PeriodoCreateNestedOneWithoutTempo_lectivoInput
   }
 
-  export type TurmaCreateOrConnectWithoutProfTurmaInput = {
-    where: TurmaWhereUniqueInput
-    create: XOR<TurmaCreateWithoutProfTurmaInput, TurmaUncheckedCreateWithoutProfTurmaInput>
-  }
-
-  export type ProfessorUpsertWithoutProfTurmaInput = {
-    update: XOR<ProfessorUpdateWithoutProfTurmaInput, ProfessorUncheckedUpdateWithoutProfTurmaInput>
-    create: XOR<ProfessorCreateWithoutProfTurmaInput, ProfessorUncheckedCreateWithoutProfTurmaInput>
-    where?: ProfessorWhereInput
-  }
-
-  export type ProfessorUpdateToOneWithWhereWithoutProfTurmaInput = {
-    where?: ProfessorWhereInput
-    data: XOR<ProfessorUpdateWithoutProfTurmaInput, ProfessorUncheckedUpdateWithoutProfTurmaInput>
-  }
-
-  export type ProfessorUpdateWithoutProfTurmaInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    Disponibilidade?: DisponibilidadeUpdateManyWithoutProfessorNestedInput
-    ProfDisciplinas?: ProfDisciplinasUpdateManyWithoutProfessorNestedInput
-    TempoLectivo?: TempoLectivoUpdateManyWithoutProfessorNestedInput
-  }
-
-  export type ProfessorUncheckedUpdateWithoutProfTurmaInput = {
-    id_professor?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    Disponibilidade?: DisponibilidadeUncheckedUpdateManyWithoutProfessorNestedInput
-    ProfDisciplinas?: ProfDisciplinasUncheckedUpdateManyWithoutProfessorNestedInput
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutProfessorNestedInput
-  }
-
-  export type TurmaUpsertWithoutProfTurmaInput = {
-    update: XOR<TurmaUpdateWithoutProfTurmaInput, TurmaUncheckedUpdateWithoutProfTurmaInput>
-    create: XOR<TurmaCreateWithoutProfTurmaInput, TurmaUncheckedCreateWithoutProfTurmaInput>
-    where?: TurmaWhereInput
-  }
-
-  export type TurmaUpdateToOneWithWhereWithoutProfTurmaInput = {
-    where?: TurmaWhereInput
-    data: XOR<TurmaUpdateWithoutProfTurmaInput, TurmaUncheckedUpdateWithoutProfTurmaInput>
-  }
-
-  export type TurmaUpdateWithoutProfTurmaInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    TempoLectivo?: TempoLectivoUpdateManyWithoutTurmaNestedInput
-    Classe?: ClasseUpdateOneRequiredWithoutTurmaNestedInput
-    Curso?: CursoUpdateOneRequiredWithoutTurmaNestedInput
-  }
-
-  export type TurmaUncheckedUpdateWithoutProfTurmaInput = {
-    idTurma?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    classe?: StringFieldUpdateOperationsInput | string
-    curso?: StringFieldUpdateOperationsInput | string
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutTurmaNestedInput
-  }
-
-  export type TempoLectivoCreateWithoutSalaInput = {
-    ordem: number
-    DiaSemana: DiaSemanaCreateNestedOneWithoutTempoLectivoInput
-    Disciplina: DisciplinaCreateNestedOneWithoutTempoLectivoInput
-    Periodo: PeriodoCreateNestedOneWithoutTempoLectivoInput
-    Professor: ProfessorCreateNestedOneWithoutTempoLectivoInput
-    Turma: TurmaCreateNestedOneWithoutTempoLectivoInput
-  }
-
-  export type TempoLectivoUncheckedCreateWithoutSalaInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
+  export type Tempo_LectivoUncheckedCreateWithoutSalaInput = {
+    id?: number
     professorId: number
-    disciplinaId: number
-    turmaId: number
+    nome_turma: string
+    nome_disciplina: string
+    nome_dia: string
+    nome_periodo: string
+    ordem?: number
   }
 
-  export type TempoLectivoCreateOrConnectWithoutSalaInput = {
-    where: TempoLectivoWhereUniqueInput
-    create: XOR<TempoLectivoCreateWithoutSalaInput, TempoLectivoUncheckedCreateWithoutSalaInput>
+  export type Tempo_LectivoCreateOrConnectWithoutSalaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    create: XOR<Tempo_LectivoCreateWithoutSalaInput, Tempo_LectivoUncheckedCreateWithoutSalaInput>
   }
 
-  export type TempoLectivoCreateManySalaInputEnvelope = {
-    data: TempoLectivoCreateManySalaInput | TempoLectivoCreateManySalaInput[]
+  export type Tempo_LectivoCreateManySalaInputEnvelope = {
+    data: Tempo_LectivoCreateManySalaInput | Tempo_LectivoCreateManySalaInput[]
     skipDuplicates?: boolean
   }
 
-  export type TempoLectivoUpsertWithWhereUniqueWithoutSalaInput = {
-    where: TempoLectivoWhereUniqueInput
-    update: XOR<TempoLectivoUpdateWithoutSalaInput, TempoLectivoUncheckedUpdateWithoutSalaInput>
-    create: XOR<TempoLectivoCreateWithoutSalaInput, TempoLectivoUncheckedCreateWithoutSalaInput>
+  export type Tempo_LectivoUpsertWithWhereUniqueWithoutSalaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    update: XOR<Tempo_LectivoUpdateWithoutSalaInput, Tempo_LectivoUncheckedUpdateWithoutSalaInput>
+    create: XOR<Tempo_LectivoCreateWithoutSalaInput, Tempo_LectivoUncheckedCreateWithoutSalaInput>
   }
 
-  export type TempoLectivoUpdateWithWhereUniqueWithoutSalaInput = {
-    where: TempoLectivoWhereUniqueInput
-    data: XOR<TempoLectivoUpdateWithoutSalaInput, TempoLectivoUncheckedUpdateWithoutSalaInput>
+  export type Tempo_LectivoUpdateWithWhereUniqueWithoutSalaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    data: XOR<Tempo_LectivoUpdateWithoutSalaInput, Tempo_LectivoUncheckedUpdateWithoutSalaInput>
   }
 
-  export type TempoLectivoUpdateManyWithWhereWithoutSalaInput = {
-    where: TempoLectivoScalarWhereInput
-    data: XOR<TempoLectivoUpdateManyMutationInput, TempoLectivoUncheckedUpdateManyWithoutSalaInput>
+  export type Tempo_LectivoUpdateManyWithWhereWithoutSalaInput = {
+    where: Tempo_LectivoScalarWhereInput
+    data: XOR<Tempo_LectivoUpdateManyMutationInput, Tempo_LectivoUncheckedUpdateManyWithoutSalaInput>
   }
 
-  export type DiaSemanaCreateWithoutTempoLectivoInput = {
+  export type ProfessorCreateWithoutTempo_lectivoInput = {
     nome: string
-    Disponibilidade?: DisponibilidadeCreateNestedManyWithoutDiaSemanaInput
+    email: string
+    telefone: string
+    updated_at?: Date | string
+    profDisciplinas?: ProfDisciplinasCreateNestedManyWithoutProfessorInput
+    disponibilidades?: DisponibilidadeCreateNestedManyWithoutProfessorInput
   }
 
-  export type DiaSemanaUncheckedCreateWithoutTempoLectivoInput = {
+  export type ProfessorUncheckedCreateWithoutTempo_lectivoInput = {
+    id_professor?: number
     nome: string
-    Disponibilidade?: DisponibilidadeUncheckedCreateNestedManyWithoutDiaSemanaInput
+    email: string
+    telefone: string
+    updated_at?: Date | string
+    profDisciplinas?: ProfDisciplinasUncheckedCreateNestedManyWithoutProfessorInput
+    disponibilidades?: DisponibilidadeUncheckedCreateNestedManyWithoutProfessorInput
   }
 
-  export type DiaSemanaCreateOrConnectWithoutTempoLectivoInput = {
-    where: DiaSemanaWhereUniqueInput
-    create: XOR<DiaSemanaCreateWithoutTempoLectivoInput, DiaSemanaUncheckedCreateWithoutTempoLectivoInput>
+  export type ProfessorCreateOrConnectWithoutTempo_lectivoInput = {
+    where: ProfessorWhereUniqueInput
+    create: XOR<ProfessorCreateWithoutTempo_lectivoInput, ProfessorUncheckedCreateWithoutTempo_lectivoInput>
   }
 
-  export type DisciplinaCreateWithoutTempoLectivoInput = {
-    nome: string
-    ProfDisciplinas?: ProfDisciplinasCreateNestedManyWithoutDisciplinaInput
+  export type TurmaCreateWithoutTempo_lectivoInput = {
+    nome_turma: string
+    curso: CursoCreateNestedOneWithoutTurmasInput
+    classe: ClasseCreateNestedOneWithoutTurmasInput
   }
 
-  export type DisciplinaUncheckedCreateWithoutTempoLectivoInput = {
-    idDisciplina?: number
-    nome: string
-    ProfDisciplinas?: ProfDisciplinasUncheckedCreateNestedManyWithoutDisciplinaInput
+  export type TurmaUncheckedCreateWithoutTempo_lectivoInput = {
+    nome_turma: string
+    nome_curso: string
+    nome_classe: string
   }
 
-  export type DisciplinaCreateOrConnectWithoutTempoLectivoInput = {
+  export type TurmaCreateOrConnectWithoutTempo_lectivoInput = {
+    where: TurmaWhereUniqueInput
+    create: XOR<TurmaCreateWithoutTempo_lectivoInput, TurmaUncheckedCreateWithoutTempo_lectivoInput>
+  }
+
+  export type DisciplinaCreateWithoutTempo_lectivoInput = {
+    nome_disciplina: string
+    profDisciplinas?: ProfDisciplinasCreateNestedManyWithoutDisciplinaInput
+  }
+
+  export type DisciplinaUncheckedCreateWithoutTempo_lectivoInput = {
+    nome_disciplina: string
+    profDisciplinas?: ProfDisciplinasUncheckedCreateNestedManyWithoutDisciplinaInput
+  }
+
+  export type DisciplinaCreateOrConnectWithoutTempo_lectivoInput = {
     where: DisciplinaWhereUniqueInput
-    create: XOR<DisciplinaCreateWithoutTempoLectivoInput, DisciplinaUncheckedCreateWithoutTempoLectivoInput>
+    create: XOR<DisciplinaCreateWithoutTempo_lectivoInput, DisciplinaUncheckedCreateWithoutTempo_lectivoInput>
   }
 
-  export type PeriodoCreateWithoutTempoLectivoInput = {
-    periodo: string
-    Disponibilidade?: DisponibilidadeCreateNestedManyWithoutPeriodoInput
+  export type SalaCreateWithoutTempo_lectivoInput = {
+    nome_sala: string
+    capacidade: number
   }
 
-  export type PeriodoUncheckedCreateWithoutTempoLectivoInput = {
-    periodo: string
-    Disponibilidade?: DisponibilidadeUncheckedCreateNestedManyWithoutPeriodoInput
+  export type SalaUncheckedCreateWithoutTempo_lectivoInput = {
+    nome_sala: string
+    capacidade: number
   }
 
-  export type PeriodoCreateOrConnectWithoutTempoLectivoInput = {
-    where: PeriodoWhereUniqueInput
-    create: XOR<PeriodoCreateWithoutTempoLectivoInput, PeriodoUncheckedCreateWithoutTempoLectivoInput>
-  }
-
-  export type ProfessorCreateWithoutTempoLectivoInput = {
-    nome: string
-    email?: string | null
-    telefone?: string | null
-    created_at?: Date | string
-    updated_at: Date | string
-    Disponibilidade?: DisponibilidadeCreateNestedManyWithoutProfessorInput
-    ProfDisciplinas?: ProfDisciplinasCreateNestedManyWithoutProfessorInput
-    ProfTurma?: ProfTurmaCreateNestedManyWithoutProfessorInput
-  }
-
-  export type ProfessorUncheckedCreateWithoutTempoLectivoInput = {
-    id_professor?: number
-    nome: string
-    email?: string | null
-    telefone?: string | null
-    created_at?: Date | string
-    updated_at: Date | string
-    Disponibilidade?: DisponibilidadeUncheckedCreateNestedManyWithoutProfessorInput
-    ProfDisciplinas?: ProfDisciplinasUncheckedCreateNestedManyWithoutProfessorInput
-    ProfTurma?: ProfTurmaUncheckedCreateNestedManyWithoutProfessorInput
-  }
-
-  export type ProfessorCreateOrConnectWithoutTempoLectivoInput = {
-    where: ProfessorWhereUniqueInput
-    create: XOR<ProfessorCreateWithoutTempoLectivoInput, ProfessorUncheckedCreateWithoutTempoLectivoInput>
-  }
-
-  export type SalaCreateWithoutTempoLectivoInput = {
-    nome: string
-  }
-
-  export type SalaUncheckedCreateWithoutTempoLectivoInput = {
-    idSala?: number
-    nome: string
-  }
-
-  export type SalaCreateOrConnectWithoutTempoLectivoInput = {
+  export type SalaCreateOrConnectWithoutTempo_lectivoInput = {
     where: SalaWhereUniqueInput
-    create: XOR<SalaCreateWithoutTempoLectivoInput, SalaUncheckedCreateWithoutTempoLectivoInput>
+    create: XOR<SalaCreateWithoutTempo_lectivoInput, SalaUncheckedCreateWithoutTempo_lectivoInput>
   }
 
-  export type TurmaCreateWithoutTempoLectivoInput = {
-    nome: string
-    ProfTurma?: ProfTurmaCreateNestedManyWithoutTurmaInput
-    Classe: ClasseCreateNestedOneWithoutTurmaInput
-    Curso: CursoCreateNestedOneWithoutTurmaInput
+  export type DiaSemanaCreateWithoutTempo_lectivoInput = {
+    nome_dia: string
+    disponibilidades?: DisponibilidadeCreateNestedManyWithoutDiaInput
   }
 
-  export type TurmaUncheckedCreateWithoutTempoLectivoInput = {
-    idTurma?: number
-    nome: string
-    classe: string
-    curso: string
-    ProfTurma?: ProfTurmaUncheckedCreateNestedManyWithoutTurmaInput
+  export type DiaSemanaUncheckedCreateWithoutTempo_lectivoInput = {
+    nome_dia: string
+    disponibilidades?: DisponibilidadeUncheckedCreateNestedManyWithoutDiaInput
   }
 
-  export type TurmaCreateOrConnectWithoutTempoLectivoInput = {
-    where: TurmaWhereUniqueInput
-    create: XOR<TurmaCreateWithoutTempoLectivoInput, TurmaUncheckedCreateWithoutTempoLectivoInput>
+  export type DiaSemanaCreateOrConnectWithoutTempo_lectivoInput = {
+    where: DiaSemanaWhereUniqueInput
+    create: XOR<DiaSemanaCreateWithoutTempo_lectivoInput, DiaSemanaUncheckedCreateWithoutTempo_lectivoInput>
   }
 
-  export type DiaSemanaUpsertWithoutTempoLectivoInput = {
-    update: XOR<DiaSemanaUpdateWithoutTempoLectivoInput, DiaSemanaUncheckedUpdateWithoutTempoLectivoInput>
-    create: XOR<DiaSemanaCreateWithoutTempoLectivoInput, DiaSemanaUncheckedCreateWithoutTempoLectivoInput>
-    where?: DiaSemanaWhereInput
+  export type PeriodoCreateWithoutTempo_lectivoInput = {
+    nome_periodo: string
+    disponibilidades?: DisponibilidadeCreateNestedManyWithoutPeriodoInput
   }
 
-  export type DiaSemanaUpdateToOneWithWhereWithoutTempoLectivoInput = {
-    where?: DiaSemanaWhereInput
-    data: XOR<DiaSemanaUpdateWithoutTempoLectivoInput, DiaSemanaUncheckedUpdateWithoutTempoLectivoInput>
+  export type PeriodoUncheckedCreateWithoutTempo_lectivoInput = {
+    nome_periodo: string
+    disponibilidades?: DisponibilidadeUncheckedCreateNestedManyWithoutPeriodoInput
   }
 
-  export type DiaSemanaUpdateWithoutTempoLectivoInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    Disponibilidade?: DisponibilidadeUpdateManyWithoutDiaSemanaNestedInput
+  export type PeriodoCreateOrConnectWithoutTempo_lectivoInput = {
+    where: PeriodoWhereUniqueInput
+    create: XOR<PeriodoCreateWithoutTempo_lectivoInput, PeriodoUncheckedCreateWithoutTempo_lectivoInput>
   }
 
-  export type DiaSemanaUncheckedUpdateWithoutTempoLectivoInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    Disponibilidade?: DisponibilidadeUncheckedUpdateManyWithoutDiaSemanaNestedInput
-  }
-
-  export type DisciplinaUpsertWithoutTempoLectivoInput = {
-    update: XOR<DisciplinaUpdateWithoutTempoLectivoInput, DisciplinaUncheckedUpdateWithoutTempoLectivoInput>
-    create: XOR<DisciplinaCreateWithoutTempoLectivoInput, DisciplinaUncheckedCreateWithoutTempoLectivoInput>
-    where?: DisciplinaWhereInput
-  }
-
-  export type DisciplinaUpdateToOneWithWhereWithoutTempoLectivoInput = {
-    where?: DisciplinaWhereInput
-    data: XOR<DisciplinaUpdateWithoutTempoLectivoInput, DisciplinaUncheckedUpdateWithoutTempoLectivoInput>
-  }
-
-  export type DisciplinaUpdateWithoutTempoLectivoInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    ProfDisciplinas?: ProfDisciplinasUpdateManyWithoutDisciplinaNestedInput
-  }
-
-  export type DisciplinaUncheckedUpdateWithoutTempoLectivoInput = {
-    idDisciplina?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    ProfDisciplinas?: ProfDisciplinasUncheckedUpdateManyWithoutDisciplinaNestedInput
-  }
-
-  export type PeriodoUpsertWithoutTempoLectivoInput = {
-    update: XOR<PeriodoUpdateWithoutTempoLectivoInput, PeriodoUncheckedUpdateWithoutTempoLectivoInput>
-    create: XOR<PeriodoCreateWithoutTempoLectivoInput, PeriodoUncheckedCreateWithoutTempoLectivoInput>
-    where?: PeriodoWhereInput
-  }
-
-  export type PeriodoUpdateToOneWithWhereWithoutTempoLectivoInput = {
-    where?: PeriodoWhereInput
-    data: XOR<PeriodoUpdateWithoutTempoLectivoInput, PeriodoUncheckedUpdateWithoutTempoLectivoInput>
-  }
-
-  export type PeriodoUpdateWithoutTempoLectivoInput = {
-    periodo?: StringFieldUpdateOperationsInput | string
-    Disponibilidade?: DisponibilidadeUpdateManyWithoutPeriodoNestedInput
-  }
-
-  export type PeriodoUncheckedUpdateWithoutTempoLectivoInput = {
-    periodo?: StringFieldUpdateOperationsInput | string
-    Disponibilidade?: DisponibilidadeUncheckedUpdateManyWithoutPeriodoNestedInput
-  }
-
-  export type ProfessorUpsertWithoutTempoLectivoInput = {
-    update: XOR<ProfessorUpdateWithoutTempoLectivoInput, ProfessorUncheckedUpdateWithoutTempoLectivoInput>
-    create: XOR<ProfessorCreateWithoutTempoLectivoInput, ProfessorUncheckedCreateWithoutTempoLectivoInput>
+  export type ProfessorUpsertWithoutTempo_lectivoInput = {
+    update: XOR<ProfessorUpdateWithoutTempo_lectivoInput, ProfessorUncheckedUpdateWithoutTempo_lectivoInput>
+    create: XOR<ProfessorCreateWithoutTempo_lectivoInput, ProfessorUncheckedCreateWithoutTempo_lectivoInput>
     where?: ProfessorWhereInput
   }
 
-  export type ProfessorUpdateToOneWithWhereWithoutTempoLectivoInput = {
+  export type ProfessorUpdateToOneWithWhereWithoutTempo_lectivoInput = {
     where?: ProfessorWhereInput
-    data: XOR<ProfessorUpdateWithoutTempoLectivoInput, ProfessorUncheckedUpdateWithoutTempoLectivoInput>
+    data: XOR<ProfessorUpdateWithoutTempo_lectivoInput, ProfessorUncheckedUpdateWithoutTempo_lectivoInput>
   }
 
-  export type ProfessorUpdateWithoutTempoLectivoInput = {
+  export type ProfessorUpdateWithoutTempo_lectivoInput = {
     nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    Disponibilidade?: DisponibilidadeUpdateManyWithoutProfessorNestedInput
-    ProfDisciplinas?: ProfDisciplinasUpdateManyWithoutProfessorNestedInput
-    ProfTurma?: ProfTurmaUpdateManyWithoutProfessorNestedInput
+    profDisciplinas?: ProfDisciplinasUpdateManyWithoutProfessorNestedInput
+    disponibilidades?: DisponibilidadeUpdateManyWithoutProfessorNestedInput
   }
 
-  export type ProfessorUncheckedUpdateWithoutTempoLectivoInput = {
+  export type ProfessorUncheckedUpdateWithoutTempo_lectivoInput = {
     id_professor?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    Disponibilidade?: DisponibilidadeUncheckedUpdateManyWithoutProfessorNestedInput
-    ProfDisciplinas?: ProfDisciplinasUncheckedUpdateManyWithoutProfessorNestedInput
-    ProfTurma?: ProfTurmaUncheckedUpdateManyWithoutProfessorNestedInput
+    profDisciplinas?: ProfDisciplinasUncheckedUpdateManyWithoutProfessorNestedInput
+    disponibilidades?: DisponibilidadeUncheckedUpdateManyWithoutProfessorNestedInput
   }
 
-  export type SalaUpsertWithoutTempoLectivoInput = {
-    update: XOR<SalaUpdateWithoutTempoLectivoInput, SalaUncheckedUpdateWithoutTempoLectivoInput>
-    create: XOR<SalaCreateWithoutTempoLectivoInput, SalaUncheckedCreateWithoutTempoLectivoInput>
-    where?: SalaWhereInput
-  }
-
-  export type SalaUpdateToOneWithWhereWithoutTempoLectivoInput = {
-    where?: SalaWhereInput
-    data: XOR<SalaUpdateWithoutTempoLectivoInput, SalaUncheckedUpdateWithoutTempoLectivoInput>
-  }
-
-  export type SalaUpdateWithoutTempoLectivoInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type SalaUncheckedUpdateWithoutTempoLectivoInput = {
-    idSala?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TurmaUpsertWithoutTempoLectivoInput = {
-    update: XOR<TurmaUpdateWithoutTempoLectivoInput, TurmaUncheckedUpdateWithoutTempoLectivoInput>
-    create: XOR<TurmaCreateWithoutTempoLectivoInput, TurmaUncheckedCreateWithoutTempoLectivoInput>
+  export type TurmaUpsertWithoutTempo_lectivoInput = {
+    update: XOR<TurmaUpdateWithoutTempo_lectivoInput, TurmaUncheckedUpdateWithoutTempo_lectivoInput>
+    create: XOR<TurmaCreateWithoutTempo_lectivoInput, TurmaUncheckedCreateWithoutTempo_lectivoInput>
     where?: TurmaWhereInput
   }
 
-  export type TurmaUpdateToOneWithWhereWithoutTempoLectivoInput = {
+  export type TurmaUpdateToOneWithWhereWithoutTempo_lectivoInput = {
     where?: TurmaWhereInput
-    data: XOR<TurmaUpdateWithoutTempoLectivoInput, TurmaUncheckedUpdateWithoutTempoLectivoInput>
+    data: XOR<TurmaUpdateWithoutTempo_lectivoInput, TurmaUncheckedUpdateWithoutTempo_lectivoInput>
   }
 
-  export type TurmaUpdateWithoutTempoLectivoInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    ProfTurma?: ProfTurmaUpdateManyWithoutTurmaNestedInput
-    Classe?: ClasseUpdateOneRequiredWithoutTurmaNestedInput
-    Curso?: CursoUpdateOneRequiredWithoutTurmaNestedInput
+  export type TurmaUpdateWithoutTempo_lectivoInput = {
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    curso?: CursoUpdateOneRequiredWithoutTurmasNestedInput
+    classe?: ClasseUpdateOneRequiredWithoutTurmasNestedInput
   }
 
-  export type TurmaUncheckedUpdateWithoutTempoLectivoInput = {
-    idTurma?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    classe?: StringFieldUpdateOperationsInput | string
-    curso?: StringFieldUpdateOperationsInput | string
-    ProfTurma?: ProfTurmaUncheckedUpdateManyWithoutTurmaNestedInput
+  export type TurmaUncheckedUpdateWithoutTempo_lectivoInput = {
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_curso?: StringFieldUpdateOperationsInput | string
+    nome_classe?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ProfTurmaCreateWithoutTurmaInput = {
-    Professor: ProfessorCreateNestedOneWithoutProfTurmaInput
+  export type DisciplinaUpsertWithoutTempo_lectivoInput = {
+    update: XOR<DisciplinaUpdateWithoutTempo_lectivoInput, DisciplinaUncheckedUpdateWithoutTempo_lectivoInput>
+    create: XOR<DisciplinaCreateWithoutTempo_lectivoInput, DisciplinaUncheckedCreateWithoutTempo_lectivoInput>
+    where?: DisciplinaWhereInput
   }
 
-  export type ProfTurmaUncheckedCreateWithoutTurmaInput = {
-    idProfTurma?: number
-    professorId: number
+  export type DisciplinaUpdateToOneWithWhereWithoutTempo_lectivoInput = {
+    where?: DisciplinaWhereInput
+    data: XOR<DisciplinaUpdateWithoutTempo_lectivoInput, DisciplinaUncheckedUpdateWithoutTempo_lectivoInput>
   }
 
-  export type ProfTurmaCreateOrConnectWithoutTurmaInput = {
-    where: ProfTurmaWhereUniqueInput
-    create: XOR<ProfTurmaCreateWithoutTurmaInput, ProfTurmaUncheckedCreateWithoutTurmaInput>
+  export type DisciplinaUpdateWithoutTempo_lectivoInput = {
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    profDisciplinas?: ProfDisciplinasUpdateManyWithoutDisciplinaNestedInput
   }
 
-  export type ProfTurmaCreateManyTurmaInputEnvelope = {
-    data: ProfTurmaCreateManyTurmaInput | ProfTurmaCreateManyTurmaInput[]
-    skipDuplicates?: boolean
+  export type DisciplinaUncheckedUpdateWithoutTempo_lectivoInput = {
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    profDisciplinas?: ProfDisciplinasUncheckedUpdateManyWithoutDisciplinaNestedInput
   }
 
-  export type TempoLectivoCreateWithoutTurmaInput = {
-    ordem: number
-    DiaSemana: DiaSemanaCreateNestedOneWithoutTempoLectivoInput
-    Disciplina: DisciplinaCreateNestedOneWithoutTempoLectivoInput
-    Periodo: PeriodoCreateNestedOneWithoutTempoLectivoInput
-    Professor: ProfessorCreateNestedOneWithoutTempoLectivoInput
-    Sala: SalaCreateNestedOneWithoutTempoLectivoInput
+  export type SalaUpsertWithoutTempo_lectivoInput = {
+    update: XOR<SalaUpdateWithoutTempo_lectivoInput, SalaUncheckedUpdateWithoutTempo_lectivoInput>
+    create: XOR<SalaCreateWithoutTempo_lectivoInput, SalaUncheckedCreateWithoutTempo_lectivoInput>
+    where?: SalaWhereInput
   }
 
-  export type TempoLectivoUncheckedCreateWithoutTurmaInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
-    professorId: number
-    disciplinaId: number
-    salaId: number
+  export type SalaUpdateToOneWithWhereWithoutTempo_lectivoInput = {
+    where?: SalaWhereInput
+    data: XOR<SalaUpdateWithoutTempo_lectivoInput, SalaUncheckedUpdateWithoutTempo_lectivoInput>
   }
 
-  export type TempoLectivoCreateOrConnectWithoutTurmaInput = {
-    where: TempoLectivoWhereUniqueInput
-    create: XOR<TempoLectivoCreateWithoutTurmaInput, TempoLectivoUncheckedCreateWithoutTurmaInput>
+  export type SalaUpdateWithoutTempo_lectivoInput = {
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    capacidade?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TempoLectivoCreateManyTurmaInputEnvelope = {
-    data: TempoLectivoCreateManyTurmaInput | TempoLectivoCreateManyTurmaInput[]
-    skipDuplicates?: boolean
+  export type SalaUncheckedUpdateWithoutTempo_lectivoInput = {
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    capacidade?: IntFieldUpdateOperationsInput | number
   }
 
-  export type ClasseCreateWithoutTurmaInput = {
-    nome: string
+  export type DiaSemanaUpsertWithoutTempo_lectivoInput = {
+    update: XOR<DiaSemanaUpdateWithoutTempo_lectivoInput, DiaSemanaUncheckedUpdateWithoutTempo_lectivoInput>
+    create: XOR<DiaSemanaCreateWithoutTempo_lectivoInput, DiaSemanaUncheckedCreateWithoutTempo_lectivoInput>
+    where?: DiaSemanaWhereInput
   }
 
-  export type ClasseUncheckedCreateWithoutTurmaInput = {
-    nome: string
+  export type DiaSemanaUpdateToOneWithWhereWithoutTempo_lectivoInput = {
+    where?: DiaSemanaWhereInput
+    data: XOR<DiaSemanaUpdateWithoutTempo_lectivoInput, DiaSemanaUncheckedUpdateWithoutTempo_lectivoInput>
   }
 
-  export type ClasseCreateOrConnectWithoutTurmaInput = {
-    where: ClasseWhereUniqueInput
-    create: XOR<ClasseCreateWithoutTurmaInput, ClasseUncheckedCreateWithoutTurmaInput>
+  export type DiaSemanaUpdateWithoutTempo_lectivoInput = {
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    disponibilidades?: DisponibilidadeUpdateManyWithoutDiaNestedInput
   }
 
-  export type CursoCreateWithoutTurmaInput = {
-    nome: string
+  export type DiaSemanaUncheckedUpdateWithoutTempo_lectivoInput = {
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    disponibilidades?: DisponibilidadeUncheckedUpdateManyWithoutDiaNestedInput
   }
 
-  export type CursoUncheckedCreateWithoutTurmaInput = {
-    nome: string
+  export type PeriodoUpsertWithoutTempo_lectivoInput = {
+    update: XOR<PeriodoUpdateWithoutTempo_lectivoInput, PeriodoUncheckedUpdateWithoutTempo_lectivoInput>
+    create: XOR<PeriodoCreateWithoutTempo_lectivoInput, PeriodoUncheckedCreateWithoutTempo_lectivoInput>
+    where?: PeriodoWhereInput
   }
 
-  export type CursoCreateOrConnectWithoutTurmaInput = {
+  export type PeriodoUpdateToOneWithWhereWithoutTempo_lectivoInput = {
+    where?: PeriodoWhereInput
+    data: XOR<PeriodoUpdateWithoutTempo_lectivoInput, PeriodoUncheckedUpdateWithoutTempo_lectivoInput>
+  }
+
+  export type PeriodoUpdateWithoutTempo_lectivoInput = {
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    disponibilidades?: DisponibilidadeUpdateManyWithoutPeriodoNestedInput
+  }
+
+  export type PeriodoUncheckedUpdateWithoutTempo_lectivoInput = {
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    disponibilidades?: DisponibilidadeUncheckedUpdateManyWithoutPeriodoNestedInput
+  }
+
+  export type CursoCreateWithoutTurmasInput = {
+    nome_curso: string
+  }
+
+  export type CursoUncheckedCreateWithoutTurmasInput = {
+    nome_curso: string
+  }
+
+  export type CursoCreateOrConnectWithoutTurmasInput = {
     where: CursoWhereUniqueInput
-    create: XOR<CursoCreateWithoutTurmaInput, CursoUncheckedCreateWithoutTurmaInput>
+    create: XOR<CursoCreateWithoutTurmasInput, CursoUncheckedCreateWithoutTurmasInput>
   }
 
-  export type ProfTurmaUpsertWithWhereUniqueWithoutTurmaInput = {
-    where: ProfTurmaWhereUniqueInput
-    update: XOR<ProfTurmaUpdateWithoutTurmaInput, ProfTurmaUncheckedUpdateWithoutTurmaInput>
-    create: XOR<ProfTurmaCreateWithoutTurmaInput, ProfTurmaUncheckedCreateWithoutTurmaInput>
+  export type ClasseCreateWithoutTurmasInput = {
+    nome_classe: string
   }
 
-  export type ProfTurmaUpdateWithWhereUniqueWithoutTurmaInput = {
-    where: ProfTurmaWhereUniqueInput
-    data: XOR<ProfTurmaUpdateWithoutTurmaInput, ProfTurmaUncheckedUpdateWithoutTurmaInput>
+  export type ClasseUncheckedCreateWithoutTurmasInput = {
+    nome_classe: string
   }
 
-  export type ProfTurmaUpdateManyWithWhereWithoutTurmaInput = {
-    where: ProfTurmaScalarWhereInput
-    data: XOR<ProfTurmaUpdateManyMutationInput, ProfTurmaUncheckedUpdateManyWithoutTurmaInput>
+  export type ClasseCreateOrConnectWithoutTurmasInput = {
+    where: ClasseWhereUniqueInput
+    create: XOR<ClasseCreateWithoutTurmasInput, ClasseUncheckedCreateWithoutTurmasInput>
   }
 
-  export type TempoLectivoUpsertWithWhereUniqueWithoutTurmaInput = {
-    where: TempoLectivoWhereUniqueInput
-    update: XOR<TempoLectivoUpdateWithoutTurmaInput, TempoLectivoUncheckedUpdateWithoutTurmaInput>
-    create: XOR<TempoLectivoCreateWithoutTurmaInput, TempoLectivoUncheckedCreateWithoutTurmaInput>
+  export type Tempo_LectivoCreateWithoutTurmaInput = {
+    ordem?: number
+    professor: ProfessorCreateNestedOneWithoutTempo_lectivoInput
+    disciplina: DisciplinaCreateNestedOneWithoutTempo_lectivoInput
+    sala: SalaCreateNestedOneWithoutTempo_lectivoInput
+    dia: DiaSemanaCreateNestedOneWithoutTempo_lectivoInput
+    periodo: PeriodoCreateNestedOneWithoutTempo_lectivoInput
   }
 
-  export type TempoLectivoUpdateWithWhereUniqueWithoutTurmaInput = {
-    where: TempoLectivoWhereUniqueInput
-    data: XOR<TempoLectivoUpdateWithoutTurmaInput, TempoLectivoUncheckedUpdateWithoutTurmaInput>
+  export type Tempo_LectivoUncheckedCreateWithoutTurmaInput = {
+    id?: number
+    professorId: number
+    nome_disciplina: string
+    nome_sala: string
+    nome_dia: string
+    nome_periodo: string
+    ordem?: number
   }
 
-  export type TempoLectivoUpdateManyWithWhereWithoutTurmaInput = {
-    where: TempoLectivoScalarWhereInput
-    data: XOR<TempoLectivoUpdateManyMutationInput, TempoLectivoUncheckedUpdateManyWithoutTurmaInput>
+  export type Tempo_LectivoCreateOrConnectWithoutTurmaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    create: XOR<Tempo_LectivoCreateWithoutTurmaInput, Tempo_LectivoUncheckedCreateWithoutTurmaInput>
   }
 
-  export type ClasseUpsertWithoutTurmaInput = {
-    update: XOR<ClasseUpdateWithoutTurmaInput, ClasseUncheckedUpdateWithoutTurmaInput>
-    create: XOR<ClasseCreateWithoutTurmaInput, ClasseUncheckedCreateWithoutTurmaInput>
-    where?: ClasseWhereInput
+  export type Tempo_LectivoCreateManyTurmaInputEnvelope = {
+    data: Tempo_LectivoCreateManyTurmaInput | Tempo_LectivoCreateManyTurmaInput[]
+    skipDuplicates?: boolean
   }
 
-  export type ClasseUpdateToOneWithWhereWithoutTurmaInput = {
-    where?: ClasseWhereInput
-    data: XOR<ClasseUpdateWithoutTurmaInput, ClasseUncheckedUpdateWithoutTurmaInput>
-  }
-
-  export type ClasseUpdateWithoutTurmaInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ClasseUncheckedUpdateWithoutTurmaInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type CursoUpsertWithoutTurmaInput = {
-    update: XOR<CursoUpdateWithoutTurmaInput, CursoUncheckedUpdateWithoutTurmaInput>
-    create: XOR<CursoCreateWithoutTurmaInput, CursoUncheckedCreateWithoutTurmaInput>
+  export type CursoUpsertWithoutTurmasInput = {
+    update: XOR<CursoUpdateWithoutTurmasInput, CursoUncheckedUpdateWithoutTurmasInput>
+    create: XOR<CursoCreateWithoutTurmasInput, CursoUncheckedCreateWithoutTurmasInput>
     where?: CursoWhereInput
   }
 
-  export type CursoUpdateToOneWithWhereWithoutTurmaInput = {
+  export type CursoUpdateToOneWithWhereWithoutTurmasInput = {
     where?: CursoWhereInput
-    data: XOR<CursoUpdateWithoutTurmaInput, CursoUncheckedUpdateWithoutTurmaInput>
+    data: XOR<CursoUpdateWithoutTurmasInput, CursoUncheckedUpdateWithoutTurmasInput>
   }
 
-  export type CursoUpdateWithoutTurmaInput = {
-    nome?: StringFieldUpdateOperationsInput | string
+  export type CursoUpdateWithoutTurmasInput = {
+    nome_curso?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CursoUncheckedUpdateWithoutTurmaInput = {
-    nome?: StringFieldUpdateOperationsInput | string
+  export type CursoUncheckedUpdateWithoutTurmasInput = {
+    nome_curso?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ClasseUpsertWithoutTurmasInput = {
+    update: XOR<ClasseUpdateWithoutTurmasInput, ClasseUncheckedUpdateWithoutTurmasInput>
+    create: XOR<ClasseCreateWithoutTurmasInput, ClasseUncheckedCreateWithoutTurmasInput>
+    where?: ClasseWhereInput
+  }
+
+  export type ClasseUpdateToOneWithWhereWithoutTurmasInput = {
+    where?: ClasseWhereInput
+    data: XOR<ClasseUpdateWithoutTurmasInput, ClasseUncheckedUpdateWithoutTurmasInput>
+  }
+
+  export type ClasseUpdateWithoutTurmasInput = {
+    nome_classe?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ClasseUncheckedUpdateWithoutTurmasInput = {
+    nome_classe?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type Tempo_LectivoUpsertWithWhereUniqueWithoutTurmaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    update: XOR<Tempo_LectivoUpdateWithoutTurmaInput, Tempo_LectivoUncheckedUpdateWithoutTurmaInput>
+    create: XOR<Tempo_LectivoCreateWithoutTurmaInput, Tempo_LectivoUncheckedCreateWithoutTurmaInput>
+  }
+
+  export type Tempo_LectivoUpdateWithWhereUniqueWithoutTurmaInput = {
+    where: Tempo_LectivoWhereUniqueInput
+    data: XOR<Tempo_LectivoUpdateWithoutTurmaInput, Tempo_LectivoUncheckedUpdateWithoutTurmaInput>
+  }
+
+  export type Tempo_LectivoUpdateManyWithWhereWithoutTurmaInput = {
+    where: Tempo_LectivoScalarWhereInput
+    data: XOR<Tempo_LectivoUpdateManyMutationInput, Tempo_LectivoUncheckedUpdateManyWithoutTurmaInput>
   }
 
   export type TurmaCreateManyClasseInput = {
-    idTurma?: number
-    nome: string
-    curso: string
+    nome_turma: string
+    nome_curso: string
   }
 
   export type TurmaUpdateWithoutClasseInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    ProfTurma?: ProfTurmaUpdateManyWithoutTurmaNestedInput
-    TempoLectivo?: TempoLectivoUpdateManyWithoutTurmaNestedInput
-    Curso?: CursoUpdateOneRequiredWithoutTurmaNestedInput
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    curso?: CursoUpdateOneRequiredWithoutTurmasNestedInput
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutTurmaNestedInput
   }
 
   export type TurmaUncheckedUpdateWithoutClasseInput = {
-    idTurma?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    curso?: StringFieldUpdateOperationsInput | string
-    ProfTurma?: ProfTurmaUncheckedUpdateManyWithoutTurmaNestedInput
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutTurmaNestedInput
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_curso?: StringFieldUpdateOperationsInput | string
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutTurmaNestedInput
   }
 
   export type TurmaUncheckedUpdateManyWithoutClasseInput = {
-    idTurma?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    curso?: StringFieldUpdateOperationsInput | string
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_curso?: StringFieldUpdateOperationsInput | string
   }
 
   export type TurmaCreateManyCursoInput = {
-    idTurma?: number
-    nome: string
-    classe: string
+    nome_turma: string
+    nome_classe: string
   }
 
   export type TurmaUpdateWithoutCursoInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    ProfTurma?: ProfTurmaUpdateManyWithoutTurmaNestedInput
-    TempoLectivo?: TempoLectivoUpdateManyWithoutTurmaNestedInput
-    Classe?: ClasseUpdateOneRequiredWithoutTurmaNestedInput
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    classe?: ClasseUpdateOneRequiredWithoutTurmasNestedInput
+    tempo_lectivo?: Tempo_LectivoUpdateManyWithoutTurmaNestedInput
   }
 
   export type TurmaUncheckedUpdateWithoutCursoInput = {
-    idTurma?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    classe?: StringFieldUpdateOperationsInput | string
-    ProfTurma?: ProfTurmaUncheckedUpdateManyWithoutTurmaNestedInput
-    TempoLectivo?: TempoLectivoUncheckedUpdateManyWithoutTurmaNestedInput
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_classe?: StringFieldUpdateOperationsInput | string
+    tempo_lectivo?: Tempo_LectivoUncheckedUpdateManyWithoutTurmaNestedInput
   }
 
   export type TurmaUncheckedUpdateManyWithoutCursoInput = {
-    idTurma?: IntFieldUpdateOperationsInput | number
-    nome?: StringFieldUpdateOperationsInput | string
-    classe?: StringFieldUpdateOperationsInput | string
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_classe?: StringFieldUpdateOperationsInput | string
   }
 
-  export type DisponibilidadeCreateManyDiaSemanaInput = {
-    idDisponibilidade?: number
-    periodoId: string
-    ordem: number
+  export type DisponibilidadeCreateManyDiaInput = {
+    id_disponibilidade?: number
     professorId: number
-  }
-
-  export type TempoLectivoCreateManyDiaSemanaInput = {
-    idTempoLectivo?: number
-    periodoId: string
+    nome_periodo: string
     ordem: number
+  }
+
+  export type Tempo_LectivoCreateManyDiaInput = {
+    id?: number
     professorId: number
-    disciplinaId: number
-    salaId: number
-    turmaId: number
+    nome_turma: string
+    nome_disciplina: string
+    nome_sala: string
+    nome_periodo: string
+    ordem?: number
   }
 
-  export type DisponibilidadeUpdateWithoutDiaSemanaInput = {
+  export type DisponibilidadeUpdateWithoutDiaInput = {
     ordem?: IntFieldUpdateOperationsInput | number
-    Periodo?: PeriodoUpdateOneRequiredWithoutDisponibilidadeNestedInput
-    Professor?: ProfessorUpdateOneRequiredWithoutDisponibilidadeNestedInput
+    professor?: ProfessorUpdateOneRequiredWithoutDisponibilidadesNestedInput
+    periodo?: PeriodoUpdateOneRequiredWithoutDisponibilidadesNestedInput
   }
 
-  export type DisponibilidadeUncheckedUpdateWithoutDiaSemanaInput = {
-    idDisponibilidade?: IntFieldUpdateOperationsInput | number
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type DisponibilidadeUncheckedUpdateWithoutDiaInput = {
+    id_disponibilidade?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
-  export type DisponibilidadeUncheckedUpdateManyWithoutDiaSemanaInput = {
-    idDisponibilidade?: IntFieldUpdateOperationsInput | number
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type DisponibilidadeUncheckedUpdateManyWithoutDiaInput = {
+    id_disponibilidade?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TempoLectivoUpdateWithoutDiaSemanaInput = {
+  export type Tempo_LectivoUpdateWithoutDiaInput = {
     ordem?: IntFieldUpdateOperationsInput | number
-    Disciplina?: DisciplinaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Periodo?: PeriodoUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Professor?: ProfessorUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Sala?: SalaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Turma?: TurmaUpdateOneRequiredWithoutTempoLectivoNestedInput
+    professor?: ProfessorUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    turma?: TurmaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    disciplina?: DisciplinaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    sala?: SalaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    periodo?: PeriodoUpdateOneRequiredWithoutTempo_lectivoNestedInput
   }
 
-  export type TempoLectivoUncheckedUpdateWithoutDiaSemanaInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type Tempo_LectivoUncheckedUpdateWithoutDiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TempoLectivoUncheckedUpdateManyWithoutDiaSemanaInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type Tempo_LectivoUncheckedUpdateManyWithoutDiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProfDisciplinasCreateManyDisciplinaInput = {
-    idProfDisciplina?: number
     professorId: number
   }
 
-  export type TempoLectivoCreateManyDisciplinaInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
+  export type Tempo_LectivoCreateManyDisciplinaInput = {
+    id?: number
     professorId: number
-    salaId: number
-    turmaId: number
+    nome_turma: string
+    nome_sala: string
+    nome_dia: string
+    nome_periodo: string
+    ordem?: number
   }
 
   export type ProfDisciplinasUpdateWithoutDisciplinaInput = {
-    Professor?: ProfessorUpdateOneRequiredWithoutProfDisciplinasNestedInput
+    professor?: ProfessorUpdateOneRequiredWithoutProfDisciplinasNestedInput
   }
 
   export type ProfDisciplinasUncheckedUpdateWithoutDisciplinaInput = {
-    idProfDisciplina?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProfDisciplinasUncheckedUpdateManyWithoutDisciplinaInput = {
-    idProfDisciplina?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TempoLectivoUpdateWithoutDisciplinaInput = {
+  export type Tempo_LectivoUpdateWithoutDisciplinaInput = {
     ordem?: IntFieldUpdateOperationsInput | number
-    DiaSemana?: DiaSemanaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Periodo?: PeriodoUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Professor?: ProfessorUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Sala?: SalaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Turma?: TurmaUpdateOneRequiredWithoutTempoLectivoNestedInput
+    professor?: ProfessorUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    turma?: TurmaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    sala?: SalaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    dia?: DiaSemanaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    periodo?: PeriodoUpdateOneRequiredWithoutTempo_lectivoNestedInput
   }
 
-  export type TempoLectivoUncheckedUpdateWithoutDisciplinaInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type Tempo_LectivoUncheckedUpdateWithoutDisciplinaInput = {
+    id?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TempoLectivoUncheckedUpdateManyWithoutDisciplinaInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type Tempo_LectivoUncheckedUpdateManyWithoutDisciplinaInput = {
+    id?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type DisponibilidadeCreateManyProfessorInput = {
-    idDisponibilidade?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
-  }
-
-  export type ProfDisciplinasCreateManyProfessorInput = {
-    idProfDisciplina?: number
-    disciplinaId: number
-  }
-
-  export type ProfTurmaCreateManyProfessorInput = {
-    idProfTurma?: number
-    turmaId: number
-  }
-
-  export type TempoLectivoCreateManyProfessorInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
-    disciplinaId: number
-    salaId: number
-    turmaId: number
-  }
-
-  export type DisponibilidadeUpdateWithoutProfessorInput = {
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
     ordem?: IntFieldUpdateOperationsInput | number
-    DiaSemana?: DiaSemanaUpdateOneRequiredWithoutDisponibilidadeNestedInput
-    Periodo?: PeriodoUpdateOneRequiredWithoutDisponibilidadeNestedInput
-  }
-
-  export type DisponibilidadeUncheckedUpdateWithoutProfessorInput = {
-    idDisponibilidade?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type DisponibilidadeUncheckedUpdateManyWithoutProfessorInput = {
-    idDisponibilidade?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ProfDisciplinasUpdateWithoutProfessorInput = {
-    Disciplina?: DisciplinaUpdateOneRequiredWithoutProfDisciplinasNestedInput
-  }
-
-  export type ProfDisciplinasUncheckedUpdateWithoutProfessorInput = {
-    idProfDisciplina?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ProfDisciplinasUncheckedUpdateManyWithoutProfessorInput = {
-    idProfDisciplina?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ProfTurmaUpdateWithoutProfessorInput = {
-    Turma?: TurmaUpdateOneRequiredWithoutProfTurmaNestedInput
-  }
-
-  export type ProfTurmaUncheckedUpdateWithoutProfessorInput = {
-    idProfTurma?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ProfTurmaUncheckedUpdateManyWithoutProfessorInput = {
-    idProfTurma?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type TempoLectivoUpdateWithoutProfessorInput = {
-    ordem?: IntFieldUpdateOperationsInput | number
-    DiaSemana?: DiaSemanaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Disciplina?: DisciplinaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Periodo?: PeriodoUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Sala?: SalaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Turma?: TurmaUpdateOneRequiredWithoutTempoLectivoNestedInput
-  }
-
-  export type TempoLectivoUncheckedUpdateWithoutProfessorInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type TempoLectivoUncheckedUpdateManyWithoutProfessorInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
   }
 
   export type DisponibilidadeCreateManyPeriodoInput = {
-    idDisponibilidade?: number
-    diaSemana: string
-    ordem: number
+    id_disponibilidade?: number
     professorId: number
+    nome_dia: string
+    ordem: number
   }
 
-  export type TempoLectivoCreateManyPeriodoInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    ordem: number
+  export type Tempo_LectivoCreateManyPeriodoInput = {
+    id?: number
     professorId: number
-    disciplinaId: number
-    salaId: number
-    turmaId: number
+    nome_turma: string
+    nome_disciplina: string
+    nome_sala: string
+    nome_dia: string
+    ordem?: number
   }
 
   export type DisponibilidadeUpdateWithoutPeriodoInput = {
     ordem?: IntFieldUpdateOperationsInput | number
-    DiaSemana?: DiaSemanaUpdateOneRequiredWithoutDisponibilidadeNestedInput
-    Professor?: ProfessorUpdateOneRequiredWithoutDisponibilidadeNestedInput
+    professor?: ProfessorUpdateOneRequiredWithoutDisponibilidadesNestedInput
+    dia?: DiaSemanaUpdateOneRequiredWithoutDisponibilidadesNestedInput
   }
 
   export type DisponibilidadeUncheckedUpdateWithoutPeriodoInput = {
-    idDisponibilidade?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+    id_disponibilidade?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
   export type DisponibilidadeUncheckedUpdateManyWithoutPeriodoInput = {
-    idDisponibilidade?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+    id_disponibilidade?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TempoLectivoUpdateWithoutPeriodoInput = {
+  export type Tempo_LectivoUpdateWithoutPeriodoInput = {
     ordem?: IntFieldUpdateOperationsInput | number
-    DiaSemana?: DiaSemanaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Disciplina?: DisciplinaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Professor?: ProfessorUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Sala?: SalaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Turma?: TurmaUpdateOneRequiredWithoutTempoLectivoNestedInput
+    professor?: ProfessorUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    turma?: TurmaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    disciplina?: DisciplinaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    sala?: SalaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    dia?: DiaSemanaUpdateOneRequiredWithoutTempo_lectivoNestedInput
   }
 
-  export type TempoLectivoUncheckedUpdateWithoutPeriodoInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type Tempo_LectivoUncheckedUpdateWithoutPeriodoInput = {
+    id?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type TempoLectivoUncheckedUpdateManyWithoutPeriodoInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
     ordem?: IntFieldUpdateOperationsInput | number
-    professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TempoLectivoCreateManySalaInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    periodoId: string
+  export type Tempo_LectivoUncheckedUpdateManyWithoutPeriodoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    professorId?: IntFieldUpdateOperationsInput | number
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProfDisciplinasCreateManyProfessorInput = {
+    nome_disciplina: string
+  }
+
+  export type DisponibilidadeCreateManyProfessorInput = {
+    id_disponibilidade?: number
+    nome_dia: string
+    nome_periodo: string
     ordem: number
+  }
+
+  export type Tempo_LectivoCreateManyProfessorInput = {
+    id?: number
+    nome_turma: string
+    nome_disciplina: string
+    nome_sala: string
+    nome_dia: string
+    nome_periodo: string
+    ordem?: number
+  }
+
+  export type ProfDisciplinasUpdateWithoutProfessorInput = {
+    disciplina?: DisciplinaUpdateOneRequiredWithoutProfDisciplinasNestedInput
+  }
+
+  export type ProfDisciplinasUncheckedUpdateWithoutProfessorInput = {
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProfDisciplinasUncheckedUpdateManyWithoutProfessorInput = {
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DisponibilidadeUpdateWithoutProfessorInput = {
+    ordem?: IntFieldUpdateOperationsInput | number
+    dia?: DiaSemanaUpdateOneRequiredWithoutDisponibilidadesNestedInput
+    periodo?: PeriodoUpdateOneRequiredWithoutDisponibilidadesNestedInput
+  }
+
+  export type DisponibilidadeUncheckedUpdateWithoutProfessorInput = {
+    id_disponibilidade?: IntFieldUpdateOperationsInput | number
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DisponibilidadeUncheckedUpdateManyWithoutProfessorInput = {
+    id_disponibilidade?: IntFieldUpdateOperationsInput | number
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type Tempo_LectivoUpdateWithoutProfessorInput = {
+    ordem?: IntFieldUpdateOperationsInput | number
+    turma?: TurmaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    disciplina?: DisciplinaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    sala?: SalaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    dia?: DiaSemanaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    periodo?: PeriodoUpdateOneRequiredWithoutTempo_lectivoNestedInput
+  }
+
+  export type Tempo_LectivoUncheckedUpdateWithoutProfessorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type Tempo_LectivoUncheckedUpdateManyWithoutProfessorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type Tempo_LectivoCreateManySalaInput = {
+    id?: number
     professorId: number
-    disciplinaId: number
-    turmaId: number
+    nome_turma: string
+    nome_disciplina: string
+    nome_dia: string
+    nome_periodo: string
+    ordem?: number
   }
 
-  export type TempoLectivoUpdateWithoutSalaInput = {
+  export type Tempo_LectivoUpdateWithoutSalaInput = {
     ordem?: IntFieldUpdateOperationsInput | number
-    DiaSemana?: DiaSemanaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Disciplina?: DisciplinaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Periodo?: PeriodoUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Professor?: ProfessorUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Turma?: TurmaUpdateOneRequiredWithoutTempoLectivoNestedInput
+    professor?: ProfessorUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    turma?: TurmaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    disciplina?: DisciplinaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    dia?: DiaSemanaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    periodo?: PeriodoUpdateOneRequiredWithoutTempo_lectivoNestedInput
   }
 
-  export type TempoLectivoUncheckedUpdateWithoutSalaInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type Tempo_LectivoUncheckedUpdateWithoutSalaInput = {
+    id?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type TempoLectivoUncheckedUpdateManyWithoutSalaInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
     ordem?: IntFieldUpdateOperationsInput | number
-    professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    turmaId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type ProfTurmaCreateManyTurmaInput = {
-    idProfTurma?: number
+  export type Tempo_LectivoUncheckedUpdateManyWithoutSalaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    professorId?: IntFieldUpdateOperationsInput | number
+    nome_turma?: StringFieldUpdateOperationsInput | string
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type Tempo_LectivoCreateManyTurmaInput = {
+    id?: number
     professorId: number
+    nome_disciplina: string
+    nome_sala: string
+    nome_dia: string
+    nome_periodo: string
+    ordem?: number
   }
 
-  export type TempoLectivoCreateManyTurmaInput = {
-    idTempoLectivo?: number
-    diaSemana: string
-    periodoId: string
-    ordem: number
-    professorId: number
-    disciplinaId: number
-    salaId: number
-  }
-
-  export type ProfTurmaUpdateWithoutTurmaInput = {
-    Professor?: ProfessorUpdateOneRequiredWithoutProfTurmaNestedInput
-  }
-
-  export type ProfTurmaUncheckedUpdateWithoutTurmaInput = {
-    idProfTurma?: IntFieldUpdateOperationsInput | number
-    professorId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ProfTurmaUncheckedUpdateManyWithoutTurmaInput = {
-    idProfTurma?: IntFieldUpdateOperationsInput | number
-    professorId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type TempoLectivoUpdateWithoutTurmaInput = {
+  export type Tempo_LectivoUpdateWithoutTurmaInput = {
     ordem?: IntFieldUpdateOperationsInput | number
-    DiaSemana?: DiaSemanaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Disciplina?: DisciplinaUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Periodo?: PeriodoUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Professor?: ProfessorUpdateOneRequiredWithoutTempoLectivoNestedInput
-    Sala?: SalaUpdateOneRequiredWithoutTempoLectivoNestedInput
+    professor?: ProfessorUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    disciplina?: DisciplinaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    sala?: SalaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    dia?: DiaSemanaUpdateOneRequiredWithoutTempo_lectivoNestedInput
+    periodo?: PeriodoUpdateOneRequiredWithoutTempo_lectivoNestedInput
   }
 
-  export type TempoLectivoUncheckedUpdateWithoutTurmaInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type Tempo_LectivoUncheckedUpdateWithoutTurmaInput = {
+    id?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TempoLectivoUncheckedUpdateManyWithoutTurmaInput = {
-    idTempoLectivo?: IntFieldUpdateOperationsInput | number
-    diaSemana?: StringFieldUpdateOperationsInput | string
-    periodoId?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
+  export type Tempo_LectivoUncheckedUpdateManyWithoutTurmaInput = {
+    id?: IntFieldUpdateOperationsInput | number
     professorId?: IntFieldUpdateOperationsInput | number
-    disciplinaId?: IntFieldUpdateOperationsInput | number
-    salaId?: IntFieldUpdateOperationsInput | number
+    nome_disciplina?: StringFieldUpdateOperationsInput | string
+    nome_sala?: StringFieldUpdateOperationsInput | string
+    nome_dia?: StringFieldUpdateOperationsInput | string
+    nome_periodo?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
   }
 
 

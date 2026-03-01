@@ -1,0 +1,110 @@
+{
+  "node": {
+    "00c4f064aab028bdc4b6b21b478b6899440a7ffe6f": {
+      "workers": {
+        "app/professores/page": {
+          "moduleId": "[project]/.next-internal/server/app/professores/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/professores/professores-action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "listarDisciplinas",
+          "filename": "app/professores/professores-action.ts"
+        }
+      },
+      "layer": {
+        "app/professores/page": "rsc"
+      },
+      "exportedName": "listarDisciplinas",
+      "filename": "app/professores/professores-action.ts"
+    },
+    "00e0e4f967831fdf02516380933d2aa62e110a461e": {
+      "workers": {
+        "app/professores/page": {
+          "moduleId": "[project]/.next-internal/server/app/professores/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/professores/professores-action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "listarTodos",
+          "filename": "app/professores/professores-action.ts"
+        }
+      },
+      "layer": {
+        "app/professores/page": "rsc"
+      },
+      "exportedName": "listarTodos",
+      "filename": "app/professores/professores-action.ts"
+    },
+    "40240d402a125d8ba2f32f2675728d136facc1b2bf": {
+      "workers": {
+        "app/professores/page": {
+          "moduleId": "[project]/.next-internal/server/app/professores/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/professores/professores-action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "showProfessor",
+          "filename": "app/professores/professores-action.ts"
+        }
+      },
+      "layer": {
+        "app/professores/page": "rsc"
+      },
+      "exportedName": "showProfessor",
+      "filename": "app/professores/professores-action.ts"
+    },
+    "40cf18e4ea6ff160c02c96e622c63bda3feae6c0d2": {
+      "workers": {
+        "app/professores/page": {
+          "moduleId": "[project]/.next-internal/server/app/professores/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/professores/professores-action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "apagarProfessor",
+          "filename": "app/professores/professores-action.ts"
+        }
+      },
+      "layer": {
+        "app/professores/page": "action-browser"
+      },
+      "exportedName": "apagarProfessor",
+      "filename": "app/professores/professores-action.ts"
+    },
+    "40e4b2e16a6ab7818231fa706e5c9049ff32f63f19": {
+      "workers": {
+        "app/professores/page": {
+          "moduleId": "[project]/.next-internal/server/app/professores/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/professores/professores-action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "criarProfessor",
+          "filename": "app/professores/professores-action.ts"
+        }
+      },
+      "layer": {
+        "app/professores/page": "action-browser"
+      },
+      "exportedName": "criarProfessor",
+      "filename": "app/professores/professores-action.ts"
+    },
+    "60270b4f8aedb04f18661ffae39e63fd50c06b9ed8": {
+      "workers": {
+        "app/professores/page": {
+          "moduleId": "[project]/.next-internal/server/app/professores/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/professores/professores-action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "criarProfessorAction",
+          "filename": "app/professores/professores-action.ts"
+        }
+      },
+      "layer": {
+        "app/professores/page": "rsc"
+      },
+      "exportedName": "criarProfessorAction",
+      "filename": "app/professores/professores-action.ts"
+    },
+    "60b0e52845d0cdfbf275721267942dd4a1a42dcee9": {
+      "workers": {
+        "app/professores/page": {
+          "moduleId": "[project]/.next-internal/server/app/professores/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/professores/professores-action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "atualizarProfessor",
+          "filename": "app/professores/professores-action.ts"
+        }
+      },
+      "layer": {
+        "app/professores/page": "action-browser"
+      },
+      "exportedName": "atualizarProfessor",
+      "filename": "app/professores/professores-action.ts"
+    }
+  },
+  "edge": {}
+}

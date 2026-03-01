@@ -1,7 +1,7 @@
 'use server'
 
 import { professorService } from "@/lib/Service/Professores"
-import { createProfessorFormSchema, baseCreateProfessorSchema, updateProfessorSchema } from "@/lib/Validation/Usuario"
+import { createProfessorSchema, updateProfessorSchema } from "@/lib/Validation/Professor"
 import { z } from 'zod';
 import { workos } from '@/lib/workos';
 import { revalidatePath } from 'next/cache';
@@ -30,7 +30,7 @@ export async function criarProfessor(
         const disciplinaIds = parseDisciplinaIds(formData);
         const telefone = formData.get('telefone') as string;
 
-        const formValidation = createProfessorFormSchema.safeParse({
+        const formValidation = createProfessorSchema.safeParse({
             nome,
             email,
             disciplinaIds,
@@ -54,7 +54,7 @@ export async function criarProfessor(
         };
 
         // 4. Validar pelo schema central e usar o service
-        const validatedData = baseCreateProfessorSchema.parse(professorData);
+        const validatedData = createProfessorSchema.parse(professorData);
         const professor = await professorService.criarProfessor(validatedData);
 
         // 5. Revalidar cache
@@ -154,6 +154,6 @@ export async function showProfessor(id:number) {
 
 export async function listarDisciplinas() {
     return await prisma.disciplina.findMany({
-        orderBy: { nome: 'asc' }
+        orderBy: { nome_disciplina: 'asc' }
     });
 }
