@@ -1,1 +1,7 @@
-node_modules
+cat > .gitignore << 'EOF'
+.next/
+node_modules/
+.env
+.env.local
+docker-compose.yml
+EOF
