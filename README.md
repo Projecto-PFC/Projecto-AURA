@@ -1,4 +1,4 @@
-# AURA (Automated User-controlled Ruster Algorithm)
+# AURA (Automated User-controlled Roster Algorithm)
 
 Sistema comercial de geração automática e gestão de horários escolares, desenvolvido para instituições de ensino de qualquer dimensão.
 
@@ -255,9 +255,7 @@ public/
 src-tauri/
 
 docs/
- ├── PRD.md
- ├── ROADMAP.md
- └── ARCHITECTURE.md
+ └── PRD.md
 
 AGENTS.md
 README.md
