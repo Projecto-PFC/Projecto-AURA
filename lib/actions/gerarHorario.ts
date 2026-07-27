@@ -2,6 +2,12 @@
 
 import { prisma } from '@/lib/prisma';
 
+const globalAny = global as any;
+
+export async function pararGeracao() {
+    globalAny.cancelarGeracao = true;
+}
+
 // Interface que representa cada espaço onde podemos alocar uma aula
 interface Slot {
     dia: number;
@@ -42,6 +48,7 @@ export interface ResultadoGeracao {
 }
 
 export default async function gerarHorarios(turmas: any[]): Promise<ResultadoGeracao> {
+    globalAny.cancelarGeracao = false;
     // NOVO — array de logs que será preenchido ao longo da execução
     const logs: LogItem[] = []
 
@@ -378,12 +385,25 @@ export default async function gerarHorarios(turmas: any[]): Promise<ResultadoGer
 
     // NOVO — variável que regista qual aula bloqueou o algoritmo
     let aulaQueBloqueou: Aula_livre | null = null
+    let foiCancelado = false;
+    let iteracoesAlgoritmo = 0;
 
-    function backtrack(
+    async function backtrack(
         aulas_nao_atribuidas: Aula_livre[], // todas as aulas a alocar (não muda)
         aulas_atribuidas: Aula_alocada[], // o que já foi atribuído (vai crescendo e encolhendo)
         indicesRestantes: number[]   // ← índices das aulas ainda não alocadas
-    ): Aula_alocada[] | null {      // retorna solução ou null se não encontrou
+    ): Promise<Aula_alocada[] | null> {      // retorna solução ou null se não encontrou
+
+        iteracoesAlgoritmo++;
+        // Liberta o event loop a cada 100 iterações para permitir que a requisição de cancelamento seja processada
+        if (iteracoesAlgoritmo % 100 === 0) {
+            await new Promise(resolve => setTimeout(resolve, 0));
+        }
+
+        if (globalAny.cancelarGeracao) {
+            foiCancelado = true;
+            return null;
+        }
 
         //CASO BASE: índice chegou ao fim — todas as aulas foram alocadas sem conflitos. Retorna o array completo de aulas alocadas como solução final.
         if (indicesRestantes.length === 0) return aulas_atribuidas
@@ -417,7 +437,7 @@ export default async function gerarHorarios(turmas: any[]): Promise<ResultadoGer
 
             // Analisa se existem falhas futuras — se forward checking retornou null, há uma falha futura detectada, então não precisamos de tentar os próximos slots deste domínio — podemos falhar já aqui e voltar para o nível anterior
             if (slotsRemovidos !== null) {
-                const resultado = backtrack(aulas_nao_atribuidas, aulas_atribuidas, restantes)
+                const resultado = await backtrack(aulas_nao_atribuidas, aulas_atribuidas, restantes)
                 if (resultado !== null) return resultado                 // Se o resultado não for null, a recursão encontrou solução → propagamos
                 restaurarDominios(aulas_nao_atribuidas, slotsRemovidos)                 // Recursão falhou — restaurar domínios
 
@@ -440,9 +460,17 @@ export default async function gerarHorarios(turmas: any[]): Promise<ResultadoGer
     }
 
     const indicesIniciais = aulas_nao_alocadas.map((_, i) => i)
-    const solucao = backtrack(aulas_nao_alocadas, [], indicesIniciais)
+    const solucao = await backtrack(aulas_nao_alocadas, [], indicesIniciais)
     
     if (solucao === null) {
+        if (foiCancelado) {
+            logs.push({
+                tipo: "aviso",
+                mensagem: "Geração de horários parada pelo utilizador."
+            })
+            return { sucesso: false, totalGeradas: 0, logs }
+        }
+
         // Forçamos o TypeScript a tratar a variável como o tipo correto, 
         // ignorando a análise de fluxo pessimista.
         const aulaFalhada = aulaQueBloqueou as Aula_livre | null;

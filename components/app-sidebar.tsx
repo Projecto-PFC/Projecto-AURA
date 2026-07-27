@@ -16,10 +16,10 @@ import Image from "next/image"
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
-  { name: "Professores", href: "/professores", icon: Users },
+  { name: "Salas", href: "/salas", icon: DoorOpen },
   { name: "Turmas", href: "/turmas", icon: GraduationCap },
   { name: "Disciplinas", href: "/disciplinas", icon: BookOpen },
-  { name: "Salas", href: "/salas", icon: DoorOpen },
+  { name: "Professores", href: "/professores", icon: Users },
   { name: "Horários", href: "/horarios", icon: Calendar },
   { name: "Gerar Horários", href: "/gerar", icon: Sparkles },
 ]

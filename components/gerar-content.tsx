@@ -30,7 +30,7 @@ import {
   Trash2,
 } from "lucide-react"
 import { apagarTemposLectivos } from "@/lib/actions/horarios";
-import gerarHorarios, { type ResultadoGeracao, type LogItem } from "@/lib/actions/gerarHorario";
+import gerarHorarios, { pararGeracao, type ResultadoGeracao, type LogItem } from "@/lib/actions/gerarHorario";
 
 import useSWR from "swr"
 
@@ -308,6 +308,18 @@ export function GerarContent() {
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
+
+              {result.status === "generating" && (
+                <Button
+                  variant="outline"
+                  className="w-full border-red-500 text-red-500 hover:bg-red-50 hover:text-red-600"
+                  onClick={async () => {
+                    await pararGeracao();
+                  }}
+                >
+                  <XCircle className="mr-2 h-4 w-4" /> Parar Processamento
+                </Button>
+              )}
 
               {/* NOVO — resumo numérico de logs no painel lateral, só quando há resultado */}
               {resultado && (
