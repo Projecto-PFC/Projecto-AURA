@@ -40,10 +40,11 @@ model DiaSemana {
 }
 
 model Disciplina {
-  id_disciplina        Int    @id @default(autoincrement())
-  descricao_disciplina String @db.VarChar(100) @unique
-  tipo_sala            String @db.VarChar(100)
+  id_disciplina        Int      @id @default(autoincrement())
+  id_tipoSala          Int
+  descricao_disciplina String   @db.VarChar(100) @unique
 
+  tipoSala            TipoSala  @relation(fields: [id_tipoSala], references: [id_tipoSala])
   turmaDisciplina     TurmaDisciplina[]
   profTurmaDisciplina ProfTurmaDisciplina[]
   tempo_lectivo       Tempo_Lectivo[]
@@ -93,10 +94,10 @@ model Professor {
 }
 
 model ProfTurmaDisciplina {
-  id_atribuicao   Int @id @default(autoincrement())
-  id_professor    Int
-  id_turma        Int
-  id_disciplina   Int
+  id_atribuicao       Int @id @default(autoincrement())
+  id_professor        Int
+  id_turma            Int
+  id_disciplina       Int
 
   disciplina     Disciplina    @relation(fields: [id_disciplina], references: [id_disciplina])
   professor      Professor     @relation(fields: [id_professor], references: [id_professor])
@@ -106,14 +107,15 @@ model ProfTurmaDisciplina {
 
   @@unique([id_turma, id_disciplina])
   @@map("prof_turma_disciplinas")
-}
+} 
 
 model Sala {
   id_sala              Int    @id @default(autoincrement())
+  id_tipoSala          Int
   descricao_sala       String @db.VarChar(20) @unique
   capacidade           Int
-  tipo_sala            String @db.VarChar(100)
 
+  tipoSala      TipoSala      @relation(fields: [id_tipoSala], references: [id_tipoSala])
   tempo_lectivo Tempo_Lectivo[]
   turma         Turma[]          
 
@@ -133,12 +135,12 @@ model Tempo_Lectivo {
   ano_lectivo       Int   
 
   atribuicao ProfTurmaDisciplina @relation(fields: [id_atribuicao], references: [id_atribuicao])
-  professor  Professor  @relation(fields: [id_professor], references: [id_professor], onDelete: Restrict)
-  turma      Turma      @relation(fields: [id_turma], references: [id_turma], onDelete: Restrict)
-  disciplina Disciplina @relation(fields: [id_disciplina], references: [id_disciplina], onDelete: Restrict)
-  sala       Sala       @relation(fields: [id_sala], references: [id_sala], onDelete: Restrict)
-  dia        DiaSemana  @relation(fields: [id_dia], references: [id_dia], onDelete: Restrict)
-  periodo    Periodo    @relation(fields: [id_periodo], references: [id_periodo], onDelete: Restrict)
+  professor  Professor           @relation(fields: [id_professor], references: [id_professor], onDelete: Restrict)
+  turma      Turma               @relation(fields: [id_turma], references: [id_turma], onDelete: Restrict)
+  disciplina Disciplina          @relation(fields: [id_disciplina], references: [id_disciplina], onDelete: Restrict)
+  sala       Sala                @relation(fields: [id_sala], references: [id_sala], onDelete: Restrict)
+  dia        DiaSemana           @relation(fields: [id_dia], references: [id_dia], onDelete: Restrict)
+  periodo    Periodo             @relation(fields: [id_periodo], references: [id_periodo], onDelete: Restrict)
 
   // SEGURANÇA: Impede conflitos de Professor, Sala e Turma no mesmo horário
   @@unique([id_professor, id_dia, id_periodo, ordem], name: "no_professor_conflict")
@@ -148,8 +150,18 @@ model Tempo_Lectivo {
   @@map("tempo_lectivo")
 } 
 
+model TipoSala {
+  id_tipoSala         Int     @id @default(autoincrement())
+  descricao_tipoSala  String  @db.VarChar(100) @unique
+
+  salas       Sala[]
+  disciplinas Disciplina[]
+
+  @@map("tipo_sala")
+}
+
 model Turma {
-  id_turma          Int  @id @default(autoincrement())
+  id_turma          Int    @id @default(autoincrement())
   id_curso          Int 
   id_classe         Int
   id_sala           Int?
@@ -158,7 +170,7 @@ model Turma {
   
   curso                       Curso     @relation(fields: [id_curso], references: [id_curso])
   classe                      Classe    @relation(fields: [id_classe], references: [id_classe])
-  sala_preferencial           Sala?      @relation(fields: [id_sala], references: [id_sala])
+  sala_preferencial           Sala?     @relation(fields: [id_sala], references: [id_sala])
   profTurmaDisciplina         ProfTurmaDisciplina[]
   turmaDisciplinas            TurmaDisciplina[]
   tempo_lectivo               Tempo_Lectivo[]
@@ -167,11 +179,11 @@ model Turma {
 }
 
 model TurmaDisciplina {
-  id_turma        Int
-  id_disciplina   Int
-  aulas_por_semana  Int
+  id_turma            Int
+  id_disciplina       Int
+  aulas_por_semana    Int
 
-  turma      Turma  @relation(fields: [id_turma], references: [id_turma])
+  turma      Turma      @relation(fields: [id_turma], references: [id_turma])
   disciplina Disciplina @relation(fields: [id_disciplina], references: [id_disciplina])
 
   @@id([id_turma, id_disciplina])
