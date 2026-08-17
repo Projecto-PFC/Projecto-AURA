@@ -16,9 +16,9 @@ export type ActionResponse<T = any> = {
 export async function criarDisciplina(formData: FormData): Promise<ActionResponse> {
     try {
         const descricao_disciplina = formData.get('descricao_disciplina') as string
-        const tipo_sala            = formData.get('tipo_sala') as string
+        const id_tipoSala          = Number(formData.get('id_tipoSala'))
 
-        const validatedData = createDisciplinaSchema.parse({ descricao_disciplina, tipo_sala })
+        const validatedData = createDisciplinaSchema.parse({ descricao_disciplina, id_tipoSala })
         const disciplina    = await disciplinaService.criar(validatedData)
 
         revalidatePath('/disciplinas')
@@ -37,11 +37,11 @@ export async function criarDisciplina(formData: FormData): Promise<ActionRespons
 export async function atualizarDisciplina(id_disciplina: number, formData: FormData): Promise<ActionResponse> {
     try {
         const descricao_disciplina = formData.get('descricao_disciplina') as string | null
-        const tipo_sala            = formData.get('tipo_sala') as string | null
+        const id_tipoSala          = formData.get('id_tipoSala') ? Number(formData.get('id_tipoSala')) : undefined
 
         const validatedData = updateDisciplinaSchema.parse({
             descricao_disciplina: descricao_disciplina || undefined,
-            tipo_sala:            tipo_sala            || undefined,
+            id_tipoSala,
         })
         const disciplina = await disciplinaService.atualizar(id_disciplina, validatedData)
 

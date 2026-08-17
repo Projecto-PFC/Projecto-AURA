@@ -28,7 +28,7 @@ interface Turma {
 interface Sala {
   id_sala: number;
   descricao_sala: string;
-  tipo_sala: string;
+  id_tipoSala: number;
   capacidade: number;
 }
 
@@ -64,6 +64,20 @@ async function main() {
 
   console.log(`✅ ${cursosData.length} Cursos criados.`);
 
+  // 1.5. Tipos de Sala
+  const tiposSalaData = ["Normal", "Laboratório de Informática", "Oficina", "Campo"];
+  const tiposSalaMap = new Map<string, number>();
+
+  for (const t of tiposSalaData) {
+    const ts = await prisma.tipoSala.upsert({
+      where: { descricao_tipoSala: t },
+      update: {},
+      create: { descricao_tipoSala: t }
+    });
+    tiposSalaMap.set(t.toLowerCase(), ts.id_tipoSala);
+  }
+  console.log(`✅ ${tiposSalaData.length} Tipos de Sala criados.`);
+
   // 2. Salas
   const salasData = [
     { nome: "Sala 1", cap: 20, tipo: "normal" }, { nome: "Sala 2", cap: 20, tipo: "normal" },
@@ -85,10 +99,11 @@ async function main() {
 
   const salas: Sala[] = [];
   for (const s of salasData) {
+    const id_tipoSala = tiposSalaMap.get(s.tipo.toLowerCase()) || tiposSalaMap.get("normal")!;
     const sala = await prisma.sala.upsert({
       where: { descricao_sala: s.nome },
-      update: { capacidade: s.cap, tipo_sala: s.tipo },
-      create: { descricao_sala: s.nome, capacidade: s.cap, tipo_sala: s.tipo }
+      update: { capacidade: s.cap, id_tipoSala },
+      create: { descricao_sala: s.nome, capacidade: s.cap, id_tipoSala }
     });
     salas.push(sala)
   }
@@ -179,10 +194,11 @@ async function main() {
   ];
   
   for (const d of disciplinas) {
+    const id_tipoSala = tiposSalaMap.get(d.tipo.toLowerCase()) || tiposSalaMap.get("normal")!;
     await prisma.disciplina.upsert({
       where: { descricao_disciplina: d.nome },
-      update: { tipo_sala: d.tipo },
-      create: { descricao_disciplina: d.nome, tipo_sala: d.tipo }
+      update: { id_tipoSala },
+      create: { descricao_disciplina: d.nome, id_tipoSala }
     });
   }
   console.log(`✅ ${disciplinas.length} Disciplinas criadas.`);
@@ -359,7 +375,7 @@ for (const prof of todosOsProfessores) {
 
     // ProfTurmaDisciplina (Não possui aulas_por_semana no schema)
     await prisma.profTurmaDisciplina.upsert({
-      where: { id_professor_id_turma_id_disciplina: { id_professor: p!.id_professor, id_turma: t!.id_turma, id_disciplina: d!.id_disciplina } },
+      where: { id_turma_id_disciplina: { id_turma: t!.id_turma, id_disciplina: d!.id_disciplina } },
       update: {},
       create: { id_professor: p!.id_professor, id_turma: t!.id_turma, id_disciplina: d!.id_disciplina }
     });

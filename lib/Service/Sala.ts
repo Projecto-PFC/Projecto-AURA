@@ -16,12 +16,14 @@ export class SalaCRUD {
     async showSala(id_sala: number) {
         return await prisma.sala.findUnique({
             where: { id_sala },
+            include: { tipoSala: true },
         });
     }
 
     async listarTodas() {
         return await prisma.sala.findMany({
             orderBy: { descricao_sala: "asc" },
+            include: { tipoSala: true },
         });
     }
 

@@ -19,7 +19,9 @@ export class TurmaCRUD {
             include: {
                 curso:  true,
                 classe: true,
-                sala_preferencial: true,
+                sala_preferencial: {
+                    include: { tipoSala: true }
+                },
             },
         });
     }
@@ -30,7 +32,9 @@ export class TurmaCRUD {
             include: {
                 curso:  true,
                 classe: true,
-                sala_preferencial: true,
+                sala_preferencial: {
+                    include: { tipoSala: true }
+                },
             },
         });
     }

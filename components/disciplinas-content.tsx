@@ -51,10 +51,16 @@ interface TurmaData {
   turmaDisciplinas: TurmaDisciplinaData[] 
 }
 
+interface TipoSalaData {
+  id_tipoSala: number
+  descricao_tipoSala: string
+}
+
 interface DisciplinaData {
   id_disciplina: number
   descricao_disciplina: string
-  tipo_sala: string
+  id_tipoSala: number
+  tipoSala: TipoSalaData
 }
 
 interface DisciplinaRow {
@@ -66,12 +72,13 @@ interface DisciplinaRow {
 interface DisciplinasContentProps {
   disciplinas: DisciplinaData[]
   turmas: TurmaData[]
+  tiposSala: TipoSalaData[]
 }
 
 // Tipo para alinhar com o erro do Prisma/TS
 type TurmaConfig = { id_turma: number; aulas_por_semana: number };
 
-export function DisciplinasContent({ disciplinas, turmas }: DisciplinasContentProps) {
+export function DisciplinasContent({ disciplinas, turmas, tiposSala }: DisciplinasContentProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [isOpen, setIsOpen] = useState(false)
@@ -79,7 +86,7 @@ export function DisciplinasContent({ disciplinas, turmas }: DisciplinasContentPr
   
   const [formData, setFormData] = useState({ 
     nome: "", 
-    tipo_sala: "normal",
+    id_tipoSala: "",
     turmaConfigs: [] as TurmaConfig[] 
   })
   
@@ -153,9 +160,14 @@ export function DisciplinasContent({ disciplinas, turmas }: DisciplinasContentPr
     setError(null)
     setFieldErrors({})
 
+    if (!formData.id_tipoSala) {
+      setError("Por favor, selecione um tipo de sala.")
+      return
+    }
+
     const fd = new FormData()
     fd.append("descricao_disciplina", formData.nome)
-    fd.append("tipo_sala", formData.tipo_sala)
+    fd.append("id_tipoSala", formData.id_tipoSala)
 
     startTransition(async () => {
       let result
@@ -185,7 +197,11 @@ export function DisciplinasContent({ disciplinas, turmas }: DisciplinasContentPr
   }
 
   const resetForm = () => {
-    setFormData({ nome: "", tipo_sala: "normal", turmaConfigs: [] })
+    setFormData({ 
+      nome: "", 
+      id_tipoSala: tiposSala[0]?.id_tipoSala?.toString() || "", 
+      turmaConfigs: [] 
+    })
     setEditingDisciplina(null)
     setError(null)
     setFieldErrors({})
@@ -202,7 +218,7 @@ export function DisciplinasContent({ disciplinas, turmas }: DisciplinasContentPr
     const existingData = disciplinas.find((d) => d.id_disciplina === disciplina.id)
     setFormData({ 
       nome: disciplina.nome, 
-      tipo_sala: existingData?.tipo_sala || "normal",
+      id_tipoSala: existingData?.id_tipoSala ? String(existingData.id_tipoSala) : (tiposSala[0]?.id_tipoSala?.toString() || ""),
       turmaConfigs: associatedConfigs 
     })
     setError(null)
@@ -274,24 +290,25 @@ export function DisciplinasContent({ disciplinas, turmas }: DisciplinasContentPr
                 </div>
 
                 <div className="grid gap-2">
-                  <Label htmlFor="tipo_sala">Tipo de Sala</Label>
+                  <Label htmlFor="id_tipoSala">Tipo de Sala</Label>
                   <Select
-                    value={formData.tipo_sala}
-                    onValueChange={(val) => setFormData({ ...formData, tipo_sala: val })}
+                    value={formData.id_tipoSala}
+                    onValueChange={(val) => setFormData({ ...formData, id_tipoSala: val })}
                   >
-                    <SelectTrigger id="tipo_sala">
+                    <SelectTrigger id="id_tipoSala">
                       <SelectValue placeholder="Selecione o tipo de sala..." />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="normal">Normal</SelectItem>
-                      <SelectItem value="Laboratório de Informática">Laboratório de Informática</SelectItem>
-                      <SelectItem value="Oficina">Oficina</SelectItem>
-                      <SelectItem value="Campo">Campo</SelectItem>
+                      {tiposSala.map((tipo) => (
+                        <SelectItem key={tipo.id_tipoSala} value={tipo.id_tipoSala.toString()}>
+                          {tipo.descricao_tipoSala}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
-                  {fieldErrors.tipo_sala && (
+                  {fieldErrors.id_tipoSala && (
                     <p className="text-[13px] font-medium text-destructive">
-                      {fieldErrors.tipo_sala[0]}
+                      {fieldErrors.id_tipoSala[0]}
                     </p>
                   )}
                 </div>

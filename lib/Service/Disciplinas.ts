@@ -17,12 +17,14 @@ export class DisciplinaCRUD {
     async mostrar(id_disciplina: number) {
         return await prisma.disciplina.findUnique({
             where: { id_disciplina },
+            include: { tipoSala: true },
         });
     }
 
     async listarTodas() {
         return await prisma.disciplina.findMany({
             orderBy: { descricao_disciplina: "asc" },
+            include: { tipoSala: true },
         });
     }
 

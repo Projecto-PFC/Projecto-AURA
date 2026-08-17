@@ -47,10 +47,16 @@ interface CursoData {
   descricao_curso: string
 }
 
+interface TipoSalaData {
+  id_tipoSala: number
+  descricao_tipoSala: string
+}
+
 interface SalaData {
   id_sala: number
   descricao_sala: string
-  tipo_sala?: string
+  id_tipoSala?: number
+  tipoSala?: TipoSalaData
 }
 
 interface TurmaData {
@@ -546,7 +552,7 @@ export function TurmasContent({ turmas, classes, cursos, salas }: TurmasContentP
                           {salas.map((sala) => (
                             <SelectItem key={sala.id_sala} value={sala.id_sala.toString()}>
                               {sala.descricao_sala}
-                              {sala.tipo_sala ? ` - ${sala.tipo_sala}` : ""}
+                              {sala.tipoSala?.descricao_tipoSala ? ` - ${sala.tipoSala.descricao_tipoSala}` : ""}
                             </SelectItem>
                           ))}
                         </SelectContent>
