@@ -29,6 +29,11 @@ export interface Disciplina {
     id_tipoSala: number;
 }
 
+export interface Periodo {
+    id_periodo: number;
+    descricao_periodo: string;
+}
+
 export interface Sala {
     id_sala: number;
     descricao_sala: string;
@@ -61,6 +66,47 @@ export interface Atribuicao {
     id_turma: number;
     id_disciplina: number;
     aulas_por_semana: number; // Quantidade de aulas (ocorrências) necessárias por semana
+}
+
+/*
+ Representa uma ocupação que já existe antes de uma nova geração. Estas
+ ocupações tornam-se permanentes no estado em memória do gerador.
+*/
+export interface TempoLectivoExistente {
+    id_professor: number;
+    id_turma: number;
+    id_sala: number;
+    slot: Slot;
+}
+
+/*
+ Snapshot normalizado que o Gerador Inicial recebe antes de iniciar o ciclo
+ guloso. Os índices evitam pesquisas lineares durante a geração.
+*/
+export interface DadosPreparadosGerador {
+    professores: Professor[];
+    disciplinas: Disciplina[];
+    turmas: Turma[];
+    salas: Sala[];
+    periodos: Periodo[];
+    atribuicoes: Atribuicao[];
+    slots: Slot[];
+    tempos_lectivos_externos: TempoLectivoExistente[];
+    turmas_com_horario: Set<number>;
+    professores_por_id: Map<number, Professor>;
+    disciplinas_por_id: Map<number, Disciplina>;
+    turmas_por_id: Map<number, Turma>;
+    salas_por_id: Map<number, Sala>;
+    slots_por_professor: Map<number, Slot[]>; // Lista de slots disponíveis para cada professor
+    disponibilidade_por_professor: Map<number, Set<string>>; // Set de "dia-periodo-ordem" strings para cada professor, de forma a permitir pesquisas rápidas de disponibilidade
+    salas_por_tipo: Map<number, Sala[]>;
+    salas_compativeis_por_atribuicao: Map<number, Sala[]>;
+    ocupacao_permanente_professores: Set<string>;
+    ocupacao_permanente_turmas: Set<string>;
+    ocupacao_permanente_salas: Set<string>;
+    // Para consulta durante avaliação de soft constraints
+    aulas_alocadas_por_turma_dia: Map<string, number>;  // chave: "turma_id_dia_id"
+    aulas_alocadas_por_professor_dia: Map<string, number>; // chave: "prof_id_dia_id"
 }
 
 /*
