@@ -174,6 +174,17 @@ export interface Horario {
     aulas_alocadas: Aula_alocada[];
 }
 
+/*
+ Índices de ocupação construídos pelo gerador enquanto o horário é criado.
+ Os conjuntos usam a chave "recurso:dia:periodo:ordem" e são recebidos como
+ somente-leitura pelo verificador de restrições.
+*/
+export interface IndicesOcupacao {
+    professores: ReadonlySet<string>;
+    turmas: ReadonlySet<string>;
+    salas: ReadonlySet<string>;
+}
+
 // Resultado retornado pelo Gerador Inicial após a execução.
 export interface ResultadoGeracao {
     sucesso: boolean;
