@@ -744,6 +744,31 @@ Os pesos devem ser configuráveis e os valores iniciais serão definidos
 durante a implementação e posteriormente calibrados através de
 benchmarks com horários reais.
 
+### 11.2 Critérios incrementais iniciais
+
+Para que a avaliação seja rápida no ciclo guloso, cada custo é calculado a
+partir do horário já alocado e da posição candidata, sem consultas à base de
+dados. A primeira implementação utiliza as seguintes penalizações inteiras:
+
+* **SC01:** número de aulas já alocadas para a turma no dia candidato.
+  Privilegia dias com menor carga total da turma.
+* **SC02:** número de tempos vazios entre as aulas do professor no mesmo dia
+  e período, após adicionar o candidato.
+* **SC03:** cada bloco adicional da disciplina no dia recebe penalização `1`.
+  Ordens são contínuas apenas dentro do mesmo período. Blocos em períodos
+  distintos só são comparados quando a estrutura de slots letivos da turma
+  confirma que ambos os períodos são usados naquele dia. Ao custo é acrescido
+  o número de tempos que excedem três no bloco consecutivo criado pelo
+  candidato.
+* **SC04:** penalização `1` quando existe sala preferencial e a sala candidata
+  é diferente; caso contrário, `0`.
+* **SC05:** `max(0, ocorrências_da_disciplina_no_dia + 1 - 2)`, limitando a
+  terceira e as ocorrências seguintes da disciplina para a turma no mesmo dia.
+
+Os candidatos devem chegar ao avaliador somente depois de aprovados nas Hard
+Constraints. Se os custos empatarem, a escolha é determinística: menor dia,
+menor período, menor ordem do tempo e menor identificador de sala.
+
 ---
 
 # 12. Forward Checking
