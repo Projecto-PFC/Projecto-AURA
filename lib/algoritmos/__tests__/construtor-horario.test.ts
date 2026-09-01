@@ -38,6 +38,16 @@ describe("gerarHorarioInicial", () => {
         expect(resultado.erro).toBeUndefined();
     });
 
+    it("produz o horário normalmente quando o conjunto de dados é viável", () => {
+        const resultado = gerar(criarDadosCarregados({ cargas_horarias: [{ id_turma: 1, id_disciplina: 1, aulas_por_semana: 2 }] }), {
+            slots_letivos_por_turma: new Map([[1, [slot1, slot2]]]),
+        });
+
+        expect(resultado.sucesso).toBe(true);
+        expect(resultado.erro).toBeUndefined();
+        expect(resultado.horario?.aulas_alocadas).toHaveLength(2);
+    });
+
     it("termina com sucesso quando não existem aulas a alocar", () => {
         const resultado = gerar(criarDadosCarregados({ atribuicoes: [], cargas_horarias: [] }));
         expect(resultado.sucesso).toBe(true);

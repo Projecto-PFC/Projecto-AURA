@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -23,38 +23,19 @@ import {
   Play,
   RefreshCcw,
   XCircle,
-  AlertTriangle,  // NOVO — ícone para avisos
-  Clock,
-  Users,
-  DoorOpen,
+  AlertTriangle,
   Trash2,
 } from "lucide-react"
-import { apagarTemposLectivos } from "@/lib/actions/horarios";
-import gerarHorarios, { pararGeracao, type ResultadoGeracao, type LogItem } from "@/lib/actions/gerarHorario";
+import { apagarHorario, gerarHorario } from "@/lib/actions/horario.actions";
+import type { ResultadoGeracao, LogItem } from "@/lib/algoritmos/types";
 
 import useSWR from "swr"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 interface Turma {
-  id: string
+  id: number
   nome: string
-}
-
-interface ConflictItem {
-  id: string
-  tipo: "professor" | "sala" | "turma"
-  descricao: string
-  severidade: "alta" | "media" | "baixa"
-}
-
-interface GenerationResult {
-  status: "idle" | "generating" | "completed" | "error"
-  progress: number
-  turmasProcessadas: number
-  totalTurmas: number
-  conflitos: ConflictItem[]
-  horariosGerados: number
 }
 
 // NOVO — componente que renderiza um único item de log com cor e ícone
@@ -86,25 +67,24 @@ export function GerarContent() {
   // 1. Hooks de dados no TOPO (Sempre executados na mesma ordem)
   const { data, error, isLoading } = useSWR<{ turmas: Turma[] }>('/api/turmas', fetcher);
 
-  const [selectedTurmas, setSelectedTurmas] = useState<string[]>([]);
-  const [result, setResult] = useState<GenerationResult>({
-    status: "idle", progress: 0, turmasProcessadas: 0, totalTurmas: 0, conflitos: [], horariosGerados: 0,
-  });
-
-  // NOVO — estado para guardar o resultado com logs devolvido pelo algoritmo
+  const [selectedTurmas, setSelectedTurmas] = useState<number[]>([]);
+  const [hasInitializedSelection, setHasInitializedSelection] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [resultado, setResultado] = useState<ResultadoGeracao | null>(null)
 
   const [isDeleting, setIsDeleting] = useState(false);
 
   // 2. Sincronizar o estado inicial quando os dados da API chegarem
   useEffect(() => {
-    if (data?.turmas && selectedTurmas.length === 0) {
+    if (data?.turmas && !hasInitializedSelection) {
       setSelectedTurmas(data.turmas.map((t) => t.id));
+      setHasInitializedSelection(true);
     }
-  }, [data]);
+  }, [data, hasInitializedSelection]);
 
   // 3. Handlers
-  const toggleTurma = (id: string) => {
+  const toggleTurma = (id: number) => {
     setSelectedTurmas((prev) =>
       prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]
     );
@@ -114,52 +94,66 @@ export function GerarContent() {
   const deselectAll = () => setSelectedTurmas([]);
 
   const simulateGeneration = async () => {
-    // Marca como "a gerar" — barra aparece em modo indeterminado
-    setResult(prev => ({
-        ...prev,
-        status: "generating",
-        progress: 0,
-        totalTurmas: selectedTurmas.length,
-    }))
-
+    setIsGenerating(true)
+    setProgress(0)
     setResultado(null)
 
     try {
-        const res = await gerarHorarios(selectedTurmas)
-        setResultado(res)
+      const response = await gerarHorario({
+        ids_turmas: selectedTurmas,
+        ano_lectivo: new Date().getFullYear(),
+        permitirRegeneracao: false,
+      })
 
-        // Algoritmo terminou — actualiza o estado com base no resultado real
-        setResult(prev => ({
-            ...prev,
-            status: "completed",
-            progress: 100,
-            turmasProcessadas: prev.totalTurmas,
-        }))
-    } catch (e) {
-        console.error("Erro na Action:", e)
+      const resultadoGeracao = response.data?.resultado ?? null;
+      const logs = resultadoGeracao?.logs ?? [{ tipo: "erro", mensagem: response.message ?? "Não foi possível gerar o horário." }];
+
+      setResultado(resultadoGeracao ?? { sucesso: false, metricas: { tempo_execucao_ms: 0, total_aulas_a_alocar: 0, total_aulas_alocadas: 0, candidatos_gerados: 0, candidatos_rejeitados: 0, candidatos_avaliados: 0, custo_soft_final: 0, falhas: [] }, logs })
+      setProgress(response.success && resultadoGeracao?.sucesso ? 100 : 0)
+
+      if (!response.success || !resultadoGeracao || !resultadoGeracao.sucesso) {
         setResultado({
-            sucesso: false,
-            totalGeradas: 0,
-            logs: [{ tipo: "erro", mensagem: "Erro inesperado ao comunicar com o servidor." }]
+          sucesso: false,
+          metricas: resultadoGeracao?.metricas ?? {
+            tempo_execucao_ms: 0,
+            total_aulas_a_alocar: 0,
+            total_aulas_alocadas: 0,
+            candidatos_gerados: 0,
+            candidatos_rejeitados: 0,
+            candidatos_avaliados: 0,
+            custo_soft_final: 0,
+            falhas: [],
+          },
+          logs,
         })
-
-        // Erro — marca como erro em vez de "completed"
-        setResult(prev => ({
-            ...prev,
-            status: "error",
-            progress: 0,
-        }))
+      }
+    } catch (e) {
+      console.error("Erro na Action:", e)
+      setResultado({
+        sucesso: false,
+        metricas: {
+          tempo_execucao_ms: 0,
+          total_aulas_a_alocar: 0,
+          total_aulas_alocadas: 0,
+          candidatos_gerados: 0,
+          candidatos_rejeitados: 0,
+          candidatos_avaliados: 0,
+          custo_soft_final: 0,
+          falhas: [],
+        },
+        logs: [{ tipo: "erro", mensagem: "Erro inesperado ao comunicar com o servidor." }],
+      })
+      setProgress(0)
+    } finally {
+      setIsGenerating(false)
     }
-}
+  }
 
   const handleDelete = async () => {
     setIsDeleting(true);
     try {
-      await apagarTemposLectivos(selectedTurmas);
-      setResult({
-        status: "idle", progress: 0, turmasProcessadas: 0, totalTurmas: 0, conflitos: [], horariosGerados: 0,
-      });
-      // NOVO — limpa logs ao apagar horários
+      await apagarHorario({ ids_turmas: selectedTurmas, ano_lectivo: new Date().getFullYear() });
+      setProgress(0)
       setResultado(null)
     } catch (e) {
       console.error("Erro ao apagar horários:", e);
@@ -203,11 +197,11 @@ export function GerarContent() {
                     {data?.turmas.map((turma) => (
                       <div key={turma.id} className="flex items-center space-x-3 rounded-lg border p-3">
                         <Checkbox
-                          id={turma.id}
+                          id={String(turma.id)}
                           checked={selectedTurmas.includes(turma.id)}
                           onCheckedChange={() => toggleTurma(turma.id)}
                         />
-                        <Label htmlFor={turma.id} className="cursor-pointer flex-1">{turma.nome}</Label>
+                        <Label htmlFor={String(turma.id)} className="cursor-pointer flex-1">{turma.nome}</Label>
                       </div>
                     ))}
                   </div>
@@ -216,43 +210,39 @@ export function GerarContent() {
             </CardContent>
           </Card>
 
-          {result.status !== "idle" && (
+          {(isGenerating || resultado) && (
             <Card>
               <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                      {result.status === "generating" && <RefreshCcw className="animate-spin" />}
-                      {result.status === "completed" && (
+                      {isGenerating && <RefreshCcw className="animate-spin" />}
+                      {!isGenerating && (
                           resultado?.sucesso
                               ? <CheckCircle2 className="text-green-500" />
                               : <XCircle className="text-red-500" />
                       )}
-                      {result.status === "error" && <XCircle className="text-red-500" />}
 
-                      {result.status === "generating" && "A processar..."}
-                      {result.status === "completed" && (resultado?.sucesso ? "Concluído com sucesso" : "Concluído com erros")}
-                      {result.status === "error" && "Erro de comunicação"}
+                      {isGenerating && "A processar..."}
+                      {!isGenerating && (resultado?.sucesso ? "Concluído com sucesso" : "Concluído com erros")}
                   </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                  {/* Barra indeterminada enquanto processa, barra a 100% quando termina */}
-                  {result.status === "generating" ? (
+                  {isGenerating ? (
                       <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
                           <div className="h-full bg-primary rounded-full animate-[progress_1.5s_ease-in-out_infinite]"
                               style={{ width: "40%" }} />
                       </div>
                   ) : (
-                      <Progress value={result.progress} />
+                      <Progress value={progress} />
                   )}
 
                   <p className="text-sm text-muted-foreground">
-                      {result.status === "generating"
+                      {isGenerating
                           ? "A gerar horários, por favor aguarde..."
-                          : `${resultado?.totalGeradas ?? 0} aulas alocadas para ${result.totalTurmas} turma(s).`
+                          : `${resultado?.metricas.total_aulas_alocadas ?? 0} aulas alocadas para ${selectedTurmas.length} turma(s).`
                       }
                   </p>
 
-                {/* NOVO — painel de logs aparece aqui, dentro do card existente, só quando há logs */}
-                {resultado && resultado.logs.length > 0 && (
+                {resultado && resultado.logs && resultado.logs.length > 0 && (
                   <div className="space-y-2 pt-2 border-t border-border">
                     <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                       Relatório de geração
@@ -275,7 +265,7 @@ export function GerarContent() {
             <CardContent className="space-y-3">
               <Button
                 className="w-full"
-                disabled={selectedTurmas.length === 0 || result.status === "generating"}
+                disabled={selectedTurmas.length === 0 || isGenerating}
                 onClick={simulateGeneration}
               >
                 <Play className="mr-2 h-4 w-4" /> Gerar Agora
@@ -286,7 +276,7 @@ export function GerarContent() {
                   <Button
                     variant="destructive"
                     className="w-full"
-                    disabled={selectedTurmas.length === 0 || result.status === "generating" || isDeleting}
+                    disabled={selectedTurmas.length === 0 || isGenerating || isDeleting}
                   >
                     <Trash2 className="mr-2 h-4 w-4" />
                     {isDeleting ? "A apagar..." : "Apagar Horários"}
@@ -309,35 +299,51 @@ export function GerarContent() {
                 </AlertDialogContent>
               </AlertDialog>
 
-              {result.status === "generating" && (
-                <Button
-                  variant="outline"
-                  className="w-full border-red-500 text-red-500 hover:bg-red-50 hover:text-red-600"
-                  onClick={async () => {
-                    await pararGeracao();
-                  }}
-                >
-                  <XCircle className="mr-2 h-4 w-4" /> Parar Processamento
-                </Button>
-              )}
-
-              {/* NOVO — resumo numérico de logs no painel lateral, só quando há resultado */}
               {resultado && (
-                <div className="rounded-md border p-3 space-y-1 text-sm">
+                <div className="rounded-md border p-3 space-y-2 text-sm">
                   <p className="font-medium text-foreground">Resumo</p>
                   <p className="text-muted-foreground">
-                    Aulas geradas: <span className="text-foreground font-medium">{resultado.totalGeradas}</span>
+                    Tempo execução: <span className="text-foreground font-medium">{resultado.metricas.tempo_execucao_ms} ms</span>
+                  </p>
+                  <p className="text-muted-foreground">
+                    Aulas a alocar: <span className="text-foreground font-medium">{resultado.metricas.total_aulas_a_alocar}</span>
+                  </p>
+                  <p className="text-muted-foreground">
+                    Aulas geradas: <span className="text-foreground font-medium">{resultado.metricas.total_aulas_alocadas}</span>
+                  </p>
+                  <p className="text-muted-foreground">
+                    Candidatos gerados: <span className="text-foreground font-medium">{resultado.metricas.candidatos_gerados}</span>
+                  </p>
+                  <p className="text-muted-foreground">
+                    Candidatos rejeitados: <span className="text-foreground font-medium">{resultado.metricas.candidatos_rejeitados}</span>
+                  </p>
+                  <p className="text-muted-foreground">
+                    Candidatos avaliados: <span className="text-foreground font-medium">{resultado.metricas.candidatos_avaliados}</span>
+                  </p>
+                  <p className="text-muted-foreground">
+                    Custo soft final: <span className="text-foreground font-medium">{resultado.metricas.custo_soft_final}</span>
                   </p>
                   <p className="text-muted-foreground">
                     Erros: <span className="text-red-400 font-medium">
-                      {resultado.logs.filter(l => l.tipo === "erro").length}
+                      {resultado.logs?.filter(l => l.tipo === "erro").length ?? 0}
                     </span>
                   </p>
                   <p className="text-muted-foreground">
                     Avisos: <span className="text-yellow-400 font-medium">
-                      {resultado.logs.filter(l => l.tipo === "aviso").length}
+                      {resultado.logs?.filter(l => l.tipo === "aviso").length ?? 0}
                     </span>
                   </p>
+                  {resultado.metricas.falhas.length > 0 && (
+                    <div className="space-y-2 pt-1 border-t border-border">
+                      <p className="font-medium text-foreground">Falhas</p>
+                      {resultado.metricas.falhas.map((falha, index) => (
+                        <div key={`${falha.id_aula}-${index}`} className="space-y-1 text-muted-foreground">
+                          <p>{falha.descricao_aula}: {falha.motivo}</p>
+                          {falha.detalhe && <p className="text-xs text-muted-foreground/80">{falha.detalhe}</p>}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </CardContent>

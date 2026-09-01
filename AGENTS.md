@@ -239,6 +239,10 @@ Preserva sempre a consistência do projeto.
 - Server Actions
 - Service Layer
 
+## Padrão de escrita para variáveis, objectos, etc
+
+- Snake_case com todas as letras minúsculas, seguindo principalmente a forma como os campos do schema prisma foram declarados
+
 ## Objetivos
 
 - Arquitetura Limpa

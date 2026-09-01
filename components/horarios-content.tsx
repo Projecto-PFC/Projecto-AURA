@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Calendar, Download, Printer, ChevronLeft, ChevronRight, Loader2 } from "lucide-react"
-import { listarAulasPorTurma, listarAulasPorProfessor } from "@/lib/actions/tempoLectivo"
+import { listarHorario, listarHorarioPorProfessor, TempoLectivoComDetalhes } from "@/lib/actions/horario.actions"
 import { listarTodasTurmas } from "@/app/turmas/turma-action"
 import { listarTodos as listarTodosProfessores } from "@/app/professores/professores-action"
 import { useRouter } from "next/navigation"
@@ -16,6 +16,7 @@ import { HorarioPDF } from "@/components/horario-pdf"
 
 // ── DADOS FIXOS ───────────────────────────────────────────────
 const diasSemana = ["2ª FEIRA", "3ª FEIRA", "4ª FEIRA", "5ª FEIRA", "6ª FEIRA"]
+const ANO_LECTIVO_ATUAL = new Date().getFullYear()
 
 type LinhaTabela =
   | { tipo: "aula";      tempo: string; horaInicio: string; horaFim: string; ordem: number }
@@ -50,6 +51,11 @@ interface Aula {
   turma?:     string
 }
 
+interface OpcaoHorario {
+  id: number
+  nome: string
+}
+
 type HorarioData = {
   [turma: string]: {
     [periodo: string]: {
@@ -61,8 +67,8 @@ type HorarioData = {
 }
 
 export function HorariosContent() {
-  const [turmas, setTurmas] = useState<string[]>([])
-  const [professores, setProfessores] = useState<string[]>([])
+  const [turmas, setTurmas] = useState<OpcaoHorario[]>([])
+  const [professores, setProfessores] = useState<OpcaoHorario[]>([])
   const [selectedTurma, setSelectedTurma] = useState<string>("")
   const [selectedProfessor, setSelectedProfessor] = useState("")
   const [viewType, setViewType] = useState("turma")
@@ -80,13 +86,13 @@ export function HorariosContent() {
         listarTodosProfessores()
       ])
 
-      const descricoesTurmas = Array.from(new Set(dadosTurma.map(t => t.descricao_turma)))
-      setTurmas(descricoesTurmas)
-      if (descricoesTurmas.length > 0) setSelectedTurma(descricoesTurmas[0])
+      const opcoesTurmas = dadosTurma.map((turma) => ({ id: turma.id_turma, nome: turma.descricao_turma }))
+      setTurmas(opcoesTurmas)
+      if (opcoesTurmas.length > 0) setSelectedTurma(opcoesTurmas[0].nome)
 
-      const descricoesProfs = Array.from(new Set(dadosProf.map(p => p.nome_professor)))
-      setProfessores(descricoesProfs)
-      if (descricoesProfs.length > 0) setSelectedProfessor(descricoesProfs[0])
+      const opcoesProfessores = dadosProf.map((professor) => ({ id: professor.id_professor, nome: professor.nome_professor }))
+      setProfessores(opcoesProfessores)
+      if (opcoesProfessores.length > 0) setSelectedProfessor(opcoesProfessores[0].nome)
     }   
     carregarDados()
   }, [])
@@ -99,12 +105,29 @@ export function HorariosContent() {
     if (!target) return
 
     async function buscar() {
-      setIsLoading(true)           
+      setIsLoading(true)
       try {
-        const dados = isProf 
-          ? await listarAulasPorProfessor(target)
-          : await listarAulasPorTurma(target)
+        const opcaoTurma = turmas.find((turma) => turma.nome === selectedTurma)
+        const opcaoProfessor = professores.find((professor) => professor.nome === selectedProfessor)
 
+        if (isProf && !opcaoProfessor) return
+        if (!isProf && !opcaoTurma) return
+
+        const resposta = isProf
+          ? await listarHorarioPorProfessor({
+              id_professor: opcaoProfessor!.id,
+              ano_lectivo: ANO_LECTIVO_ATUAL,
+            })
+          : await listarHorario({
+              ids_turmas: [opcaoTurma!.id],
+              ano_lectivo: ANO_LECTIVO_ATUAL,
+            })
+
+        if (!resposta.success || !resposta.data) {
+          return
+        }
+
+        const dados: TempoLectivoComDetalhes[] = resposta.data
         const novoHorario: HorarioData = {}
 
         const mapaDias: Record<string, string> = {
@@ -128,7 +151,7 @@ export function HorariosContent() {
           console.log("Primeiro periodo:", dados[0]?.periodo?.descricao_periodo)
         }
 
-        dados.forEach((aula: any) => {
+        dados.forEach((aula) => {
           const dia = mapaDias[aula.dia?.descricao_dia || ""]
           const periodo = mapaPeriodos[aula.periodo?.descricao_periodo || ""]
           const key = isProf ? aula.professor?.nome_professor : aula.turma?.descricao_turma
@@ -157,21 +180,21 @@ export function HorariosContent() {
     buscar()
   }, [selectedTurma, selectedProfessor, viewType])
 
-  const turmaIndex = turmas.indexOf(selectedTurma)
+  const turmaIndex = turmas.findIndex((turma) => turma.nome === selectedTurma)
 
   const navigateTurma = (direction: number) => {
     const newIndex = turmaIndex + direction
     if (newIndex >= 0 && newIndex < turmas.length) {
-      setSelectedTurma(turmas[newIndex])
+      setSelectedTurma(turmas[newIndex].nome)
     }
   }
 
-  const professorIndex = professores.indexOf(selectedProfessor)
+  const professorIndex = professores.findIndex((professor) => professor.nome === selectedProfessor)
 
   const navigateProfessor = (direction: number) => {
     const newIndex = professorIndex + direction
     if (newIndex >= 0 && newIndex < professores.length) {
-      setSelectedProfessor(professores[newIndex])
+      setSelectedProfessor(professores[newIndex].nome)
     }
   }
 
@@ -313,8 +336,8 @@ export function HorariosContent() {
                   <SelectValue placeholder="Escolha a turma" />
                 </SelectTrigger>
                 <SelectContent>
-                  {turmas.map((t) => (
-                    <SelectItem key={t} value={t}>Turma {t}</SelectItem>
+                  {turmas.map((turma) => (
+                    <SelectItem key={turma.id} value={turma.nome}>Turma {turma.nome}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -369,8 +392,8 @@ export function HorariosContent() {
                   <SelectValue placeholder="Escolha o docente" />
                 </SelectTrigger>
                 <SelectContent>
-                  {professores.map((p) => (
-                    <SelectItem key={p} value={p}>{p}</SelectItem>
+                  {professores.map((professor) => (
+                    <SelectItem key={professor.id} value={professor.nome}>{professor.nome}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
