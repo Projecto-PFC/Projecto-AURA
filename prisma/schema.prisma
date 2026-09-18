@@ -72,8 +72,9 @@ model Periodo {
   id_periodo         Int    @id @default(autoincrement())
   descricao_periodo  String @db.VarChar(100) @unique
 
-  tempo_lectivo   Tempo_Lectivo[]
-  disponibilidade Disponibilidade[]
+  tempo_lectivo           Tempo_Lectivo[]
+  disponibilidade         Disponibilidade[]
+  turmaDisciplinaPeriodos TurmaDisciplinaPeriodo[]
 
   @@map("periodos")
 }
@@ -186,6 +187,21 @@ model TurmaDisciplina {
   turma      Turma      @relation(fields: [id_turma], references: [id_turma])
   disciplina Disciplina @relation(fields: [id_disciplina], references: [id_disciplina])
 
+  turmaDisciplinaPeriodos TurmaDisciplinaPeriodo[]
+
   @@id([id_turma, id_disciplina])
   @@map("turma_disciplinas")
+}
+
+model TurmaDisciplinaPeriodo {
+    id_turma      Int
+    id_disciplina Int
+    id_periodo    Int
+
+    turmaDisciplina TurmaDisciplina @relation( fields: [id_turma, id_disciplina], references: [id_turma, id_disciplina])
+
+    periodo Periodo @relation(fields: [id_periodo], references: [id_periodo])
+
+    @@id([id_turma, id_disciplina, id_periodo])
+    @@map("turma_disciplina_periodos")
 }
