@@ -45,6 +45,31 @@ async function main() {
 
   for (const p of periodos) await prisma.periodo.upsert({ where: { descricao_periodo: p }, update: {}, create: { descricao_periodo: p } });   console.log(`✅ ${periodos.length} Períodos criados.`);
 
+  const periodosPorDescricao = new Map(
+    (await prisma.periodo.findMany()).map((periodo) => [periodo.descricao_periodo, periodo.id_periodo])
+  );
+
+  const obterIdsPeriodosPermitidos = (turmaDesc: string, discDesc: string): number[] => {
+    const ehEducacaoFisica = discDesc === "Ed. Física";
+    const ehTurmaDa12Classe = turmaDesc.startsWith("12ª Classe - ");
+    const descricoes = ehEducacaoFisica
+      ? ["Manhã"]
+      : ehTurmaDa12Classe
+        ? ["Manhã", "Tarde"]
+        : ["Tarde"];
+
+    if (descricoes.length === 0) {
+      throw new Error(`Nenhum período permitido para ${turmaDesc} + ${discDesc}.`);
+    }
+
+    const ids = descricoes.map((descricao) => periodosPorDescricao.get(descricao));
+    if (ids.some((id) => id === undefined)) {
+      throw new Error(`Período não encontrado para ${turmaDesc} + ${discDesc}.`);
+    }
+
+    return ids as number[];
+  };
+
   const classes: Classe[] = [];
   for (const c of classesData) {
     const classe = await prisma.classe.upsert(
@@ -366,11 +391,26 @@ for (const prof of todosOsProfessores) {
       return;
     }
 
+    const idsPeriodosPermitidos = obterIdsPeriodosPermitidos(turmaDesc, discDesc);
+
     // TurmaDisciplina (Possui aulas_por_semana no schema)
     await prisma.turmaDisciplina.upsert({
       where: { id_turma_id_disciplina: { id_turma: t!.id_turma, id_disciplina: d!.id_disciplina } },
-      update: { aulas_por_semana: aulas },
-      create: { id_turma: t!.id_turma, id_disciplina: d!.id_disciplina, aulas_por_semana: aulas }
+      update: {
+        aulas_por_semana: aulas,
+        turmaDisciplinaPeriodos: {
+          deleteMany: {},
+          create: idsPeriodosPermitidos.map((id_periodo) => ({ id_periodo }))
+        }
+      },
+      create: {
+        id_turma: t!.id_turma,
+        id_disciplina: d!.id_disciplina,
+        aulas_por_semana: aulas,
+        turmaDisciplinaPeriodos: {
+          create: idsPeriodosPermitidos.map((id_periodo) => ({ id_periodo }))
+        }
+      }
     });
 
     // ProfTurmaDisciplina (Não possui aulas_por_semana no schema)
