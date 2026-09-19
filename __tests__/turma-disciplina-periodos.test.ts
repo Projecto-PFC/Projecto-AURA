@@ -1,0 +1,37 @@
+import { describe, expect, it } from "vitest";
+import {
+    removerTurmaDisciplinaPeriodosSchema,
+    substituirTurmaDisciplinaPeriodosSchema,
+} from "@/lib/Validation/TurmaDisciplina";
+
+describe("schemas de períodos permitidos da TurmaDisciplina", () => {
+    it("aceita uma lista não vazia e sem IDs duplicados", () => {
+        const resultado = substituirTurmaDisciplinaPeriodosSchema.safeParse({
+            id_turma: 1,
+            id_disciplina: 2,
+            ids_periodos: [1, 2],
+        });
+
+        expect(resultado.success).toBe(true);
+    });
+
+    it("rejeita uma lista vazia", () => {
+        const resultado = substituirTurmaDisciplinaPeriodosSchema.safeParse({
+            id_turma: 1,
+            id_disciplina: 2,
+            ids_periodos: [],
+        });
+
+        expect(resultado.success).toBe(false);
+    });
+
+    it("rejeita IDs de períodos duplicados", () => {
+        const resultado = removerTurmaDisciplinaPeriodosSchema.safeParse({
+            id_turma: 1,
+            id_disciplina: 2,
+            ids_periodos: [1, 1],
+        });
+
+        expect(resultado.success).toBe(false);
+    });
+});
