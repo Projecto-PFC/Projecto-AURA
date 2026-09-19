@@ -52,7 +52,18 @@ export class GeradorInicialService {
             }),
             prisma.turmaDisciplina.findMany({
                 where: { id_turma: { in: idsTurmasUnicos } },
-                select: { id_turma: true, id_disciplina: true, aulas_por_semana: true },
+                select: {
+                    id_turma: true,
+                    id_disciplina: true,
+                    aulas_por_semana: true,
+                    turmaDisciplinaPeriodos: {
+                        select: {
+                            periodo: {
+                                select: { id_periodo: true },
+                            },
+                        },
+                    },
+                },
             }),
             prisma.sala.findMany({
                 select: { id_sala: true, descricao_sala: true, capacidade: true, id_tipoSala: true },
@@ -109,6 +120,13 @@ export class GeradorInicialService {
                 id_disciplina,
             })),
             cargas_horarias: cargasHorarias.map((carga) => ({ ...carga })),
+            periodos_permitidos_por_turma_disciplina: cargasHorarias.flatMap((carga) =>
+                carga.turmaDisciplinaPeriodos.map(({ periodo }) => ({
+                    id_turma: carga.id_turma,
+                    id_disciplina: carga.id_disciplina,
+                    id_periodo: periodo.id_periodo,
+                })),
+            ),
             tempos_lectivos_existentes: temposLectivos.map((tempoLectivo) => ({
                 id_professor: tempoLectivo.id_professor,
                 id_turma: tempoLectivo.id_turma,

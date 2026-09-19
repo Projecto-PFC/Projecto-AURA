@@ -101,6 +101,7 @@ export interface DadosPreparadosGerador {
     disponibilidade_por_professor: Map<number, Set<string>>; // Set de "dia-periodo-ordem" strings para cada professor, de forma a permitir pesquisas rápidas de disponibilidade
     salas_por_tipo: Map<number, Sala[]>;
     salas_compativeis_por_atribuicao: Map<number, Sala[]>;
+    periodos_permitidos_por_turma_disciplina: Map<string, ReadonlySet<number>>;
     ocupacao_permanente_professores: Set<string>;
     ocupacao_permanente_turmas: Set<string>;
     ocupacao_permanente_salas: Set<string>;

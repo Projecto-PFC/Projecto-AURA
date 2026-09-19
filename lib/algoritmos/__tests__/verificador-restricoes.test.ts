@@ -34,6 +34,7 @@ function criarCenario() {
         periodos: [{ id_periodo: 1, descricao_periodo: "Manhã" }],
         atribuicoes: [{ id_atribuicao: 1, id_professor: 1, id_turma: 1, id_disciplina: 1 }],
         cargas_horarias: [{ id_turma: 1, id_disciplina: 1, aulas_por_semana: 1 }],
+        periodos_permitidos_por_turma_disciplina: [],
         tempos_lectivos_existentes: [],
     });
     const aula: Aula_livre = {

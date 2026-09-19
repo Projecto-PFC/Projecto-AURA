@@ -3,6 +3,8 @@
 import { disciplinaService } from "@/lib/Service/Disciplinas"
 import { turmaDisciplinaService } from "@/lib/Service/TurmaDisciplina"
 import { createDisciplinaSchema, updateDisciplinaSchema } from "@/lib/Validation/Disciplina"
+import { createTurmaDisciplinaSchema, idSchema } from "@/lib/Validation/TurmaDisciplina"
+import { getActionErrorMessage } from "@/lib/errors"
 import { z } from 'zod'
 import { revalidatePath } from 'next/cache'
 
@@ -12,6 +14,14 @@ export type ActionResponse<T = any> = {
     errors?: Record<string, string[] | undefined> | undefined
     message?: string
 }
+
+const turmasArraySchema = z.array(
+    createTurmaDisciplinaSchema.pick({
+        id_turma: true,
+        aulas_por_semana: true,
+        ids_periodos: true,
+    }),
+)
 
 export async function criarDisciplina(formData: FormData): Promise<ActionResponse> {
     try {
@@ -77,22 +87,46 @@ export async function listarTurmas() {
     return await prisma.turma.findMany({
         orderBy: { descricao_turma: 'asc' },
         include: { 
-            turmaDisciplinas: { include: { disciplina: true } },
+            turmaDisciplinas: {
+                include: {
+                    disciplina: true,
+                    turmaDisciplinaPeriodos: {
+                        select: { id_periodo: true },
+                    },
+                },
+            },
             curso: true,
             classe: true
         },
     })
 }
 
+export async function listarPeriodos() {
+    const { prisma } = await import("@/lib/prisma")
+    return await prisma.periodo.findMany({
+        orderBy: { id_periodo: 'asc' },
+    })
+}
+
 export async function atualizarTurmasDaDisciplina(
     id_disciplina: number,
-    turmas: { id_turma: number; aulas_por_semana: number }[]
+    turmas: unknown,
 ): Promise<ActionResponse> {
     try {
-        await turmaDisciplinaService.recriarAssociacoes(id_disciplina, turmas)
+        idSchema.parse(id_disciplina)
+        const turmasValidadas = turmasArraySchema.parse(turmas)
+
+        await turmaDisciplinaService.recriarAssociacoes(id_disciplina, turmasValidadas)
         revalidatePath('/disciplinas')
         return { success: true, message: 'Turmas da disciplina atualizadas com sucesso!' }
-    } catch (error: any) {
-        return { success: false, message: error.message || 'Erro inesperado' }
+    } catch (error: unknown) {
+        if (error instanceof z.ZodError) {
+            return {
+                success: false,
+                errors: error.flatten().fieldErrors,
+                message: 'Erro de validação',
+            }
+        }
+        return { success: false, message: getActionErrorMessage(error) }
     }
 }

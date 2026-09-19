@@ -23,6 +23,12 @@ export interface CargaHorariaCarregada {
     aulas_por_semana: number;
 }
 
+export interface PeriodoPermitidoTurmaDisciplinaCarregado {
+    id_turma: number;
+    id_disciplina: number;
+    id_periodo: number;
+}
+
 export interface DadosCarregadosGerador {
     professores: Professor[];
     disciplinas: Disciplina[];
@@ -31,6 +37,7 @@ export interface DadosCarregadosGerador {
     periodos: Periodo[];
     atribuicoes: AtribuicaoCarregada[];
     cargas_horarias: CargaHorariaCarregada[];
+    periodos_permitidos_por_turma_disciplina: PeriodoPermitidoTurmaDisciplinaCarregado[];
     tempos_lectivos_existentes: TempoLectivoExistente[];
 }
 
@@ -130,6 +137,15 @@ export function prepararDados(dados: DadosCarregadosGerador): DadosPreparadosGer
         );
     }
 
+    const periodos_permitidos_por_turma_disciplina = new Map<string, Set<number>>();
+    for (const periodo_permitido of dados.periodos_permitidos_por_turma_disciplina) {
+        const chave_turma_disciplina = `${periodo_permitido.id_turma}:${periodo_permitido.id_disciplina}`;
+        const periodos_permitidos = periodos_permitidos_por_turma_disciplina.get(chave_turma_disciplina) ?? new Set<number>();
+
+        periodos_permitidos.add(periodo_permitido.id_periodo);
+        periodos_permitidos_por_turma_disciplina.set(chave_turma_disciplina, periodos_permitidos);
+    }
+
     const idsTurmasEmGeracao = new Set(turmas.map((turma) => turma.id_turma));
     const turmas_com_horario = new Set<number>();
     const tempos_lectivos_externos: TempoLectivoExistente[] = [];
@@ -168,6 +184,7 @@ export function prepararDados(dados: DadosCarregadosGerador): DadosPreparadosGer
         disponibilidade_por_professor,
         salas_por_tipo,
         salas_compativeis_por_atribuicao,
+        periodos_permitidos_por_turma_disciplina,
         ocupacao_permanente_professores,
         ocupacao_permanente_turmas,
         ocupacao_permanente_salas,

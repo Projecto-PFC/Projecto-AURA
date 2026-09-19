@@ -34,9 +34,14 @@ import {
 
 // Interfaces alinhadas com o Prisma Schema
 interface TurmaDisciplinaData {
+  aulas_por_semana: number
   disciplina: {
+    id_disciplina: number
     descricao_disciplina: string
   }
+  turmaDisciplinaPeriodos: {
+    id_periodo: number
+  }[]
 }
 
 interface TurmaData {
@@ -56,6 +61,11 @@ interface TipoSalaData {
   descricao_tipoSala: string
 }
 
+interface PeriodoData {
+  id_periodo: number
+  descricao_periodo: string
+}
+
 interface DisciplinaData {
   id_disciplina: number
   descricao_disciplina: string
@@ -73,12 +83,16 @@ interface DisciplinasContentProps {
   disciplinas: DisciplinaData[]
   turmas: TurmaData[]
   tiposSala: TipoSalaData[]
+  periodos: PeriodoData[]
 }
 
-// Tipo para alinhar com o erro do Prisma/TS
-type TurmaConfig = { id_turma: number; aulas_por_semana: number };
+interface TurmaConfig {
+  id_turma: number
+  aulas_por_semana: number
+  ids_periodos: number[]
+}
 
-export function DisciplinasContent({ disciplinas, turmas, tiposSala }: DisciplinasContentProps) {
+export function DisciplinasContent({ disciplinas, turmas, tiposSala, periodos }: DisciplinasContentProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [isOpen, setIsOpen] = useState(false)
@@ -140,7 +154,11 @@ export function DisciplinasContent({ disciplinas, turmas, tiposSala }: Disciplin
       } else {
         return {
           ...prev,
-          turmaConfigs: [...prev.turmaConfigs, { id_turma: turmaId, aulas_por_semana: 2 }],
+          turmaConfigs: [...prev.turmaConfigs, {
+            id_turma: turmaId,
+            aulas_por_semana: 2,
+            ids_periodos: [],
+          }],
         }
       }
     })
@@ -155,6 +173,23 @@ export function DisciplinasContent({ disciplinas, turmas, tiposSala }: Disciplin
     }))
   }
 
+  const togglePeriodo = (turmaId: number, periodoId: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      turmaConfigs: prev.turmaConfigs.map((config) => {
+        if (config.id_turma !== turmaId) return config
+
+        const periodoJaSeleccionado = config.ids_periodos.includes(periodoId)
+        return {
+          ...config,
+          ids_periodos: periodoJaSeleccionado
+            ? config.ids_periodos.filter((id_periodo) => id_periodo !== periodoId)
+            : [...config.ids_periodos, periodoId],
+        }
+      }),
+    }))
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
@@ -162,6 +197,11 @@ export function DisciplinasContent({ disciplinas, turmas, tiposSala }: Disciplin
 
     if (!formData.id_tipoSala) {
       setError("Por favor, selecione um tipo de sala.")
+      return
+    }
+
+    if (formData.turmaConfigs.some((config) => config.ids_periodos.length === 0)) {
+      setError("Seleccione pelo menos um período para cada turma associada.")
       return
     }
 
@@ -174,13 +214,12 @@ export function DisciplinasContent({ disciplinas, turmas, tiposSala }: Disciplin
       if (editingDisciplina) {
         result = await atualizarDisciplina(editingDisciplina.id, fd)
         if (result.success) {
-          // CORRECÇÃO: Passando o array de objectos correcto
-          await atualizarTurmasDaDisciplina(editingDisciplina.id, formData.turmaConfigs)
+          result = await atualizarTurmasDaDisciplina(editingDisciplina.id, formData.turmaConfigs)
         }
       } else {
         result = await criarDisciplina(fd)
         if (result.success && result.data) {
-          await atualizarTurmasDaDisciplina(result.data.id_disciplina, formData.turmaConfigs)
+          result = await atualizarTurmasDaDisciplina(result.data.id_disciplina, formData.turmaConfigs)
         }
       }
 
@@ -209,10 +248,15 @@ export function DisciplinasContent({ disciplinas, turmas, tiposSala }: Disciplin
   }
 
   const handleEdit = (disciplina: DisciplinaRow) => {
-    // CORRECÇÃO: Mapear para o formato de objecto esperado ao carregar para edição
     const associatedConfigs = turmas
-      .filter((t) => t.turmaDisciplinas.some((td) => td.disciplina.descricao_disciplina === disciplina.nome))
-      .map((t) => ({ id_turma: t.id_turma, aulas_por_semana: 2 })) // Ajuste conforme a lógica de aulas do seu DB
+      .flatMap((turma) => turma.turmaDisciplinas
+        .filter((turmaDisciplina) => turmaDisciplina.disciplina.id_disciplina === disciplina.id)
+        .map((turmaDisciplina) => ({
+          id_turma: turma.id_turma,
+          aulas_por_semana: turmaDisciplina.aulas_por_semana,
+          ids_periodos: turmaDisciplina.turmaDisciplinaPeriodos.map(({ id_periodo }) => id_periodo),
+        })),
+      )
 
     setEditingDisciplina(disciplina)
     const existingData = disciplinas.find((d) => d.id_disciplina === disciplina.id)
@@ -243,6 +287,10 @@ export function DisciplinasContent({ disciplinas, turmas, tiposSala }: Disciplin
     acc[nomeCurso].push(t)
     return acc
   }, {})
+
+  const existemTurmasSemPeriodos = formData.turmaConfigs.some(
+    (config) => config.ids_periodos.length === 0,
+  )
 
   return (
     <div className="space-y-6">
@@ -338,12 +386,14 @@ export function DisciplinasContent({ disciplinas, turmas, tiposSala }: Disciplin
                           </div>
                           <div className="grid grid-cols-2 gap-1 p-2">
                             {cursoTurmas.map((t) => {
-                              // CORREÇÃO: Verificação de check agora olha para id_turma dentro do objeto
-                              const isChecked = formData.turmaConfigs.some(config => config.id_turma === t.id_turma)
+                              const turmaConfig = formData.turmaConfigs.find(
+                                (config) => config.id_turma === t.id_turma,
+                              )
+                              const isChecked = turmaConfig !== undefined
                               return (
                                 <div
                                   key={t.id_turma}
-                                  className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 rounded-md px-2.5 py-2 transition-all duration-150 ${isChecked
+                                  className={`flex flex-col gap-2.5 rounded-md px-2.5 py-2 transition-all duration-150 ${isChecked
                                       ? "bg-primary/10 border border-primary/30"
                                       : "hover:bg-muted/50 border border-transparent"
                                     }`}
@@ -368,16 +418,48 @@ export function DisciplinasContent({ disciplinas, turmas, tiposSala }: Disciplin
                                     </div>
                                   </label>
                                   {isChecked && (
-                                    <div className="flex items-center gap-1.5 flex-shrink-0 sm:ml-4 ml-7">
-                                      <span className="text-[11px] text-muted-foreground whitespace-nowrap">Aulas:</span>
-                                      <Input 
-                                        type="number" 
-                                        min="1" 
-                                        max="10" 
-                                        className="h-7 w-12 text-[11px] px-1 text-center"
-                                        value={formData.turmaConfigs.find(config => config.id_turma === t.id_turma)?.aulas_por_semana || 2}
-                                        onChange={(e) => updateAulasPorSemana(t.id_turma, parseInt(e.target.value) || 1)}
-                                      />
+                                    <div className="ml-7 grid gap-2">
+                                      <div className="flex items-center gap-1.5">
+                                        <span className="text-[11px] text-muted-foreground whitespace-nowrap">Aulas:</span>
+                                        <Input
+                                          type="number"
+                                          min="1"
+                                          max="10"
+                                          className="h-7 w-12 text-[11px] px-1 text-center"
+                                          value={turmaConfig.aulas_por_semana}
+                                          onChange={(e) => updateAulasPorSemana(t.id_turma, parseInt(e.target.value) || 1)}
+                                        />
+                                      </div>
+                                      <fieldset className="grid gap-1.5">
+                                        <legend className="text-[11px] font-medium text-muted-foreground">
+                                          Períodos permitidos
+                                        </legend>
+                                        {periodos.length > 0 ? (
+                                          <div className="flex flex-wrap gap-x-3 gap-y-1.5">
+                                            {periodos.map((periodo) => {
+                                              const periodoSeleccionado = turmaConfig.ids_periodos.includes(periodo.id_periodo)
+                                              return (
+                                                <label
+                                                  key={periodo.id_periodo}
+                                                  htmlFor={`turma-${t.id_turma}-periodo-${periodo.id_periodo}`}
+                                                  className="flex cursor-pointer items-center gap-1.5 text-xs"
+                                                >
+                                                  <Checkbox
+                                                    id={`turma-${t.id_turma}-periodo-${periodo.id_periodo}`}
+                                                    checked={periodoSeleccionado}
+                                                    onCheckedChange={() => togglePeriodo(t.id_turma, periodo.id_periodo)}
+                                                  />
+                                                  {periodo.descricao_periodo}
+                                                </label>
+                                              )
+                                            })}
+                                          </div>
+                                        ) : (
+                                          <p className="text-xs text-destructive">
+                                            Não existem períodos disponíveis para seleccionar.
+                                          </p>
+                                        )}
+                                      </fieldset>
                                     </div>
                                   )}
                                 </div>
@@ -394,6 +476,11 @@ export function DisciplinasContent({ disciplinas, turmas, tiposSala }: Disciplin
                       </p>
                     </div>
                   )}
+                  {existemTurmasSemPeriodos && (
+                    <p className="text-xs font-medium text-destructive">
+                      Seleccione pelo menos um período para cada turma associada.
+                    </p>
+                  )}
                 </div>
 
                 {error && (
@@ -406,7 +493,7 @@ export function DisciplinasContent({ disciplinas, turmas, tiposSala }: Disciplin
                 <Button type="button" variant="outline" onClick={resetForm}>
                   Cancelar
                 </Button>
-                <Button type="submit" disabled={isPending}>
+                <Button type="submit" disabled={isPending || existemTurmasSemPeriodos}>
                   {isPending ? "A guardar..." : editingDisciplina ? "Guardar" : "Criar"}
                 </Button>
               </DialogFooter>
