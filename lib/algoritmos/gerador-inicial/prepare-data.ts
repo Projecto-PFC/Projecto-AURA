@@ -138,7 +138,14 @@ export function prepararDados(dados: DadosCarregadosGerador): DadosPreparadosGer
     }
 
     const periodos_permitidos_por_turma_disciplina = new Map<string, Set<number>>();
-    for (const periodo_permitido of dados.periodos_permitidos_por_turma_disciplina) {
+    const periodos_permitidos_ordenados = [...dados.periodos_permitidos_por_turma_disciplina].sort(
+        (primeiro, segundo) =>
+            primeiro.id_turma - segundo.id_turma ||
+            primeiro.id_disciplina - segundo.id_disciplina ||
+            primeiro.id_periodo - segundo.id_periodo,
+    );
+
+    for (const periodo_permitido of periodos_permitidos_ordenados) {
         const chave_turma_disciplina = `${periodo_permitido.id_turma}:${periodo_permitido.id_disciplina}`;
         const periodos_permitidos = periodos_permitidos_por_turma_disciplina.get(chave_turma_disciplina) ?? new Set<number>();
 
