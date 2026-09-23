@@ -10,6 +10,7 @@ import { Aula_livre, CandidatoAlocacao, Sala, Slot } from "@/lib/algoritmos/type
 
 const slotInicial: Slot = { id_dia: 1, id_periodo: 1, ordem: 1 };
 const slotSeguinte: Slot = { id_dia: 1, id_periodo: 1, ordem: 2 };
+const slotDeOutroPeriodo: Slot = { id_dia: 1, id_periodo: 2, ordem: 1 };
 const slotDeOutroProfessor: Slot = { id_dia: 1, id_periodo: 1, ordem: 3 };
 const slotForaDaEstrutura: Slot = { id_dia: 9, id_periodo: 9, ordem: 9 };
 const salasDoCenario: Sala[] = [
@@ -34,7 +35,7 @@ function criarCenario() {
         periodos: [{ id_periodo: 1, descricao_periodo: "Manhã" }],
         atribuicoes: [{ id_atribuicao: 1, id_professor: 1, id_turma: 1, id_disciplina: 1 }],
         cargas_horarias: [{ id_turma: 1, id_disciplina: 1, aulas_por_semana: 1 }],
-        periodos_permitidos_por_turma_disciplina: [],
+        periodos_permitidos_por_turma_disciplina: [{ id_turma: 1, id_disciplina: 1, id_periodo: 1 }],
         tempos_lectivos_existentes: [],
     });
     const aula: Aula_livre = {
@@ -132,11 +133,43 @@ describe("verificarRestricoes", () => {
         expect(verificarRestricoes(aula, candidato(slotDeOutroProfessor), contexto).motivo).toBe("PROFESSOR_INDISPONIVEL");
     });
 
-    it("rejeita período não permitido para a turma (RN06)", () => {
+    it("aceita período permitido pela combinação turma-disciplina (RN06)", () => {
         const { aula, contexto } = criarCenario();
-        contexto.opcoes = { periodos_permitidos_por_turma: new Map([[1, new Set([2])]]) };
+        contexto.dados.slots.push(slotDeOutroPeriodo);
+        contexto.dados.slots_por_professor.get(1)?.push(slotDeOutroPeriodo);
+        contexto.dados.disponibilidade_por_professor.get(1)?.add(criarChaveSlot(slotDeOutroPeriodo));
+        contexto.dados.periodos.push({ id_periodo: 2, descricao_periodo: "Tarde" });
+        contexto.dados.periodos_permitidos_por_turma_disciplina.set("1:1", new Set([1, 2]));
+
+        expect(verificarRestricoes(aula, candidato(), contexto)).toEqual({ valido: true });
+        expect(verificarRestricoes(aula, candidato(slotDeOutroPeriodo), contexto)).toEqual({ valido: true });
+    });
+
+    it("rejeita período não permitido pela combinação turma-disciplina (RN06)", () => {
+        const { aula, contexto } = criarCenario();
+        contexto.dados.periodos_permitidos_por_turma_disciplina.set("1:1", new Set([2]));
 
         expect(verificarRestricoes(aula, candidato(), contexto).motivo).toBe("PERIODO_NAO_PERMITIDO");
+    });
+
+    it("rejeita TurmaDisciplina sem períodos permitidos como dados inconsistentes", () => {
+        const { aula, contexto } = criarCenario();
+        contexto.dados.periodos_permitidos_por_turma_disciplina.delete("1:1");
+
+        expect(verificarRestricoes(aula, candidato(), contexto)).toMatchObject({
+            valido: false,
+            motivo: "DADOS_INCONSISTENTES",
+        });
+    });
+
+    it("rejeita TurmaDisciplina com conjunto de períodos vazio como dados inconsistentes", () => {
+        const { aula, contexto } = criarCenario();
+        contexto.dados.periodos_permitidos_por_turma_disciplina.set("1:1", new Set());
+
+        expect(verificarRestricoes(aula, candidato(), contexto)).toMatchObject({
+            valido: false,
+            motivo: "DADOS_INCONSISTENTES",
+        });
     });
 
     it("rejeita a geração duplicada sem autorização de regeneração (RN07)", () => {

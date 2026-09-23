@@ -60,6 +60,10 @@ function contarSlotsDistintos(slots: readonly Slot[]): number {
     return new Set(slots.map(criarChaveSlot)).size;
 }
 
+function criarChaveTurmaDisciplina(idTurma: number, idDisciplina: number): string {
+    return `${idTurma}:${idDisciplina}`;
+}
+
 /**
  * Valida a viabilidade matemática do conjunto de dados antes da geração.
  * Esta pré-verificação deve ser executada uma única vez, antes do loop guloso.
@@ -100,8 +104,26 @@ export function verificarCapacidadesGlobais(
 function verificarPeriodoPermitido(
     aula: Aula_livre,
     slot: Slot,
+    dados: DadosPreparadosGerador,
     opcoes: OpcoesVerificacaoRestricoes,
 ): ResultadoVerificacaoRestricoes | undefined {
+    const chaveTurmaDisciplina = criarChaveTurmaDisciplina(aula.id_turma, aula.id_disciplina);
+    const periodosTurmaDisciplina = dados.periodos_permitidos_por_turma_disciplina.get(chaveTurmaDisciplina);
+
+    if (periodosTurmaDisciplina === undefined || periodosTurmaDisciplina.size === 0) {
+        return rejeitar(
+            "DADOS_INCONSISTENTES",
+            `A TurmaDisciplina (turma ${aula.id_turma}, disciplina ${aula.id_disciplina}) não tem períodos permitidos definidos.`,
+        );
+    }
+
+    if (!periodosTurmaDisciplina.has(slot.id_periodo)) {
+        return rejeitar(
+            "PERIODO_NAO_PERMITIDO",
+            `O período ${slot.id_periodo} não é permitido para a TurmaDisciplina (turma ${aula.id_turma}, disciplina ${aula.id_disciplina}).`,
+        );
+    }
+
     const periodosTurma = opcoes.periodos_permitidos_por_turma?.get(aula.id_turma);
     const periodosDisciplina = opcoes.periodos_permitidos_por_disciplina?.get(aula.id_disciplina);
 
@@ -142,7 +164,7 @@ export function verificarRestricoes(
         return rejeitar("SLOT_LETIVO_INVALIDO", "O candidato não pertence à estrutura de slots letivos da escola.");
     }
 
-    const falhaPeriodo = verificarPeriodoPermitido(aula, candidato.slot, opcoes);
+    const falhaPeriodo = verificarPeriodoPermitido(aula, candidato.slot, dados, opcoes);
     if (falhaPeriodo !== undefined) {
         return falhaPeriodo;
     }

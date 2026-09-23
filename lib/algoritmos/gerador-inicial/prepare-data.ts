@@ -89,6 +89,34 @@ export function prepararDados(dados: DadosCarregadosGerador): DadosPreparadosGer
         cargasPorTurmaDisciplina.set(`${carga.id_turma}:${carga.id_disciplina}`, carga.aulas_por_semana);
     }
 
+    const periodos_permitidos_por_turma_disciplina = new Map<string, Set<number>>();
+    const periodos_permitidos_ordenados = [...dados.periodos_permitidos_por_turma_disciplina].sort(
+        (primeiro, segundo) =>
+            primeiro.id_turma - segundo.id_turma ||
+            primeiro.id_disciplina - segundo.id_disciplina ||
+            primeiro.id_periodo - segundo.id_periodo,
+    );
+
+    for (const periodo_permitido of periodos_permitidos_ordenados) {
+        const chave_turma_disciplina = `${periodo_permitido.id_turma}:${periodo_permitido.id_disciplina}`;
+        const periodos_permitidos = periodos_permitidos_por_turma_disciplina.get(chave_turma_disciplina) ?? new Set<number>();
+
+        periodos_permitidos.add(periodo_permitido.id_periodo);
+        periodos_permitidos_por_turma_disciplina.set(chave_turma_disciplina, periodos_permitidos);
+    }
+
+    for (const carga of dados.cargas_horarias) {
+        const chave_turma_disciplina = `${carga.id_turma}:${carga.id_disciplina}`;
+        const periodos_permitidos = periodos_permitidos_por_turma_disciplina.get(chave_turma_disciplina);
+
+        if (periodos_permitidos === undefined || periodos_permitidos.size === 0) {
+            throw new Error(
+                `TurmaDisciplina sem períodos permitidos definidos ` +
+                `(turma ${carga.id_turma}, disciplina ${carga.id_disciplina})`,
+            );
+        }
+    }
+
     const atribuicoes: Atribuicao[] = dados.atribuicoes.map((atribuicao) => {
         const carga = cargasPorTurmaDisciplina.get(`${atribuicao.id_turma}:${atribuicao.id_disciplina}`)
 
@@ -135,22 +163,6 @@ export function prepararDados(dados: DadosCarregadosGerador): DadosPreparadosGer
                 ? []
                 : salasDoTipo.filter((sala) => sala.capacidade >= turma.quantidade_alunos),
         );
-    }
-
-    const periodos_permitidos_por_turma_disciplina = new Map<string, Set<number>>();
-    const periodos_permitidos_ordenados = [...dados.periodos_permitidos_por_turma_disciplina].sort(
-        (primeiro, segundo) =>
-            primeiro.id_turma - segundo.id_turma ||
-            primeiro.id_disciplina - segundo.id_disciplina ||
-            primeiro.id_periodo - segundo.id_periodo,
-    );
-
-    for (const periodo_permitido of periodos_permitidos_ordenados) {
-        const chave_turma_disciplina = `${periodo_permitido.id_turma}:${periodo_permitido.id_disciplina}`;
-        const periodos_permitidos = periodos_permitidos_por_turma_disciplina.get(chave_turma_disciplina) ?? new Set<number>();
-
-        periodos_permitidos.add(periodo_permitido.id_periodo);
-        periodos_permitidos_por_turma_disciplina.set(chave_turma_disciplina, periodos_permitidos);
     }
 
     const idsTurmasEmGeracao = new Set(turmas.map((turma) => turma.id_turma));

@@ -33,4 +33,11 @@ describe("prepararDados", () => {
             ["2:1", new Set([1, 3])],
         ]);
     });
+
+    it("rejeita TurmaDisciplina sem períodos permitidos", () => {
+        expect(() => prepararDados({
+            ...criarDadosCarregados([]),
+            cargas_horarias: [{ id_turma: 1, id_disciplina: 2, aulas_por_semana: 1 }],
+        })).toThrow("TurmaDisciplina sem períodos permitidos definidos (turma 1, disciplina 2)");
+    });
 });

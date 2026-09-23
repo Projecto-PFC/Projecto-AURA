@@ -10,7 +10,7 @@ const salaGrande: Sala = { id_sala: 1, descricao_sala: "Sala Grande", capacidade
 const salaPequena: Sala = { id_sala: 2, descricao_sala: "Sala Pequena", capacidade: 20, id_tipoSala: 1 };
 
 function criarDadosCarregados(substituicoes: Partial<DadosCarregadosGerador> = {}): DadosCarregadosGerador {
-    return {
+    const dados: DadosCarregadosGerador = {
         professores: [{ id_professor: 1, nome_professor: "Professor A", disponibilidades: [slot1, slot2, slot3] }],
         disciplinas: [{ id_disciplina: 1, nome_disciplina: "Matemática", id_tipoSala: 1 }],
         turmas: [{ id_turma: 1, descricao_turma: "Turma 10A", quantidade_alunos: 25 }],
@@ -21,6 +21,16 @@ function criarDadosCarregados(substituicoes: Partial<DadosCarregadosGerador> = {
         periodos_permitidos_por_turma_disciplina: [],
         tempos_lectivos_existentes: [],
         ...substituicoes,
+    };
+
+    return {
+        ...dados,
+        periodos_permitidos_por_turma_disciplina: substituicoes.periodos_permitidos_por_turma_disciplina
+            ?? dados.cargas_horarias.map((carga) => ({
+                id_turma: carga.id_turma,
+                id_disciplina: carga.id_disciplina,
+                id_periodo: dados.periodos[0]?.id_periodo ?? 1,
+            })),
     };
 }
 
@@ -119,6 +129,35 @@ describe("gerarHorarioInicial", () => {
         expect(porDisciplina.metricas.falhas[0].detalhe).toContain("PERIODO_NAO_PERMITIDO");
         expect(porTurma.sucesso).toBe(false);
         expect(porDisciplina.sucesso).toBe(false);
+    });
+
+    it("gera candidatos apenas nos períodos configurados para TurmaDisciplina", () => {
+        const slotTarde: Slot = { id_dia: 1, id_periodo: 2, ordem: 1 };
+        const dadosBase = criarDadosCarregados({
+            professores: [{ id_professor: 1, nome_professor: "Professor A", disponibilidades: [slot1, slotTarde] }],
+            periodos: [
+                { id_periodo: 1, descricao_periodo: "Manhã" },
+                { id_periodo: 2, descricao_periodo: "Tarde" },
+            ],
+        });
+
+        const apenasManha = gerar({
+            ...dadosBase,
+            periodos_permitidos_por_turma_disciplina: [{ id_turma: 1, id_disciplina: 1, id_periodo: 1 }],
+        });
+        const manhaETarde = gerar({
+            ...dadosBase,
+            periodos_permitidos_por_turma_disciplina: [
+                { id_turma: 1, id_disciplina: 1, id_periodo: 1 },
+                { id_turma: 1, id_disciplina: 1, id_periodo: 2 },
+            ],
+        });
+
+        expect(apenasManha.sucesso).toBe(true);
+        expect(apenasManha.horario?.aulas_alocadas[0].slot.id_periodo).toBe(1);
+        expect(apenasManha.metricas.candidatos_gerados).toBe(1);
+        expect(manhaETarde.sucesso).toBe(true);
+        expect(manhaETarde.metricas.candidatos_gerados).toBe(2);
     });
 
     it("bloqueia e permite regeneração conforme a opção", () => {

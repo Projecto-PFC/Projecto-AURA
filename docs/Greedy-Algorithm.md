@@ -331,15 +331,15 @@ Um professor só pode receber aulas em slots nos quais esteja disponível.
 
 ### RN06 — Período letivo permitido
 
-Os slots candidatos devem respeitar as regras de período aplicáveis à turma e à disciplina.
+Os slots candidatos devem respeitar os períodos configurados para a combinação
+`TurmaDisciplina`. Para cada atribuição, o algoritmo consulta a chave
+`id_turma:id_disciplina` no índice de `TurmaDisciplinaPeriodo` e só gera
+candidatos cujo `id_periodo` pertença a esse conjunto.
 
-Exemplos definidos atualmente:
-
-* Educação Física pode ocorrer de manhã ou à tarde.
-* Determinadas turmas da 12ª Classe podem utilizar manhã ou tarde.
-* As restantes situações devem respeitar o período letivo definido pelo modelo da escola.
-
-Essa regra deve ser aplicada durante a preparação e filtragem dos candidatos.
+Não são permitidas regras baseadas em nomes de disciplinas, cursos, classes ou
+categorias. Uma `TurmaDisciplina` sem períodos permitidos é uma inconsistência
+dos dados e deve interromper a preparação, nunca ampliar o domínio para todos
+os períodos.
 
 ---
 
