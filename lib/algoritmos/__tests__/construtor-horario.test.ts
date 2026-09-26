@@ -186,4 +186,57 @@ describe("gerarHorarioInicial", () => {
         expect(resultado.metricas.custo_soft_final).toBe(5);
         expect(resultado.horario?.aulas_alocadas[0].id_sala).toBe(2);
     });
+
+    it("rejeita uma escolha gulosa perigosa e gera o horário deterministicamente", () => {
+        const dados: DadosCarregadosGerador = {
+            professores: [
+                { id_professor: 1, nome_professor: "Professor A", disponibilidades: [slot1, { ...slot2, id_periodo: 2 }] },
+                { id_professor: 2, nome_professor: "Professor B", disponibilidades: [slot1] },
+            ],
+            disciplinas: [{ id_disciplina: 1, nome_disciplina: "Matemática", id_tipoSala: 1 }],
+            turmas: [
+                { id_turma: 1, descricao_turma: "Turma A", quantidade_alunos: 25 },
+                { id_turma: 2, descricao_turma: "Turma B", quantidade_alunos: 15 },
+            ],
+            salas: [salaPequena, salaGrande],
+            periodos: [
+                { id_periodo: 1, descricao_periodo: "Manhã" },
+                { id_periodo: 2, descricao_periodo: "Tarde" },
+            ],
+            atribuicoes: [
+                { id_atribuicao: 1, id_professor: 1, id_turma: 1, id_disciplina: 1 },
+                { id_atribuicao: 2, id_professor: 1, id_turma: 2, id_disciplina: 1 },
+            ],
+            cargas_horarias: [
+                { id_turma: 1, id_disciplina: 1, aulas_por_semana: 1 },
+                { id_turma: 2, id_disciplina: 1, aulas_por_semana: 1 },
+            ],
+            periodos_permitidos_por_turma_disciplina: [
+                { id_turma: 1, id_disciplina: 1, id_periodo: 1 },
+                { id_turma: 1, id_disciplina: 1, id_periodo: 2 },
+                { id_turma: 2, id_disciplina: 1, id_periodo: 1 },
+            ],
+            tempos_lectivos_existentes: [],
+        };
+
+        const primeiroResultado = gerar(dados);
+        const segundoResultado = gerar(dados);
+
+        expect(primeiroResultado.sucesso).toBe(true);
+        expect(primeiroResultado.horario?.aulas_alocadas.map((alocada) => ({
+            id_aula: alocada.aula.id_aula,
+            slot: alocada.slot,
+        }))).toEqual([
+            { id_aula: 1, slot: { id_dia: 1, id_periodo: 2, ordem: 2 } },
+            { id_aula: 2, slot: slot1 },
+        ]);
+        expect(primeiroResultado.logs?.some((log) => log.mensagem.includes("Forward Checking eliminou 1 candidato"))).toBe(true);
+        expect(segundoResultado.horario?.aulas_alocadas.map((alocada) => ({
+            id_aula: alocada.aula.id_aula,
+            slot: alocada.slot,
+        }))).toEqual(primeiroResultado.horario?.aulas_alocadas.map((alocada) => ({
+            id_aula: alocada.aula.id_aula,
+            slot: alocada.slot,
+        })));
+    });
 });

@@ -10,6 +10,7 @@ import {
     Horario,
 } from "@/lib/algoritmos/types";
 import { GeradorEstados } from "@/lib/algoritmos/gerador-inicial/gerador-estados";
+import { filtrarCandidatosForwardChecking } from "@/lib/algoritmos/gerador-inicial/forward-checking";
 import { seleccionarProximaAula } from "@/lib/algoritmos/gerador-inicial/ordenar-aulas";
 import { gerarCandidatos } from "@/lib/algoritmos/gerador-inicial/gerador-candidatos";
 import {
@@ -123,7 +124,7 @@ export function gerarHorarioInicial(
             throw new Error("Não foi possível seleccionar uma aula pendente para a geração do horário.");
         }
 
-        const { aula, candidatosValidos } = selecao;
+        const { aula, candidatosValidos: candidatosHardValidos } = selecao;
         const candidatos = aula.dominio;
         totalCandidatosGerados += candidatos.length;
         const contextoVerificacao: ContextoVerificacaoRestricoes = {
@@ -133,29 +134,71 @@ export function gerarHorarioInicial(
             opcoes,
         };
 
-        totalCandidatosRejeitados += candidatos.length - candidatosValidos.length;
+        totalCandidatosRejeitados += candidatos.length - candidatosHardValidos.length;
+
+        let candidatosValidos = candidatosHardValidos;
+        let detalheForwardChecking: string | undefined;
+
+        if (candidatosHardValidos.length > 0) {
+            const resultadoForwardChecking = filtrarCandidatosForwardChecking(
+                aula,
+                candidatosHardValidos,
+                aulasRestantes,
+                dados,
+                geradorEstados,
+                opcoes,
+            );
+            candidatosValidos = resultadoForwardChecking.candidatosSeguros;
+            totalCandidatosRejeitados += resultadoForwardChecking.candidatosEliminados.length;
+
+            if (resultadoForwardChecking.candidatosEliminados.length > 0) {
+                const idsAulasSemCandidatos = Array.from(new Set(
+                    resultadoForwardChecking.candidatosEliminados.flatMap(
+                        (eliminado) => eliminado.aulasSemCandidatos,
+                    ),
+                ));
+                const motivosRestricoes = Array.from(new Set(
+                    resultadoForwardChecking.candidatosEliminados.flatMap(
+                        (eliminado) => eliminado.motivosRestricoes,
+                    ),
+                ));
+                detalheForwardChecking =
+                    `Forward Checking eliminou ${resultadoForwardChecking.candidatosEliminados.length} candidato(s); ` +
+                    `aulas futuras sem candidatos: ${idsAulasSemCandidatos.join(", ")}.` +
+                    (motivosRestricoes.length > 0
+                        ? ` Restrições observadas: ${motivosRestricoes.join(", ")}.`
+                        : "");
+                logs.push({ tipo: "aviso", mensagem: detalheForwardChecking });
+            }
+        }
+
         totalCandidatosAvaliados += candidatosValidos.length;
 
         // Se não houver candidatos válidos, tratar falha
         if (candidatosValidos.length === 0) {
-            const contagemMotivos = new Map<string, number>();
-            for (const candidato of candidatos) {
-                const resultado = verificarRestricoes(aula, candidato, contextoVerificacao);
-                if (!resultado.valido && resultado.motivo) {
-                    contagemMotivos.set(resultado.motivo, (contagemMotivos.get(resultado.motivo) ?? 0) + 1);
-                }
-            }
+            let detalheFalha = detalheForwardChecking;
 
-            const detalhesMotivos = Array.from(contagemMotivos.entries())
-                .map(([motivo, count]) => `${motivo}: ${count}`)
-                .join(", ");
+            if (candidatosHardValidos.length === 0) {
+                const contagemMotivos = new Map<string, number>();
+                for (const candidato of candidatos) {
+                    const resultado = verificarRestricoes(aula, candidato, contextoVerificacao);
+                    if (!resultado.valido && resultado.motivo) {
+                        contagemMotivos.set(resultado.motivo, (contagemMotivos.get(resultado.motivo) ?? 0) + 1);
+                    }
+                }
+
+                const detalhesMotivos = Array.from(contagemMotivos.entries())
+                    .map(([motivo, count]) => `${motivo}: ${count}`)
+                    .join(", ");
+                detalheFalha = `Nenhum candidato válido encontrado de entre ${candidatos.length} possibilidades. Razões: ${detalhesMotivos}`;
+            }
 
             const descAula = `Aula ${aula.id_aula} - ${aula.descricao_disciplina ?? ''} (Turma: ${aula.descricao_turma ?? ''}, Prof: ${aula.nome_professor ?? ''})`;
             const falha: FalhaGeracao = {
                 id_aula: aula.id_aula,
                 descricao_aula: descAula,
                 motivo: "ESGOTAMENTO_CANDIDATOS",
-                detalhe: `Nenhum candidato válido encontrado de entre ${candidatos.length} possibilidades. Razões: ${detalhesMotivos}`,
+                detalhe: detalheFalha ?? "Nenhum candidato seguro encontrado pelo Forward Checking.",
             };
 
             const erro: ErroGeracao = {
