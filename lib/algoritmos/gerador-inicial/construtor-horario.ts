@@ -1,7 +1,6 @@
 import {
     Aula_alocada,
     Aula_livre,
-    CandidatoAlocacao,
     DadosPreparadosGerador,
     ResultadoGeracao,
     PesosSoftConstraints,
@@ -11,7 +10,7 @@ import {
     Horario,
 } from "@/lib/algoritmos/types";
 import { GeradorEstados } from "@/lib/algoritmos/gerador-inicial/gerador-estados";
-import { ordenarAulas } from "@/lib/algoritmos/gerador-inicial/ordenar-aulas";
+import { seleccionarProximaAula } from "@/lib/algoritmos/gerador-inicial/ordenar-aulas";
 import { gerarCandidatos } from "@/lib/algoritmos/gerador-inicial/gerador-candidatos";
 import {
     verificarRestricoes,
@@ -109,24 +108,24 @@ export function gerarHorarioInicial(
         mensagem: `Dados preparados. Total de aulas a alocar: ${total_aulas_a_alocar}.`,
     });
 
-    // 3. Ordenar as aulas pela dificuldade (heurística MRV inicial)
-    const aulasOrdenadas = ordenarAulas(aulasLivres, { obterDominio: (a) => a.dominio });
-
-    // 4. Inicializar o estado do gerador
+    // 3. Inicializar o estado do gerador
     const geradorEstados = new GeradorEstados();
+    let aulasRestantes = [...aulasLivres];
     let totalCandidatosGerados = 0;
     let totalCandidatosRejeitados = 0;
     let totalCandidatosAvaliados = 0;
     let custoSoftFinal = 0;
 
-    // 5. Loop de alocação de aulas
-    for (const aula of aulasOrdenadas) {
+    // 4. Recalcular MRV após cada alocação, usando o estado actual.
+    while (aulasRestantes.length > 0) {
+        const selecao = seleccionarProximaAula(aulasRestantes, dados, geradorEstados, opcoes);
+        if (selecao === undefined) {
+            throw new Error("Não foi possível seleccionar uma aula pendente para a geração do horário.");
+        }
+
+        const { aula, candidatosValidos } = selecao;
         const candidatos = aula.dominio;
         totalCandidatosGerados += candidatos.length;
-
-        const candidatosValidos: CandidatoAlocacao[] = [];
-
-        // Filtrar candidatos válidos respeitando as restrições
         const contextoVerificacao: ContextoVerificacaoRestricoes = {
             dados,
             ocupacao_dinamica: geradorEstados.obterIndicesOcupacao(),
@@ -134,15 +133,7 @@ export function gerarHorarioInicial(
             opcoes,
         };
 
-        for (const candidato of candidatos) {
-            const resultado = verificarRestricoes(aula, candidato, contextoVerificacao);
-            if (resultado.valido) {
-                candidatosValidos.push(candidato);
-            } else {
-                totalCandidatosRejeitados++;
-            }
-        }
-
+        totalCandidatosRejeitados += candidatos.length - candidatosValidos.length;
         totalCandidatosAvaliados += candidatosValidos.length;
 
         // Se não houver candidatos válidos, tratar falha
@@ -218,6 +209,7 @@ export function gerarHorarioInicial(
         };
 
         geradorEstados.adicionarAtribuicao(aulaAlocada);
+        aulasRestantes = aulasRestantes.filter((aulaPendente) => aulaPendente.id_aula !== aula.id_aula);
 
         // Atualizar contadores de ocupação de soft constraints em dados para manter consistência
         const chaveTurmaDia = `${aula.id_turma}:${melhorCandidato.slot.id_dia}`;

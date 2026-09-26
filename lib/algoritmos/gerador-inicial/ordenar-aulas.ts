@@ -1,4 +1,14 @@
-import type { Aula_livre, CandidatoAlocacao } from "@/lib/algoritmos/types";
+import type {
+    Aula_livre,
+    CandidatoAlocacao,
+    DadosPreparadosGerador,
+} from "@/lib/algoritmos/types";
+import { GeradorEstados } from "@/lib/algoritmos/gerador-inicial/gerador-estados";
+import {
+    ContextoVerificacaoRestricoes,
+    OpcoesVerificacaoRestricoes,
+    verificarRestricoes,
+} from "@/lib/algoritmos/gerador-inicial/verificador-restricoes";
 
 /**
  * Permite trocar a origem do domínio sem acoplar a ordenação ao construtor do
@@ -6,6 +16,11 @@ import type { Aula_livre, CandidatoAlocacao } from "@/lib/algoritmos/types";
  */
 export interface OpcoesOrdenacaoAulas {
     obterDominio?: (aula: Aula_livre) => readonly CandidatoAlocacao[];
+}
+
+export interface SelecaoProximaAula {
+    aula: Aula_livre;
+    candidatosValidos: CandidatoAlocacao[];
 }
 
 interface EstatisticasAula {
@@ -101,8 +116,7 @@ function compararAulas(
 /**
  * Ordena as aulas por dificuldade sem alterar a coleção recebida.
  *
- * A função é pura e aceita uma origem de domínio opcional. O construtor poderá
- * fornecer um domínio atualizado a cada iteração para evoluir para MRV dinâmico.
+ * A função é pura e aceita uma origem de domínio opcional.
  */
 export function ordenarAulas(
     aulas: readonly Aula_livre[],
@@ -114,4 +128,43 @@ export function ordenarAulas(
     return [...aulas].sort((primeira, segunda) =>
         compararAulas(primeira, segunda, estatisticasPorAula),
     );
+}
+
+/** Seleciona a aula com o menor domínio válido no estado actual do horário. */
+export function seleccionarProximaAula(
+    aulas: readonly Aula_livre[],
+    dados: DadosPreparadosGerador,
+    estado: GeradorEstados,
+    opcoes: OpcoesVerificacaoRestricoes = {},
+): SelecaoProximaAula | undefined {
+    if (aulas.length === 0) {
+        return undefined;
+    }
+
+    const contexto: ContextoVerificacaoRestricoes = {
+        dados,
+        ocupacao_dinamica: estado.obterIndicesOcupacao(),
+        aulas_alocadas: estado.obterAulasAlocadas(),
+        opcoes,
+    };
+    const dominiosValidos = new Map<number, CandidatoAlocacao[]>();
+    const aulasOrdenadas = ordenarAulas(aulas, {
+        obterDominio: (aula) => {
+            const candidatosValidos = aula.dominio.filter((candidato) =>
+                verificarRestricoes(aula, candidato, contexto).valido,
+            );
+            dominiosValidos.set(aula.id_aula, candidatosValidos);
+            return candidatosValidos;
+        },
+    });
+    const aula = aulasOrdenadas[0];
+
+    if (aula === undefined) {
+        return undefined;
+    }
+
+    return {
+        aula,
+        candidatosValidos: dominiosValidos.get(aula.id_aula) ?? [],
+    };
 }

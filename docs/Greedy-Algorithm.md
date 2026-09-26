@@ -556,11 +556,9 @@ A ordem preferencial será:
 C → B → A
 ```
 
-A dificuldade de uma aula deve considerar o seu domínio de posições válidas.
+A dificuldade de uma aula considera o seu domínio de posições ainda válidas no estado atual do horário. Antes de cada alocação, o gerador revalida os candidatos das aulas pendentes através do verificador de Hard Constraints e seleciona a aula com o menor domínio. Depois de atualizar as ocupações, o MRV é recalculado.
 
-A arquitetura deve permitir que essa informação seja atualizada durante a geração, pois a quantidade de posições disponíveis para uma aula diminui à medida que o horário é preenchido.
-
-A implementação inicial pode utilizar a ordenação baseada no domínio inicial, mas deve ser estruturada de forma a permitir **MRV dinâmico** posteriormente.
+Os desempates seguem os critérios determinísticos definidos pela implementação, incluindo `id_atribuicao` e `id_aula`. Um domínio vazio é seleccionado como o mais restrito e interrompe a geração imediatamente com a falha correspondente.
 
 ---
 
@@ -890,17 +888,15 @@ Validação de Capacidade
        ↓
 Criação das Aulas
        ↓
-Construção dos Domínios
-       ↓
-Ordenação MRV
-       ↓
-Selecionar Aula
-       ↓
-Gerar Candidatos
-       ↓
-Filtrar Hard Constraints
-       ↓
-Existem candidatos?
+Construção dos Domínios Iniciais
+    ↓
+Inicializar Estado do Horário
+    ↓
+Calcular Domínios Válidos no Estado Atual
+    ↓
+Selecionar Próxima Aula por MRV
+    ↓
+Existem candidatos válidos?
    ↙             ↘
  NÃO              SIM
  ↓                 ↓
@@ -912,7 +908,7 @@ Falha          Avaliar Soft Constraints
                    ↓
             Atualizar Estado
                    ↓
-        Atualizar Domínios
+       Recalcular MRV no estado atual
                    ↓
          Existem aulas restantes?
              ↙          ↘
